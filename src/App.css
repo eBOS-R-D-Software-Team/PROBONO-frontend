@@ -36,3 +36,68 @@
     transform: rotate(360deg);
   }
 }
+.auth-main::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 400px;
+    height: 100%;
+    z-index: -1;
+    background: #191f28;
+}
+.card::before {
+  width:150px;
+  padding: 5px
+}
+.body:after {
+    height: 5px;
+    width: 100%;
+    position: fixed;
+    content: '';
+    z-index: 999;
+}
+.auth-main:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    /* background: url(../../assets/images/auth_bg.jpg) no-repeat top left fixed; */
+}
+#wrapper:after {
+    right: 0;
+}
+#wrapper:before, #wrapper:after {
+    height: 100vh;
+    /* width: 5px; */
+    position: fixed;
+    content: '';
+    z-index: 999;
+    top: 0;
+}
+
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+#wrapper:before {
+    left: 0;
+}
+.headerName {
+  font-size: 36px;
+  align-self: center;
+  text-align: center;
+}
+.headerContainer {
+  flex-direction: row;
+}
+
+.jvectormap-container{
+  height: 300px;
+}
+
+.btn-lg{
+  --bs-btn-padding-x: 8rem;
+}
