@@ -16,7 +16,12 @@ const Login = () => {
     setTimeout(() => {
       setIsLoad(false);
     }, 500);
-  }, []);
+    if (localStorage.getItem("isLoggedIn") === "true") {
+      navigate("/home");
+    }
+  }, [navigate]);
+
+  
 
   const handleEmailChange = (e) => {
     dispatch(updateEmail(e.target.value));
@@ -35,6 +40,7 @@ const Login = () => {
       alert("Wrong Email or password Please try again");
     });
 };
+
 
   return (
     <div className="theme-cyan">

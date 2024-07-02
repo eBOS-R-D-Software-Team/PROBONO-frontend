@@ -28,6 +28,7 @@ export const onLoggedin = () => (dispatch, getState) => {
     const staticPassword = "test123";
 
     if (email === staticEmail && password === staticPassword) {
+      localStorage.setItem("isLoggedIn", "true");
       dispatch({
         type: ON_LOGGEDIN,
         payload: true,
@@ -36,5 +37,14 @@ export const onLoggedin = () => (dispatch, getState) => {
     } else {
       reject();
     }
+  });
+};
+
+// Action for logging out
+export const onLogout = () => (dispatch) => {
+  localStorage.removeItem("isLoggedIn");  // Clear login state
+  dispatch({
+    type: ON_LOGGEDIN,
+    payload: false,
   });
 };

@@ -1,5 +1,4 @@
 // src/components/Navbar.js
-
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -59,7 +58,7 @@ const Navbar = ({ onPressSideMenuToggle }) => {
                 </Link>
               </li>
               <li>
-                <Link to="/logout" className="icon-menu">
+                <Link to="/" className="icon-menu">
                   <i className="icon-login"></i>
                 </Link>
               </li>
