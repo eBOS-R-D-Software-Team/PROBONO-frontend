@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FaHome, FaChartBar, FaEnvelope, FaBell, FaCog, FaAngleLeft, FaAngleRight } from 'react-icons/fa';
-import userPhoto from '../assets/images/user.png'; // Import the image
+
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
