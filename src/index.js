@@ -10,6 +10,9 @@ import "../node_modules/bootstrap/scss/bootstrap.scss";
 import "./assets/assets/scss/main.scss";
 import "./assets/assets/scss/color_skins.scss";
 //import "../node_modules/font-awesome/css/font-awesome.min.css";
+import 'primereact/resources/themes/saga-blue/theme.css';  // Import theme
+import 'primereact/resources/primereact.min.css';  // Import PrimeReact CSS
+import 'primeicons/primeicons.css';  // Import PrimeIcons
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);

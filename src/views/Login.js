@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import Logo from "../assets/images/PB_logo_wht.png";
 import { updateEmail, updatePassword, onLoggedin } from "../actions/LoginAction";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [isLoad, setIsLoad] = useState(true);
   const dispatch = useDispatch();
+  const navigate = useNavigate(); 
   const email = useSelector((state) => state.login.email);
   const password = useSelector((state) => state.login.password);
 
@@ -14,7 +16,12 @@ const Login = () => {
     setTimeout(() => {
       setIsLoad(false);
     }, 500);
-  }, []);
+    if (localStorage.getItem("isLoggedIn") === "true") {
+      navigate("/home");
+    }
+  }, [navigate]);
+
+  
 
   const handleEmailChange = (e) => {
     dispatch(updateEmail(e.target.value));
@@ -25,8 +32,15 @@ const Login = () => {
   };
 
   const handleLogin = () => {
-    dispatch(onLoggedin()); // Dispatch the login action with static authentication
-  };
+    dispatch(onLoggedin())
+    .then(() => {
+      navigate("/home");
+    })
+    .catch(() => {
+      alert("Wrong Email or password Please try again");
+    });
+};
+
 
   return (
     <div className="theme-cyan">

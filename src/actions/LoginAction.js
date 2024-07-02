@@ -20,18 +20,31 @@ export const updatePassword = (val) => (dispatch) => {
 
 // Simulate a static authentication process
 export const onLoggedin = () => (dispatch, getState) => {
-  const { email, password } = getState().login;
+  return new Promise((resolve, reject) => {
+    const { email, password } = getState().login;
 
-  // Static credentials check
-  const staticEmail = "admin@probono.com";
-  const staticPassword = "test123";
+    // Static credentials check
+    const staticEmail = "admin@probono.com";
+    const staticPassword = "test123";
 
-  if (email === staticEmail && password === staticPassword) {
-    dispatch({
-      type: ON_LOGGEDIN,
-      payload: true,
-    });
-  } else {
-    alert("Invalid email or password");
-  }
+    if (email === staticEmail && password === staticPassword) {
+      localStorage.setItem("isLoggedIn", "true");
+      dispatch({
+        type: ON_LOGGEDIN,
+        payload: true,
+      });
+      resolve();
+    } else {
+      reject();
+    }
+  });
+};
+
+// Action for logging out
+export const onLogout = () => (dispatch) => {
+  localStorage.removeItem("isLoggedIn");  // Clear login state
+  dispatch({
+    type: ON_LOGGEDIN,
+    payload: false,
+  });
 };

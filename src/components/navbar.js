@@ -1,16 +1,26 @@
+// src/components/Navbar.js
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import Logo from "../assets/images/logo.svg"; // Update with the correct path to your logo
-//import { onPressSideMenuToggle } from "../actions"; // Ensure this import is correct
+import Logo from "../assets/images/PB_logo_blk.png";
+import { onLogout } from "../actions/LoginAction";
+import { FaHome } from 'react-icons/fa';
 
-const Navbar = () => {
+
+const Navbar = ({ onPressSideMenuToggle }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
- /* const handleToggleSideMenu = () => {
-    dispatch(onPressSideMenuToggle());
-  };*/
+  const handleToggleSideMenu = () => {
+    if (onPressSideMenuToggle) {
+      dispatch(onPressSideMenuToggle());
+    }
+  };
+  const handleLogout = () => {
+    dispatch(onLogout());
+    navigate("/");
+  };
 
   return (
     <nav className="navbar navbar-fixed-top">
@@ -18,7 +28,7 @@ const Navbar = () => {
         <div className="navbar-btn">
           <button
             className="btn-toggle-offcanvas"
-            /*onClick={handleToggleSideMenu}*/
+            onClick={handleToggleSideMenu}
           >
             <i className="lnr lnr-menu fa fa-bars"></i>
           </button>
@@ -26,7 +36,7 @@ const Navbar = () => {
 
         <div className="navbar-brand">
           <Link to="/dashboard">
-            <img src={Logo} alt="Lucid Logo" className="img-responsive logo" />
+            <img src={Logo} alt="Probono Logo" className="img-responsive logo" />
           </Link>
         </div>
 
@@ -52,13 +62,13 @@ const Navbar = () => {
               </li>
               <li>
                 <Link to="/home" className="icon-menu">
-                  <i className="fa fa-home"></i>
+                <icon><FaHome /></icon>
                 </Link>
               </li>
               <li>
-                <Link to="/logout" className="icon-menu">
+              <button onClick={handleLogout} className="icon-menu" style={{ background: 'none', border: 'none' }}>
                   <i className="icon-login"></i>
-                </Link>
+                </button>
               </li>
             </ul>
           </div>
@@ -69,7 +79,7 @@ const Navbar = () => {
 };
 
 Navbar.propTypes = {
-  onPressSideMenuToggle: PropTypes.func.isRequired,
+  onPressSideMenuToggle: PropTypes.func,
 };
 
 export default Navbar;
