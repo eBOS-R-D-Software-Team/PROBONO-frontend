@@ -1,16 +1,19 @@
+// src/components/Navbar.js
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import Logo from "../assets/images/logo.svg"; // Update with the correct path to your logo
-//import { onPressSideMenuToggle } from "../actions"; // Ensure this import is correct
+import Logo from "../assets/images/PB_logo_blk.png";
 
-const Navbar = () => {
+const Navbar = ({ onPressSideMenuToggle }) => {
   const dispatch = useDispatch();
 
- /* const handleToggleSideMenu = () => {
-    dispatch(onPressSideMenuToggle());
-  };*/
+  const handleToggleSideMenu = () => {
+    if (onPressSideMenuToggle) {
+      dispatch(onPressSideMenuToggle());
+    }
+  };
 
   return (
     <nav className="navbar navbar-fixed-top">
@@ -18,7 +21,7 @@ const Navbar = () => {
         <div className="navbar-btn">
           <button
             className="btn-toggle-offcanvas"
-            /*onClick={handleToggleSideMenu}*/
+            onClick={handleToggleSideMenu}
           >
             <i className="lnr lnr-menu fa fa-bars"></i>
           </button>
@@ -69,7 +72,7 @@ const Navbar = () => {
 };
 
 Navbar.propTypes = {
-  onPressSideMenuToggle: PropTypes.func.isRequired,
+  onPressSideMenuToggle: PropTypes.func,
 };
 
 export default Navbar;
