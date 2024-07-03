@@ -9,18 +9,19 @@ import 'primereact/resources/primereact.min.css';
 import labo from "../assets/images/lobe21.png";
 import data from "../data/data";
 
-
 const transformData = (data, selectedYears, selectedBuildings, property) => {
   const transformed = [];
-  selectedYears.forEach(year => {
-    selectedBuildings.forEach(building => {
-      transformed.push({
-        year: parseInt(year),
-        building,
-        [property]: data[year][building][property]
+  if (selectedYears.length > 0 && selectedBuildings.length > 0 && property) {
+    selectedYears.forEach(year => {
+      selectedBuildings.forEach(building => {
+        transformed.push({
+          year: parseInt(year),
+          building,
+          [property]: data[year][building][property]
+        });
       });
     });
-  });
+  }
   return transformed;
 };
 
@@ -51,17 +52,17 @@ const DataVisualizations = () => {
           <Dropdown value={selectedProperty} options={properties} onChange={(e) => setSelectedProperty(e.value)} placeholder="Select Property" />
         </div>
       </div>
+      <div className="summary-and-image">
+        <img src={labo} alt="Facility Layout" className="facility-image" />
+        {selectedYears.length > 0 && selectedBuildings.length > 0 && selectedProperty && (
+          <PercentageIncreaseCards data={transformedData} property={selectedProperty} />
+        )}
+      </div>
       {selectedYears.length > 0 && selectedBuildings.length > 0 && selectedProperty && (
-        <>
-          <div className="summary-and-image">
-            <img src={labo} alt="Facility Layout" className="facility-image" />
-            <PercentageIncreaseCards data={transformedData} property={selectedProperty} />
-          </div>
-          <div className="visualization-container">
-            <TableComponent years={selectedYears} buildings={selectedBuildings} property={selectedProperty} data={data} />
-            <GraphComponent data={data} selectedYears={selectedYears} selectedBuildings={selectedBuildings} selectedProperty={selectedProperty} />
-          </div>
-        </>
+        <div className="visualization-container">
+          <TableComponent years={selectedYears} buildings={selectedBuildings} property={selectedProperty} data={data} />
+          <GraphComponent data={data} selectedYears={selectedYears} selectedBuildings={selectedBuildings} selectedProperty={selectedProperty} />
+        </div>
       )}
     </div>
   );

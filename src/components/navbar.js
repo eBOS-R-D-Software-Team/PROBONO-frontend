@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import Logo from "../assets/images/PB_logo_blk.png";
 import { onLogout } from "../actions/LoginAction";
-import { FaHome } from 'react-icons/fa';
+
 
 
 const Navbar = ({ onPressSideMenuToggle }) => {
@@ -62,7 +62,7 @@ const Navbar = ({ onPressSideMenuToggle }) => {
               </li>
               <li>
                 <Link to="/home" className="icon-menu">
-                <icon><FaHome /></icon>
+                <i className="icon-home"></i>
                 </Link>
               </li>
               <li>
