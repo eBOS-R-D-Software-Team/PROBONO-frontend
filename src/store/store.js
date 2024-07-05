@@ -1,9 +1,12 @@
+// src/store/index.js
 import { configureStore } from '@reduxjs/toolkit';
-import loginReducer from '../reducers/loginReducer'; // Ensure this path is correct
+import loginReducer from '../reducers/loginReducer';
+import neighbourhoodReducer from '../reducers/neighbourhoodReducer'; // Add this line
 
 const store = configureStore({
   reducer: {
     login: loginReducer,
+    neighbourhood: neighbourhoodReducer, // Add this line
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });

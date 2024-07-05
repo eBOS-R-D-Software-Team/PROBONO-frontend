@@ -7,7 +7,6 @@ import Card from '../components/cards';
 const Home = () => {
   return (
     <div className="home-container">
-      <h1>Home</h1>
       <div className="cards-container">
         <Card icon={FaTools} title="List of Tools" link="/tools" />
         <Card icon={FaCogs} title="Decision Support System" link="/decision-support" />
