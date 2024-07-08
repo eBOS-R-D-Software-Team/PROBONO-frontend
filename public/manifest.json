@@ -1,6 +1,6 @@
 {
   "short_name": "PROBONO",
-  "name": "Create React App Sample",
+  "name": "PROBONO DASHBOARD",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,12 +8,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "PB_logo_blk.png",
+      "src": "logo192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "PB_logo_blk.png",
+      "src": "logo512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
