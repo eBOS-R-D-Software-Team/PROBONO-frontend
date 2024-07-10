@@ -8,15 +8,20 @@ import DateTimePicker from 'react-datetime-picker';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'react-datetime-picker/dist/DateTimePicker.css';
-import 'react-calendar/dist/Calendar.css'; // Required for the calendar pop-up
-import 'react-clock/dist/Clock.css'; // Required for the clock pop-up
+import 'react-calendar/dist/Calendar.css'; 
+import 'react-clock/dist/Clock.css'; 
+import GraphComponent from '../components/GraphComponent'; 
+import PercentageIncreaseCards from '../components/PercentageIncreaseCards'; 
+import TableComponent from '../components/Tablecomponent'; 
+import labo from "../assets/images/lobe21.png";
+
 
 const DataVisualizations = () => {
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
   const [selectedNeighbourhoods, setSelectedNeighbourhoods] = useState([]);
   const [selectedProperty, setSelectedProperty] = useState('');
-  const [data, setData] = useState(null); // Define data state variable
+  const [data, setData] = useState([]); // Define data state variable as an array
   
   const dispatch = useDispatch();
   const { neighbourhoods, loading } = useSelector((state) => state.neighbourhood);
@@ -24,11 +29,6 @@ const DataVisualizations = () => {
   useEffect(() => {
     dispatch(fetchNeighbourhoods());
   }, [dispatch]);
-
-  const properties = [
-    { label: 'CO2 emissions', value: 'CO2 emissions' },
-    { label: 'Energy consumption', value: 'Energy consumption' },
-  ];
 
   const formatDateToISOWithoutMilliseconds = (date) => {
     const pad = (num) => num.toString().padStart(2, '0');
@@ -89,17 +89,32 @@ const DataVisualizations = () => {
             <DateTimePicker value={endTime} onChange={setEndTime} />
           </div>
         </div>
-        <div>
-          <label>Select Property:</label>
-          <Dropdown value={selectedProperty} options={properties} onChange={(e) => setSelectedProperty(e.value)} placeholder="Select Property" />
-        </div>
         <button className="confirm-button" onClick={handleFetchData}>Confirm</button>
       </div>
-      {data && (
-        <div>
-          <h3>Data Visualization</h3>
-          <pre>{JSON.stringify(data, null, 2)}</pre>
-          {/* Add your visualization components here */}
+      {/*{data.length > 0 && (
+        <div className="visualization-container">
+          <div className="visualization-item">
+            <TableComponent data={data} />
+          </div>
+          <div className="visualization-item">
+            <GraphComponent data={data} />
+          </div>
+          <div className="visualization-item">
+            <PercentageIncreaseCards data={data} />
+          </div>
+        </div>
+        
+      )}*/}
+      <div className="summary-and-image">
+      <img src={labo} alt="Facility Layout" className="facility-image" />
+{/*{data.length > 0 && (
+          <PercentageIncreaseCards data={data} />
+        )}*/}
+      </div>
+      {data.length > 0 && (
+        <div className="visualization-container">
+          <TableComponent data={data} />
+          <GraphComponent data={data} />
         </div>
       )}
     </div>

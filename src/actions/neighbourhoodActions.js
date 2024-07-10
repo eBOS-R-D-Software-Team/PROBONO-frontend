@@ -1,4 +1,3 @@
-// src/actions/neighbourhoodActions.js
 import axios from 'axios';
 import {
   fetchNeighbourhoodsStart,
@@ -13,13 +12,17 @@ export const fetchNeighbourhoods = () => async (dispatch) => {
       headers: {
         'Content-Type': 'application/json',
         'accept': 'application/json',
-        'Access-Control-Allow-Origin': '*',
       },
     });
     console.log('Response:', response); 
     dispatch(fetchNeighbourhoodsSuccess(response.data.neighbourhoods));
   } catch (error) {
-    console.log('Error:', error);
+    console.error('Error fetching neighbourhoods:', error);
+    if (error.response) {
+      console.error('Response data:', error.response.data);
+      console.error('Response status:', error.response.status);
+      console.error('Response headers:', error.response.headers);
+    }
     dispatch(fetchNeighbourhoodsFailure(error.message));
   }
 };

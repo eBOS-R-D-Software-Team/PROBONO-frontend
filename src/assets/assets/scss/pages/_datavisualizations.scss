@@ -1,62 +1,13 @@
 .data-visualizations {
-    margin-top: 20px;
-    margin-left: 71px;
+  margin-top: 20px;
+  margin-left: 71px;
 
-    
-    .selectors {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
   
-      > div {
-        flex: 1;
-        margin-right: 10px;
-        
-        &:last-child {
-          margin-right: 0;
-        }
-  
-        label {
-          display: block;
-          margin-bottom: 5px;
-        }
-      }
-    }
-  
-    .summary-and-image {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-  
-      .facility-image {
-        flex: 1;
-        max-width: 45%;
-        margin-right: 20px;
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      }
-  
-      .percentage-increase-cards {
-        flex: 1;
-        display: flex;
-        justify-content: space-around;
-  
-        .card {
-          flex: 0 0 45%;
-          text-align: center;
-        }
-      }
-    }
+  .selectors {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
 
-    .datetime-picker-container {
-      .react-datetime-picker__wrapper {
-        border: 1px solid #ccc;
-        padding: 5px;
-        border-radius: 5px;
-      }
-    }
-    
     .confirm-button {
       background-color: #007bff;
       color: white;
@@ -66,43 +17,86 @@
       cursor: pointer;
       margin-top: 20px;
     }
-    
+  
     .confirm-button:hover {
       background-color: #0056b3;
     }
-  
-    .visualization-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-  
-      .table-component {
-        flex: 1;
-        margin-right: 20px;
-        overflow-x: auto;
-  
-        table {
-          width: 100%;
-          border-collapse: collapse;
-  
-          th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-          }
-  
-          th {
-            background-color: #49c5b6;
-            color: white;
-          }
-        }
+
+    > div {
+      flex: 1;
+      margin-right: 10px;
+      
+      &:last-child {
+        margin-right: 0;
       }
-  
-      .chart-container {
-        flex: 1;
-        max-width: 45%;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        border-radius: 10px;
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      
+    }
+
+  }
+
+  .summary-and-image {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .facility-image {
+      flex: 1;
+      max-width: 45%;
+      margin-right: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+
+    .percentage-increase-cards {
+      flex: 1;
+      display: flex;
+      justify-content: space-around;
+
+      .card {
+        flex: 0 0 45%;
+        text-align: center;
       }
     }
   }
-  
+
+  .visualization-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .table-component {
+      flex: 1;
+      margin-right: 20px;
+      overflow-x: auto;
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+
+        th, td {
+          border: 1px solid #ddd;
+          padding: 8px;
+        }
+
+        th {
+          background-color: #49c5b6;
+          color: white;
+        }
+      }
+    }
+
+    .chart-container {
+      flex: 1;
+      max-width: 45%;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      border-radius: 10px;
+    }
+  }
+}
