@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios'; // Import axios
 import { fetchNeighbourhoods } from '../actions/neighbourhoodActions';
 import { MultiSelect } from 'primereact/multiselect';
-import { Dropdown } from 'primereact/dropdown';
+//import { Dropdown } from 'primereact/dropdown';
 import DateTimePicker from 'react-datetime-picker';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
@@ -11,7 +11,7 @@ import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css'; 
 import 'react-clock/dist/Clock.css'; 
 import GraphComponent from '../components/GraphComponent'; 
-import PercentageIncreaseCards from '../components/PercentageIncreaseCards'; 
+//import PercentageIncreaseCards from '../components/PercentageIncreaseCards'; 
 import TableComponent from '../components/Tablecomponent'; 
 import labo from "../assets/images/lobe21.png";
 
@@ -20,7 +20,7 @@ const DataVisualizations = () => {
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
   const [selectedNeighbourhoods, setSelectedNeighbourhoods] = useState([]);
-  const [selectedProperty, setSelectedProperty] = useState('');
+  //const [selectedProperty, setSelectedProperty] = useState('');
   const [data, setData] = useState([]); // Define data state variable as an array
   
   const dispatch = useDispatch();
@@ -64,6 +64,13 @@ const DataVisualizations = () => {
     }
   };
 
+  // Add disabled property to the first two options temporary until providing the neighboorhoods data
+  const neighbourhoodOptions = neighbourhoods.map((n, index) => ({
+    label: n.name,
+    value: n.id,
+    disabled: index < 2, // Disable the first two options
+  }));
+
   return (
     <div className="data-visualizations">
       <div className="selectors">
@@ -71,7 +78,7 @@ const DataVisualizations = () => {
           <label>Select Neighbourhoods:</label>
           <MultiSelect
             value={selectedNeighbourhoods}
-            options={neighbourhoods.map(n => ({ label: n.name, value: n.id }))}
+            options={neighbourhoodOptions}
             onChange={(e) => setSelectedNeighbourhoods(e.value)}
             placeholder="Select Neighbourhoods"
             disabled={loading}

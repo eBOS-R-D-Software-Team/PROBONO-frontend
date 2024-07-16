@@ -7,18 +7,24 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 const GraphComponent = ({ data }) => {
   if (!data || !data.length || !data[0].neighbourhood || !data[0].neighbourhood.measurements || !data[0].neighbourhood.measurements.CO2 || !data[0].neighbourhood.measurements.CO2.data) {
     return <div>No data available</div>;
-  }else{
-  console.log(data);
+  } else {
+    console.log(data);
   }
+
+  const sortedData = data[0].neighbourhood.measurements.CO2.data.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+
   const chartData = {
-    labels: data[0].neighbourhood.measurements.CO2.data.map(d => new Date(d.timestamp).toLocaleString()),
-    datasets: data.map((neighbourhood, index) => ({
-      label: neighbourhood.neighbourhood.neighourhoodname,
-      data: neighbourhood.neighbourhood.measurements.CO2.data.map(d => d.measure),
-      borderColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'][index % 4],
-      backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'][index % 4],
-      fill: false,
-    })),
+    labels: sortedData.map(d => new Date(d.timestamp).toLocaleString()),
+    datasets: data.map((neighbourhood, index) => {
+      const sortedMeasurements = neighbourhood.neighbourhood.measurements.CO2.data.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+      return {
+        label: neighbourhood.neighbourhood.neighourhoodname,
+        data: sortedMeasurements.map(d => d.measure),
+        borderColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'][index % 4],
+        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'][index % 4],
+        fill: false,
+      };
+    }),
   };
 
   const options = {
@@ -30,6 +36,11 @@ const GraphComponent = ({ data }) => {
       title: {
         display: true,
         text: 'CO2 Emissions Operational Stage per ppm',
+      },
+    },
+    scales: {
+      x: {
+        reverse: false, // Ensure this is set to false to have the oldest date on the left
       },
     },
   };
