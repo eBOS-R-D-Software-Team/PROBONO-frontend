@@ -4,12 +4,17 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-const GraphComponent = ({ data, selectedYears, selectedBuildings, selectedProperty }) => {
+const GraphComponent = ({ data }) => {
+  if (!data || !data.length || !data[0].neighbourhood || !data[0].neighbourhood.measurements || !data[0].neighbourhood.measurements.CO2 || !data[0].neighbourhood.measurements.CO2.data) {
+    return <div>No data available</div>;
+  }else{
+  console.log(data);
+  }
   const chartData = {
-    labels: selectedYears,
-    datasets: selectedBuildings.map((building, index) => ({
-      label: building,
-      data: selectedYears.map(year => data[year][building][selectedProperty]),
+    labels: data[0].neighbourhood.measurements.CO2.data.map(d => new Date(d.timestamp).toLocaleString()),
+    datasets: data.map((neighbourhood, index) => ({
+      label: neighbourhood.neighbourhood.neighourhoodname,
+      data: neighbourhood.neighbourhood.measurements.CO2.data.map(d => d.measure),
       borderColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'][index % 4],
       backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0'][index % 4],
       fill: false,
@@ -24,7 +29,7 @@ const GraphComponent = ({ data, selectedYears, selectedBuildings, selectedProper
       },
       title: {
         display: true,
-        text: `${selectedProperty} over Years`,
+        text: 'CO2 Emissions Operational Stage per ppm',
       },
     },
   };

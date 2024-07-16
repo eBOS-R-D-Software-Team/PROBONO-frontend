@@ -3,26 +3,38 @@ import PropTypes from 'prop-types';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 
-const TableComponent = ({ years, buildings, property, data }) => {
+const TableComponent = ({ data }) => {
+  // Ensure data exists and has the expected structure
+  if (!data || !data.length || !data[0].neighbourhood || !data[0].neighbourhood.measurements || !data[0].neighbourhood.measurements.CO2 || !data[0].neighbourhood.measurements.CO2.data) {
+    return <div>No data available</div>;
+  }
+
+  // Extract and sort unique timestamps from the first neighbourhood's CO2 data
+  const uniqueTimestamps = Array.from(
+    new Set(data[0].neighbourhood.measurements.CO2.data.map(d => new Date(d.timestamp).toISOString()))
+  ).sort();
+
   return (
     <div className="table-component">
-      {years.length > 0 && buildings.length > 0 && property && (
+      {data.length > 0 && (
         <div className="content-container">
           <table>
             <thead>
               <tr>
-                <th>Year</th>
-                {buildings.map(building => (
-                  <th key={building}>{building}</th>
+                <th>Measurement Time</th>
+                {data.map(neighbourhood => (
+                  <th key={neighbourhood.neighbourhood.id}>{neighbourhood.neighbourhood.neighourhoodname}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {years.map(year => (
-                <tr key={year}>
-                  <td>{year}</td>
-                  {buildings.map(building => (
-                    <td key={building}>{data[year]?.[building]?.[property] || 'N/A'}</td>
+              {uniqueTimestamps.map((timestamp, index) => (
+                <tr key={timestamp}>
+                  <td>{new Date(timestamp).toLocaleString()}</td>
+                  {data.map(neighbourhood => (
+                    <td key={neighbourhood.neighbourhood.id}>
+                      {neighbourhood.neighbourhood.measurements.CO2?.data.find(d => new Date(d.timestamp).toISOString() === timestamp)?.measure || 'N/A'}
+                    </td>
                   ))}
                 </tr>
               ))}
@@ -35,10 +47,7 @@ const TableComponent = ({ years, buildings, property, data }) => {
 };
 
 TableComponent.propTypes = {
-  years: PropTypes.array.isRequired,
-  buildings: PropTypes.array.isRequired,
-  property: PropTypes.string.isRequired,
-  data: PropTypes.object.isRequired,
+  data: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default TableComponent;
