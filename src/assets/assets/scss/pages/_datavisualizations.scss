@@ -1,7 +1,6 @@
 .data-visualizations {
   margin-top: 20px;
   margin-left: 71px;
-
   
   .selectors {
     display: flex;
@@ -71,32 +70,15 @@
     justify-content: space-between;
     align-items: flex-start;
 
-    .table-component {
-      flex: 1;
-      margin-right: 20px;
-      overflow-x: auto;
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-
-        th, td {
-          border: 1px solid #ddd;
-          padding: 8px;
-        }
-
-        th {
-          background-color: #49c5b6;
-          color: white;
-        }
-      }
-    }
-
+   
     .chart-container {
       flex: 1;
-      max-width: 45%;
+      max-width: 60%; /* Increased width */
+      height: 100%; /* Increased height */
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       border-radius: 10px;
+      margin-right: 90px;
+      margin-top: 41px;
     }
   }
 }

@@ -1,0 +1,40 @@
+# web-app-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+      - name: index-web-container01
+        image: registry.gitlab.com/devops-ebos/demo-image:v3
+        # readinessProbe:
+        #   httpGet:
+        #     path: /healthz
+        #     port: 80
+        #   initialDelaySeconds: 5
+        #   periodSeconds: 10        
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: gitlab-registry-secret           
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-app
+spec:
+  selector:
+    app: web-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

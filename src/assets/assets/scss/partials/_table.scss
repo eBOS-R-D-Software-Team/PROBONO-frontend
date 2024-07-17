@@ -1,61 +1,60 @@
 .table-component {
-    padding: 20px;
+  padding: 20px;
   
-    .selectors {
+  .selectors {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+
+    label {
       display: flex;
-      justify-content: space-around;
-      margin-bottom: 20px;
-  
-      label {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        margin-right: 20px;
-  
-        .multiselect-custom {
-          margin-top: 10px;
-          min-width: 200px;
-        }
-  
-        select {
-          margin-top: 10px;
-          padding: 5px;
-          border-radius: 5px;
-          border: 1px solid #ccc;
-          min-width: 150px;
-        }
+      flex-direction: column;
+      align-items: flex-start;
+      margin-right: 20px;
+
+      .multiselect-custom {
+        margin-top: 10px;
+        min-width: 200px;
       }
-    }
-  
-    .content-container {
-      display: flex;
-      justify-content: space-between;
-  
-      table {
-        width: 50%;
-        border-collapse: collapse;
-        margin-top: 20px;
-  
-        th, td {
-          border: 1px solid #49c5b6;
-          padding: 10px;
-          text-align: left;
-        }
-  
-        th {
-          background-color: #49c5b6;
-          color: white;
-        }
-  
-        tr:nth-child(even) {
-          background-color: #f2f2f2;
-        }
-      }
-  
-      .chart-container {
-        width: 50%;
-        padding: 20px;
+
+      select {
+        margin-top: 10px;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        min-width: 150px;
       }
     }
   }
-  
+
+  .content-container {
+    display: flex;
+    justify-content: space-between;
+
+    table {
+      width: 50%;
+      border-collapse: collapse;
+      margin-top: 20px;
+
+      th, td {
+        border: 1px solid #49c5b6;
+        padding: 10px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #49c5b6;
+        color: white;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+    }
+
+    .chart-container {
+      width: 50%;
+      padding: 20px;
+    }
+  }
+}
