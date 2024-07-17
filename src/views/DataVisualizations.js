@@ -48,7 +48,7 @@ const DataVisualizations = () => {
           const startTimeFormatted = formatDateToISOWithoutMilliseconds(startTime);
           const endTimeFormatted = formatDateToISOWithoutMilliseconds(endTime);
           console.log(`Fetching data for ID: ${id}, Start Time: ${startTimeFormatted}, End Time: ${endTimeFormatted}`);
-          return axios.get(`http://168.119.15.247:3537/porto/report/neighbourhoods/${id}/${startTimeFormatted}/${endTimeFormatted}`, {
+          return axios.get(`${process.env.REACT_APP_API_URL}/${id}/${startTimeFormatted}/${endTimeFormatted}`, {
             headers: {
               'Content-Type': 'application/json',
               'accept': 'application/json',

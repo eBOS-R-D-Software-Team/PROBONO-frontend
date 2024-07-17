@@ -8,7 +8,7 @@ import {
 export const fetchNeighbourhoods = () => async (dispatch) => {
   dispatch(fetchNeighbourhoodsStart());
   try {
-    const response = await axios.get('http://168.119.15.247:3537/porto/report/neighbourhoods/', {
+    const response = await axios.get(process.env.REACT_APP_API_URL, {
       headers: {
         'Content-Type': 'application/json',
         'accept': 'application/json',
