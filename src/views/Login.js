@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import PropTypes from "prop-types";
 import Logo from "../assets/images/PB_logo_wht.png";
 import { updateEmail, updatePassword, onLoggedin } from "../actions/LoginAction";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [isLoad, setIsLoad] = useState(true);
   const dispatch = useDispatch();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const email = useSelector((state) => state.login.email);
   const password = useSelector((state) => state.login.password);
 
@@ -21,7 +21,6 @@ const Login = () => {
     }
   }, [navigate]);
 
-  
 
   const handleEmailChange = (e) => {
     dispatch(updateEmail(e.target.value));
@@ -31,20 +30,23 @@ const Login = () => {
     dispatch(updatePassword(e.target.value));
   };
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault(); // Prevent default form submission
+    console.log("Attempting login..."); // Debug log
     dispatch(onLoggedin())
-    .then(() => {
-      navigate("/home");
-    })
-    .catch(() => {
-      alert("Wrong Email or password Please try again");
-    });
-};
-
+      .then(() => {
+        console.log("Login successful, navigating to home..."); // Debug log
+        navigate("/", { replace: true });
+      })
+      .catch((error) => {
+        console.error("Login failed:", error); // Debug log
+        alert("Wrong Email or password. Please try again.");
+      });
+  };
 
   return (
     <div className="theme-cyan">
-      <div
+           <div
         className="page-loader-wrapper"
         style={{ display: isLoad ? "block" : "none" }}
       >
@@ -76,12 +78,13 @@ const Login = () => {
                   <p className="lead">Login to the dashboard</p>
                 </div>
                 <div className="body">
-                  <div className="form-auth-small">
+                  <form onSubmit={handleLogin} className="form-auth-small">
                     <div className="form-group">
-                      <label className="control-label sr-only">Email</label>
+                      <label className="control-label sr-only" htmlFor="signin-email">Email</label>
                       <input
                         className="form-control"
                         id="signin-email"
+                        name="email"
                         placeholder="Email"
                         type="email"
                         value={email}
@@ -89,10 +92,11 @@ const Login = () => {
                       />
                     </div>
                     <div className="form-group">
-                      <label className="control-label sr-only">Password</label>
+                      <label className="control-label sr-only" htmlFor="signin-password">Password</label>
                       <input
                         className="form-control"
                         id="signin-password"
+                        name="password"
                         placeholder="Password"
                         type="password"
                         value={password}
@@ -105,7 +109,7 @@ const Login = () => {
                         <span>Remember me</span>
                       </label>
                     </div>
-                    <button className="btn btn-primary btn-lg btn-block" onClick={handleLogin}>
+                    <button className="btn btn-primary btn-lg btn-block" type="submit">
                       Login
                     </button>
                     <div className="bottom">
@@ -120,7 +124,7 @@ const Login = () => {
                         <a href="registration">Register</a>
                       </span>
                     </div>
-                  </div>
+                  </form>
                 </div>
               </div>
             </div>
@@ -129,11 +133,6 @@ const Login = () => {
       </div>
     </div>
   );
-};
-
-Login.propTypes = {
-  email: PropTypes.string.isRequired,
-  password: PropTypes.string.isRequired,
 };
 
 export default React.memo(Login);

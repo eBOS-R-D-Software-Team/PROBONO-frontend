@@ -27,14 +27,17 @@ export const onLoggedin = () => (dispatch, getState) => {
     const staticEmail = "admin@probono.com";
     const staticPassword = "test123";
 
+    console.log("Checking credentials..."); // Debug log
     if (email === staticEmail && password === staticPassword) {
       localStorage.setItem("isLoggedIn", "true");
       dispatch({
         type: ON_LOGGEDIN,
         payload: true,
       });
+      console.log("Credentials valid, resolving promise..."); // Debug log
       resolve();
     } else {
+      console.log("Credentials invalid, rejecting promise..."); // Debug log
       reject();
     }
   });

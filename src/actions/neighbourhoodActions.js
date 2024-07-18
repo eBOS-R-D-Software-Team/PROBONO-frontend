@@ -5,10 +5,12 @@ import {
   fetchNeighbourhoodsFailure,
 } from '../reducers/neighbourhoodReducer';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 export const fetchNeighbourhoods = () => async (dispatch) => {
   dispatch(fetchNeighbourhoodsStart());
   try {
-    const response = await axios.get(process.env.REACT_APP_API_URL, {
+    const response = await axios.get(`${API_URL}/neighbourhoods/`, {
       headers: {
         'Content-Type': 'application/json',
         'accept': 'application/json',

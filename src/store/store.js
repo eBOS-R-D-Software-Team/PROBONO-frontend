@@ -1,4 +1,4 @@
-// src/store/index.js
+
 import { configureStore } from '@reduxjs/toolkit';
 import loginReducer from '../reducers/loginReducer';
 import neighbourhoodReducer from '../reducers/neighbourhoodReducer'; // Add this line

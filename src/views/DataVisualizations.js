@@ -16,6 +16,8 @@ import TableComponent from '../components/Tablecomponent';
 import labo from "../assets/images/lobe21.png";
 
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const DataVisualizations = () => {
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
@@ -48,7 +50,7 @@ const DataVisualizations = () => {
           const startTimeFormatted = formatDateToISOWithoutMilliseconds(startTime);
           const endTimeFormatted = formatDateToISOWithoutMilliseconds(endTime);
           console.log(`Fetching data for ID: ${id}, Start Time: ${startTimeFormatted}, End Time: ${endTimeFormatted}`);
-          return axios.get(`${process.env.REACT_APP_API_URL}/${id}/${startTimeFormatted}/${endTimeFormatted}`, {
+          return axios.get(`${API_URL}/neighbourhoods/${id}/${startTimeFormatted}/${endTimeFormatted}`, {
             headers: {
               'Content-Type': 'application/json',
               'accept': 'application/json',

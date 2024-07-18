@@ -18,28 +18,28 @@ const Sidebar = () => {
       <div className="sidebar-nav">
         <ul className="metismenu">
           <li>
-            <NavLink to="/home" activeClassName="active">
-             <icon><FaHome /></icon>  {!isCollapsed && <span>Home</span>}
+            <NavLink to="/home">
+             <i><FaHome /></i>  {!isCollapsed && <span>Home</span>}
             </NavLink>
           </li>
           <li>
-            <NavLink to="/data-visualizations" activeClassName="active">
-            <icon><FaChartBar /></icon>{!isCollapsed && <span>Data Visualizations</span>}
+            <NavLink to="/data-visualizations">
+            <i><FaChartBar /></i>{!isCollapsed && <span>Data Visualizations</span>}
             </NavLink>
           </li>
           <li>
-            <NavLink to="/messages" activeClassName="active">
-            <icon><FaEnvelope /></icon> {!isCollapsed && <span>Messages</span>}
+            <NavLink to="/messages">
+            <i><FaEnvelope /></i> {!isCollapsed && <span>Messages</span>}
             </NavLink>
           </li>
           <li>
-            <NavLink to="/notifications" activeClassName="active">
-            <icon><FaBell /></icon> {!isCollapsed && <span>Notifications</span>}
+            <NavLink to="/notifications" >
+            <i><FaBell /></i>{!isCollapsed && <span>Notifications</span>}
             </NavLink>
           </li>
           <li className="bottom-link">
-            <NavLink to="/settings" activeClassName="active">
-            <icon><FaCog /></icon> {!isCollapsed && <span>Settings</span>}
+            <NavLink to="/settings" >
+            <i><FaCog /></i> {!isCollapsed && <span>Settings</span>}
             </NavLink>
           </li>
         </ul>

@@ -4,10 +4,11 @@ import {
   ON_LOGGEDIN,
 } from "../actions/LoginAction";
 
+
 const initialState = {
-  email: "",
-  password: "",
-  isLoggedin: false,
+  email: '',
+  password: '',
+  isLoggedIn: localStorage.getItem("isLoggedIn") === "true",
 };
 
 const loginReducer = (state = initialState, action) => {
@@ -25,7 +26,7 @@ const loginReducer = (state = initialState, action) => {
     case ON_LOGGEDIN:
       return {
         ...state,
-        isLoggedin: action.payload,
+        isLoggedIn: action.payload,
       };
     default:
       return state;
@@ -33,3 +34,5 @@ const loginReducer = (state = initialState, action) => {
 };
 
 export default loginReducer;
+
+
