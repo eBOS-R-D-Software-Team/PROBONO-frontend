@@ -7,7 +7,7 @@ import { DatePicker } from 'rsuite';
 import 'rsuite/dist/rsuite.min.css'; // Import RSuite styles
 import GraphComponent from '../components/GraphComponent';
 import TableComponent from '../components/Tablecomponent';
-import { Paginator } from 'primereact/paginator';
+//import { Paginator } from 'primereact/paginator';
 import { SlArrowRight } from "react-icons/sl";
 
 
@@ -22,8 +22,8 @@ const DataVisualizations = () => {
   const [map, setMap] = useState(null);  // State to hold map instance
 
     // Pagination state
-    const [first, setFirst] = useState(0);
-    const [rows, setRows] = useState(6); // Default to 6 rows per page
+    /*const [first, setFirst] = useState(0);
+    const [rows, setRows] = useState(6); */// Default to 6 rows per page  
 
   const dispatch = useDispatch();
   const { neighbourhoods, loading } = useSelector((state) => state.neighbourhood);
@@ -71,10 +71,10 @@ const DataVisualizations = () => {
   }));
 
    // Handle pagination change
-   const onPageChange = (event) => {
+   /*const onPageChange = (event) => {
     setFirst(event.first);
     setRows(event.rows);
-  };
+  };*/
 
   // Google Maps Initialization
   useEffect(() => {
