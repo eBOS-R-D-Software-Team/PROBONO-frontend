@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios'; // Import axios
+import axios from 'axios';
 import { fetchNeighbourhoods } from '../actions/neighbourhoodActions';
 import { MultiSelect } from 'primereact/multiselect';
-//import { Dropdown } from 'primereact/dropdown';
-import DateTimePicker from 'react-datetime-picker';
-import 'primereact/resources/themes/saga-blue/theme.css';
-import 'primereact/resources/primereact.min.css';
-import 'react-datetime-picker/dist/DateTimePicker.css';
-import 'react-calendar/dist/Calendar.css'; 
-import 'react-clock/dist/Clock.css'; 
-import GraphComponent from '../components/GraphComponent'; 
-//import PercentageIncreaseCards from '../components/PercentageIncreaseCards'; 
-import TableComponent from '../components/Tablecomponent'; 
-import labo from "../assets/images/lobe21.png";
+import { DatePicker } from 'rsuite';
+import 'rsuite/dist/rsuite.min.css'; // Import RSuite styles
+import GraphComponent from '../components/GraphComponent';
+import TableComponent from '../components/Tablecomponent';
+import { Paginator } from 'primereact/paginator';
+import { SlArrowRight } from "react-icons/sl";
+
 
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -22,9 +18,13 @@ const DataVisualizations = () => {
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
   const [selectedNeighbourhoods, setSelectedNeighbourhoods] = useState([]);
-  //const [selectedProperty, setSelectedProperty] = useState('');
-  const [data, setData] = useState([]); // Define data state variable as an array
-  
+  const [data, setData] = useState([]);
+  const [map, setMap] = useState(null);  // State to hold map instance
+
+    // Pagination state
+    const [first, setFirst] = useState(0);
+    const [rows, setRows] = useState(6); // Default to 6 rows per page
+
   const dispatch = useDispatch();
   const { neighbourhoods, loading } = useSelector((state) => state.neighbourhood);
 
@@ -49,7 +49,6 @@ const DataVisualizations = () => {
         selectedNeighbourhoods.map(id => {
           const startTimeFormatted = formatDateToISOWithoutMilliseconds(startTime);
           const endTimeFormatted = formatDateToISOWithoutMilliseconds(endTime);
-          console.log(`Fetching data for ID: ${id}, Start Time: ${startTimeFormatted}, End Time: ${endTimeFormatted}`);
           return axios.get(`${API_URL}/neighbourhoods/${id}/${startTimeFormatted}/${endTimeFormatted}`, {
             headers: {
               'Content-Type': 'application/json',
@@ -59,71 +58,143 @@ const DataVisualizations = () => {
         })
       );
       const fetchedData = results.map(result => result.data);
-      console.log(fetchedData);
-      setData(fetchedData); // Set data state variable
+      setData(fetchedData);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
 
-  // Add disabled property to the first two options temporary until providing the neighboorhoods data
   const neighbourhoodOptions = neighbourhoods.map((n, index) => ({
     label: n.name,
     value: n.id,
-    disabled: index < 2, // Disable the first two options
+    disabled: index < 2,
   }));
+
+   // Handle pagination change
+   const onPageChange = (event) => {
+    setFirst(event.first);
+    setRows(event.rows);
+  };
+
+  // Google Maps Initialization
+  useEffect(() => {
+    if (!map) {
+      const script = document.createElement('script');
+      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAciiAXvOGpr61JmWa_MkbwwiJIJulOsrA&libraries=places`;
+      script.async = true;
+      script.defer = true;
+      script.onload = () => {
+        const google = window.google;
+        const mapOptions = {
+          center: { lat: 51.505, lng: -0.09 }, // Initial map center
+          zoom: 13,
+          mapTypeId: google.maps.MapTypeId.SATELLITE,
+        };
+        const mapInstance = new google.maps.Map(document.getElementById('map'), mapOptions);
+        
+        // Add a marker
+        new google.maps.Marker({
+          position: { lat: 51.505, lng: -0.09 },
+          map: mapInstance,
+          title: "A marker!",
+        });
+
+        setMap(mapInstance); // Store the map instance in state
+      };
+      document.head.appendChild(script);
+    }
+  }, [map]);
+
 
   return (
     <div className="data-visualizations">
-      <div className="selectors">
-        <div>
-          <label>Select Neighbourhoods:</label>
-          <MultiSelect
-            value={selectedNeighbourhoods}
-            options={neighbourhoodOptions}
-            onChange={(e) => setSelectedNeighbourhoods(e.value)}
-            placeholder="Select Neighbourhoods"
-            disabled={loading}
-          />
-        </div>
-        <div>
-          <label>Start Time:</label>
-          <div className="datetime-picker-container">
-            <DateTimePicker value={startTime} onChange={setStartTime} />
-          </div>
-        </div>
-        <div>
-          <label>End Time:</label>
-          <div className="datetime-picker-container">
-            <DateTimePicker value={endTime} onChange={setEndTime} />
-          </div>
-        </div>
-        <button className="confirm-button" onClick={handleFetchData}>Confirm</button>
+      {/* Breadcrumb section */}
+      <div className="breadcrumb">
+        <a href='/'>Home </a><SlArrowRight /> <a href='/'>Data Visualizations</a> <SlArrowRight /> <a href='/'>Porto LL</a>
       </div>
-      {/*{data.length > 0 && (
-        <div className="visualization-container">
-          <div className="visualization-item">
-            <TableComponent data={data} />
+
+      {/* Filters and Selectors */}
+      <div className="selectors-container">
+        <div className="selectors">
+          <div className="select-box custom-multiselect animate-fade-in">
+            <label>Select Neighbourhoods:</label>
+            <MultiSelect
+              value={selectedNeighbourhoods}
+              options={neighbourhoodOptions}
+              onChange={(e) => setSelectedNeighbourhoods(e.value)}
+              placeholder="Select Neighbourhoods"
+              disabled={loading}
+              panelClassName="custom-multiselect-panel"
+            />
           </div>
-          <div className="visualization-item">
-            <GraphComponent data={data} />
+          <div className="select-box custom-datetime-picker animate-fade-in">
+            <label>Start Time:</label>
+            <DatePicker 
+              format="yyyy-MM-dd HH:mm:ss"
+              value={startTime} 
+              onChange={(value) => setStartTime(value)}
+              style={{ width: 260 }}
+              locale={{
+                sunday: 'Su',
+                monday: 'Mo',
+                tuesday: 'Tu',
+                wednesday: 'We',
+                thursday: 'Th',
+                friday: 'Fr',
+                saturday: 'Sa',
+                ok: 'OK',
+                today: 'Today',
+                yesterday: 'Yesterday',
+                hours: 'Hours',
+                minutes: 'Minutes',
+                seconds: 'Seconds'
+              }}
+            />
           </div>
-          <div className="visualization-item">
-            <PercentageIncreaseCards data={data} />
+          <div className="select-box custom-datetime-picker animate-fade-in">
+            <label>End Time:</label>
+            <DatePicker 
+              format="yyyy-MM-dd HH:mm:ss"
+              value={endTime} 
+              onChange={(value) => setEndTime(value)}
+              style={{ width: 260 }}
+              locale={{
+                sunday: 'Su',
+                monday: 'Mo',
+                tuesday: 'Tu',
+                wednesday: 'We',
+                thursday: 'Th',
+                friday: 'Fr',
+                saturday: 'Sa',
+                ok: 'OK',
+                today: 'Today',
+                yesterday: 'Yesterday',
+                hours: 'Hours',
+                minutes: 'Minutes',
+                seconds: 'Seconds'
+              }}
+            />
           </div>
         </div>
-        
-      )}*/}
-      <div className="summary-and-image">
-      <img src={labo} alt="Facility Layout" className="facility-image" />
-{/*{data.length > 0 && (
-          <PercentageIncreaseCards data={data} />
-        )}*/}
+        <button className="confirm-button animate-bounce" onClick={handleFetchData}>Confirm</button>
       </div>
+
+      {/* Google Map */}
+      <div id="map" style={{ height: "500px", width: "100%" }} className="animate-slide-up map-container"></div>
+
+      {/* Data Visualizations */}
       {data.length > 0 && (
-        <div className="visualization-container">
+        <div className="visualization-container animate-fade-in">
           <TableComponent data={data} />
           <GraphComponent data={data} />
+          {/* Paginator for both table and chart 
+          <Paginator
+            first={first}
+            rows={rows}
+            totalRecords={data[0].neighbourhood.measurements.CO2.data.length} // Assuming all neighbourhoods have same number of records
+            rowsPerPageOptions={[6, 12, 24]}
+            onPageChange={onPageChange}
+          />*/}
         </div>
       )}
     </div>

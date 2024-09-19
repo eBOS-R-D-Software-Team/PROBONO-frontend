@@ -9,7 +9,7 @@ const MainLayout = ({ children, onPressSideMenuToggle }) => {
     <div id="wrapper">
       <Navbar onPressSideMenuToggle={onPressSideMenuToggle} />
       <Sidebar />
-      <div id="main-content" style={{ marginLeft: '250px', marginTop: '313px' }}>
+      <div id="main-content" style={{ marginLeft: '250px', marginTop: '65px' }}>
         {children}
       </div>
     </div>

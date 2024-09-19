@@ -7,8 +7,6 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 const GraphComponent = ({ data }) => {
   if (!data || !data.length || !data[0].neighbourhood || !data[0].neighbourhood.measurements || !data[0].neighbourhood.measurements.CO2 || !data[0].neighbourhood.measurements.CO2.data) {
     return <div>No data available</div>;
-  } else {
-    console.log(data);
   }
 
   const sortedData = data[0].neighbourhood.measurements.CO2.data.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
@@ -29,6 +27,7 @@ const GraphComponent = ({ data }) => {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false, // Ensure it fills the container properly
     plugins: {
       legend: {
         position: 'top',
@@ -40,7 +39,7 @@ const GraphComponent = ({ data }) => {
     },
     scales: {
       x: {
-        reverse: false, // Ensure this is set to false to have the oldest date on the left
+        reverse: false,
       },
     },
   };

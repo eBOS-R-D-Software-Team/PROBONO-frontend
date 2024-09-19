@@ -11,6 +11,13 @@ import MainLayout from './layouts/MainLayout';
 import ProtectedRoutes from './utils/ProtectedRoute';
 import PublicRoutes from './utils/PublicRoute';
 
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  integrity="sha512-xwEVDtyg5Qnuq+v+8gqpd1RsvxaS6mHct9TfNUC9MRwO2R9MfTaeFzs4Bq6dd4HTV52TJPu6QAKHerc2trJQ=="
+  crossorigin=""
+/>
+
 function App() {
   return (
     <Router>

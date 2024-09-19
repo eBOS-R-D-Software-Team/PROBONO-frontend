@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Paginator } from 'primereact/paginator';
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 
 const TableComponent = ({ data }) => {
+  // Pagination state
+  const [first, setFirst] = useState(0);
+  const [rows, setRows] = useState(6); // Number of rows per page
+
   // Ensure data exists and has the expected structure
   if (!data || !data.length || !data[0].neighbourhood || !data[0].neighbourhood.measurements || !data[0].neighbourhood.measurements.CO2 || !data[0].neighbourhood.measurements.CO2.data) {
     return <div>No data available</div>;
@@ -13,6 +18,15 @@ const TableComponent = ({ data }) => {
   const uniqueTimestamps = Array.from(
     new Set(data[0].neighbourhood.measurements.CO2.data.map(d => new Date(d.timestamp).toISOString()))
   ).sort();
+
+  // Handle pagination change
+  const onPageChange = (event) => {
+    setFirst(event.first);
+    setRows(event.rows);
+  };
+
+  // Determine the current page data slice
+  const pageData = uniqueTimestamps.slice(first, first + rows);
 
   return (
     <div className="table-component">
@@ -28,7 +42,7 @@ const TableComponent = ({ data }) => {
               </tr>
             </thead>
             <tbody>
-              {uniqueTimestamps.map((timestamp, index) => (
+              {pageData.map((timestamp, index) => (
                 <tr key={timestamp}>
                   <td>{new Date(timestamp).toLocaleString()}</td>
                   {data.map(neighbourhood => (
@@ -40,6 +54,15 @@ const TableComponent = ({ data }) => {
               ))}
             </tbody>
           </table>
+
+          {/* Add the Paginator component */}
+          <Paginator
+            first={first}
+            rows={rows}
+            totalRecords={uniqueTimestamps.length}
+            rowsPerPageOptions={[6, 12, 24]}
+            onPageChange={onPageChange}
+          />
         </div>
       )}
     </div>
