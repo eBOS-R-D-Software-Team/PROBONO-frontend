@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from '../components/cards';
-import { ImAirplane, ImPower, ImTree, ImWrench, ImCog, ImStatsDots, ImHammer, ImCalculator, ImLab } from "react-icons/im";
+import { ImAirplane, ImPower, ImTree, ImWrench, ImCog, ImStatsDots, ImHammer, ImCalculator } from "react-icons/im";
 import { SlArrowRight } from "react-icons/sl"; // Import icons
 
 
@@ -14,7 +14,6 @@ const ListOfTools = () => {
     { title: 'Augmented Reality for Facility Management', link: '/tools/augmented-reality', icon: ImStatsDots },
     { title: 'LCA Impact Assessment Tool', link: '/tools/lca', icon: ImCalculator },
     { title: 'PESTLE Framework Analysis', link: '/tools/pestle', icon: ImHammer },
-    { title: 'ProBIM', link: '/tools/probim', icon: ImLab },
   ];
 
   return (
