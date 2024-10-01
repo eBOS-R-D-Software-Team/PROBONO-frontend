@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react'; 
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { fetchNeighbourhoods } from '../actions/neighbourhoodActions';
@@ -7,10 +7,8 @@ import { DatePicker } from 'rsuite';
 import 'rsuite/dist/rsuite.min.css'; // Import RSuite styles
 import GraphComponent from '../components/GraphComponent';
 import TableComponent from '../components/Tablecomponent';
-//import { Paginator } from 'primereact/paginator';
+import { Paginator } from 'primereact/paginator';
 import { SlArrowRight } from "react-icons/sl";
-
-
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -21,9 +19,9 @@ const DataVisualizations = () => {
   const [data, setData] = useState([]);
   const [map, setMap] = useState(null);  // State to hold map instance
 
-    // Pagination state
-    /*const [first, setFirst] = useState(0);
-    const [rows, setRows] = useState(6); */// Default to 6 rows per page  
+  // Pagination state
+  const [first, setFirst] = useState(0);
+  const [rows, setRows] = useState(6); // Default to 6 rows per page
 
   const dispatch = useDispatch();
   const { neighbourhoods, loading } = useSelector((state) => state.neighbourhood);
@@ -70,41 +68,57 @@ const DataVisualizations = () => {
     disabled: index < 2,
   }));
 
-   // Handle pagination change
-   /*const onPageChange = (event) => {
+  // Handle pagination change
+  const onPageChange = (event) => {
     setFirst(event.first);
     setRows(event.rows);
-  };*/
+  };
 
-  // Google Maps Initialization
-  useEffect(() => {
-    if (!map) {
-      const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAciiAXvOGpr61JmWa_MkbwwiJIJulOsrA&libraries=places`;
-      script.async = true;
-      script.defer = true;
-      script.onload = () => {
-        const google = window.google;
-        const mapOptions = {
-          center: { lat: 51.505, lng: -0.09 }, // Initial map center
-          zoom: 13,
-          mapTypeId: google.maps.MapTypeId.SATELLITE,
+  // Slice the data based on pagination
+  const paginatedData = data.map((neighbourhood) => {
+    return {
+      ...neighbourhood,
+      neighbourhood: {
+        ...neighbourhood.neighbourhood,
+        measurements: {
+          ...neighbourhood.neighbourhood.measurements,
+          CO2: {
+            ...neighbourhood.neighbourhood.measurements.CO2,
+            data: neighbourhood.neighbourhood.measurements.CO2.data.slice(first, first + rows),
+          },
+        },
+      },
+    };
+  });
+
+    // Google Maps Initialization
+    useEffect(() => {
+      if (!map) {
+        const script = document.createElement('script');
+        script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAciiAXvOGpr61JmWa_MkbwwiJIJulOsrA&libraries=places`;
+        script.async = true;
+        script.defer = true;
+        script.onload = () => {
+          const google = window.google;
+          const mapOptions = {
+            center: { lat: 51.505, lng: -0.09 }, // Initial map center
+            zoom: 13,
+            mapTypeId: google.maps.MapTypeId.SATELLITE,
+          };
+          const mapInstance = new google.maps.Map(document.getElementById('map'), mapOptions);
+          
+          // Add a marker
+          new google.maps.Marker({
+            position: { lat: 51.505, lng: -0.09 },
+            map: mapInstance,
+            title: "A marker!",
+          });
+  
+          setMap(mapInstance); // Store the map instance in state
         };
-        const mapInstance = new google.maps.Map(document.getElementById('map'), mapOptions);
-        
-        // Add a marker
-        new google.maps.Marker({
-          position: { lat: 51.505, lng: -0.09 },
-          map: mapInstance,
-          title: "A marker!",
-        });
-
-        setMap(mapInstance); // Store the map instance in state
-      };
-      document.head.appendChild(script);
-    }
-  }, [map]);
-
+        document.head.appendChild(script);
+      }
+    }, [map]);
 
   return (
     <div className="data-visualizations">
@@ -134,21 +148,6 @@ const DataVisualizations = () => {
               value={startTime} 
               onChange={(value) => setStartTime(value)}
               style={{ width: 260 }}
-              locale={{
-                sunday: 'Su',
-                monday: 'Mo',
-                tuesday: 'Tu',
-                wednesday: 'We',
-                thursday: 'Th',
-                friday: 'Fr',
-                saturday: 'Sa',
-                ok: 'OK',
-                today: 'Today',
-                yesterday: 'Yesterday',
-                hours: 'Hours',
-                minutes: 'Minutes',
-                seconds: 'Seconds'
-              }}
             />
           </div>
           <div className="select-box custom-datetime-picker animate-fade-in">
@@ -158,21 +157,6 @@ const DataVisualizations = () => {
               value={endTime} 
               onChange={(value) => setEndTime(value)}
               style={{ width: 260 }}
-              locale={{
-                sunday: 'Su',
-                monday: 'Mo',
-                tuesday: 'Tu',
-                wednesday: 'We',
-                thursday: 'Th',
-                friday: 'Fr',
-                saturday: 'Sa',
-                ok: 'OK',
-                today: 'Today',
-                yesterday: 'Yesterday',
-                hours: 'Hours',
-                minutes: 'Minutes',
-                seconds: 'Seconds'
-              }}
             />
           </div>
         </div>
@@ -185,16 +169,18 @@ const DataVisualizations = () => {
       {/* Data Visualizations */}
       {data.length > 0 && (
         <div className="visualization-container animate-fade-in">
-          <TableComponent data={data} />
-          <GraphComponent data={data} />
-          {/* Paginator for both table and chart 
+          {/* Pass pagination state and paginated data to the Table and Graph components */}
+          <TableComponent data={paginatedData} />
+          <GraphComponent data={paginatedData} />
+
+          {/* Paginator for both table and graph */}
           <Paginator
             first={first}
             rows={rows}
-            totalRecords={data[0].neighbourhood.measurements.CO2.data.length} // Assuming all neighbourhoods have same number of records
+            totalRecords={data[0].neighbourhood.measurements.CO2.data.length} // Assuming all neighbourhoods have the same number of records
             rowsPerPageOptions={[6, 12, 24]}
             onPageChange={onPageChange}
-          />*/}
+          />
         </div>
       )}
     </div>

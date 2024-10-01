@@ -1,0 +1,94 @@
+.list-of-tools {
+    padding: 20px;
+    text-align: center;
+    .breadcrumb {
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        color: #4a4a4a;
+        font-family: 'Arial', sans-serif;
+        padding: 10px 0;
+      
+        a {
+          text-decoration: none;
+          color: #007bff; // Set the link color to the primary brand color
+          transition: color 0.3s ease;
+      
+          &:hover {
+            color: #0056b3; // A darker shade of the primary color for hover
+            text-decoration: underline; // Underline when hovered
+          }
+      
+          &:visited {
+            color: #007bff;
+          }
+      
+          &:focus {
+            outline: none;
+            text-decoration: underline;
+          }
+        }
+      
+        svg {
+          margin: 0 5px; // Space between arrow and links
+          font-size: 12px; // Adjust the size of the arrow icon
+          color: #6c757d; // Set the color for the arrow
+        }
+      }
+      
+      
+      
+      .breadcrumb h4 {
+        margin: 0;
+        color: #333;
+        font-size: 16px;
+        font-weight: normal;
+      }
+    
+  
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+      gap: 20px;
+      justify-items: center;
+    }
+  
+    .custom-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      text-decoration: none;
+      background-color: #f9f9f9;
+      border: 1px solid #e0e0e0;
+      border-radius: 10px;
+      transition: transform 0.3s ease;
+      width: 100%;
+      max-width: 300px;
+      height: 150px;
+  
+      &:hover {
+        transform: scale(1.05);
+      }
+  
+      .card-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+  
+        svg {
+          width: 100%;
+          height: 100%;
+          color: #4caf50;
+        }
+      }
+  
+      .card-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #333;
+        text-align: center;
+      }
+    }
+  }
+  

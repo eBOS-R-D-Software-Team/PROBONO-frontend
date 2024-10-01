@@ -10,6 +10,7 @@ import AuthLayout from './layouts/AuthLayout';
 import MainLayout from './layouts/MainLayout';
 import ProtectedRoutes from './utils/ProtectedRoute';
 import PublicRoutes from './utils/PublicRoute';
+import ListOfTools from './views/ListOfTools';
 
 <link
   rel="stylesheet"
@@ -30,6 +31,7 @@ function App() {
         {/* Protected Routes */}
         <Route element={<ProtectedRoutes />}>
           <Route path="/" element={<MainLayout><Home /></MainLayout>} />
+          <Route path="/tools" element={<MainLayout><ListOfTools /></MainLayout>} />
           <Route path="/data-visualizations" element={<MainLayout><DataVisualizations /></MainLayout>} />
           <Route path="/messages" element={<MainLayout><Messages /></MainLayout>} />
           <Route path="/notifications" element={<MainLayout><Notifications /></MainLayout>} />
