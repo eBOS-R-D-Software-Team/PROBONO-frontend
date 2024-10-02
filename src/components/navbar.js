@@ -61,7 +61,7 @@ const Navbar = ({ onPressSideMenuToggle }) => {
                 </Link>
               </li>
               <li>
-                <Link to="/home" className="icon-menu">
+                <Link to="/" className="icon-menu">
                 <i className="icon-home"></i>
                 </Link>
               </li>

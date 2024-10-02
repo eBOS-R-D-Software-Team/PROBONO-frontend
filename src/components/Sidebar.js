@@ -18,7 +18,7 @@ const Sidebar = () => {
       <div className="sidebar-nav">
         <ul className="metismenu">
           <li>
-            <NavLink to="/home">
+            <NavLink to="/">
              <i><FaHome /></i>  {!isCollapsed && <span>Home</span>}
             </NavLink>
           </li>
