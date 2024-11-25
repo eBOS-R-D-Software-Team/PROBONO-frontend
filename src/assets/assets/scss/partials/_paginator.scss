@@ -1,0 +1,44 @@
+.paginator-container {
+    display: flex;
+    justify-content: center; /* Center paginator horizontally */
+    margin-top: 20px; /* Add space between the graph/table and the paginator */
+    width: 100%; /* Ensure it spans the full width */
+  }
+  
+  .p-paginator {
+    display: inline-flex;
+    align-items: center; /* Align items properly */
+    width: auto; /* Adjust to content */
+  }
+  
+  .p-paginator .p-paginator-pages {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .p-paginator .p-paginator-pages .p-paginator-page {
+    margin: 0 5px;
+  }
+  
+  .p-paginator .p-paginator-page,
+  .p-paginator .p-paginator-next,
+  .p-paginator .p-paginator-prev {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    color: #333;
+    background-color: #f9f9f9;
+  }
+  
+  .p-paginator .p-paginator-page.p-highlight {
+    background-color: #49c5b6;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .p-paginator .p-paginator-next:hover,
+  .p-paginator .p-paginator-prev:hover {
+    background-color: #49c5b6;
+    color: white;
+  }
+  

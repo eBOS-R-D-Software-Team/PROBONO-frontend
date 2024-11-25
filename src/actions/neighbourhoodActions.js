@@ -9,8 +9,10 @@ const API_URL = process.env.REACT_APP_API_URL;
 
 export const fetchNeighbourhoods = () => async (dispatch) => {
   dispatch(fetchNeighbourhoodsStart());
+  const url = `${API_URL}/neighbourhoods/`
+  console.log("url : ", url);
   try {
-    const response = await axios.get(`${API_URL}/neighbourhoods/`, {
+    const response = await axios.get(`${url}`, {
       headers: {
         'Content-Type': 'application/json',
         'accept': 'application/json',

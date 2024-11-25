@@ -43,24 +43,37 @@ const DataVisualizations = () => {
 
   const handleFetchData = async () => {
     try {
-      const results = await Promise.all(
-        selectedNeighbourhoods.map(id => {
-          const startTimeFormatted = formatDateToISOWithoutMilliseconds(startTime);
-          const endTimeFormatted = formatDateToISOWithoutMilliseconds(endTime);
-          return axios.get(`${API_URL}/neighbourhoods/${id}/${startTimeFormatted}/${endTimeFormatted}`, {
-            headers: {
-              'Content-Type': 'application/json',
-              'accept': 'application/json',
-            },
-          });
-        })
-      );
-      const fetchedData = results.map(result => result.data);
-      setData(fetchedData);
+        const results = await Promise.all(
+            selectedNeighbourhoods.map(id => {
+                const startTimeFormatted = formatDateToISOWithoutMilliseconds(startTime);
+                const endTimeFormatted = formatDateToISOWithoutMilliseconds(endTime);
+                return axios.get(`${API_URL}/neighbourhoods/${id}/${startTimeFormatted}/${endTimeFormatted}`, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json',
+                    },
+                });
+            })
+        );
+
+        const fetchedData = results.map(result => result.data);
+
+        // Check if any of the fetched data has CO2 measurements
+        const hasCO2Data = fetchedData.some(neighbourhood => 
+            neighbourhood?.neighbourhood?.measurements?.CO2?.data?.length > 0
+        );
+
+        if (!hasCO2Data) {
+            alert('No CO2 data measured in the specified period.');
+        } else {
+            setData(fetchedData);
+        }
     } catch (error) {
-      console.error('Error fetching data:', error);
+        console.error('Error fetching data:', error);
+        alert('An error occurred while fetching data. Please try again later.');
     }
-  };
+};
+
 
   const neighbourhoodOptions = neighbourhoods.map((n, index) => ({
     label: n.name,
@@ -76,6 +89,8 @@ const DataVisualizations = () => {
 
   // Slice the data based on pagination
   const paginatedData = data.map((neighbourhood) => {
+    const CO2Data = neighbourhood?.neighbourhood?.measurements?.CO2?.data || [];
+    
     return {
       ...neighbourhood,
       neighbourhood: {
@@ -84,41 +99,47 @@ const DataVisualizations = () => {
           ...neighbourhood.neighbourhood.measurements,
           CO2: {
             ...neighbourhood.neighbourhood.measurements.CO2,
-            data: neighbourhood.neighbourhood.measurements.CO2.data.slice(first, first + rows),
+            data: CO2Data.slice(first, first + rows), // Slice only if CO2Data exists
           },
         },
       },
     };
   });
+  
 
     // Google Maps Initialization
     useEffect(() => {
       if (!map) {
-        const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAciiAXvOGpr61JmWa_MkbwwiJIJulOsrA&libraries=places`;
-        script.async = true;
-        script.defer = true;
-        script.onload = () => {
-          const google = window.google;
-          const mapOptions = {
-            center: { lat: 51.505, lng: -0.09 }, // Initial map center
-            zoom: 13,
-            mapTypeId: google.maps.MapTypeId.SATELLITE,
-          };
-          const mapInstance = new google.maps.Map(document.getElementById('map'), mapOptions);
-          
-          // Add a marker
-          new google.maps.Marker({
-            position: { lat: 51.505, lng: -0.09 },
-            map: mapInstance,
-            title: "A marker!",
-          });
+          const script = document.createElement('script');
+          script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAciiAXvOGpr61JmWa_MkbwwiJIJulOsrA&libraries=places`;
+          script.async = true;
+          script.defer = true;
+          script.onload = () => {
+              const google = window.google;
   
-          setMap(mapInstance); // Store the map instance in state
-        };
-        document.head.appendChild(script);
+              const targetCoordinates = { lat: 41.23629363691908, lng: -8.640874989443377 }; // Target coordinates
+  
+              const mapOptions = {
+                  center: targetCoordinates, // Center the map on the coordinates
+                  zoom: 16, // Set the zoom level closer to the target
+                  mapTypeId: google.maps.MapTypeId.SATELLITE,
+              };
+  
+              const mapInstance = new google.maps.Map(document.getElementById('map'), mapOptions);
+  
+              // Add a marker at the target coordinates
+              new google.maps.Marker({
+                  position: targetCoordinates,
+                  map: mapInstance,
+                  title: "Porto LL",
+              });
+  
+              setMap(mapInstance); // Store the map instance in state
+          };
+          document.head.appendChild(script);
       }
-    }, [map]);
+  }, [map]);
+  
 
   return (
     <div className="data-visualizations">
@@ -166,25 +187,30 @@ const DataVisualizations = () => {
       {/* Google Map */}
       <div id="map" style={{ height: "500px", width: "100%" }} className="animate-slide-up map-container"></div>
 
-      {/* Data Visualizations */}
-      {data.length > 0 && (
-        <div className="visualization-container animate-fade-in">
-          {/* Pass pagination state and paginated data to the Table and Graph components */}
+       {/* Data Visualizations */}
+    {data.length > 0 && (
+      <div className="visualization-container animate-fade-in">
+        {/* Wrap Table and Graph */}
+        <div className="table-graph-container">
           <TableComponent data={paginatedData} />
           <GraphComponent data={paginatedData} />
+        </div>
 
-          {/* Paginator for both table and graph */}
+        {/* Paginator */}
+        <div className="paginator-container">
           <Paginator
             first={first}
             rows={rows}
-            totalRecords={data[0].neighbourhood.measurements.CO2.data.length} // Assuming all neighbourhoods have the same number of records
+            totalRecords={data[0]?.neighbourhood?.measurements?.CO2?.data?.length || 0} // Ensuring safe access
             rowsPerPageOptions={[6, 12, 24]}
             onPageChange={onPageChange}
           />
         </div>
+      </div>
       )}
     </div>
   );
+
 };
 
 export default DataVisualizations;

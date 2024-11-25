@@ -8,41 +8,32 @@
     color: #4a4a4a;
     font-family: 'Arial', sans-serif;
     padding: 10px 0;
-  
+
     a {
       text-decoration: none;
       color: #007bff; // Set the link color to the primary brand color
       transition: color 0.3s ease;
-  
+
       &:hover {
         color: #0056b3; // A darker shade of the primary color for hover
         text-decoration: underline; // Underline when hovered
       }
-  
+
       &:visited {
         color: #007bff;
       }
-  
+
       &:focus {
         outline: none;
         text-decoration: underline;
       }
     }
-  
+
     svg {
       margin: 0 5px; // Space between arrow and links
       font-size: 12px; // Adjust the size of the arrow icon
       color: #6c757d; // Set the color for the arrow
     }
-  }
-  
-  
-  
-  .breadcrumb h4 {
-    margin: 0;
-    color: #333;
-    font-size: 16px;
-    font-weight: normal;
   }
 
   .selectors-container {
@@ -53,7 +44,7 @@
     padding: 20px;
     background-color: #f5f5f5;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 
     .selectors {
@@ -62,8 +53,8 @@
       flex-grow: 1;
 
       .select-box {
-        flex: 1 1 auto; /* This allows for flexible resizing */
-        min-width: 200px; /* Set a minimum width to prevent collapsing */
+        flex: 1 1 auto;
+        min-width: 200px;
 
         &:last-child {
           margin-right: 0;
@@ -81,7 +72,7 @@
           background-color: #ffffff;
           border: 1px solid #ced4da;
           border-radius: 5px;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
           transition: border-color 0.3s ease;
           padding: 8px;
         }
@@ -91,69 +82,16 @@
         }
 
         .custom-datetime-picker .react-datetime-picker__wrapper {
-          position: relative;  /* Ensure relative positioning */
-         height: auto;
-        display: flex;
-       align-items: center;
-  border: 1px solid #45e5c3;
-  border-radius: 5px;
-  padding: 8px;
-  background-color: #45e5c3;
-  z-index: 10;
-        }
-
-        .custom-datetime-picker .react-datetime-picker__wrapper:hover {
-          border-color: #007bff;
-        }
-
-        .custom-datetime-picker .react-datetime-picker__inputGroup {
-          display: flex;
-          gap: 4px;
-        }
-
-        .custom-datetime-picker .react-datetime-picker__inputGroup__input {
-          padding: 6px;
-          border: none;
-          border-radius: 4px;
-          background-color: #f1f1f1;
-          font-size: 14px;
-          text-align: center;
-          min-width: 35px; /* Ensures the inputs don't get too small */
-        }
-
-        .custom-datetime-picker .react-datetime-picker__inputGroup__input:focus {
-          outline: none;
-          background-color: #e9ecef;
-        }
-
-        .custom-datetime-picker .react-datetime-picker__clear-button,
-        .custom-datetime-picker .react-datetime-picker__calendar-button {
+          position: relative;
+          height: auto;
           display: flex;
           align-items: center;
-          justify-content: center;
-          border: none;
-          background: none;
-          cursor: pointer;
-        }
-
-        .custom-datetime-picker .react-datetime-picker__calendar-button svg,
-        .custom-datetime-picker .react-datetime-picker__clear-button svg {
-          width: 20px;
-          height: 20px;
-          color: #007bff;
-
-        }
-
-        .custom-datetime-picker .react-datetime-picker__calendar {
-          position: absolute;
-          top: calc(100% + 5px);  /* Adjust this to ensure the calendar always opens down */
-          left: 0;
+          border: 1px solid #45e5c3;
           border-radius: 5px;
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-          background-color: white;
-          z-index: 1000;  /* Ensure the calendar stays on top */
+          padding: 8px;
+          background-color: #45e5c3;
+          z-index: 10;
         }
-       
       }
     }
 
@@ -168,10 +106,31 @@
       transition: background-color 0.3s ease, transform 0.2s ease;
       animation: bounce 2s infinite;
     }
-  
+
     .confirm-button:hover {
       background-color: #0056b3;
       transform: translateY(-2px);
+    }
+  }
+
+  .visualization-container {
+    display: flex;
+    flex-direction: column; /* Stack table, graph, and paginator vertically */
+    align-items: center; /* Center content horizontally */
+    width: 100%;
+
+    .table-graph-container {
+      display: flex;
+      justify-content: space-between; /* Space between table and graph */
+      width: 100%;
+      margin-bottom: 20px; /* Add spacing below table and graph */
+    }
+
+    .paginator-container {
+      display: flex;
+      justify-content: center; /* Center paginator horizontally */
+      width: 100%; /* Full width to align with container */
+      margin-top: 20px; /* Add spacing above paginator */
     }
   }
 
@@ -179,11 +138,11 @@
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
-    
+
     .facility-image {
       max-width: 80%;
       height: auto;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       border-radius: 10px;
       transition: transform 0.3s ease-in-out;
     }
@@ -193,31 +152,22 @@
     }
   }
 
-  .visualization-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-
-    .chart-container {
-      flex: 1 1 auto;
-  overflow: hidden; /* Ensure content doesn't overflow */
-      max-width: 60%;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      border-radius: 10px;
-      margin-right: 20px;
-      padding: 20px;
-      animation: fadeIn 1s ease-in-out;
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
     }
   }
 
-  /* Animations */
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
   @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
       transform: translateY(0);
     }
     40% {

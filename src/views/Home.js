@@ -8,8 +8,8 @@ const Home = () => {
   return (
     <div className="home-container">
       <div className="cards-container">
-        <Card icon={FaTools} title="List of Tools" link="/tools" />
-        <Card icon={FaCogs} title="Decision Support System" link="/decision-support" />
+        <Card icon={FaTools} title="Solution Catalog" link="/tools" />
+        <Card icon={FaCogs} title="Decision Workflow" link="/decision-support" />
         <Card icon={FaChartBar} title="Data Visualization" link="/data-visualizations" />
       </div>
     </div>

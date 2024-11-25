@@ -17,7 +17,7 @@ const TableComponent = ({ data }) => {
           <table>
             <thead>
               <tr>
-                <th>Measurement Time</th>
+                <th>Time</th>
                 {data.map(neighbourhood => (
                   <th key={neighbourhood.neighbourhood.id}>{neighbourhood.neighbourhood.neighourhoodname}</th>
                 ))}
