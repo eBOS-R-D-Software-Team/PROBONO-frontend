@@ -1,70 +1,146 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Probono HMI Deployment Guide
 
-## Available Scripts
+This guide provides instructions to deploy the React application as a static website on a Linux VM (Ubuntu 24.04) using NGINX.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🚀 Project Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This is a React-based single-page application (SPA) that uses React Router for client-side routing. The application will be served as a static website using the `build/` directory.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 📋 Prerequisites
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Ensure the following requirements are met before deployment:
 
-### `npm run build`
+- **Operating System**: Ubuntu 24.04 (Linux VM)
+- **Web Server**: NGINX running inside Docker containers
+- **SSL/TLS**: Managed via Let's Encrypt with a preconfigured domain name
+- **Node.js**: Not required (build files are precompiled and ready to deploy)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## ⚙️ Deployment Steps
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Step 1: Clone the Repository
 
-### `npm run eject`
+1. Clone the repository to your local machine:
+   ```bash
+   git clone https://gitlab-probono.akkodis.com/WP5/probono-hmi/probono-hmi.git
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd probono-hmi
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Step 2: Use the Prebuilt `build/` Directory
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+This project already includes a `build/` directory containing the production-ready static files. **No additional build process is required**.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+### Step 3: Transfer the `build/` Directory to the Server
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Copy the contents of the `build/` directory to your server's deployment folder. For example:
+   ```bash
+   scp -r build/ user@server-ip:/home/username/project-folder/
+   ```
+2. Ensure the destination folder matches the path specified in the NGINX configuration.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+### Step 4: Configure NGINX
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Update or create an NGINX configuration file to serve the React app.
 
-### Analyzing the Bundle Size
+#### Example NGINX Configuration:
+```nginx
+server {
+    listen 80;
+    server_name yourdomain.com;
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    root /home/username/project-folder/build;
+    index index.html;
 
-### Making a Progressive Web App
+    location / {
+        try_files $uri /index.html;
+    }
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **Key Points**:
+  - `root`: Path to the `build/` directory on the server.
+  - `try_files`: Redirects all unmatched routes to `index.html` for React Router to handle.
 
-### Advanced Configuration
+#### Reload NGINX to Apply Changes:
+```bash
+sudo systemctl reload nginx
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+### Step 5: Verify HTTPS
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Since HTTPS is already configured using Let's Encrypt, ensure that:
+- The domain name correctly points to the server.
+- Certificates are valid and up to date.
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## ✅ Testing the Deployment
+
+1. Open the application in your browser:
+   ```text
+   https://yourdomain.com
+   ```
+
+2. Verify:
+   - The homepage loads successfully.
+   - Routes (e.g., `/about`, `/dashboard`) work without 404 errors.
+   - HTTPS is active with a valid certificate.
+
+---
+
+## 🔧 Troubleshooting
+
+### 404 Errors for React Routes
+- Ensure the `try_files $uri /index.html;` directive is present in the NGINX configuration.
+
+### File Not Found Errors
+- Verify the correct path to the `build/` directory is specified in the NGINX configuration.
+
+### Caching Issues
+- If updates do not appear immediately, try the following:
+  - Clear the browser cache.
+  - Add cache-busting headers in the NGINX configuration:
+    ```nginx
+    location ~* \.(?:ico|css|js|gif|jpe?g|png|woff2?|eot|ttf|svg)$ {
+        expires 6M;
+        access_log off;
+        add_header Cache-Control "public";
+    }
+    ```
+
+---
+
+## 📂 Directory Structure Notes
+
+- **Placement**: The `build/` directory can be placed anywhere on the server. Ensure the `root` path in the NGINX configuration matches its location.
+- **Dockerized NGINX**: If NGINX is running inside Docker containers, ensure the host path to the `build/` directory is correctly mapped into the container.
+
+---
+
+## ✉️ Contact Information
+
+If you encounter any issues or have questions about the deployment process, please contact:
+
+- **Neji Said**
+- [nejis@ebos.com.cy]
+
+---
+
+This guide ensures a smooth deployment process for your React application. Happy deploying! 🚀

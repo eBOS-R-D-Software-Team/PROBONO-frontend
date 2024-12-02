@@ -47,6 +47,7 @@ const DataVisualizations = () => {
             selectedNeighbourhoods.map(id => {
                 const startTimeFormatted = formatDateToISOWithoutMilliseconds(startTime);
                 const endTimeFormatted = formatDateToISOWithoutMilliseconds(endTime);
+                console.log(`${API_URL}/neighbourhoods/${id}/${startTimeFormatted}/${endTimeFormatted}`);
                 return axios.get(`${API_URL}/neighbourhoods/${id}/${startTimeFormatted}/${endTimeFormatted}`, {
                     headers: {
                         'Content-Type': 'application/json',
