@@ -1,10 +1,9 @@
-// components/LabCard.jsx
-import React from 'react';
-import './LabCard.scss';
+import React from "react";
+//import "./LabCard.scss";
 
-const LabCard = ({ lab }) => {
+const LabCard = ({ lab, onClick }) => {
   return (
-    <div className="lab-card">
+    <div className="lab-card" onClick={() => onClick(lab.name)}>
       <div className="lab-card__map">
         <img src={lab.map} alt={`${lab.name} map`} />
       </div>

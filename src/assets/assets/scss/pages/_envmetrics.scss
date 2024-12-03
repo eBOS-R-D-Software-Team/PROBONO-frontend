@@ -1,0 +1,75 @@
+.environmental-metrics {
+    padding: 20px;
+  
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 20px;
+  
+      a {
+        text-decoration: none;
+        color: #007bff; /* Brand primary color */
+        font-weight: bold;
+        transition: color 0.3s ease;
+  
+        &:hover {
+          color: #0056b3; /* Darker blue on hover */
+          text-decoration: underline;
+        }
+      }
+  
+      svg {
+        margin: 0 8px;
+        font-size: 0.9rem;
+        color: #999; /* Neutral gray for arrows */
+      }
+    }
+  
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+      gap: 24px;
+  
+      @media (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr); /* 2 cards per row for smaller screens */
+      }
+  
+      @media (max-width: 480px) {
+        grid-template-columns: 1fr; /* Single column for mobile */
+      }
+    }
+  
+    .metric-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+      }
+  
+      .metric-icon {
+        font-size: 2rem; /* Icon size */
+        color: #4caf50; /* Green color */
+        margin-bottom: 10px;
+      }
+  
+      .metric-title {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+      }
+    }
+  }
+  

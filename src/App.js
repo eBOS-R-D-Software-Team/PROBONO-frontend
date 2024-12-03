@@ -11,6 +11,9 @@ import MainLayout from './layouts/MainLayout';
 import ProtectedRoutes from './utils/ProtectedRoute';
 import PublicRoutes from './utils/PublicRoute';
 import ListOfTools from './views/ListOfTools';
+import ListOfLabs from './views/ListOfLabs';
+import EnvMetrics from './views/EnvMetrics';
+
 
 <link
   rel="stylesheet"
@@ -33,6 +36,8 @@ function App() {
           <Route path="/" element={<MainLayout><Home /></MainLayout>} />
           <Route path="/tools" element={<MainLayout><ListOfTools /></MainLayout>} />
           <Route path="/data-visualizations" element={<MainLayout><DataVisualizations /></MainLayout>} />
+          <Route path="/labs" element={<MainLayout><ListOfLabs/></MainLayout>} />
+          <Route path="/metrics" element={<MainLayout><EnvMetrics/></MainLayout>} />
           <Route path="/messages" element={<MainLayout><Messages /></MainLayout>} />
           <Route path="/notifications" element={<MainLayout><Notifications /></MainLayout>} />
           <Route path="/settings" element={<MainLayout><Settings /></MainLayout>} />

@@ -1,7 +1,43 @@
 .list-of-labs {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 16px;
-    padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Exactly 3 cards per row */
+  gap: 24px; /* Space between cards */
+  padding: 20px;
+  justify-content: center;
+
+  /* Responsive adjustments for smaller screens */
+  @media (max-width: 992px) {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row for medium screens */
   }
-  
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; /* Single column for smaller screens */
+  }
+
+  .breadcrumb {
+    grid-column: 1 / -1; /* Span the breadcrumb across all columns */
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    color: #555;
+
+    a {
+      text-decoration: none;
+      color: #007bff; /* Brand primary color */
+      font-weight: bold;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #0056b3; /* Darker blue on hover */
+        text-decoration: underline;
+      }
+    }
+
+    svg {
+      margin: 0 8px;
+      font-size: 0.9rem;
+      color: #999; /* Neutral gray for arrows */
+    }
+  }
+}
