@@ -3,7 +3,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import Logo from "../assets/images/PB_logo_blk.png";
+import Logo from "../assets/images/PB_logo_org.png";
 import { onLogout } from "../actions/LoginAction";
 
 

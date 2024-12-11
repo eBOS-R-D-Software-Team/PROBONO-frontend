@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Logo from "../assets/images/PB_logo_wht.png";
+import Logo from "../assets/images/PB_logo_org.png";
 import { updateEmail, updatePassword, onLoggedin } from "../actions/LoginAction";
 import { useNavigate } from "react-router-dom";
 

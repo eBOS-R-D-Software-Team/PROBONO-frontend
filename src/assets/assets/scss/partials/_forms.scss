@@ -31,10 +31,12 @@ label {
 /* fancy checkbox and radio button */
 .fancy-checkbox {
 	margin-right: 10px;
+	
 
 	&,
 	label {
 		font-weight: normal;
+		margin-top: 11px
 	}
 
 	input[type="checkbox"] {
@@ -57,6 +59,8 @@ label {
 				content: "";
 				border: 1px solid #ccc;
 				border-radius: 3px;
+				margin-top: 11px
+				
 			}
 		}
         

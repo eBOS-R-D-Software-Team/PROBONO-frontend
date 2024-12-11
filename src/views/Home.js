@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div className="home-container">
       <div className="cards-container">
-        <Card icon={FaTools} title="Solution Catalog" link="/tools" />
+        <Card icon={FaTools} title="Solution Catalogue" link="/tools" />
         <Card icon={FaCogs} title="Decision Workflow" link={decisionWorkflowLink} />
         <Card icon={FaChartBar} title="Data Visualization" link="/labs" />
       </div>
