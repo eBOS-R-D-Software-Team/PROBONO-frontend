@@ -56,7 +56,7 @@ const DataVisualizations = () => {
   useEffect(() => {
     const columnNames = Object.keys(staticData[0]);
     setColumns(columnNames);
-  }, []);
+  }, [staticData]);
 
   // Generate data for the chart based on selected columns
   const generateChartData = () => {
