@@ -1,12 +1,23 @@
 import React from 'react';
 import Card from '../components/cards';
 import { ImAirplane, ImPower, ImTree, ImWrench, ImCog, ImStatsDots, ImHammer, ImCalculator } from "react-icons/im";
-import { SlArrowRight } from "react-icons/sl"; // Import icons
+import { SlArrowRight } from "react-icons/sl";
 
+const username = process.env.REACT_APP_VTUSERNAME;
+const password = process.env.REACT_APP_VTPASSWORD;
 
 const ListOfTools = () => {
+  const ventilationToolLink = `https://v24121.ita.es/VentilationTool_Voila/`;
+
   const tools = [
-    { title: 'Ventilation Assessment Tool', link: '/tools/ventilation', icon: ImAirplane },
+    {
+      title: 'Ventilation Assessment Tool',
+      action: () => {
+        // Redirect with authentication
+        window.location.href = ventilationToolLink;
+      },
+      icon: ImAirplane,
+    },
     { title: 'Demand and Response Platform', link: '/tools/demand-response', icon: ImPower },
     { title: 'BIPV Design Tool', link: '/tools/bipv', icon: ImTree },
     { title: 'Bio-Solar Roof Design and Simulation Tools', link: '/tools/bio-solar', icon: ImWrench },
@@ -20,11 +31,17 @@ const ListOfTools = () => {
     <div className="list-of-tools">
       {/* Breadcrumb section */}
       <div className="breadcrumb">
-        <a href='/'>Home </a><SlArrowRight /> <a href='/'>List of tools</a>
+        <a href="/">Home </a>
+        <SlArrowRight /> <a href="/">List of tools</a>
       </div>
       <div className="tools-grid">
         {tools.map((tool, index) => (
-          <Card key={index} title={tool.title} link={tool.link} icon={tool.icon} />
+          <Card
+            key={index}
+            title={tool.title}
+            onClick={tool.action} // Pass action as a prop
+            icon={tool.icon}
+          />
         ))}
       </div>
     </div>

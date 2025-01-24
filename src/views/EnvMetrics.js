@@ -18,7 +18,7 @@ const EnvironmentalMetrics = () => {
 
   const metrics = [
     { id: 1, title: "CO2 Emissions", icon: <ImLeaf />, onClick: () => navigate("/data-visualizations") }, // Redirect to /data-visualizations
-    { id: 2, title: "Energy Consumption", icon: <ImFire /> },
+    { id: 2, title: "NovaDm data", icon: <ImFire />, onClick: () => navigate("/data-aurahus") },
     { id: 3, title: "Indoor Air Quality", icon: <ImHome /> },
     { id: 4, title: "Ventilation Performance", icon: <ImAirplane /> },
     { id: 5, title: "Water Usage", icon: <ImDroplet /> },

@@ -3,9 +3,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 
-const Card = ({ icon: Icon, title, link }) => {
+const Card = ({ icon: Icon, title, link, onClick }) => {
   return (
-    <NavLink to={link} className="custom-card">
+    <NavLink to={link} className="custom-card" onClick={onClick}>
       <div className="card-icon">
         <Icon />
       </div>
