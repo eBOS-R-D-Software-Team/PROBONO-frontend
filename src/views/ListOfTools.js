@@ -3,8 +3,7 @@ import Card from '../components/cards';
 import { ImAirplane, ImPower, ImTree, ImWrench, ImCog, ImStatsDots, ImHammer, ImCalculator } from "react-icons/im";
 import { SlArrowRight } from "react-icons/sl";
 
-const username = process.env.REACT_APP_VTUSERNAME;
-const password = process.env.REACT_APP_VTPASSWORD;
+
 
 const ListOfTools = () => {
   const ventilationToolLink = `https://v24121.ita.es/VentilationTool_Voila/`;

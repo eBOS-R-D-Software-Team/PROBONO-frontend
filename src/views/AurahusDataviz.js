@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
 
@@ -10,14 +10,14 @@ const DataVisualizations = () => {
   const [xAxis, setXAxis] = useState(''); // Selected X-axis column
   const [yAxis, setYAxis] = useState(''); // Selected Y-axis column
 
-  // Static data for plotting
-  const staticData = [
+  // Static data for plotting, memoized to prevent re-creation on every render
+  const staticData = useMemo(() => [
     { Scenario_ID: 1, housing_length: 14, l_gap1: 0, l_gap2: 0, no_deck_width: 7, roof_area_housing: 901, total_added_GWP: 159965 },
     { Scenario_ID: 2, housing_length: 15, l_gap1: 0, l_gap2: 0, no_deck_width: 7, roof_area_housing: 966, total_added_GWP: 166581 },
     { Scenario_ID: 3, housing_length: 16, l_gap1: 0, l_gap2: 0, no_deck_width: 7, roof_area_housing: 1030, total_added_GWP: 173197 },
     { Scenario_ID: 4, housing_length: 14, l_gap1: 0, l_gap2: 0, no_deck_width: 8, roof_area_housing: 901, total_added_GWP: 158518 },
     { Scenario_ID: 5, housing_length: 15, l_gap1: 0, l_gap2: 0, no_deck_width: 8, roof_area_housing: 966, total_added_GWP: 165031 },
-  ];
+  ], []);
 
   // Google Maps Initialization
   useEffect(() => {
