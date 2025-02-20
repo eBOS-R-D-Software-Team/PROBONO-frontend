@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import HeatmapOverlay from "../components/HeatmapOverlay";
 import highRes from "../data/heatmap_highres.csv";
 import lowRes from "../data/heatmap_lowres.csv";
