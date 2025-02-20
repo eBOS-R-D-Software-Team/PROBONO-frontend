@@ -1,0 +1,24 @@
+.heatmap-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 600px;
+  }
+  
+  .heatmap-container svg {
+    position: relative; /* Changed from absolute to relative */
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+  
+  .floorplan {
+    z-index: 0; /* Ensure floor plan is behind heatmap */
+  }
+  
+  .heatmap {
+    z-index: 2; /* Ensure heatmap is above floor plan */
+  }
+  

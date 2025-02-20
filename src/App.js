@@ -14,6 +14,7 @@ import ListOfTools from './views/ListOfTools';
 import ListOfLabs from './views/ListOfLabs';
 import EnvMetrics from './views/EnvMetrics';
 import AurahusDataviz from './views/AurahusDataviz';
+import AurahusHeatmap from './views/AurahusHeatmap';
 
 
 <link
@@ -38,6 +39,7 @@ function App() {
           <Route path="/tools" element={<MainLayout><ListOfTools /></MainLayout>} />
           <Route path="/data-visualizations" element={<MainLayout><DataVisualizations /></MainLayout>} />
           <Route path="/data-aurahus" element={<MainLayout><AurahusDataviz /></MainLayout>} />
+          <Route path="/heatmap-aurahus" element={<MainLayout><AurahusHeatmap /></MainLayout>} />
           <Route path="/labs" element={<MainLayout><ListOfLabs/></MainLayout>} />
           <Route path="/metrics" element={<MainLayout><EnvMetrics/></MainLayout>} />
           <Route path="/messages" element={<MainLayout><Messages /></MainLayout>} />
