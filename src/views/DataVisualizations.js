@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { DatePicker } from 'rsuite';
 import 'rsuite/dist/rsuite.min.css';
 import GraphComponent from '../components/GraphComponent';
-import TableComponent from '../components/TableComponent';
+import TableComponent from '../components/Tablecomponent';
 import { Paginator } from 'primereact/paginator';
 import { SlArrowRight } from "react-icons/sl";
 import { fetchCO2Data } from '../reducers/co2Reducer';

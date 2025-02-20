@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TableComponent = ({ data }) => {
+const Tablecomponent = ({ data }) => {
   if (!data || !data.length) {
     return <div>No data available</div>;
   }
@@ -52,7 +52,7 @@ const TableComponent = ({ data }) => {
   );
 };
 
-TableComponent.propTypes = {
+Tablecomponent.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
       timestamp: PropTypes.string.isRequired,
@@ -63,4 +63,4 @@ TableComponent.propTypes = {
   ).isRequired,
 };
 
-export default TableComponent;
+export default Tablecomponent;
