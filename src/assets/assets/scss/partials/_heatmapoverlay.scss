@@ -1,24 +1,62 @@
 .heatmap-container {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 600px;
-  }
-  
-  .heatmap-container svg {
-    position: relative; /* Changed from absolute to relative */
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
-  
-  .floorplan {
-    z-index: 0; /* Ensure floor plan is behind heatmap */
-  }
-  
-  .heatmap {
-    z-index: 2; /* Ensure heatmap is above floor plan */
-  }
-  
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  background: #f7f9fc; /* Subtle background */
+  border-radius: 12px; /* Smooth edges */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+.heatmap-container svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  max-width: 600px;
+  max-height: 600px;
+  z-index: 1;
+}
+
+.floorplan {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.95; /* Slight transparency for blending */
+}
+
+.heatmap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  mix-blend-mode: multiply; /* Smooth blending */
+  opacity: 0.9;
+}
+
+/* Button Styling */
+.toggle-heatmap-btn {
+  background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Modern gradient */
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-heatmap-btn:hover {
+  background: linear-gradient(135deg, #ff512f, #dd2476);
+  transform: scale(1.05);
+}

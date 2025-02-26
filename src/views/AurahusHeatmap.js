@@ -1,24 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import HeatmapOverlay from "../components/HeatmapOverlay";
 import highRes from "../data/heatmap_highres.csv";
-import lowRes from "../data/heatmap_lowres.csv";
 
-const DataVisualizations = () => {
-  const [resolution, setResolution] = useState("high");
+const AurahusHeatmap = () => {
+  const [showHeatmap, setShowHeatmap] = useState(false);
+  const [map, setMap] = useState(null); // State to hold map instance
+
+  // Google Maps Initialization
+  useEffect(() => {
+    if (!map) {
+      const script = document.createElement("script");
+      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyAciiAXvOGpr61JmWa_MkbwwiJIJulOsrA&libraries=places`;
+      script.async = true;
+      script.defer = true;
+      script.onload = () => {
+        const google = window.google;
+        const targetCoordinates = { lat: 56.16608795224402, lng: 10.200139599559071 };
+
+        const mapOptions = {
+          center: targetCoordinates,
+          zoom: 16,
+          mapTypeId: google.maps.MapTypeId.SATELLITE,
+        };
+
+        const mapInstance = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+        new google.maps.Marker({
+          position: targetCoordinates,
+          map: mapInstance,
+          title: "Porto LL",
+        });
+
+        setMap(mapInstance);
+      };
+      document.head.appendChild(script);
+    }
+  }, [map]);
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div className="aurahus-container">
+      {/* Google Map */}
+      <div id="map" className="map-container"></div>
       <h1>Building Heatmap Visualization</h1>
-      <div style={{ marginBottom: "1rem" }}>
-        <label>Select Resolution: </label>
-        <select value={resolution} onChange={(e) => setResolution(e.target.value)}>
-          <option value="high">High-Res</option>
-          <option value="low">Low-Res</option>
-        </select>
-      </div>
-      <HeatmapOverlay csvFile={resolution === "high" ? highRes : lowRes} />
+
+      {/* Toggle Button */}
+      <button className="toggle-heatmap-btn" onClick={() => setShowHeatmap(!showHeatmap)}>
+        {showHeatmap ? "Hide Heatmap" : "Show Heatmap Overlay"}
+      </button>
+
+      {/* Pass showHeatmap state to component */}
+      <HeatmapOverlay csvFile={highRes} showHeatmap={showHeatmap} />
     </div>
   );
 };
 
-export default DataVisualizations;
+export default AurahusHeatmap;

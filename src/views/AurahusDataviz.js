@@ -4,7 +4,7 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-const DataVisualizations = () => {
+const AurahusDataviz = () => {
   const [map, setMap] = useState(null); // State to hold map instance
   const [columns, setColumns] = useState([]); // State to hold column names
   const [xAxis, setXAxis] = useState(''); // Selected X-axis column
@@ -124,4 +124,4 @@ const DataVisualizations = () => {
   );
 };
 
-export default DataVisualizations;
+export default AurahusDataviz;

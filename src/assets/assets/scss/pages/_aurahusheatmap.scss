@@ -1,0 +1,62 @@
+/* 🌍 Google Map Styling */
+.map-container {
+    height: 500px;
+    width: 100%;
+    border-radius: 12px; /* Rounded corners */
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+    margin-bottom: 20px;
+}
+
+/* 🏠 Page Container */
+.aurahus-container {
+    text-align: center;
+    padding: 30px;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f6f9; /* Light gray background */
+    min-height: 100vh;
+}
+
+/* 📌 Title Styling */
+.aurahus-container h1 {
+    font-size: 26px;
+    font-weight: bold;
+    color: #2c3e50; /* Dark gray-blue */
+    margin-bottom: 15px;
+}
+
+/* 🎛️ Toggle Button */
+.toggle-heatmap-btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(45deg, #1976D2, #0D47A1); /* Blue gradient */
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 10px rgba(25, 118, 210, 0.3);
+    margin-bottom: 20px;
+}
+
+.toggle-heatmap-btn:hover {
+    background: linear-gradient(45deg, #0D47A1, #082E75);
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.toggle-heatmap-btn:active {
+    transform: scale(0.95);
+}
+
+/* 📌 Responsive Design */
+@media (max-width: 768px) {
+    .toggle-heatmap-btn {
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .aurahus-container {
+        padding: 20px;
+    }
+}
