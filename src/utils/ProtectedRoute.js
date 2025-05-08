@@ -1,11 +1,18 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Outlet, Navigate } from 'react-router-dom';
+// src/utils/ProtectedRoute.jsx
+import { Navigate, Outlet } from 'react-router-dom';
+import { useKeycloak } from '@react-keycloak/web';
 
 const ProtectedRoutes = () => {
-  const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
+  const { keycloak, initialized } = useKeycloak();
 
-  return isLoggedIn ? <Outlet /> : <Navigate to="/login" />;
+  // optional splash/loader while Keycloak initialises
+  if (!initialized) return null;
+
+  return keycloak?.authenticated ? (
+    <Outlet />
+  ) : (
+    <Navigate to="/login" replace />
+  );
 };
 
 export default ProtectedRoutes;

@@ -1,11 +1,12 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Outlet, Navigate } from 'react-router-dom';
+// src/utils/PublicRoute.jsx
+import { Navigate, Outlet } from 'react-router-dom';
+import { useKeycloak } from '@react-keycloak/web';
 
 const PublicRoutes = () => {
-  const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
+  const { keycloak, initialized } = useKeycloak();
+  if (!initialized) return null;
 
-  return isLoggedIn ? <Navigate to="/" /> : <Outlet />;
+  return keycloak?.authenticated ? <Navigate to="/" replace /> : <Outlet />;
 };
 
 export default PublicRoutes;

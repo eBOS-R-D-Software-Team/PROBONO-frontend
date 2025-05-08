@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from '../api';
 import {
   fetchNeighbourhoodsStart,
   fetchNeighbourhoodsSuccess,
@@ -12,7 +12,7 @@ export const fetchNeighbourhoods = () => async (dispatch) => {
   const url = `${API_URL}/neighbourhoods/`
   console.log("url : ", url);
   try {
-    const response = await axios.get(`${url}`, {
+    const response = await api.get(`${url}`, {
       headers: {
         'Content-Type': 'application/json',
         'accept': 'application/json',
