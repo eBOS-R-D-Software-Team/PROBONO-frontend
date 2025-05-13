@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 
 const Card = ({ icon: Icon, title, link, onClick }) => {
+  console.log('Card props:', { title, link });
   return (
     <NavLink to={link} className="custom-card" onClick={onClick}>
       <div className="card-icon">

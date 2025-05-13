@@ -1,4 +1,4 @@
-// src/views/Notifications.js
+// src/views/Messages.js
 import React from 'react';
 
 const Messages = () => {

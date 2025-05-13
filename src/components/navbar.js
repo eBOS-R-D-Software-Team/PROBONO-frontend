@@ -1,25 +1,29 @@
 // src/components/Navbar.js
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+// import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import Logo from "../assets/images/PB_logo_org.png";
-import { onLogout } from "../actions/LoginAction";
-
-
+// import { onLogout } from "../actions/LoginAction";
+import { useKeycloak } from "@react-keycloak/web";
 
 const Navbar = ({ onPressSideMenuToggle }) => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const dispatch = useDispatch();
+  const { keycloak } = useKeycloak();
 
   const handleToggleSideMenu = () => {
     if (onPressSideMenuToggle) {
-      dispatch(onPressSideMenuToggle());
+      // dispatch(onPressSideMenuToggle());
+      onPressSideMenuToggle();
     }
   };
+
   const handleLogout = () => {
-    dispatch(onLogout());
-    navigate("/");
+    // instead of dispatch(onLogout()) and navigate("/")
+    // delegate to Keycloak’s logout endpoint
+    keycloak.logout({
+      redirectUri: window.location.origin + "/login"
+    });
   };
 
   return (
@@ -36,7 +40,11 @@ const Navbar = ({ onPressSideMenuToggle }) => {
 
         <div className="navbar-brand">
           <Link to="/dashboard">
-            <img src={Logo} alt="Probono Logo" className="img-responsive logo" />
+            <img
+              src={Logo}
+              alt="Probono Logo"
+              className="img-responsive logo"
+            />
           </Link>
         </div>
 
@@ -62,11 +70,15 @@ const Navbar = ({ onPressSideMenuToggle }) => {
               </li>
               <li>
                 <Link to="/" className="icon-menu">
-                <i className="icon-home"></i>
+                  <i className="icon-home"></i>
                 </Link>
               </li>
               <li>
-              <button onClick={handleLogout} className="icon-menu" style={{ background: 'none', border: 'none' }}>
+                <button
+                  onClick={handleLogout}
+                  className="icon-menu"
+                  style={{ background: "none", border: "none" }}
+                >
                   <i className="icon-login"></i>
                 </button>
               </li>

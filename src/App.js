@@ -16,35 +16,114 @@ import EnvMetrics from './views/EnvMetrics';
 import AurahusDataviz from './views/AurahusDataviz';
 import AurahusHeatmap from './views/AurahusHeatmap';
 
-
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-  integrity="sha512-xwEVDtyg5Qnuq+v+8gqpd1RsvxaS6mHct9TfNUC9MRwO2R9MfTaeFzs4Bq6dd4HTV52TJPu6QAKHerc2trJQ=="
-  crossorigin=""
-/>
-
 function App() {
   return (
     <Router>
       <Routes>
         {/* Public Routes */}
         <Route element={<PublicRoutes />}>
-          <Route path="/login" element={<AuthLayout><Login /></AuthLayout>} />
+          <Route
+            path="/login"
+            element={
+              <AuthLayout>
+                <Login />
+              </AuthLayout>
+            }
+          />
         </Route>
 
         {/* Protected Routes */}
         <Route element={<ProtectedRoutes />}>
-          <Route path="/" element={<MainLayout><Home /></MainLayout>} />
-          <Route path="/tools" element={<MainLayout><ListOfTools /></MainLayout>} />
-          <Route path="/data-visualizations" element={<MainLayout><DataVisualizations /></MainLayout>} />
-          <Route path="/data-aurahus" element={<MainLayout><AurahusDataviz /></MainLayout>} />
-          <Route path="/heatmap-aurahus" element={<MainLayout><AurahusHeatmap /></MainLayout>} />
-          <Route path="/labs" element={<MainLayout><ListOfLabs/></MainLayout>} />
-          <Route path="/metrics" element={<MainLayout><EnvMetrics/></MainLayout>} />
-          <Route path="/messages" element={<MainLayout><Messages /></MainLayout>} />
-          <Route path="/notifications" element={<MainLayout><Notifications /></MainLayout>} />
-          <Route path="/settings" element={<MainLayout><Settings /></MainLayout>} />
+          <Route
+            path="/"
+            element={
+              <MainLayout>
+                <Home />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/tools"
+            element={
+              <MainLayout>
+                <ListOfTools />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/data-visualizations"
+            element={
+              <MainLayout>
+                <DataVisualizations />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/data-aurahus"
+            element={
+              <MainLayout>
+                <AurahusDataviz />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/heatmap-aurahus"
+            element={
+              <MainLayout>
+                <AurahusHeatmap />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/labs"
+            element={
+              <MainLayout>
+                <ListOfLabs />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/metrics"
+            element={
+              <MainLayout>
+                <EnvMetrics />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/messages"
+            element={
+              <MainLayout>
+                <Messages />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/notifications"
+            element={
+              <MainLayout>
+                <Notifications />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <MainLayout>
+                <Settings />
+              </MainLayout>
+            }
+          />
+
+          {/* 404 Not Found */}
+          <Route
+            path="*"
+            element={
+              <MainLayout>
+                <h1>404 - Page Not Found</h1>
+              </MainLayout>
+            }
+          />
         </Route>
       </Routes>
     </Router>

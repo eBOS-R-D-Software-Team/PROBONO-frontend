@@ -7,6 +7,7 @@ const ProtectedRoutes = () => {
 
   // optional splash/loader while Keycloak initialises
   if (!initialized) return null;
+  console.log('KC', initialized, keycloak?.authenticated, keycloak.token);
 
   return keycloak?.authenticated ? (
     <Outlet />
