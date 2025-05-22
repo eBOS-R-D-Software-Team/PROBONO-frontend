@@ -15,6 +15,8 @@ import ListOfLabs from './views/ListOfLabs';
 import EnvMetrics from './views/EnvMetrics';
 import AurahusDataviz from './views/AurahusDataviz';
 import AurahusHeatmap from './views/AurahusHeatmap';
+import DubElectricityDatavis from './views/DubElectricityDatavis';
+import Test from './views/test';
 
 function App() {
   return (
@@ -59,6 +61,22 @@ function App() {
             }
           />
           <Route
+            path="/dub-elec-visualizations"
+            element={
+              <MainLayout>
+                <DubElectricityDatavis />
+              </MainLayout>
+            }
+          />
+           <Route
+            path="/test"
+            element={
+              <MainLayout>
+                <Test />
+              </MainLayout>
+            }
+          />
+          <Route
             path="/data-aurahus"
             element={
               <MainLayout>
@@ -82,8 +100,9 @@ function App() {
               </MainLayout>
             }
           />
+          {/* updated: dynamic per-lab metrics route */}
           <Route
-            path="/metrics"
+            path="/labs/:labId/metrics"
             element={
               <MainLayout>
                 <EnvMetrics />

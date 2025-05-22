@@ -9,9 +9,9 @@ const ListOfLabs = () => {
   const labs = useSelector(selectLabs);
   const navigate = useNavigate();
 
-  const handleLabClick = (labName) => {
-    navigate(`/metrics`); // Redirect to Environmental Metrics UI
-  };
+  const handleLabClick = (labId) => {
+       navigate(`/labs/${labId}/metrics`);
+     };
 
   return (
     <div className="list-of-labs">
@@ -19,7 +19,7 @@ const ListOfLabs = () => {
         <a href="/">Home</a> <SlArrowRight /> <span>List of Labs</span>
       </div>
       {labs.map((lab) => (
-        <LabCard key={lab.id} lab={lab} onClick={handleLabClick} />
+        <LabCard key={lab.id} lab={lab} onClick={() => handleLabClick(lab.id)} />
       ))}
     </div>
   );
