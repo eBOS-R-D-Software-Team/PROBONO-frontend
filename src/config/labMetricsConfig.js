@@ -15,7 +15,7 @@ export const labMetrics = {
       id: 9,
       title: "Environmental Conditions",
       icon: <ImLoop2 />,
-      path: "/labs/:labId/env-conditions",
+      path: "/dub-elec-visualizations",
     },
   ],
 

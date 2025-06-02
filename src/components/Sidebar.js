@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaHome, FaChartBar, FaEnvelope, FaBell, FaCog, FaAngleLeft, FaAngleRight } from 'react-icons/fa';
+import { FaHome, FaChartBar, FaEnvelope, FaBell, FaCog, FaAngleLeft, FaAngleRight, FaTools, FaCogs,} from 'react-icons/fa';
 
 
 const Sidebar = () => {
@@ -23,24 +23,21 @@ const Sidebar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/data-visualizations">
-            <i><FaChartBar /></i>{!isCollapsed && <span>Data Visualizations</span>}
-            </NavLink>
-          </li>
-          <li>
             <NavLink to="/messages">
-            <i><FaEnvelope /></i> {!isCollapsed && <span>Messages</span>}
+            <i><FaTools/></i> {!isCollapsed && <span>Solutions Catalogue</span>}
             </NavLink>
           </li>
           <li>
             <NavLink to="/notifications" >
-            <i><FaBell /></i>{!isCollapsed && <span>Notifications</span>}
+            <i><FaCogs /></i>{!isCollapsed && <span>Decision Workflow</span>}
             </NavLink>
           </li>
           <li className="bottom-link">
-            <NavLink to="/settings" >
-            <i><FaCog /></i> {!isCollapsed && <span>Settings</span>}
+            <li>
+            <NavLink to="/data-visualizations">
+            <i><FaChartBar /></i>{!isCollapsed && <span>Data Visualizations</span>}
             </NavLink>
+          </li>
           </li>
         </ul>
       </div>
