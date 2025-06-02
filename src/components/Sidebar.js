@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaHome, FaChartBar, FaEnvelope, FaBell, FaCog, FaAngleLeft, FaAngleRight, FaTools, FaCogs,} from 'react-icons/fa';
+import { FaHome, FaChartBar, FaAngleLeft, FaAngleRight, FaTools, FaCogs,} from 'react-icons/fa';
 
 
 const Sidebar = () => {
