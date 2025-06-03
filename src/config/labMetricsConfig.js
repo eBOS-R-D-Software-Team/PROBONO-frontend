@@ -13,9 +13,15 @@ export const labMetrics = {
   1: [
     {
       id: 9,
-      title: "Environmental Conditions",
+      title: "Electricity Usage",
       icon: <ImLoop2 />,
       path: "/dub-elec-visualizations",
+    },
+    {
+      id: 8,
+      title: "Gas Usage",
+      icon: <ImLoop2 />,
+      path: "/dub-gas-visualizations",
     },
   ],
 
@@ -31,13 +37,13 @@ export const labMetrics = {
       id: 4,
       title: "Energy Consumption",
       icon: <ImSun />,
-      path: "/labs/:labId/data-visualizations",
+      path: "/porto-lot2-consumption",
     },
     {
       id: 6,
       title: "Energy Production",
       icon: <ImSun />,
-      path: "/labs/:labId/data-visualizations",
+      path: "/porto-lot4-production",
     },
   ],
 

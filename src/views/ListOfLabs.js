@@ -16,8 +16,10 @@ const ListOfLabs = () => {
   return (
     <div className="list-of-labs">
       <div className="breadcrumb">
-        <a href="/">Home</a> <SlArrowRight /> <span>List of Labs</span>
-      </div>
+              <a href='/'>Home </a>
+              <SlArrowRight />
+              <a href='/labs'>Data Visualizations</a>
+            </div>
       {labs.map((lab) => (
         <LabCard key={lab.id} lab={lab} onClick={() => handleLabClick(lab.id)} />
       ))}

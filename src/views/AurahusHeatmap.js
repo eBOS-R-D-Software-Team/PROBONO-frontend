@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import HeatmapOverlay from "../components/HeatmapOverlay";
 import highRes from "../data/heatmap_highres.csv";
+import { SlArrowRight } from 'react-icons/sl';
 
 const AurahusHeatmap = () => {
   const [showHeatmap, setShowHeatmap] = useState(false);
@@ -39,6 +40,10 @@ const AurahusHeatmap = () => {
 
   return (
     <div className="aurahus-container">
+      <div className="breadcrumb">
+              <a href="/">Home</a> <SlArrowRight /> <a href="/labs">Data Visualizations</a>{' '}
+              <SlArrowRight /> <span>Aurahus NovaDm</span>
+            </div>
       {/* Google Map */}
       <div id="map" className="map-container"></div>
       <h1>Building Heatmap Visualization</h1>

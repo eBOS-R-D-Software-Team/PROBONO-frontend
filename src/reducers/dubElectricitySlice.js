@@ -12,36 +12,34 @@ const AUTH_TOKEN =
 export const fetchDubElectricityData = createAsyncThunk(
   'dubElectricity/fetchData',
   async ({ startTime, endTime }, thunkAPI) => {
-    try {
-      const q = `
-        SELECT time,
-               "Average_Daily_Day_KWHS",
-               "Average_Daily_Night_KWHS"
-        FROM   Electricity
-        WHERE  time >= '${startTime}' AND time <= '${endTime}'
-      `;
+    const q = `
+      SELECT *
+      FROM   Electricity
+      WHERE  time >= '${startTime}' AND time <= '${endTime}'
+    `;
 
-      const { data } = await axios.get(API_URL, {
-        params: { db: 'dublin', q },
-        headers: { Authorization: `Token ${AUTH_TOKEN}` },
-      });
+    const { data } = await axios.get(API_URL, {
+      params : { db: 'dublin', q },
+      headers: { Authorization: `Token ${AUTH_TOKEN}` },
+    });
 
-      /* ---- transform response to [{timestamp, day, night}, …] ---- */
-      const series = data?.results?.[0]?.series?.[0];
-      if (!series) return [];
+    const series = data?.results?.[0]?.series?.[0];
+    if (!series) return [];
 
-      const tIdx = series.columns.indexOf('time');
-      const dIdx = series.columns.indexOf('Average_Daily_Day_KWHS');
-      const nIdx = series.columns.indexOf('Average_Daily_Night_KWHS');
+   const timeIdx = series.columns.indexOf('time');
 
-      return series.values.map((row) => ({
-        timestamp: new Date(row[tIdx]).toLocaleString(),
-        day:   parseFloat(row[dIdx]) || 0,
-        night: parseFloat(row[nIdx]) || 0,
-      }));
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.response?.data || err.message);
-    }
+return series.values.map((row) => {
+  const obj = {
+    // YYYY-MM-DD (ISO)   ← no hours / minutes
+    timestamp: new Date(row[timeIdx]).toISOString().split('T')[0],
+  };
+
+  series.columns.forEach((col, idx) => {
+    if (col !== 'time') obj[col] = parseFloat(row[idx]) || 0;
+  });
+  return obj;
+});
+
   }
 );
 

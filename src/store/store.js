@@ -5,6 +5,9 @@ import neighbourhoodReducer from '../reducers/neighbourhoodReducer'; // Add this
 import labsReducer from '../reducers/labsReducer';
 import co2Reducer from '../reducers/co2Reducer'
 import dubElectricityReducer from '../reducers/dubElectricitySlice'
+import dubGasReducer from '../reducers/dubGasSlice'
+import lot2EnergyConsumpReducer from '../reducers/portoLot2ConsumptionSlice'
+import lot4ProductionReducer from '../reducers/portoLot4ProductionSlice';
 
 const store = configureStore({
   reducer: {
@@ -13,6 +16,9 @@ const store = configureStore({
     labs: labsReducer,
     co2: co2Reducer,
     dubElectricity: dubElectricityReducer,
+    dubGas : dubGasReducer,
+    lot2Consumption   : lot2EnergyConsumpReducer,
+    lot4Production: lot4ProductionReducer,
 
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),

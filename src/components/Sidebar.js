@@ -6,6 +6,12 @@ import { FaHome, FaChartBar, FaAngleLeft, FaAngleRight, FaTools, FaCogs,} from '
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
+   const username = process.env.REACT_APP_USERNAME;
+  const password = process.env.REACT_APP_PASSWORD;
+
+  const decisionWorkflowLink = `https://${username}:${password}@probono.irtsysx.fr/`;
+
+
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
   };
@@ -23,18 +29,18 @@ const Sidebar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/messages">
+            <NavLink to="/tools">
             <i><FaTools/></i> {!isCollapsed && <span>Solutions Catalogue</span>}
             </NavLink>
           </li>
           <li>
-            <NavLink to="/notifications" >
+            <NavLink to={decisionWorkflowLink} >
             <i><FaCogs /></i>{!isCollapsed && <span>Decision Workflow</span>}
             </NavLink>
           </li>
           <li className="bottom-link">
             <li>
-            <NavLink to="/data-visualizations">
+            <NavLink to="/labs">
             <i><FaChartBar /></i>{!isCollapsed && <span>Data Visualizations</span>}
             </NavLink>
           </li>

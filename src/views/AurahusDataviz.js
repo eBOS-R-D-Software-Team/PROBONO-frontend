@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
-
+import { SlArrowRight } from 'react-icons/sl';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const AurahusDataviz = () => {
@@ -79,6 +79,10 @@ const AurahusDataviz = () => {
 
   return (
     <div className="data-visualizations">
+      <div className="breadcrumb">
+                    <a href="/">Home</a> <SlArrowRight /> <a href="/labs">Data Visualizations</a>{' '}
+                    <SlArrowRight /> <span>Aurahus ProFormalise</span>
+                  </div>
       {/* Google Map */}
       <div id="map" style={{ height: "500px", width: "100%" }} className="map-container"></div>
 

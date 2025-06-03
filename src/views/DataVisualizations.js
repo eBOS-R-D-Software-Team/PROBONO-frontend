@@ -110,9 +110,9 @@ const DataVisualizations = () => {
       <div className="breadcrumb">
         <a href='/'>Home </a>
         <SlArrowRight />
-        <a href='/'>Data Visualizations</a>
+        <a href='/labs'>Data Visualizations</a>
         <SlArrowRight />
-        <a href='/'>Porto LL</a>
+        <a href='/'>Porto LL Co2 emissions</a>
       </div>
 
       {/* Filters and Selectors */}

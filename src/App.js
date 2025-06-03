@@ -16,6 +16,9 @@ import EnvMetrics from './views/EnvMetrics';
 import AurahusDataviz from './views/AurahusDataviz';
 import AurahusHeatmap from './views/AurahusHeatmap';
 import DubElectricityDatavis from './views/DubElectricityDatavis';
+import DubGasDatavis from './views/DubGasDatavis';
+import PortoLot2Datavis from './views/PtLot2EnergyConsump';
+import PortoLot4Production from './views/PortoLot4Production';
 import Test from './views/test';
 
 function App() {
@@ -68,6 +71,23 @@ function App() {
               </MainLayout>
             }
           />
+          <Route
+  path="/dub-gas-visualizations"
+  element={
+    <MainLayout>
+      <DubGasDatavis />
+    </MainLayout>
+  }
+/>
+<Route
+  path="/porto-lot2-consumption"
+  element={
+    <MainLayout>
+      <PortoLot2Datavis />
+    </MainLayout>
+  }
+/>
+
            <Route
             path="/test"
             element={
@@ -92,6 +112,14 @@ function App() {
               </MainLayout>
             }
           />
+          <Route
+  path="/porto-lot4-production"
+  element={
+    <MainLayout>
+      <PortoLot4Production />
+    </MainLayout>
+  }
+/>
           <Route
             path="/labs"
             element={
