@@ -6,7 +6,7 @@ const Home = () => {
   const username = process.env.REACT_APP_USERNAME;
   const password = process.env.REACT_APP_PASSWORD;
 
-  const decisionWorkflowLink = `https://${username}:${password}@probono.irtsysx.fr/`;
+  const decisionWorkflowLink = `https://gbn-management.cds-probono.eu/`;
 
   return (
     <div className="home-container">

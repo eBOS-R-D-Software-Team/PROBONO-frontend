@@ -1,0 +1,22 @@
+
++[subject: architectural_element = construction]
+ -[feature: original_construction = (constant)]
+ -[]
+  +[]
+   +[feature: l_gap1 = 0]
+   +[feature: l_gap2 = 0]
+  +[]
+   +[feature: l_gap1 = 5]
+   +[feature: l_gap2 = 5]
+  +[]
+   +[feature: l_gap1 = 0]
+   +[feature: l_gap2 = 5]
+
++[subject: architectural_element = int_deck]
+ -[feature: no_deck_width = (7; 8; 9)]
+
++[subject: architectural_element = facade]
+ -[feature: housing_length = (14; 15; 16)]  +4915214469243
+
+
+

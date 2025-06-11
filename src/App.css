@@ -101,3 +101,22 @@
 .btn-lg{
   --bs-btn-padding-x: 8rem;
 }
+
+.arborist-row,
+.arborist__row,
+.react-arborist__row {
+  min-height: 26px !important;
+  line-height: 1.7 !important;
+  padding: 0 4px !important;
+  white-space: pre-line !important; /* allows line-breaks if needed */
+  overflow: hidden !important;
+  font-size: 15px !important;
+  font-family: inherit !important;
+  display: flex;
+  align-items: center;
+}
+
+.react-arborist__tree {
+  font-size: 15px;
+  font-family: inherit;
+}

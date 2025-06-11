@@ -20,10 +20,13 @@ import DubGasDatavis from './views/DubGasDatavis';
 import PortoLot2Datavis from './views/PtLot2EnergyConsump';
 import PortoLot4Production from './views/PortoLot4Production';
 import Test from './views/test';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <Router>
+       <ToastContainer position="top-center" autoClose={2000} hideProgressBar closeOnClick />
       <Routes>
         {/* Public Routes */}
         <Route element={<PublicRoutes />}>
@@ -172,6 +175,7 @@ function App() {
             }
           />
         </Route>
+
       </Routes>
     </Router>
   );
