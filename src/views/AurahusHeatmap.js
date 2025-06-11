@@ -101,7 +101,7 @@ const AurahusHeatmap = () => {
       {/* --- Download Button --- */}
       <div style={{ marginTop: "2rem" }}>
         <button className="download-btn" onClick={handleDownload} disabled={loading}>
-          {loading ? "Downloading..." : "Download Data ZIP"}
+          {loading ? "Downloading..." : "Download ProBimAnalyzer"}
         </button>
       </div>
     </div>

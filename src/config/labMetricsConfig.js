@@ -57,7 +57,7 @@ export const labMetrics = {
     },
     {
       id: 3,
-      title: "Building Occupancy",
+      title: "ProFormalise",
       icon: <ImOffice />,
       path: "/heatmap-aurahus",
     },
