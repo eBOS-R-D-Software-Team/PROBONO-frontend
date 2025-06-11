@@ -9,7 +9,7 @@ const ListOfTools = () => {
   const tools = [
 
     //{ title: 'Demand and Response Platform', link: '/tools/demand-response', icon: ImPower },
-    { title: 'Demolition Tool', link: 'https://probono.usc.es/index_probono_task.html', icon: ImHammer },
+    { title: 'Demolition Tool', link: 'https://probono.usc.es/', icon: ImHammer },
     { title: 'Open knowledge-base', link: 'https://probonofe.ebosrndportal.com/', icon: ImStatsDots },
         {
       title: 'Ventilation Assessment Tool',
