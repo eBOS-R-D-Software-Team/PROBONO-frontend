@@ -19,9 +19,19 @@ import DubElectricityDatavis from './views/DubElectricityDatavis';
 import DubGasDatavis from './views/DubGasDatavis';
 import PortoLot2Datavis from './views/PtLot2EnergyConsump';
 import PortoLot4Production from './views/PortoLot4Production';
+import DubGasoilDatavis from './views/DubGasoilDatavis';
 import Test from './views/test';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import DubKeroseneDatavis from './views/DubKeroseneDatavis';
+import DubLpgDatavis from './views/DubLpgDatavis';
+import DubRoadDieselDatavis from './views/DubRoadDieselDatavis';
+import DubSolarDatavis from './views/DubSolarDatavis';
+import DubWoodChips35Datavis from './views/DubWoodChips35Datavis';
+
+
+
+
 
 function App() {
   return (
@@ -90,6 +100,32 @@ function App() {
     </MainLayout>
   }
 />
+<Route
+  path="/dub-solar"
+  element={
+    <MainLayout>
+      <DubSolarDatavis />
+    </MainLayout>
+  }
+/>
+
+
+<Route
+  path="/dub-woodchips-35"
+  element={
+    <MainLayout>
+      <DubWoodChips35Datavis />
+    </MainLayout>
+  }
+/>
+<Route
+  path="/dub-kerosene-visualizations"
+  element={
+    <MainLayout>
+      <DubKeroseneDatavis />
+    </MainLayout>
+  }
+/>
 
            <Route
             path="/test"
@@ -123,6 +159,14 @@ function App() {
     </MainLayout>
   }
 />
+<Route
+  path="/dub-lpg-visualizations"
+  element={
+    <MainLayout>
+      <DubLpgDatavis />
+    </MainLayout>
+  }
+/>
           <Route
             path="/labs"
             element={
@@ -140,6 +184,22 @@ function App() {
               </MainLayout>
             }
           />
+          <Route
+  path="/dub-gasoil-visualizations"
+  element={
+    <MainLayout>
+      <DubGasoilDatavis />
+    </MainLayout>
+  }
+/>
+<Route
+  path="/dub-road-diesel-derv"
+  element={
+    <MainLayout>
+      <DubRoadDieselDatavis />
+    </MainLayout>
+  }
+/>
           <Route
             path="/messages"
             element={

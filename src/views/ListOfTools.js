@@ -16,6 +16,11 @@ const ListOfTools = () => {
       link: 'https://v24121.ita.es/VentilationTool_HMI/',
       icon: ImAirplane,
     },
+     {
+      title: 'Demand and Response Platform Building Layer – DaRA',
+      link: '',
+      icon: ImCog,
+    },
     //{ title: 'BIPV Design Tool', link: '/tools/bipv', icon: ImTree },
     //{ title: 'Bio-Solar Roof Design and Simulation Tools', link: '/tools/bio-solar', icon: ImWrench },
     //{ title: 'Energy Positive Building Design Tool', link: '/tools/energy-positive', icon: ImCog },

@@ -9,6 +9,14 @@ import dubGasReducer from '../reducers/dubGasSlice'
 import lot2EnergyConsumpReducer from '../reducers/portoLot2ConsumptionSlice'
 import lot4ProductionReducer from '../reducers/portoLot4ProductionSlice';
 import downloadReducer from '../reducers/downloadSlice';
+import dubGasoilReducer from '../reducers/dubGasoilSlice';
+import dubKeroseneReducer from '../reducers/dubKeroseneSlice';
+import dubLpgReducer from '../reducers/dubLpgSlice';
+import dubPetrolReducer from '../reducers/dubPetrolSlice';
+import dubRoadDieselReducer from '../reducers/dubRoadDieselSlice';
+import dubSolarReducer from '../reducers/dubSolarSlice';
+import dubWoodChips35Reducer from '../reducers/dubWoodChips35Slice';
+
 
 const store = configureStore({
   reducer: {
@@ -21,6 +29,14 @@ const store = configureStore({
     lot2Consumption   : lot2EnergyConsumpReducer,
     lot4Production: lot4ProductionReducer,
     download: downloadReducer,
+    dubGasoil: dubGasoilReducer,
+    dubKerosene: dubKeroseneReducer,
+    dubLpg: dubLpgReducer,
+    dubPetrol: dubPetrolReducer,
+    dubRoadDiesel: dubRoadDieselReducer,
+    dubSolar: dubSolarReducer,
+    dubWoodChips35: dubWoodChips35Reducer,
+    
 
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
