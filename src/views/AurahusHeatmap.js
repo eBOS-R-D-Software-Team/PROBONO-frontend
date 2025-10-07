@@ -5,13 +5,15 @@ import HeatmapOverlay from "../components/HeatmapOverlay";
 import highRes from "../data/heatmap_highres.csv";
 import { SlArrowRight } from 'react-icons/sl';
 import { notification } from "antd";
-import "antd/dist/reset.css"; 
+import "antd/dist/reset.css";
 import { useKeycloak } from "@react-keycloak/web";
-
+import { getUserGroups } from "../utils/groups";
 
 const AurahusHeatmap = () => {
   const [showHeatmap, setShowHeatmap] = useState(false);
   const [map, setMap] = useState(null);
+  const [canDownloadAarhus, setCanDownloadAarhus] = useState(false)
+  const [prospectLoading, setProspectLoading] = useState(false);
   const { keycloak } = useKeycloak();
 
   const dispatch = useDispatch();
@@ -29,22 +31,21 @@ const AurahusHeatmap = () => {
   }, [success]);
 
   useEffect(() => {
-  if (error) {
-    notification.error({
-      message: "Download failed",
-      description: typeof error === "string" ? error : "An error occurred while downloading the file.",
-      placement: "top",
-      duration: 7,
-    });
-  }
-}, [error]);
+    if (error) {
+      notification.error({
+        message: "Download failed",
+        description: typeof error === "string" ? error : "An error occurred while downloading the file.",
+        placement: "top",
+        duration: 7,
+      });
+    }
+  }, [error]);
 
-  // Fill in with your actual data
+  // Your existing payload
   const filename = "20-05-2025b.zip";
-  const communityId = "nejisaid";
-  //const token = "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJHS3ZvNW9RNjE1Q25CT3NDb3FOU0w0NlRqN3NfOEtZdUp2dmhCX3g4TG93In0.eyJleHAiOjE3NDk3MzE4ODgsImlhdCI6MTc0OTY0NTY0OCwiYXV0aF90aW1lIjoxNzQ5NjQ1NDg4LCJqdGkiOiJhMzFlMGFhMi1mMzViLTQ2MTAtODUyOS1kYzljMzg5NDBiMzkiLCJpc3MiOiJodHRwczovL2RhdGEtcGxhdGZvcm0uY2RzLXByb2Jvbm8uZXUva2V5Y2xvYWsvcmVhbG1zL3Byb2Jvbm8iLCJhdWQiOiJhY2NvdW50Iiwic3ViIjoiY2I2OWQ3MmItZTJlOC00NDFhLTkwZGYtZmY5MzYyNDc2YmE0IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoicHJvYm9uby1wdWJsaWMiLCJzaWQiOiJiMmRhZjk0OC1hMjk1LTQyMDQtODJiMi05MGVlOGFkYWRiNzkiLCJhY3IiOiIwIiwiYWxsb3dlZC1vcmlnaW5zIjpbImh0dHBzOi8vcHJvYm9uby5lYm9zcm5kcG9ydGFsLmNvbSIsImh0dHBzOi8vdjI0MTIxLml0YS5lcy9WZW50aWxhdGlvblRvb2xfVm9pbGEvKiIsImh0dHA6Ly8xMjcuMC4wLjE6ODAvKiIsImh0dHA6Ly9sb2NhbGhvc3Q6MzAwMCIsImh0dHBzOi8vcHJvYm9uby51c2MuZXMvIiwiaHR0cHM6Ly9nYm4tbWFuYWdlbWVudC5jZHMtcHJvYm9uby5ldSJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiZGVmYXVsdC1yb2xlcy1wcm9ib25vIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoib3BlbmlkIGVtYWlsIHByb2ZpbGUiLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsIm5hbWUiOiJOZWppICBTYWlkIiwicHJlZmVycmVkX3VzZXJuYW1lIjoibmVqaSIsImdpdmVuX25hbWUiOiJOZWppICIsImZhbWlseV9uYW1lIjoiU2FpZCIsImVtYWlsIjoibmVqaXNAZWJvcy5jb20uY3kifQ.GYIALAwOqLZI0CDQ7fXLGDCd6mDae17Xx4wVsW8EUN_TXoepcbQCjZUOFvXeFEmRZWdZjzzexoV8SW88OloA1TW6Te8I1ZOLve5SVqfZEl8rjWhwK-3PAPlz7g1noYqV7v2mDQ9HG2h3H-jyQCqidEJLUM6asa0Uj65vVKWNvMNkV_TpxhmonWYFX1cHqF4547sacpYn6QlHK9njQ0UPZZi1oBcSBW75CXaT09-blmEMB5QneX0DINPo_gLEjn3hWyrKFZZtHi4GmmJ2tC6sPKILtaI0h_Gfy7qyMsBDJP8_vZ0qI8TgOed1Oxo1B-L0UTdTbTaoIeksoB1XU--fnQ";
+  const REQUIRED_GROUP = "/aarhus";
 
-  // Google Maps Initialization
+  // Google Maps Initialization (unchanged)
   useEffect(() => {
     if (!map) {
       const script = document.createElement("script");
@@ -75,19 +76,101 @@ const AurahusHeatmap = () => {
     }
   }, [map]);
 
-  // Handle Download
+  // Existing ProBimAnalyzer download
+  useEffect(() => {
+    let mounted = true;
+    (async () => {
+      if (!keycloak?.authenticated) return;
+      try {
+        const groups = await getUserGroups(keycloak.token);
+        if (mounted) setCanDownloadAarhus(groups.includes(REQUIRED_GROUP));
+      } catch {
+        if (mounted) setCanDownloadAarhus(false);
+      }
+    })();
+    return () => { mounted = false; };
+  }, [keycloak?.authenticated, keycloak?.token]);
+
+  // Notifications
+  useEffect(() => {
+    if (success) {
+      notification.success({
+        message: "Download complete",
+        description: "Your data ZIP file has started downloading.",
+        placement: "top",
+        duration: 3,
+      });
+    }
+  }, [success]);
+
+  useEffect(() => {
+    if (error) {
+      notification.error({
+        message: "Download failed",
+        description: String(error),
+        placement: "top",
+        duration: 6,
+      });
+    }
+  }, [error]);
+
   const handleDownload = () => {
+    if (!keycloak?.authenticated) {
+      notification.warning({
+        message: "Sign in required",
+        description: "Please sign in to download.",
+        placement: "top",
+      });
+      return;
+    }
+    if (!canDownloadAarhus) {
+      notification.warning({
+        message: "Access restricted",
+        description: "Your account is not in the 'aarhus' group. Contact an admin for access.",
+        placement: "top",
+      });
+      return;
+    }
     notification.info({
-      message: "Download started",
-      description: "Your data ZIP file download is starting. 🚀",
+      message: "Download in progress",
+      description: "Fetching the ZIP from the 'aarhus' community…",
       placement: "top",
-      duration: 5,
+      duration: 2,
     });
-    dispatch(reset()); // reset previous state
-    
-    dispatch(downloadZip({ filename, communityId, token: keycloak.token, }));
-  
+    dispatch(reset());
+    dispatch(downloadZip({
+      filename,
+      communityId: REQUIRED_GROUP,   // <-- enforce 'aarhus' here
+      token: keycloak.token,         // always current token
+    }));
   };
+
+
+  
+  const GITHUB_ZIP_URL = "https://codeload.github.com/yazan297/ProSpect2025/zip/master";
+
+const handleDownloadProSpect = () => {
+  // optional: quick “started” toast
+  notification.info({
+    message: "Download started",
+    description: "Fetching ProSpect from GitHub…",
+    placement: "top",
+    duration: 4,
+  });
+
+  // trigger a top-level navigation (bypasses CORS)
+  const a = document.createElement("a");
+  a.href = GITHUB_ZIP_URL;
+  a.target = "_blank"; // open in new tab; avoids replacing your app
+  a.rel = "noopener,noreferrer";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+
+  // No ObjectURL was created → do not call URL.revokeObjectURL(...)
+  // We also can't detect true "download complete" here.
+  setProspectLoading(false);
+};
 
   return (
     <div className="aurahus-container">
@@ -95,16 +178,37 @@ const AurahusHeatmap = () => {
         <a href="/">Home</a> <SlArrowRight /> <a href="/labs">Data Visualizations</a>{" "}
         <SlArrowRight /> <span>Aurahus NovaDm</span>
       </div>
+
       <div id="map" className="map-container"></div>
+
       <h1>Building Heatmap Visualization</h1>
+
       <button className="toggle-heatmap-btn" onClick={() => setShowHeatmap(!showHeatmap)}>
         {showHeatmap ? "Hide Heatmap" : "Show Heatmap Overlay"}
       </button>
+
       <HeatmapOverlay csvFile={highRes} showHeatmap={showHeatmap} />
-      {/* --- Download Button --- */}
-      <div style={{ marginTop: "2rem" }}>
-        <button className="download-btn" onClick={handleDownload} disabled={loading}>
-          {loading ? "Downloading..." : "Download ProBimAnalyzer"}
+
+      {/* --- Download Buttons Row --- */}
+      <div style={{ marginTop: "2rem", display: "flex", gap: "0.75rem", flexWrap: "wrap", justifyContent: "center",   // 👈 center horizontally
+    alignItems: "center"  }}>
+        <button
+          className="download-btn"
+          onClick={handleDownload}
+          disabled={loading || !canDownloadAarhus}
+          title={!canDownloadAarhus ? "You need 'aarhus' group to download" : "Download ZIP"}
+        >
+          {loading ? "Downloading..." : "⬇️ Download ProbimAnalyzer"}
+        </button>
+
+        <button
+          className="download-btn"
+          onClick={handleDownloadProSpect}
+          disabled={prospectLoading}
+          aria-label="Download ProSpect (GitHub)"
+          title="Download ProSpect (GitHub)"
+        >
+          {prospectLoading ? "Downloading..." : "⬇️ Download ProSpect"}
         </button>
       </div>
     </div>

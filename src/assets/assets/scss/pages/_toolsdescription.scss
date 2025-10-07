@@ -1,0 +1,254 @@
+/* Theme tokens (tweak as you like) */
+$bg: #f6f7fb;
+$card-bg: #ffffff;
+$card-border: #e5e7eb;
+$text-900: #111827;
+$text-700: #374151;
+$text-600: #6b7280;
+$brand: #4f46e5;
+$brand-2: #22c55e;
+
+.list-of-tools {
+  background: $bg;
+  padding: 24px;
+
+  .breadcrumb {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 16px;
+
+    a, span {
+      font-size: 14px;
+      color: $text-600;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* Toolbar */
+.tools-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.segmented {
+  display: flex;
+  gap: 6px;
+  background: #eef2ff;
+  border-radius: 12px;
+  padding: 6px;
+
+  &__btn {
+    background: transparent;
+    border: 0;
+    font-size: 13px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: #4338ca;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &.is-active {
+      background: $card-bg;
+      color: $text-900;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    }
+  }
+}
+
+.tools-search {
+  min-width: 240px;
+  flex: 1 0 240px;
+  padding: 10px 14px;
+  border: 1px solid $card-border;
+  border-radius: 12px;
+  font-size: 14px;
+  outline: none;
+  background: $card-bg;
+  transition: box-shadow 0.15s ease, border-color 0.15s ease;
+
+  &:focus {
+    border-color: $brand;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.18);
+  }
+}
+
+/* Grid */
+.tools-grid--details {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+
+  @media (min-width: 920px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Tool Card */
+.tool {
+  background: $card-bg;
+  border: 1px solid $card-border;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 2px 14px rgba(17,24,39,0.06);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  &__title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__icon {
+    font-size: 22px;
+    color: $brand;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: $text-900;
+  }
+
+  &__slug {
+    font-size: 11px;
+    color: $text-600;
+    background: #f3f4f6;
+    padding: 4px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  /* Purpose callout (no bullets) */
+  &__purpose {
+    background: linear-gradient(135deg, #eef2ff 0%, #ecfeff 100%);
+    border: 1px solid #e0e7ff;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  &__purpose-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: #4338ca;
+    margin-bottom: 4px;
+  }
+
+  &__purpose-text {
+    margin: 0;
+    font-size: 14px;
+    color: $text-700;
+    line-height: 1.55;
+  }
+
+  /* Three info cards */
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+
+    @media (min-width: 640px) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  &__footer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__source {
+    font-size: 12px;
+    color: $text-600;
+  }
+
+  &__anchor {
+    font-size: 12px;
+    color: #9ca3af;
+    text-decoration: none;
+  }
+}
+
+/* Info card (section) */
+.info-card {
+  background: #fcfcff;
+  border: 1px solid #e8eafc;
+  border-radius: 12px;
+  padding: 12px;
+  min-height: 120px;
+
+  &__title {
+    font-size: 12px;
+    font-weight: 700;
+    color: $text-900;
+    margin-bottom: 8px;
+  }
+
+  &__body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+/* Chips (no bullets) */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  border: 1px solid #e5e7eb;
+  font-size: 12.5px;
+  color: $text-700;
+  line-height: 1;
+
+  /* Decorative dot instead of list bullet */
+  &::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: $brand-2;
+  }
+}
+
+/* Empty state */
+.empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: $text-600;
+  padding: 40px 0;
+  border: 1px dashed $card-border;
+  border-radius: 12px;
+  background: #fafafa;
+}

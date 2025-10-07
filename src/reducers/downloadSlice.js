@@ -2,35 +2,47 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+// src/reducers/downloadSlice.js
 export const downloadZip = createAsyncThunk(
   'download/downloadZip',
   async ({ filename, communityId, token }, { rejectWithValue }) => {
     try {
       const response = await axios.get(
-        'https://data-platform.cds-probono.eu/rest2hdfs/download',
+        'https://data-platform.cds-probono.eu/rest2hdfs/file', // ← was /download
         {
           headers: {
-            filename: filename,
-            'community-id': communityId,
-            token: token,
+            filename,
+            'community-id': communityId, // will be 'aarhus' when allowed
+            token,
           },
           responseType: 'blob',
+          validateStatus: () => true,
         }
       );
-      // Prepare download in the browser
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', filename);
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
+      const ok = response.status >= 200 && response.status < 300;
+      if (!ok) {
+        let msg = `HTTP ${response.status}`;
+        try {
+          const text = await response.data.text();
+          msg = text || msg;
+        } catch {}
+        return rejectWithValue(msg);
+      }
+      const url = window.URL.createObjectURL(response.data);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
       return true;
     } catch (err) {
-      return rejectWithValue(err.response?.data || err.message);
+      return rejectWithValue(err?.message || 'Download failed');
     }
   }
 );
+
 
 const downloadSlice = createSlice({
   name: 'download',

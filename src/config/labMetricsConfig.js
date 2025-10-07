@@ -74,6 +74,12 @@ export const labMetrics = {
       icon: <GiWoodPile />,
       path: "/dub-woodchips-35",
     },
+    {
+      id: 17,
+      title: "SmartCitizen",
+      icon: <ImLoop2 />,
+      path: "/dub-smartcitizen-visualizations",
+    },
   ],
 
   // Porto Living Lab (id: 3)

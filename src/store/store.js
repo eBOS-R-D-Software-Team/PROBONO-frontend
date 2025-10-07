@@ -16,6 +16,7 @@ import dubPetrolReducer from '../reducers/dubPetrolSlice';
 import dubRoadDieselReducer from '../reducers/dubRoadDieselSlice';
 import dubSolarReducer from '../reducers/dubSolarSlice';
 import dubWoodChips35Reducer from '../reducers/dubWoodChips35Slice';
+import smartcitizenReducer from '../reducers/smartcitizenSlice';
 
 
 const store = configureStore({
@@ -36,6 +37,7 @@ const store = configureStore({
     dubRoadDiesel: dubRoadDieselReducer,
     dubSolar: dubSolarReducer,
     dubWoodChips35: dubWoodChips35Reducer,
+    smartcitizen: smartcitizenReducer,
     
 
   },

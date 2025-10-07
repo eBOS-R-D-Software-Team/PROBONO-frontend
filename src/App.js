@@ -28,6 +28,8 @@ import DubLpgDatavis from './views/DubLpgDatavis';
 import DubRoadDieselDatavis from './views/DubRoadDieselDatavis';
 import DubSolarDatavis from './views/DubSolarDatavis';
 import DubWoodChips35Datavis from './views/DubWoodChips35Datavis';
+import ToolDescriptions from './views/ToolDescriptions';
+import DubSmartCitizenDatavis from './views/SmartCitizenDatavis';
 
 
 
@@ -84,11 +86,27 @@ function App() {
               </MainLayout>
             }
           />
+                    <Route
+            path="/dub-smartcitizen-visualizations"
+            element={
+              <MainLayout>
+                <DubSmartCitizenDatavis />
+              </MainLayout>
+            }
+          />
           <Route
   path="/dub-gas-visualizations"
   element={
     <MainLayout>
       <DubGasDatavis />
+    </MainLayout>
+  }
+/>
+<Route
+  path="/tools-descriptions"
+  element={
+    <MainLayout>
+      <ToolDescriptions />
     </MainLayout>
   }
 />

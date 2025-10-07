@@ -2,6 +2,7 @@ import React from 'react';
 import Card from '../components/cards';
 import { ImAirplane, ImPower, ImTree, ImWrench, ImCog, ImStatsDots, ImHammer, ImCalculator } from "react-icons/im";
 import { SlArrowRight } from "react-icons/sl";
+import EnergyClassLogo from '../assets/images/Energy_class_simulation_icon.png';
 
 const ListOfTools = () => {
   //const ventilationToolLink = `https://v24121.ita.es/VentilationTool_Voila/`;
@@ -10,7 +11,7 @@ const ListOfTools = () => {
 
     //{ title: 'Demand and Response Platform', link: '/tools/demand-response', icon: ImPower },
     { title: 'Demolition Tool', link: 'https://probono.usc.es/', icon: ImHammer },
-    { title: 'Open knowledge-base', link: 'https://probonofe.ebosrndportal.com/', icon: ImStatsDots },
+    { title: 'Open knowledge-base', link: 'https://www.probonoh2020kb.eu', icon: ImStatsDots },
         {
       title: 'Ventilation Assessment Tool',
       link: 'https://v24121.ita.es/VentilationTool_HMI/',
@@ -21,6 +22,18 @@ const ListOfTools = () => {
       link: '',
       icon: ImCog,
     },
+
+  {
+  title: 'Energy class simulator',
+  link: 'https://energy-class-simulation.cds-probono.eu/',
+  icon: ({ size = 36 }) => (
+    <img
+      src={EnergyClassLogo}
+      alt="Energy class simulator"
+      style={{ width: size, height: size, objectFit: 'contain' }}
+    />
+  ),
+},
     //{ title: 'BIPV Design Tool', link: '/tools/bipv', icon: ImTree },
     //{ title: 'Bio-Solar Roof Design and Simulation Tools', link: '/tools/bio-solar', icon: ImWrench },
     //{ title: 'Energy Positive Building Design Tool', link: '/tools/energy-positive', icon: ImCog },
