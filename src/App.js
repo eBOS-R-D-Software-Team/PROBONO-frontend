@@ -30,6 +30,8 @@ import DubSolarDatavis from './views/DubSolarDatavis';
 import DubWoodChips35Datavis from './views/DubWoodChips35Datavis';
 import ToolDescriptions from './views/ToolDescriptions';
 import DubSmartCitizenDatavis from './views/SmartCitizenDatavis';
+import ParaviewVisualization from './views/ParaviewVisualization';
+
 
 
 
@@ -83,6 +85,15 @@ function App() {
             element={
               <MainLayout>
                 <DubElectricityDatavis />
+              </MainLayout>
+            }
+          />
+
+          <Route
+            path="/paraview-vis"
+            element={
+              <MainLayout>
+                <ParaviewVisualization />
               </MainLayout>
             }
           />

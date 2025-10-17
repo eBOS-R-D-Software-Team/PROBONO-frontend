@@ -9,7 +9,7 @@ const Sidebar = () => {
    const username = process.env.REACT_APP_USERNAME;
   const password = process.env.REACT_APP_PASSWORD;
 
-  const decisionWorkflowLink = `https://${username}:${password}@probono.irtsysx.fr/`;
+  const decisionWorkflowLink = `https://gbn-management.cds-probono.eu/?automatic_keycloak_login=true`;
 
 
   const toggleSidebar = () => {
@@ -35,7 +35,7 @@ const Sidebar = () => {
           </li>
           <li>
             <NavLink to={decisionWorkflowLink} >
-            <i><FaCogs /></i>{!isCollapsed && <span>Decision Workflow</span>}
+            <i><FaCogs /></i>{!isCollapsed && <span>GBN management</span>}
             </NavLink>
           </li>
           <li className="bottom-link">
