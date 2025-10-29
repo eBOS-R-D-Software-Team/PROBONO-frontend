@@ -1,96 +1,150 @@
-import React, { useEffect, useRef, useState } from "react";
+// src/components/HeatmapOverlay.js
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import Papa from "papaparse";
 import * as d3 from "d3";
-import { parseCSV } from "../utils/csvParser";
-import floorplanSVG from "../assets/images/nobel_park_floorplan_.svg"; // ✅ Import as an image file
 
-// Adjust these to match the building path coordinates in your floor plan
-const BUILDING_X_MIN = -6.2;
-const BUILDING_X_MAX = 5.7;
-const BUILDING_Y_MIN = -14.15;
-const BUILDING_Y_MAX = 14.04;
-
-const HeatmapOverlay = ({ csvFile, showHeatmap }) => {
-  const svgRef = useRef();
+/**
+ * Props
+ *  - gridUrl: string (CSV or semicolon-TXT asset URL)
+ *  - showHeatmap: boolean
+ *  - floorplanImg: string (path to your SVG/PNG/JPG)
+ *  - viewBox: string, e.g. "-20 -20 40 40" or "0 0 1652 1652"
+ *  - bounds: { xMin, xMax, yMin, yMax } mapping grid into the building footprint (in viewBox units)
+ *  - invertY: boolean (true = flip grid vertically to match floorplan convention)
+ */
+const HeatmapOverlay = ({
+  gridUrl,
+  showHeatmap,
+  floorplanImg,
+  viewBox,
+  bounds,
+  invertY = true, // Nobel: true, MolBio: false (you’ll set per-building)
+}) => {
+  const canvasRef = useRef(null);
+  const containerRef = useRef(null);
+  const [gridSize, setGridSize] = useState({ rows: 0, columns: 0 });
   const [heatmapData, setHeatmapData] = useState([]);
-  const [gridSize, setGridSize] = useState({ columns: 0, rows: 0 });
 
-  // 1) Load & parse the CSV
+  const parseMatrix = (raw) => {
+    const looksSemi = raw.includes(";") && !raw.includes(",");
+    if (looksSemi) {
+      return raw
+        .trim()
+        .split(/\r?\n/)
+        .filter((r) => r.trim().length > 0)
+        .map((r) => r.split(";").map((v) => (v === "" ? 0 : Number(v))));
+    }
+    const out = Papa.parse(raw.trim(), { delimiter: ",", dynamicTyping: true, skipEmptyLines: true }).data;
+    return out.map((row) => row.map((v) => (v === "" ? 0 : Number(v))));
+  };
+
   useEffect(() => {
-    if (!showHeatmap) return; // 🔹 Load data only when the heatmap is displayed
-
-    const loadCSV = async () => {
+    (async () => {
+      if (!showHeatmap || !gridUrl) {
+        setGridSize({ rows: 0, columns: 0 });
+        setHeatmapData([]);
+        return;
+      }
       try {
-        const matrix = await parseCSV(csvFile);
-        console.log("Parsed CSV Data (2D array):", matrix);
-
+        const res = await fetch(gridUrl);
+        const raw = await res.text();
+        const matrix = parseMatrix(raw);
+        if (!matrix.length || !matrix[0].length) {
+          setGridSize({ rows: 0, columns: 0 });
+          setHeatmapData([]);
+          return;
+        }
         const rows = matrix.length;
         const columns = matrix[0].length;
-        setGridSize({ rows, columns });
-
-        // Flatten to { x, y, value }
         const flattened = [];
-        matrix.forEach((row, y) => {
-          row.forEach((val, x) => {
-            flattened.push({ x, y, value: val });
-          });
-        });
+        matrix.forEach((row, y) => row.forEach((val, x) => flattened.push({ x, y, value: Number(val) || 0 })));
+        setGridSize({ rows, columns });
         setHeatmapData(flattened);
-      } catch (err) {
-        console.error("Error loading CSV:", err);
+      } catch (e) {
+        console.error("[Heatmap] load/parse failed:", e);
+        setGridSize({ rows: 0, columns: 0 });
+        setHeatmapData([]);
       }
-    };
-    loadCSV();
-  }, [csvFile, showHeatmap]); // 🔹 Depend on `showHeatmap` to reload data when button is clicked
+    })();
+  }, [gridUrl, showHeatmap]);
 
-  // 2) Draw the heatmap squares
+  const vb = useMemo(() => {
+    const arr = (viewBox || "0 0 100 100").split(/\s+/).map(Number);
+    return { minX: arr[0], minY: arr[1], width: arr[2], height: arr[3] };
+  }, [viewBox]);
+
   useEffect(() => {
+    const canvas = canvasRef.current;
+    const container = containerRef.current;
+    if (!canvas || !container) return;
+
+    const ctx = canvas.getContext("2d", { alpha: true });
+
+    // Size canvas to CSS box (HiDPI aware)
+    const dpr = window.devicePixelRatio || 1;
+    const cssW = container.clientWidth;
+    const cssH = container.clientHeight;
+    canvas.width = Math.max(1, Math.floor(cssW * dpr));
+    canvas.height = Math.max(1, Math.floor(cssH * dpr));
+    canvas.style.width = `${cssW}px`;
+    canvas.style.height = `${cssH}px`;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    // Clear
+    ctx.clearRect(0, 0, cssW, cssH);
+
     if (!showHeatmap || !heatmapData.length || !gridSize.rows || !gridSize.columns) return;
 
-    const svg = d3.select(svgRef.current);
-    svg.select(".heatmap").selectAll("*").remove(); // Clear previous heatmap
+    // Map viewBox to canvas pixels
+    const scaleX = cssW / vb.width;
+    const scaleY = cssH / vb.height;
 
+    ctx.save();
+    ctx.imageSmoothingEnabled = false;
+
+    // map VB origin to canvas
+    ctx.scale(scaleX, scaleY);
+    ctx.translate(-vb.minX, -vb.minY);
+
+    const { xMin, xMax, yMin, yMax } = bounds;
     const { rows, columns } = gridSize;
 
-    // 🔹 Ensure proper cell dimensions based on floorplan size
-    const cellWidth = (BUILDING_X_MAX - BUILDING_X_MIN) / columns;
-    const cellHeight = (BUILDING_Y_MAX - BUILDING_Y_MIN) / rows;
+    const cellW = (xMax - xMin) / columns;
+    const cellH = (yMax - yMin) / rows;
 
-    // 🔹 Mapping grid columns [0, columns] to the building's x-range
-    const xScale = d3.scaleLinear().domain([0, columns]).range([BUILDING_X_MIN, BUILDING_X_MAX]);
+    const xForCol = (c) => xMin + (c / columns) * (xMax - xMin);
+    const yForRow = (r) =>
+      invertY
+        ? yMax - (r / rows) * (yMax - yMin) // bottom-left origin
+        : yMin + (r / rows) * (yMax - yMin); // top-left origin
 
-    // 🔹 Invert Y-axis mapping: [0, rows] -> [BUILDING_Y_MAX, BUILDING_Y_MIN]
-    const yScale = d3.scaleLinear().domain([0, rows]).range([BUILDING_Y_MAX, BUILDING_Y_MIN]); // ✅ Fixes upside-down issue
-
-    // 🔹 Define a color scale from 0 (transparent) to max (opaque red)
     const maxVal = d3.max(heatmapData, (d) => d.value) || 1;
-    const colorScale = d3.scaleLinear().domain([0, maxVal]).range(["rgba(255,0,0,0)", "rgba(255,0,0,1)"]);
+    const color = d3.scaleSequential(d3.interpolateTurbo).domain([0, maxVal]);
 
-    // 🔹 Draw each heatmap cell as a rectangle
-    svg.select(".heatmap")
-      .selectAll("rect")
-      .data(heatmapData)
-      .enter()
-      .append("rect")
-      .attr("x", (d) => xScale(d.x))
-      .attr("y", (d) => yScale(d.y))
-      .attr("width", cellWidth)
-      .attr("height", cellHeight)
-      .style("fill", (d) => colorScale(d.value));
+    // clip to bounds to avoid spillover
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(xMin, yMin, xMax - xMin, yMax - yMin);
+    ctx.clip();
 
-    console.log("Heatmap Rendered Successfully");
-  }, [heatmapData, gridSize, showHeatmap]);
+    for (let i = 0; i < heatmapData.length; i++) {
+      const d = heatmapData[i];
+      if (!d.value) continue;
+      const x = xForCol(d.x);
+      const y = yForRow(d.y);
+      ctx.fillStyle = color(d.value);
+      ctx.globalAlpha = 0.9;
+      ctx.fillRect(x, y, cellW, cellH);
+    }
+
+    ctx.restore();
+    ctx.restore();
+  }, [showHeatmap, heatmapData, gridSize, bounds, vb, invertY]);
 
   return (
-    <div className="heatmap-container">
-      {/* Floorplan as an Image ✅ Fixes ReactComponent props error */}
-      <img src={floorplanSVG} alt="Floor Plan" className="floorplan" />
-
-      {/* Heatmap (only displayed when showHeatmap is true) */}
-      {showHeatmap && (
-        <svg ref={svgRef} viewBox="-20 -20 40 40" width="600" height="600" preserveAspectRatio="xMidYMid meet">
-          <g className="heatmap" />
-        </svg>
-      )}
+    <div ref={containerRef} className="heatmap-container">
+      <img src={floorplanImg} alt="Floor Plan" className="floorplan" />
+      <canvas ref={canvasRef} className="heatmap-canvas" />
     </div>
   );
 };

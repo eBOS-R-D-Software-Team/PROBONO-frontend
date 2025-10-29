@@ -1,62 +1,141 @@
+/* ——— Container keeps both layers aligned and centered ——— */
 .heatmap-container {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
-  height: 600px;
+  max-width: 900px;     /* adjust as you like */
+  aspect-ratio: 1 / 1;  /* keeps it square like an SVG viewBox; change if your SVG is not square */
+  margin: 0 auto;
+  background: #f5f7fb;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   overflow: hidden;
-  background: #f7f9fc; /* Subtle background */
-  border-radius: 12px; /* Smooth edges */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
 }
 
-.heatmap-container svg {
+.heatmap-container .floorplan,
+.heatmap-container .heatmap-canvas {
   position: absolute;
+  inset: 0;           /* top:0 right:0 bottom:0 left:0 */
   width: 100%;
   height: 100%;
-  max-width: 600px;
-  max-height: 600px;
-  z-index: 1;
+  display: block;
 }
 
-.floorplan {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.heatmap-container .floorplan {
   z-index: 0;
-  opacity: 0.95; /* Slight transparency for blending */
+  object-fit: contain;     /* preserves aspect like an SVG viewBox */
+  opacity: 0.98;
 }
 
-.heatmap {
-  position: absolute;
-  top: 0;
-  left: 0;
+.canvas-wrap, .canvas-box {
+  position: relative;
   width: 100%;
   height: 100%;
+  z-index: 1;              /* above floorplan */
+  pointer-events: none;    /* let UI above be clickable */
+}
+
+.heatmap-container .heatmap-canvas {
+  z-index: 2;
+  pointer-events: none;    /* clicks pass through */
+  mix-blend-mode: multiply;
+}
+
+.stage{
+  position:absolute;
+  width:100%;
+  height:100%;
+  max-width:900px;      /* <- you can increase to fill your card */
+  max-height:900px;
+}
+
+.heatmap{ pointer-events:none; }
+
+/* both layers stretch to the same box */
+.heatmap-container .floorplan,
+.heatmap-container .overlay-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* keep plan visible but subtle */
+.heatmap-container .floorplan {
+  z-index: 0;
+  object-fit: contain;
+  opacity: .98;
+}
+
+/* overlay on top, no pointer events */
+.heatmap-container .overlay-svg {
   z-index: 2;
   pointer-events: none;
-  mix-blend-mode: multiply; /* Smooth blending */
-  opacity: 0.9;
+  background: transparent; /* <- no black background ever */
 }
 
-/* Button Styling */
-.toggle-heatmap-btn {
-  background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Modern gradient */
-  border: none;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: bold;
-  color: white;
-  cursor: pointer;
+/* the heat layer itself (group) */
+.heatmap-container .overlay-svg .heatmap {
+  mix-blend-mode: multiply; /* pleasant blending with the plan */
+}
+
+.hm-controls {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  background: rgba(255,255,255,0.95);
+  border: 1px solid #e6e9ef;
+  border-radius: 10px;
+  padding: 10px 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.08);
+  z-index: 5;
+  width: 240px;
+  font-size: 12px;
+}
+.hm-row { display:flex; align-items:center; gap:8px; margin:6px 0; }
+.hm-row label { width:56px; color:#4a5568; }
+.hm-row input[type=range] { flex:1; }
+.hm-row span { width:56px; text-align:right; color:#2d3748; }
+.hm-reset {
+  margin-top: 6px;
+  width: 100%;
+  padding: 6px 10px;
   border-radius: 8px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #cbd5e0;
+  background: #f7fafc;
+  cursor: pointer;
+}
+.hm-reset:hover { background:#edf2f7; }
+
+.hm-debug { position: absolute; top: 16px; right: 16px; z-index: 2; pointer-events: auto; }
+.hm-panel {
+  margin-top: 8px; padding: 12px; width: 260px;
+  background: #fff; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,.12);
+  display: grid; gap: 8px;
+}
+.hm-panel label { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 8px; font-size: 12px; }
+.hm-panel input[type="range"] { grid-column: 1 / -1; }
+.hm-panel .flip { display: flex; align-items: center; gap: 8px; }
+.hm-actions { display: flex; gap: 8px; margin-top: 6px; }
+.hm-btn { padding: 6px 10px; border-radius: 8px; border: 1px solid #e3e7ef; background:#f7f9fc; cursor:pointer; }
+.hm-btn.primary { background:#2b6eff; color:#fff; border:none; }
+
+/* click catcher for calibration (sits on top; transparent) */
+.calib-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  background: transparent;
+  pointer-events: auto; /* needed to receive clicks */
 }
 
-.toggle-heatmap-btn:hover {
-  background: linear-gradient(135deg, #ff512f, #dd2476);
-  transform: scale(1.05);
+/* little visual markers for the two clicks */
+.calib-point {
+  width: 10px;
+  height: 10px;
+  border: 2px solid #2b6eff;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0,0,0,.25);
+  z-index: 7;
+  pointer-events: none;
 }
