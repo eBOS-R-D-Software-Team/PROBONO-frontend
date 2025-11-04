@@ -35,7 +35,7 @@ const ListOfTools = () => {
   ),
 },
 {
-      title: 'ePredict',
+      title: 'ePREDICT',
       link: 'https://anylogic.stamtech.dev/models?public=true',
       icon: ImLab,
     },
