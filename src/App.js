@@ -31,6 +31,7 @@ import DubWoodChips35Datavis from './views/DubWoodChips35Datavis';
 import ToolDescriptions from './views/ToolDescriptions';
 import DubSmartCitizenDatavis from './views/SmartCitizenDatavis';
 import ParaviewVisualization from './views/ParaviewVisualization';
+import InfluxExplorerDirect from './views/InfluxExplorerDirect';
 
 
 
@@ -77,6 +78,14 @@ function App() {
             element={
               <MainLayout>
                 <DataVisualizations />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/porto-visualizations"
+            element={
+              <MainLayout>
+                <InfluxExplorerDirect />
               </MainLayout>
             }
           />

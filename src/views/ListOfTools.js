@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from '../components/cards';
-import { ImAirplane, ImPower, ImTree, ImWrench, ImCog, ImStatsDots, ImHammer, ImCalculator } from "react-icons/im";
+import { ImAirplane, ImPower, ImTree, ImWrench, ImCog, ImStatsDots, ImHammer, ImCalculator, ImLab } from "react-icons/im";
 import { SlArrowRight } from "react-icons/sl";
 import EnergyClassLogo from '../assets/images/Energy_class_simulation_icon.png';
 
@@ -34,6 +34,11 @@ const ListOfTools = () => {
     />
   ),
 },
+{
+      title: 'ePredict',
+      link: 'https://anylogic.stamtech.dev/models?public=true',
+      icon: ImLab,
+    },
     //{ title: 'BIPV Design Tool', link: '/tools/bipv', icon: ImTree },
     //{ title: 'Bio-Solar Roof Design and Simulation Tools', link: '/tools/bio-solar', icon: ImWrench },
     //{ title: 'Energy Positive Building Design Tool', link: '/tools/energy-positive', icon: ImCog },
