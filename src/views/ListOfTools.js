@@ -42,7 +42,7 @@ const ListOfTools = () => {
 
     {
       title: 'CMS Optimization tool',
-      link: ' https://probono-dev.stamtech.dev/construction-sites',
+      link: 'https://probono-dev.stamtech.dev/sign-in?redirectURL=%2Fconstruction-sites',
       icon: ImWrench,
     },
 
