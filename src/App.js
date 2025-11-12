@@ -32,6 +32,8 @@ import ToolDescriptions from './views/ToolDescriptions';
 import DubSmartCitizenDatavis from './views/SmartCitizenDatavis';
 import ParaviewVisualization from './views/ParaviewVisualization';
 import InfluxExplorerDirect from './views/InfluxExplorerDirect';
+import CvsSeries2D from './views/CvsSeries2D';
+import ContourHeatmap2D from './views/ContourHeatmap2D';
 
 
 
@@ -78,6 +80,22 @@ function App() {
             element={
               <MainLayout>
                 <DataVisualizations />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/CvsSeries2D"
+            element={
+              <MainLayout>
+                <CvsSeries2D />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/ContourHeatmap2D"
+            element={
+              <MainLayout>
+                <ContourHeatmap2D />
               </MainLayout>
             }
           />
