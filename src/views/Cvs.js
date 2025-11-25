@@ -1,6 +1,8 @@
+// src/pages/Cvs.jsx
 import React from "react";
 import SeriesChart from "../components/SeriesChart";
 import Heatmap from "../components/Heatmap";
+import { blueRed } from "../utils/colormaps";
 
 export default function Cvs() {
   return (
@@ -15,7 +17,15 @@ export default function Cvs() {
       </section>
 
       <section className="grid gap-3">
-        <Heatmap clip={98} colormap="viridis" />
+       <Heatmap
+          transpose={true}
+          height={720}
+          colormap="coolWarm"      // <--- CHANGED THIS
+          fixedRange={[15, 25]}    // Matches the scale in screenshot 2
+          clip={null}
+          smoothingSigma={2.5}
+          showIsolines={false}
+        />
       </section>
     </div>
   );
