@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from '../components/cards';
-import { ImAirplane, ImPower, ImTree, ImWrench, ImCog, ImStatsDots, ImHammer, ImCalculator, ImLab } from "react-icons/im";
+import { ImAirplane, ImPower, ImTree, ImWrench, ImCog, ImStatsDots, ImHammer, ImCalculator, ImLab, ImSun } from "react-icons/im";
 import { SlArrowRight } from "react-icons/sl";
 import EnergyClassLogo from '../assets/images/Energy_class_simulation_icon.png';
 
@@ -45,6 +45,12 @@ const ListOfTools = () => {
       link: 'https://probono-dev.stamtech.dev/sign-in?redirectURL=%2Fconstruction-sites',
       icon: ImWrench,
     },
+
+    {
+    title: 'Vcomfort sensor tool',
+    link: '/cvs',           
+    icon: ImSun,
+  },
 
 
 

@@ -39,7 +39,7 @@ const Navbar = ({ onPressSideMenuToggle }) => {
         </div>
 
         <div className="navbar-brand">
-          <Link to="/dashboard">
+          <Link to="/">
             <img
               src={Logo}
               alt="Probono Logo"

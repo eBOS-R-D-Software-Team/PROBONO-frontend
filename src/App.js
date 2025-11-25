@@ -34,7 +34,8 @@ import ParaviewVisualization from './views/ParaviewVisualization';
 import InfluxExplorerDirect from './views/InfluxExplorerDirect';
 import CvsSeries2D from './views/CvsSeries2D';
 import ContourHeatmap2D from './views/ContourHeatmap2D';
-
+import TokenDebugger from './components/TokenDebugger';
+import Cvs from './views/Cvs';
 
 
 
@@ -42,9 +43,12 @@ import ContourHeatmap2D from './views/ContourHeatmap2D';
 
 function App() {
   return (
+    <>
+    <TokenDebugger />
     <Router>
        <ToastContainer position="top-center" autoClose={2000} hideProgressBar closeOnClick />
       <Routes>
+        
         {/* Public Routes */}
         <Route element={<PublicRoutes />}>
           <Route
@@ -72,6 +76,14 @@ function App() {
             element={
               <MainLayout>
                 <ListOfTools />
+              </MainLayout>
+            }
+          />
+           <Route
+            path="/cvs"
+            element={
+              <MainLayout>
+                <Cvs />
               </MainLayout>
             }
           />
@@ -293,7 +305,7 @@ function App() {
         </Route>
 
       </Routes>
-    </Router>
+    </Router></>
   );
 }
 
