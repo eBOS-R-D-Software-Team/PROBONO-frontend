@@ -1,6 +1,7 @@
 // src/pages/Cvs.jsx
 import React from "react";
 import SeriesChart from "../components/SeriesChart";
+import GeometryHeatmap from "../components/GeometryHeatmap";
 import Heatmap from "../components/Heatmap";
 import { blueRed } from "../utils/colormaps";
 
@@ -17,14 +18,7 @@ export default function Cvs() {
       </section>
 
       <section className="grid gap-3">
-       <Heatmap
-          transpose={true}
-          height={720}
-          colormap="coolWarm"      // <--- CHANGED THIS
-          fixedRange={[15, 25]}    // Matches the scale in screenshot 2
-          clip={null}
-          smoothingSigma={3.0}
-          showIsolines={false}
+       <GeometryHeatmap
         />
       </section>
     </div>
