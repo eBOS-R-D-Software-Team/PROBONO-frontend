@@ -11,13 +11,18 @@ function hexToRgb(hex) {
 export function makeGradient(stops) {
   // stops: [{ pos:0..1, color:"#rrggbb" }, ...] (sorted)
   const parsed = stops.map((s) => ({ pos: s.pos, rgb: hexToRgb(s.color) }));
+
   return function (t) {
     t = clamp(t, 0, 1);
     let i = 0;
     while (i < parsed.length - 1 && t > parsed[i + 1].pos) i++;
     const a = parsed[i], b = parsed[Math.min(i + 1, parsed.length - 1)];
     const span = (b.pos - a.pos) || 1e-9;
-    const u = clamp((t - a.pos) / span, 0, 1);
+    
+    // 1. Calculate linear progress
+    let x = clamp((t - a.pos) / span, 0, 1);
+    const u = x * x * x * (x * (x * 6 - 15) + 10);
+
     const r = Math.round(a.rgb[0] + (b.rgb[0] - a.rgb[0]) * u);
     const g = Math.round(a.rgb[1] + (b.rgb[1] - a.rgb[1]) * u);
     const bl = Math.round(a.rgb[2] + (b.rgb[2] - a.rgb[2]) * u);

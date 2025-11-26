@@ -39,6 +39,15 @@ function parseGrid(input) {
   return [];
 }
 
+function cubic(p0, p1, p2, p3, t) {
+  return (
+    p1 +
+    0.5 *
+      t *
+      (p2 - p0 + t * (2 * p0 - 5 * p1 + 4 * p2 - p3 + t * (3 * (p1 - p2) + p3 - p0)))
+  );
+}
+
 function transposeGrid(Z) {
   const R = Z.length, C = Z[0].length;
   const T = Array.from({ length: C }, () => Array(R));
@@ -55,6 +64,29 @@ function sampleBilinear(Z, x, y) {
   const a = q00 * (1 - tx) + q10 * tx;
   const b = q01 * (1 - tx) + q11 * tx;
   return a * (1 - ty) + b * ty;
+}
+
+function sampleBicubic(Z, x, y) {
+  const rows = Z.length;
+  const cols = Z[0].length;
+  
+  // We need the 4x4 neighborhood
+  const ix = Math.floor(x);
+  const iy = Math.floor(y);
+  const dx = x - ix;
+  const dy = y - iy;
+
+  // Helper to safely get value with clamping
+  const get = (r, c) => Z[clamp(r, 0, rows - 1)][clamp(c, 0, cols - 1)];
+
+  // Interpolate 4 horizontal rows
+  const row0 = cubic(get(iy - 1, ix - 1), get(iy - 1, ix), get(iy - 1, ix + 1), get(iy - 1, ix + 2), dx);
+  const row1 = cubic(get(iy, ix - 1),     get(iy, ix),     get(iy, ix + 1),     get(iy, ix + 2),     dx);
+  const row2 = cubic(get(iy + 1, ix - 1), get(iy + 1, ix), get(iy + 1, ix + 1), get(iy + 1, ix + 2), dx);
+  const row3 = cubic(get(iy + 2, ix - 1), get(iy + 2, ix), get(iy + 2, ix + 1), get(iy + 2, ix + 2), dx);
+
+  // Interpolate the result vertically
+  return cubic(row0, row1, row2, row3, dy);
 }
 
 function makeGaussianKernel(sigma) {
@@ -200,7 +232,8 @@ export default function Heatmap({
         : (rows - 1) * (py / (plotH - 1));
       for (let px = 0; px < plotW; px++) {
         const gx = (cols - 1) * (px / (plotW - 1));
-        const v = sampleBilinear(grid, gx, gy);
+        //const v = sampleBilinear(grid, gx, gy);
+        const v = sampleBicubic(grid, gx, gy);
         const t = clamp((v - vmin) / (vmax - vmin || 1), 0, 1);
         const [R, G, B] = cmap(t);
         const i = 4 * (py * plotW + px);

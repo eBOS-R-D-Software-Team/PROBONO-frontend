@@ -23,7 +23,7 @@ export default function Cvs() {
           colormap="coolWarm"      // <--- CHANGED THIS
           fixedRange={[15, 25]}    // Matches the scale in screenshot 2
           clip={null}
-          smoothingSigma={2.5}
+          smoothingSigma={3.0}
           showIsolines={false}
         />
       </section>
