@@ -52,6 +52,12 @@ const ListOfTools = () => {
     icon: ImSun,
   },
 
+  {
+    title: '3D model Viewer',
+    link: '/paraview-vis',           
+    icon: ImPower,
+  },
+
 
 
     //{ title: 'BIPV Design Tool', link: '/tools/bipv', icon: ImTree },
