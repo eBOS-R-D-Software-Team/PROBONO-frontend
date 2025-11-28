@@ -19,6 +19,7 @@ import nobelLow from "../data/heatmap_lowres.csv";
 // MolBio (semicolon TXT grids)
 import molbioRes100 from "../data/L187x_AK_v_done_v3.ifc-heatmap-basic-res100_floor-0.txt";
 import molbioRes500 from "../data/L187x_AK_v_done_v3.ifc-heatmap-basic-res500_floor-0.txt";
+import { useLocation, useNavigate } from "react-router-dom";
  
 /**
  * Per-building configuration:
@@ -64,6 +65,9 @@ const AurahusHeatmap = () => {
   });
   // map state
   const [map, setMap] = useState(null);
+  const location = useLocation();
+    const navigate = useNavigate();
+     const labName = location.state?.labName;
 
   const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
 
@@ -242,8 +246,20 @@ const AurahusHeatmap = () => {
     <div className="aurahus-container">
       {/* Breadcrumb */}
       <div className="breadcrumb">
-        <a href="/">Home</a> <SlArrowRight /> <a href="/labs">Data Visualizations</a>{" "}
-        <SlArrowRight /> <span>{current.name}</span>
+        <a href="/">Home</a> <SlArrowRight />{" "}
+                <a href="/labs">Data Visualizations</a> <SlArrowRight />{" "}
+                {labName && (
+                  <>
+                    <span
+                      onClick={() => navigate(-1)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      {labName}
+                    </span>{" "}
+                    <SlArrowRight />{" "}
+                  </>
+                )}
+                <span>ProFormalise</span>
       </div>
  
       {/* Map */}

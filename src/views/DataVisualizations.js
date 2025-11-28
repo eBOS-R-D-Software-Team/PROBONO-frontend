@@ -7,11 +7,16 @@ import TableComponent from '../components/Tablecomponent';
 import { Paginator } from 'primereact/paginator';
 import { SlArrowRight } from "react-icons/sl";
 import { fetchCO2Data } from '../reducers/co2Reducer';
+import { useLocation, useNavigate } from "react-router-dom";
 
 const DataVisualizations = () => {
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(new Date());
   const [map, setMap] = useState(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+   const labName = location.state?.labName;
+   
 
   // Pagination state
   const [first, setFirst] = useState(0);
@@ -108,11 +113,20 @@ const DataVisualizations = () => {
     <div className="data-visualizations">
       {/* Breadcrumb section */}
       <div className="breadcrumb">
-        <a href='/'>Home </a>
-        <SlArrowRight />
-        <a href='/labs'>Data Visualizations</a>
-        <SlArrowRight />
-        <a href='/'>Porto LL Co2 emissions</a>
+        <a href="/">Home</a> <SlArrowRight />{" "}
+        <a href="/labs">Data Visualizations</a> <SlArrowRight />{" "}
+        {labName && (
+          <>
+            <span
+              onClick={() => navigate(-1)}
+              style={{ cursor: "pointer" }}
+            >
+              {labName}
+            </span>{" "}
+            <SlArrowRight />{" "}
+          </>
+        )}
+        <span>Porto CO2 emission</span>
       </div>
 
       {/* Filters and Selectors */}

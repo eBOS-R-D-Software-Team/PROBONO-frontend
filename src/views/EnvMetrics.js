@@ -12,11 +12,9 @@ const EnvMetrics = () => {
   const labs = useSelector(selectLabs);
   const numericLabId = parseInt(labId, 10);
 
-  // Find the lab object by ID
-  const currentLab = labs.find((l) => l.id === numericLabId);
+  const currentLab = labs.find((lab) => lab.id === numericLabId);
   const labName = currentLab ? currentLab.name : `Lab ${labId}`;
 
-  // Grab metrics array (or empty array if none configured)
   const metrics = labMetrics[labId] || [];
 
   return (
@@ -33,11 +31,16 @@ const EnvMetrics = () => {
             key={metric.id}
             className="metric-card"
             onClick={() =>
-              // Replace ":labId" placeholder if present
               navigate(
                 metric.path.includes(":labId")
                   ? metric.path.replace(":labId", labId)
-                  : metric.path
+                  : metric.path,
+                {
+                  state: {
+                    labId: numericLabId,
+                    labName,
+                  },
+                }
               )
             }
             style={{ cursor: "pointer" }}

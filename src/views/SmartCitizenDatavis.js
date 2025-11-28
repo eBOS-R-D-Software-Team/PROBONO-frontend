@@ -205,7 +205,7 @@ export default function SmartCitizenDatavis() {
             first={first}
             rows={rowsPerPage}
             totalRecords={rows.length}
-            rowsPerPageOptions={[24, 48, 96]}
+            rowsPerPageOptions={[12, 24, 48]}
             onPageChange={onPageChange}
           />
         </div>

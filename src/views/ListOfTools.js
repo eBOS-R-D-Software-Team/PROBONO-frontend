@@ -19,7 +19,7 @@ const ListOfTools = () => {
     },
      {
       title: 'Demand and Response Platform Building Layer – DaRA',
-      link: '',
+      link: 'http://dara.tpf.be/',
       icon: ImCog,
     },
 

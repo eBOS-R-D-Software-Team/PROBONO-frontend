@@ -28,6 +28,7 @@ import {
 import Tree from "rc-tree";
 import "rc-tree/assets/index.css";
 import "antd/dist/reset.css"; 
+import { useLocation, useNavigate } from "react-router-dom";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
@@ -143,6 +144,9 @@ const AurahusDataviz = () => {
   const [map, setMap] = useState(null);
   const [rcTreeData, setRCTreeData] = useState([]);
   const [stats, setStats] = useState(null);
+  const location = useLocation();
+    const navigate = useNavigate();
+     const labName = location.state?.labName;
 
   // CSV loading logic
   useEffect(() => {
@@ -267,11 +271,21 @@ const AurahusDataviz = () => {
 
       {/* Breadcrumb */}
       <Box sx={{ p: 1, display: "flex", alignItems: "center", gap: 1, fontSize: 14 }}>
-        <a href="/">Home</a>
-        <SlArrowRight />
-        <a href="/labs">Data Visualizations</a>
-        <SlArrowRight />
-        <span>Aurahus ProFormalise</span>
+         <a href="/">Home</a> <SlArrowRight />{" "}
+              <a href="/labs">Data Visualizations</a> <SlArrowRight />{" "}
+              {labName && (
+                <>
+                  <span
+                    onClick={() => navigate(-1)}
+                    style={{ cursor: "pointer" ,color: "#007bff",
+    textDecoration: "none", }}
+                  >
+                    {labName}
+                  </span>{" "}
+                  <SlArrowRight />{" "}
+                </>
+              )}
+              <span>NovaDm</span>
       </Box>
 
       {/* Google Map */}

@@ -10,6 +10,7 @@ import { Paginator } from 'primereact/paginator';
 import { SlArrowRight } from 'react-icons/sl';
 import { fetchDubElectricityData } from '../reducers/dubElectricitySlice'; // ← unchanged
 import { makeFieldOptions } from '../utils/fieldOptions';
+import { useLocation, useNavigate } from "react-router-dom";
 
 const DubElectricityDatavis = () => {
   /* ───────── local UI state ───────── */
@@ -19,6 +20,9 @@ const DubElectricityDatavis = () => {
   const [rows,      setRows]      = useState(6);
   const [map,       setMap]       = useState(null);
   const [fields,    setFields]    = useState([]);          // chosen columns
+   const location = useLocation();
+    const navigate = useNavigate();
+     const labName = location.state?.labName;
 
   /* ───────── redux ───────── */
   const dispatch = useDispatch();
@@ -119,8 +123,20 @@ const DubElectricityDatavis = () => {
     <div className="data-visualizations">
       {/* ▸ breadcrumb */}
       <div className="breadcrumb">
-        <a href="/">Home</a> <SlArrowRight /> <a href="/labs">Data Visualizations</a>{' '}
-        <SlArrowRight /> <span>Dublin Electricity</span>
+        <a href="/">Home</a> <SlArrowRight />{" "}
+                <a href="/labs">Data Visualizations</a> <SlArrowRight />{" "}
+                {labName && (
+                  <>
+                    <span
+                      onClick={() => navigate(-1)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      {labName}
+                    </span>{" "}
+                    <SlArrowRight />{" "}
+                  </>
+                )}
+                <span>Dublin Electricity</span>
       </div>
 
       <div id="map" style={{ height: 500, width: '100%' }} />
