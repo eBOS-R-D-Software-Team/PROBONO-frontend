@@ -1,34 +1,151 @@
+/* Home.scss - Light Theme */
+
+/* Variables for a clean, light interface */
+$bg-light: #f8fafc;         /* Slate 50 - slightly off-white */
+$text-primary: #1e293b;     /* Slate 800 - Dark Grey */
+$text-secondary: #64748b;   /* Slate 500 - Muted Grey */
+$card-white: rgba(255, 255, 255, 0.7); /* Translucent White */
+$accent-blue: #0ea5e9;      /* Sky Blue */
+$accent-green: #22c55e;     /* Green */
+
 .home-container {
-  margin-top: -82px;
+  width: 100%;
+  min-height: 100vh;
+  padding: 120px 40px;
+  
+  /* Light Background with very subtle colored gradients for depth */
+  background-color: $bg-light;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(14, 165, 233, 0.04), transparent 50%),
+    radial-gradient(circle at 90% 80%, rgba(34, 197, 94, 0.04), transparent 50%);
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+
+  /* --- Hero Section --- */
+  .hero-section {
+    text-align: center;
+    margin-bottom: 60px;
+    animation: fadeIn 0.8s ease-out;
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: $text-primary; /* Dark text */
+      margin: 0 0 16px 0;
+      letter-spacing: -0.02em;
+
+      .highlight {
+        /* Gradient text effect */
+        background: linear-gradient(135deg, $accent-blue, $accent-green);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: $text-secondary;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+  }
+
+  /* --- Grid Layout --- */
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px;
+    width: 100%;
+    max-width: 1200px;
+    perspective: 1000px;
+  }
+
+  /* --- The Light Glass Card --- */
+  .glass-card {
+    text-decoration: none;
+    position: relative;
+    
+    /* White glass effect */
+    background: $card-white;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    /* Clean, light borders */
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 24px;
+    padding: 40px 30px;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-  
-    h1 {
-      margin-bottom: 40px;
-      margin-right: 1204px;
-      margin-top: -80px;
-  
-      @media (max-width: 1200px) {
-        margin-right: 0;
+    text-align: center;
+    
+    /* Soft shadow instead of glow */
+    box-shadow: 
+      0 4px 6px -1px rgba(0, 0, 0, 0.05), 
+      0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    .icon-wrapper {
+      font-size: 3.5rem;
+      color: $accent-blue;
+      margin-bottom: 24px;
+      transition: transform 0.3s ease;
+      /* Subtle drop shadow on the icon */
+      filter: drop-shadow(0 4px 6px rgba(14, 165, 233, 0.2));
+    }
+
+    .card-content {
+      h3 {
+        color: $text-primary;
+        font-size: 1.5rem;
+        margin: 0 0 10px 0;
+        font-weight: 700;
       }
-  
-      @media (max-width: 768px) {
-        text-align: center;
+      p {
+        color: $text-secondary;
+        font-size: 1rem;
+        line-height: 1.5;
+        margin: 0;
       }
     }
-  
-    .cards-container {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 170px;
 
-  
-      @media (max-width: 768px) {
-        flex-direction: column;
-        align-items: center;
+    /* --- Hover State --- */
+    &:hover {
+      transform: translateY(-8px);
+      
+      /* Pure white on hover */
+      background: #ffffff;
+      border-color: rgba(14, 165, 233, 0.3);
+      
+      /* Deeper shadow for "lifting" effect */
+      box-shadow: 
+        0 20px 25px -5px rgba(0, 0, 0, 0.08), 
+        0 10px 10px -5px rgba(0, 0, 0, 0.03);
+
+      .icon-wrapper {
+        transform: scale(1.1) rotate(5deg);
+        color: $accent-green; /* Switch color on hover */
+        filter: drop-shadow(0 4px 8px rgba(34, 197, 94, 0.3));
       }
     }
   }
+
+  /* --- Mobile Responsive --- */
+  @media (max-width: 768px) {
+    padding: 100px 20px;
+    .hero-section h1 { font-size: 2.5rem; }
+    .glass-card { width: 100%; }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

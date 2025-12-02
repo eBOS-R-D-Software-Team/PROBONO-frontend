@@ -1,0 +1,92 @@
+/* Variables (Match Global Theme) */
+$bg-light: #f8fafc;
+$text-primary: #1e293b;
+$text-secondary: #64748b;
+$teal-accent: #49c5b6; 
+$card-bg: #ffffff;
+$shadow-soft: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+$shadow-hover: 0 20px 40px -5px rgba(0, 0, 0, 0.1);
+$border-light: rgba(255, 255, 255, 0.6);
+
+.cvs-page {
+  padding: 40px;
+  background-color: $bg-light;
+  min-height: 100vh;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+
+  /* --- Breadcrumb --- */
+  .breadcrumb-container {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: $text-secondary;
+    margin-bottom: 30px;
+    padding-left: 5px;
+
+    .crumb-link {
+      text-decoration: none;
+      color: $text-secondary;
+      font-weight: 500;
+      transition: color 0.2s;
+      &:hover { color: $teal-accent; }
+    }
+    .crumb-arrow { margin: 0 12px; font-size: 10px; color: #cbd5e1; }
+    .crumb-current { color: $teal-accent; font-weight: 600; }
+  }
+
+  /* --- Page Header --- */
+  .page-header {
+    margin-bottom: 40px;
+    padding-left: 5px;
+    
+    .title {
+      font-size: 28px;
+      font-weight: 700;
+      color: $text-primary;
+      margin: 0 0 8px 0;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: $text-secondary;
+      font-weight: 400;
+    }
+  }
+
+  /* --- Layout --- */
+  .content-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Space between the two charts */
+  }
+
+  /* --- Modern Card Wrapper --- */
+  .chart-card {
+    background-color: $card-bg;
+    border-radius: 20px;
+    border: 1px solid $border-light;
+    box-shadow: $shadow-soft;
+    
+    /* Padding to frame the chart nicely */
+    padding: 30px;
+    
+    /* Ensure container stretches to fit chart */
+    width: 100%;
+    overflow: hidden; 
+    
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+        box-shadow: $shadow-hover;
+    }
+  }
+
+  /* --- Mobile Adjustments --- */
+  @media (max-width: 768px) {
+    padding: 20px;
+    
+    .chart-card {
+        padding: 15px; /* Less padding on mobile to give chart more room */
+    }
+  }
+}

@@ -1,24 +1,168 @@
-.subject-node {
-  color: #1565c0;
-  font-weight: 700;
-  font-size: 15px;
-  margin-bottom: 6px;
-}
-.feature-node {
-  color: #009688;
-  font-style: italic;
-  font-weight: 400;
-  font-size: 15px;
-}
-.approach-node {
-  color: #e65100;
-  font-weight: 600;
-  font-size: 15px;
-}
-.rc-tree .rc-tree-treenode {
-  margin-bottom: 3px;
-}
-.rc-tree .rc-tree-title {
-  font-family: inherit;
-  line-height: 1.7;
+/* Variables (Match Global Theme) */
+$bg-light: #f8fafc;
+$text-primary: #1e293b;
+$text-secondary: #64748b;
+$teal-accent: #49c5b6; 
+$card-bg: #ffffff;
+$shadow-soft: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+$border-light: rgba(255, 255, 255, 0.6);
+
+.aurahus-dataviz-page {
+  padding: 40px;
+  background-color: $bg-light;
+  min-height: 100vh;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+
+  /* --- Breadcrumb --- */
+  .breadcrumb-container {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: $text-secondary;
+    margin-bottom: 30px;
+    padding-left: 5px;
+
+    .crumb-link {
+      text-decoration: none;
+      color: $text-secondary;
+      font-weight: 500;
+      transition: color 0.2s;
+      &:hover { color: $teal-accent; }
+    }
+    .crumb-arrow { margin: 0 12px; font-size: 10px; color: #cbd5e1; }
+    .crumb-current { color: $teal-accent; font-weight: 600; }
+  }
+
+  /* --- Map --- */
+  .map-container {
+    width: 100%;
+    height: 400px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    box-shadow: $shadow-soft;
+    border: 1px solid rgba(255,255,255,0.8);
+  }
+
+  /* --- Controls Card --- */
+  .controls-card {
+    background-color: $card-bg;
+    border-radius: 20px;
+    padding: 24px 30px;
+    box-shadow: $shadow-soft;
+    border: 1px solid $border-light;
+    margin-bottom: 30px;
+
+    .section-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: $text-primary;
+        margin: 0 0 16px 0;
+    }
+
+    .selectors-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+  }
+
+  /* --- Dashboard Grid Layout --- */
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: 350px 1fr; /* Fixed sidebar, fluid chart */
+    gap: 30px;
+    align-items: start;
+
+    /* --- Common Card Styles --- */
+    .modern-card {
+        padding: 24px;
+        border-radius: 20px !important; /* Force override MUI */
+        background-color: $card-bg;
+        box-shadow: $shadow-soft !important;
+        border: 1px solid $border-light;
+
+        .card-header {
+            font-size: 18px;
+            font-weight: 700;
+            color: $text-primary;
+            margin-bottom: 12px;
+        }
+    }
+
+    /* --- Left Column Components --- */
+    .left-column {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        .tree-card {
+            .tree-scroll-area {
+                max-height: 400px;
+                overflow-y: auto;
+                margin-top: 10px;
+                
+                /* RC-Tree visual tweaks */
+                .rc-tree-title { color: $text-secondary; font-size: 14px; }
+                .feature-node { color: $teal-accent; font-weight: 500; }
+                .subject-node { color: #3b82f6; font-weight: 600; }
+            }
+        }
+
+        .stats-card {
+            .stats-content {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                font-size: 14px;
+                color: $text-secondary;
+
+                .stat-row {
+                    display: flex;
+                    justify-content: space-between;
+                    strong { color: $text-primary; }
+                }
+            }
+        }
+    }
+
+    /* --- Right Column (Chart) --- */
+    .right-column {
+        .chart-card {
+            min-height: 500px; /* Taller chart area */
+            display: flex;
+            flex-direction: column;
+
+            .chart-wrapper {
+                flex-grow: 1;
+                position: relative;
+                min-height: 400px;
+            }
+
+            .empty-state {
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 350px;
+                background-color: #f8fafc;
+                border-radius: 12px;
+                border: 1px dashed #cbd5e1;
+            }
+        }
+    }
+  }
+
+  /* --- Mobile --- */
+  @media (max-width: 900px) {
+    padding: 20px;
+    
+    .controls-card .selectors-row {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr; /* Stack columns */
+    }
+  }
 }

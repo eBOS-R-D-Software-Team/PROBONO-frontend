@@ -8,6 +8,173 @@ import { Paginator } from 'primereact/paginator';
 import { SlArrowRight } from 'react-icons/sl';
 import { fetchLot4Production } from '../reducers/portoLot4ProductionSlice';
 import Select from 'react-select';
+import { useLocation, useNavigate } from "react-router-dom";
+
+/* ───────── shared UI helpers (Popup + LoadingOverlay) ───────── */
+
+const Popup = ({ open, title, message, type = "info", onClose }) => {
+  if (!open) return null;
+
+  const typeColors = {
+    info:    { dot: '#38bdf8', title: '#e5e7eb' },
+    warning: { dot: '#facc15', title: '#fef9c3' },
+    error:   { dot: '#f97373', title: '#fee2e2' },
+  };
+
+  const colors = typeColors[type] || typeColors.info;
+
+  return (
+    <div
+      style={{
+        position: 'fixed',
+        inset: 0,
+        background: 'rgba(15,23,42,0.45)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 1300,
+        backdropFilter: 'blur(2px)',
+      }}
+    >
+      <div
+        style={{
+          background: '#0b1120',
+          borderRadius: 16,
+          padding: '18px 22px',
+          maxWidth: 420,
+          width: '90%',
+          boxShadow:
+            '0 18px 45px rgba(15,23,42,0.7), 0 0 0 1px rgba(148,163,184,0.3)',
+          color: '#e5e7eb',
+          fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            marginBottom: 10,
+            gap: 10,
+          }}
+        >
+          <span
+            style={{
+              width: 10,
+              height: 10,
+              borderRadius: '999px',
+              background: colors.dot,
+              boxShadow: `0 0 12px ${colors.dot}`,
+            }}
+          />
+          <h3
+            style={{
+              margin: 0,
+              fontSize: 16,
+              fontWeight: 600,
+              color: colors.title,
+            }}
+          >
+            {title}
+          </h3>
+        </div>
+        <p
+          style={{
+            margin: '4px 0 16px',
+            fontSize: 13,
+            lineHeight: 1.5,
+            color: '#cbd5f5',
+            whiteSpace: 'pre-line',
+          }}
+        >
+          {message}
+        </p>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+          }}
+        >
+          <button
+            onClick={onClose}
+            style={{
+              border: 'none',
+              outline: 'none',
+              cursor: 'pointer',
+              padding: '6px 14px',
+              borderRadius: 999,
+              fontSize: 13,
+              fontWeight: 500,
+              background:
+                type === 'error'
+                  ? 'linear-gradient(135deg,#f97373,#fb7185)'
+                  : 'linear-gradient(135deg,#22c55e,#4ade80)',
+              color: '#0b1120',
+              boxShadow:
+                '0 8px 18px rgba(15,23,42,0.5), 0 0 0 1px rgba(15,23,42,0.9)',
+            }}
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const LoadingOverlay = ({ text = "Loading production data..." }) => {
+  return (
+    <div
+      style={{
+        position: 'fixed',
+        inset: 0,
+        background: 'rgba(15,23,42,0.35)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 1200,
+        backdropFilter: 'blur(1px)',
+      }}
+    >
+      <div
+        style={{
+          background: '#020617',
+          padding: '14px 18px',
+          borderRadius: 999,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 10,
+          boxShadow:
+            '0 16px 40px rgba(15,23,42,0.8), 0 0 0 1px rgba(148,163,184,0.5)',
+          color: '#e5e7eb',
+          fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+        }}
+      >
+        <div
+          style={{
+            width: 18,
+            height: 18,
+            borderRadius: '999px',
+            border: '2px solid rgba(148,163,184,0.4)',
+            borderTopColor: '#38bdf8',
+            animation: 'spin 0.8s linear infinite',
+          }}
+        />
+        <span style={{ fontSize: 13, fontWeight: 500 }}>{text}</span>
+      </div>
+
+      <style>
+        {`
+          @keyframes spin {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+          }
+        `}
+      </style>
+    </div>
+  );
+};
+
+/* ───────── main component ───────── */
 
 const PortoLot4Production = () => {
   /* ───── default last 90 days ───── */
@@ -16,20 +183,88 @@ const PortoLot4Production = () => {
   const [first, setFirst] = useState(0);
   const [rows,  setRows]  = useState(12);
   const [fields,setFields]= useState(['kW']);
+  const [hasQueried, setHasQueried] = useState(false);
+
+  // popup state
+  const [popupOpen, setPopupOpen]       = useState(false);
+  const [popupTitle, setPopupTitle]     = useState('');
+  const [popupMessage, setPopupMessage] = useState('');
+  const [popupType, setPopupType]       = useState('info');
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const labName = location.state?.labName;
 
   const dispatch = useDispatch();
   const { data=[], loading=false, error=null } =
     useSelector((s) => s.lot4Production || {});
 
+  const openPopup = (title, message, type = 'info') => {
+    setPopupTitle(title);
+    setPopupMessage(message);
+    setPopupType(type);
+    setPopupOpen(true);
+  };
+
   /* ───── full-day ISO helpers ───── */
   const isoDay = (d, endOfDay) =>
     d.toISOString().split('T')[0] + (endOfDay ? 'T23:59:59Z' : 'T00:00:00Z');
 
-  const handleFetch = () =>
-    dispatch(fetchLot4Production({
+  const handleFetch = () => {
+    if (!start || !end) {
+      openPopup(
+        'Missing date range',
+        'Please select both a start date and an end date before confirming.',
+        'warning'
+      );
+      return;
+    }
+
+    if (start > end) {
+      openPopup(
+        'Invalid date range',
+        'The start date cannot be after the end date. Please correct the range and try again.',
+        'warning'
+      );
+      return;
+    }
+
+    setHasQueried(true);
+
+    const payload = {
       startTime: isoDay(start, false),
       endTime  : isoDay(end,   true),
-    }));
+    };
+    console.log('[PortoLot4Production] Fetch payload:', payload);
+
+    dispatch(fetchLot4Production(payload))
+      .unwrap()
+      .then((result) => {
+        console.log('[PortoLot4Production] Request succeeded:', result);
+
+        const rowsArray = Array.isArray(result)
+          ? result
+          : Array.isArray(result?.data)
+          ? result.data
+          : [];
+
+        if (rowsArray.length === 0) {
+          openPopup(
+            'No data for this period',
+            'No production measurements were found for the selected date range.\n\nTry a wider period or a different range.',
+            'info'
+          );
+        }
+      })
+      .catch((err) => {
+        console.error('[PortoLot4Production] Request failed:', err);
+        openPopup(
+          'Failed to load data',
+          'Something went wrong while loading the production data.\n\nPlease try again in a moment. If the problem persists, contact the administrator.',
+          'error'
+        );
+      });
+  };
 
   /* ───── Google Map (satellite) ───── */
   useEffect(() => {
@@ -65,46 +300,222 @@ const PortoLot4Production = () => {
   };
 
   return (
-    <div className="data-visualizations">
+    <div
+      className="data-visualizations"
+      style={{
+        padding: '16px 18px',
+        borderRadius: 18,
+        background:
+          'radial-gradient(circle at top left, rgba(56,189,248,0.09), transparent 55%), radial-gradient(circle at bottom right, rgba(52,211,153,0.08), transparent 55%)',
+      }}
+    >
+      {/* global loading */}
+      {loading && <LoadingOverlay />}
+
+      {/* popup */}
+      <Popup
+        open={popupOpen}
+        title={popupTitle}
+        message={popupMessage}
+        type={popupType}
+        onClose={() => setPopupOpen(false)}
+      />
+
       {/* breadcrumb */}
-      <div className="breadcrumb">
-        <a href="/">Home</a> <SlArrowRight /> <a href="/labs">Data Visualizations</a>
-        <SlArrowRight /> <span>Porto Lot 4 – Electricity Production</span>
+      <div
+        className="breadcrumb"
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: 6,
+          marginBottom: 14,
+          fontSize: 13,
+        }}
+      >
+        <a href="/" style={{ color: '#64748b', textDecoration: 'none' }}>
+          Home
+        </a>
+        <SlArrowRight style={{ fontSize: 10, color: '#94a3b8' }} />
+        <a href="/labs" style={{ color: '#64748b', textDecoration: 'none' }}>
+          Data Visualizations
+        </a>
+        {labName && (
+          <>
+            <SlArrowRight style={{ fontSize: 10, color: '#94a3b8' }} />
+            <span
+              onClick={() => navigate(-1)}
+              style={{
+                cursor: 'pointer',
+                color: '#0f766e',
+                fontWeight: 500,
+              }}
+            >
+              {labName}
+            </span>
+          </>
+        )}
+        <SlArrowRight style={{ fontSize: 10, color: '#94a3b8' }} />
+        <span style={{ color: '#0f172a', fontWeight: 600 }}>
+          Porto Energy Production visualization
+        </span>
       </div>
 
       {/* map */}
-      <div id="map-lot4" style={{ height: 500, width: '100%' }} />
+      <div
+        id="map-lot4"
+        style={{
+          height: 500,
+          width: '100%',
+          borderRadius: 16,
+          overflow: 'hidden',
+          boxShadow:
+            '0 18px 40px rgba(15,23,42,0.28), 0 0 0 1px rgba(148,163,184,0.35)',
+          marginBottom: 20,
+        }}
+      />
 
       {/* date pickers */}
-      <div className="selectors-container">
-        <div className="selectors">
+      <div
+        className="selectors-container"
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          gap: 16,
+          alignItems: 'flex-end',
+          marginBottom: 18,
+          flexWrap: 'wrap',
+        }}
+      >
+        <div className="selectors" style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
           <div className="select-box">
-            <label>Start:</label>
-            <DatePicker format="yyyy-MM-dd" value={start} onChange={setStart} />
+            <label
+              style={{
+                display: 'block',
+                marginBottom: 4,
+                fontSize: 12,
+                fontWeight: 500,
+                color: '#475569',
+              }}
+            >
+              Start
+            </label>
+            <DatePicker
+              format="yyyy-MM-dd"
+              value={start}
+              onChange={(value) => value && setStart(value)}
+            />
           </div>
           <div className="select-box">
-            <label>End:</label>
-            <DatePicker format="yyyy-MM-dd" value={end}   onChange={setEnd} />
+            <label
+              style={{
+                display: 'block',
+                marginBottom: 4,
+                fontSize: 12,
+                fontWeight: 500,
+                color: '#475569',
+              }}
+            >
+              End
+            </label>
+            <DatePicker
+              format="yyyy-MM-dd"
+              value={end}
+              onChange={(value) => value && setEnd(value)}
+            />
           </div>
         </div>
-        <button className="confirm-button" onClick={handleFetch}>Confirm</button>
+        <button
+          className="confirm-button"
+          onClick={handleFetch}
+          style={{
+            border: 'none',
+            cursor: 'pointer',
+            padding: '8px 18px',
+            borderRadius: 999,
+            fontSize: 13,
+            fontWeight: 600,
+            color: '#0f172a',
+            background:
+              'linear-gradient(135deg, #22c55e, #4ade80, #22c55e)',
+            boxShadow:
+              '0 12px 25px rgba(34,197,94,0.45), 0 0 0 1px rgba(21,128,61,0.5)',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          Confirm
+        </button>
       </div>
 
-      {/* status / no-rows */}
-      {loading && <p>Loading…</p>}
-      {error   && <p>Error: {JSON.stringify(error)}</p>}
+      {/* error banner */}
+      {error && (
+        <div
+          style={{
+            marginBottom: 12,
+            padding: '10px 12px',
+            borderRadius: 10,
+            background: 'rgba(248,113,113,0.08)',
+            border: '1px solid rgba(248,113,113,0.4)',
+            color: '#b91c1c',
+            fontSize: 13,
+          }}
+        >
+          Error: {error.message ? error.message : JSON.stringify(error)}
+        </div>
+      )}
+
+      {/* friendly no-rows message */}
+      {!loading && !error && hasQueried && data.length === 0 && (
+        <div
+          className="no-data-message"
+          style={{
+            padding: '14px 16px',
+            borderRadius: 14,
+            border: '1px dashed rgba(148,163,184,0.7)',
+            background: 'rgba(248,250,252,0.9)',
+            fontSize: 13,
+            color: '#334155',
+          }}
+        >
+          <strong style={{ fontWeight: 600 }}>No production measurements</strong>{' '}
+          are available for the selected date range. Please adjust the dates and
+          click <strong>Confirm</strong> again.
+        </div>
+      )}
 
       {/* results */}
       {data.length > 0 && (
-        <div className="visualization-container">
-          <div className="table-graph-container">
+        <div
+          className="visualization-container"
+          style={{
+            marginTop: 8,
+            borderRadius: 18,
+            padding: 16,
+            background: 'rgba(248,250,252,0.96)',
+            boxShadow:
+              '0 18px 40px rgba(15,23,42,0.22), 0 0 0 1px rgba(148,163,184,0.4)',
+          }}
+        >
+          <div
+            className="table-graph-container"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'minmax(0,1.1fr) minmax(0,1.4fr)',
+              gap: 16,
+              marginBottom: 12,
+            }}
+          >
             <ElectricityTable data={paged} columns={fields} />
             <ElectricityChart chartData={chartData} title="Electricity Production (kW)" />
           </div>
-          <Paginator
-            first={first} rows={rows} totalRecords={data.length}
-            onPageChange={(e)=>{ setFirst(e.first); setRows(e.rows); }}
-          />
+          <div className="paginator-container" style={{ marginTop: 8 }}>
+            <Paginator
+              first={first}
+              rows={rows}
+              totalRecords={data.length}
+              onPageChange={(e)=>{ setFirst(e.first); setRows(e.rows); }}
+            />
+          </div>
         </div>
       )}
     </div>

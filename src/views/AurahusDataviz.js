@@ -1,3 +1,4 @@
+// src/views/AurahusDataviz.jsx
 import React, { useEffect, useState, useMemo } from "react";
 import {
   ThemeProvider,
@@ -30,6 +31,7 @@ import "rc-tree/assets/index.css";
 import "antd/dist/reset.css"; 
 import { useLocation, useNavigate } from "react-router-dom";
 
+
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const pretty = (k) => k.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
@@ -41,18 +43,18 @@ const UNIT_MAP = {
 
 const theme = createTheme({
   palette: {
-    primary: { main: "#0097a7" },
-    background: { default: "#f4f6fa" },
+    primary: { main: "#49c5b6" }, // Matched your global teal accent
+    text: { primary: "#1e293b", secondary: "#64748b" },
+    background: { default: "#f8fafc" },
   },
-  typography: { fontFamily: "Inter, Roboto, sans-serif" },
+  typography: { fontFamily: "'Segoe UI', Inter, sans-serif" },
+  shape: { borderRadius: 16 },
   components: {
     MuiPaper: {
       styleOverrides: {
         root: {
-          borderRadius: 16,
-          padding: 20,
-          backgroundColor: "#fff",
-          boxShadow: "0 4px 12px rgba(0,0,0,.06)",
+          boxShadow: "0 10px 30px -5px rgba(0, 0, 0, 0.05)",
+          border: "1px solid rgba(255,255,255,0.6)",
         },
       },
     },
@@ -70,7 +72,6 @@ const toRCTreeData = (lines) => {
     const depth = indent / 2;
     const [, label] = ln.trim().match(/^[+-]\s*\[(.*)]/) || [];
     const name = label || ln.trim();
-    // Decide className for node type
     let className = "";
     if (/^feature[: ]/i.test(name)) className = "feature-node";
     if (/^subject[: ]/i.test(name)) className = "subject-node";
@@ -144,9 +145,10 @@ const AurahusDataviz = () => {
   const [map, setMap] = useState(null);
   const [rcTreeData, setRCTreeData] = useState([]);
   const [stats, setStats] = useState(null);
+  
   const location = useLocation();
-    const navigate = useNavigate();
-     const labName = location.state?.labName;
+  const navigate = useNavigate();
+  const labName = location.state?.labName || "Århus LL";
 
   // CSV loading logic
   useEffect(() => {
@@ -221,9 +223,11 @@ const AurahusDataviz = () => {
         {
           label: `${yAxis} vs ${xAxis}`,
           data: pts,
-          pointStyle: "rectRounded",
-          pointRadius: 6,
-          pointBackgroundColor: theme.palette.primary.main,
+          pointStyle: "circle", // Modern circle points
+          pointRadius: 5,
+          pointBackgroundColor: "rgba(73, 197, 182, 0.7)", // Teal transparent
+          pointBorderColor: "#49c5b6",
+          pointBorderWidth: 1,
         },
       ],
     };
@@ -232,168 +236,133 @@ const AurahusDataviz = () => {
   const chartOptions = useMemo(
     () => ({
       responsive: true,
+      maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
         title: {
           display: true,
           text: xAxis && yAxis ? `${yAxis} vs ${xAxis}` : "",
-          font: { size: 16, weight: "bold" },
+          font: { size: 16, weight: "bold", family: "'Segoe UI', sans-serif" },
+          color: "#1e293b"
         },
-        chartAreaBorder: { borderColor: "#000", borderWidth: 1 },
       },
       scales: {
-        x: { title: { display: true, text: UNIT_MAP[xAxis] || pretty(xAxis) } },
-        y: { title: { display: true, text: UNIT_MAP[yAxis] || pretty(yAxis) } },
+        x: { 
+            title: { display: true, text: UNIT_MAP[xAxis] || pretty(xAxis), color: "#64748b" },
+            grid: { color: "#e2e8f0" }
+        },
+        y: { 
+            title: { display: true, text: UNIT_MAP[yAxis] || pretty(yAxis), color: "#64748b" },
+            grid: { color: "#e2e8f0" }
+        },
       },
     }),
     [xAxis, yAxis]
   );
 
-  useEffect(() => {
-    ChartJS.register({
-      id: "chartAreaBorder",
-      beforeDraw: (chart) => {
-        const { ctx, chartArea, options } = chart;
-        if (!options.plugins.chartAreaBorder) return;
-        const { left, top, width, height } = chartArea;
-        ctx.save();
-        ctx.strokeStyle = options.plugins.chartAreaBorder.borderColor;
-        ctx.lineWidth = options.plugins.chartAreaBorder.borderWidth;
-        ctx.strokeRect(left, top, width, height);
-        ctx.restore();
-      },
-    });
-  }, []);
-
   return (
     <ThemeProvider theme={theme}>  
       <CssBaseline />
-
-      {/* Breadcrumb */}
-      <Box sx={{ p: 1, display: "flex", alignItems: "center", gap: 1, fontSize: 14 }}>
-         <a href="/">Home</a> <SlArrowRight />{" "}
-              <a href="/labs">Data Visualizations</a> <SlArrowRight />{" "}
-              {labName && (
-                <>
-                  <span
-                    onClick={() => navigate(-1)}
-                    style={{ cursor: "pointer" ,color: "#007bff",
-    textDecoration: "none", }}
-                  >
-                    {labName}
-                  </span>{" "}
-                  <SlArrowRight />{" "}
-                </>
-              )}
-              <span>NovaDm</span>
-      </Box>
-
-      {/* Google Map */}
-      <Box
-        id="map"
-        sx={{ height: 400, mx: "auto", maxWidth: 1100, borderRadius: 3, overflow: "hidden", mb: 3 }}
-      />
-
-      {/* KPI selectors */}
-      <Grid container justifyContent="center" spacing={2} mb={2}>
-        <Grid item>
-          <FormControl size="small">
-            <InputLabel>X-Axis</InputLabel>
-            <Select value={xAxis} label="X-Axis" onChange={(e) => setX(e.target.value)} sx={{ minWidth: 160 }}>
-              {cols.map((c) => (
-                <MenuItem key={c} value={c}>
-                  {c}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Grid>
-        <Grid item>
-          <FormControl size="small">
-            <InputLabel>Y-Axis</InputLabel>
-            <Select value={yAxis} label="Y-Axis" onChange={(e) => setY(e.target.value)} sx={{ minWidth: 160 }}>
-              {cols.map((c) => (
-                <MenuItem key={c} value={c}>
-                  {c}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-        </Grid>
-      </Grid>
-
-      {/* Main content: 2 columns, left is stacked */}
-      <Grid container justifyContent="center" alignItems="flex-start" spacing={3} mt={1}>
-        {/* LEFT: Action Tree + Stats stacked */}
-        <Grid item sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          <Paper sx={{ width: 350 }}>
-            <Typography variant="h6" gutterBottom>
-              Action Tree
-            </Typography>
-            <Divider sx={{ mb: 1 }} />
-            <Tree
-              treeData={rcTreeData}
-              showLine
-              defaultExpandAll
-              selectable={false}
-              style={{
-                background: "none",
-                fontFamily: "inherit",
-                fontSize: 15,
-                paddingLeft: 2,
-                paddingRight: 2,
-                minHeight: 300,
-                maxHeight: 300,
-                overflowY: "auto",
-              }}
-            />
-          </Paper>
-          {stats && (
-            <Paper sx={{
-              width: 350,
-              p: 2,
-              bgcolor: "#fff",
-              borderRadius: 2,
-              boxShadow: "0 2px 6px rgba(0,0,0,.04)",
-              minHeight: 160,
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center'
-            }}>
-              <Typography variant="subtitle1" gutterBottom>
-                Scenario Space Statistics
-              </Typography>
-              <Typography variant="body2">
-                <b>Scenario space size:</b> {Number(stats.scenarioSpace).toExponential(1)}
-                <br />
-                <b>Number of subjects:</b> {stats.numSubjects}
-                <br />
-                <b>Number of features:</b> {stats.numFeatures}
-                <br />
-                <b>Mean features per subject:</b> {stats.meanFeatures}
-              </Typography>
-            </Paper>
-          )}
-        </Grid>
-        {/* RIGHT: Scatter Plot */}
-        <Grid item>
-          <Paper sx={{ width: 450, minHeight: 380, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <Typography variant="h6" gutterBottom>
-              Scatter Plot
-            </Typography>
-            <Divider sx={{ mb: 1 }} />
-            {chartData ? (
-              <Scatter data={chartData} options={chartOptions} width={420} height={300} />
-            ) : (
-              <Box sx={{ height: 300, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Typography variant="body2" color="text.secondary">
-                  Choose two numeric KPIs to draw the scatter-plot.
-                </Typography>
-              </Box>
+      
+      <div className="aurahus-dataviz-page">
+        {/* Breadcrumb */}
+        <div className="breadcrumb-container">
+            <a href="/" className="crumb-link">Home</a>
+            <SlArrowRight className="crumb-arrow" />
+            <a href="/labs" className="crumb-link">Data Visualizations</a>
+            <SlArrowRight className="crumb-arrow" />
+            {labName && (
+            <>
+                <span className="crumb-link" onClick={() => navigate(-1)} style={{cursor: 'pointer'}}>{labName}</span>
+                <SlArrowRight className="crumb-arrow" />
+            </>
             )}
-          </Paper>
-        </Grid>
-      </Grid>
+            <span className="crumb-current">NovaDm</span>
+        </div>
+
+        {/* Map */}
+        <Box id="map" className="map-container" />
+
+        {/* Controls Card */}
+        <div className="controls-card">
+            <h3 className="section-title">Scenario Parameters</h3>
+            <div className="selectors-row">
+                <FormControl size="small" fullWidth>
+                    <InputLabel>X-Axis Metric</InputLabel>
+                    <Select value={xAxis} label="X-Axis Metric" onChange={(e) => setX(e.target.value)}>
+                    {cols.map((c) => <MenuItem key={c} value={c}>{c}</MenuItem>)}
+                    </Select>
+                </FormControl>
+                
+                <FormControl size="small" fullWidth>
+                    <InputLabel>Y-Axis Metric</InputLabel>
+                    <Select value={yAxis} label="Y-Axis Metric" onChange={(e) => setY(e.target.value)}>
+                    {cols.map((c) => <MenuItem key={c} value={c}>{c}</MenuItem>)}
+                    </Select>
+                </FormControl>
+            </div>
+        </div>
+
+        {/* Main Content Grid */}
+        <div className="dashboard-grid">
+            
+            {/* Left Column: Tree & Stats */}
+            <div className="left-column">
+                <Paper className="modern-card tree-card">
+                    <Typography variant="h6" className="card-header">Action Tree</Typography>
+                    <Divider />
+                    <div className="tree-scroll-area">
+                        <Tree
+                            treeData={rcTreeData}
+                            showLine
+                            defaultExpandAll
+                            selectable={false}
+                        />
+                    </div>
+                </Paper>
+
+                {stats && (
+                    <Paper className="modern-card stats-card">
+                        <Typography variant="h6" className="card-header">Statistics</Typography>
+                        <Divider sx={{ mb: 2 }} />
+                        <div className="stats-content">
+                            <div className="stat-row">
+                                <span>Scenario space:</span> <strong>{Number(stats.scenarioSpace).toExponential(1)}</strong>
+                            </div>
+                            <div className="stat-row">
+                                <span>Subjects:</span> <strong>{stats.numSubjects}</strong>
+                            </div>
+                            <div className="stat-row">
+                                <span>Features:</span> <strong>{stats.numFeatures}</strong>
+                            </div>
+                            <div className="stat-row">
+                                <span>Mean features/subject:</span> <strong>{stats.meanFeatures}</strong>
+                            </div>
+                        </div>
+                    </Paper>
+                )}
+            </div>
+
+            {/* Right Column: Chart */}
+            <div className="right-column">
+                <Paper className="modern-card chart-card">
+                    <Typography variant="h6" className="card-header">Scatter Analysis</Typography>
+                    <Divider sx={{ mb: 2 }} />
+                    <div className="chart-wrapper">
+                        {chartData ? (
+                            <Scatter data={chartData} options={chartOptions} />
+                        ) : (
+                            <div className="empty-state">
+                                <Typography variant="body1" color="text.secondary">
+                                    Select X and Y metrics above to visualize data.
+                                </Typography>
+                            </div>
+                        )}
+                    </div>
+                </Paper>
+            </div>
+        </div>
+      </div>
     </ThemeProvider>
   );
 };

@@ -35,6 +35,7 @@ import InfluxExplorerDirect from './views/InfluxExplorerDirect';
 import CvsSeries2D from './views/CvsSeries2D';
 import ContourHeatmap2D from './views/ContourHeatmap2D';
 import TokenDebugger from './components/TokenDebugger';
+import DubPetrolDatavis from './views/DubPetrolDatavis';
 import Cvs from './views/Cvs';
 
 
@@ -124,6 +125,14 @@ function App() {
             element={
               <MainLayout>
                 <DubElectricityDatavis />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/dub-petrol-visualizations"
+            element={
+              <MainLayout>
+                <DubPetrolDatavis />
               </MainLayout>
             }
           />

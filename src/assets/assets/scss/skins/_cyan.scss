@@ -1,100 +1,142 @@
-﻿$white: #ffffff;
-$blue-grey-400: #78909c !default;
-$grey-900: #212121 !default;
-$cyan-400: #45e5c3 !default;
-$cyan-500: #2CB67D !default;
-$cyan-600: #00acc1 !default;
+﻿/* =========================================
+   THEME: CYAN (Modernized)
+   ========================================= */
 
-.theme-cyan{
+// Variables - Using the sleek Teal from your Home/Sidebar
+$white: #ffffff;
+$cyan-brand: #49c5b6;       // The specific teal used in your modern cards
+$cyan-dark:  #3aa99c;       // Darker shade for hovers
+$cyan-light: rgba(73, 197, 182, 0.1); // Soft background for active states
 
+.theme-cyan {
+
+    /* 1. Selection & Global Accents */
     ::selection {
         color: $white;
-        background: $cyan-500;
+        background: $cyan-brand;
     }
 
-    .page-loader-wrapper{
-        background: $cyan-500;
+    .page-loader-wrapper {
+        background: $cyan-brand;
     }
 
-    #left-sidebar .nav-tabs .nav-link.active{
-        color: $cyan-500;
-    }
-
-    &:before,
-    &:after{
-        background: $cyan-500;
-    }
-
-    #wrapper{
-        &:before,
-        &:after{
-            background: $cyan-500;
-        }
-    }
-
-    .sidebar-nav .metismenu>li.active>a{
-        border-left-color: $cyan-500;
-    }
-
-    .navbar-nav ul.menu-icon{
-        background: $cyan-500;
-    }
-
-    .fancy-checkbox {
-        input[type="checkbox"] {
-
-            &:checked + span:before {
-                background: $cyan-500;
-                border-color: $cyan-500;
-            }
-        }
-    }
-
-    .chat-widget {
-        li {
-            &.right {
-
-                .chat-info {
-                    background: $cyan-500;
-                    color: $white;
-
-                    &:before{
-                        border-left: 10px solid $cyan-500;
-                    }
+    /* 2. Sidebar Overrides 
+       Targets the new structure from Sidebar.scss 
+    */
+    #left-sidebar {
+        .sidebar-nav {
+            /* Active & Hover Text Colors */
+            ul.sidebar-list > li a {
+                &:hover {
+                    color: $cyan-brand !important;
+                    i, svg { color: $cyan-brand !important; }
+                }
+                
+                &.active {
+                    background-color: $cyan-light !important;
+                    color: $cyan-brand !important;
+                    
+                    /* Remove the old border-left style */
+                    border-left: none !important; 
+                    
+                    i, svg { color: $cyan-brand !important; }
                 }
             }
         }
     }
 
-    .fc .fc-view-container .fc-view.fc-basic-view>table>thead tr th.fc-widget-header, .fc-view.fc-dayGrid-view>table>thead tr th.fc-widget-header{
-        background: $cyan-500;
-        border-color: $cyan-500;
-        color:$white;
-        border: 1px solid #eee;
-        padding: 10px;
+    /* 3. Navbar & Top Elements */
+    .navbar-nav ul.menu-icon {
+        background: $cyan-brand;
+    }
+    
+    .navbar-nav .icon-menu i {
+        color: $cyan-brand;
     }
 
-    .blog-page .single_post .footer .stats li a:hover{
-        color: $cyan-500;
+    /* 4. Form Elements (Checkboxes & Radios) */
+    .fancy-checkbox {
+        input[type="checkbox"] {
+            &:checked + span:before {
+                background: $cyan-brand;
+                border-color: $cyan-brand;
+            }
+        }
+    }
+    
+    .form-control:focus {
+        border-color: $cyan-brand;
+        box-shadow: 0 0 0 2px $cyan-light;
     }
 
-    .auth-main{
-        .btn-primary{
-            background: $cyan-500;
-            border-color: $cyan-500;
+    /* 5. Buttons & Interactive Elements */
+    .btn-primary {
+        background: $cyan-brand;
+        border-color: $cyan-brand;
+        box-shadow: 0 2px 6px rgba(73, 197, 182, 0.4);
+        
+        &:hover, &:focus, &:active {
+            background: $cyan-dark !important;
+            border-color: $cyan-dark !important;
+        }
+    }
+    
+    .page-link.active {
+        background-color: $cyan-brand;
+        border-color: $cyan-brand;
+    }
+
+    /* 6. Chat Widget (Modernized bubbles) */
+    .chat-widget {
+        li.right .chat-info {
+            background: $cyan-brand;
+            color: $white;
+            border-radius: 12px 12px 0 12px; // Modern shape
+            
+            &:before {
+                border-left: 10px solid $cyan-brand; // Tail color
+            }
         }
     }
 
-    .sidebar-nav .metismenu>li i{
-        color: $cyan-500;
-    }
-
-    .right_chat li a:hover{
-        .media-object {
-            border-color: $cyan-500;
+    /* 7. FullCalendar Overrides */
+    .fc {
+        .fc-button-primary {
+            background-color: $cyan-brand;
+            border-color: $cyan-brand;
+            &:hover { background-color: $cyan-dark; border-color: $cyan-dark; }
+        }
+        
+        // Header background
+        .fc-view-container .fc-view.fc-basic-view>table>thead tr th.fc-widget-header, 
+        .fc-view.fc-dayGrid-view>table>thead tr th.fc-widget-header {
+            background: $cyan-brand;
+            border-color: $cyan-brand;
+            color: $white;
         }
     }
 
+    /* 8. Authentication Pages */
+    .auth-main {
+        .btn-primary {
+            background: $cyan-brand;
+            border-color: $cyan-brand;
+        }
+        input:focus {
+            border-color: $cyan-brand;
+        }
+    }
 
+    /* 9. Miscellaneous Links */
+    a:hover {
+        color: $cyan-dark;
+    }
+    
+    .blog-page .single_post .footer .stats li a:hover {
+        color: $cyan-brand;
+    }
 
+    /* REMOVED: The &:before and &:after bars on the body 
+       to keep the design clean and full-screen. 
+    */
 }

@@ -1,32 +1,74 @@
+/* Variables for Light Theme Cards */
+$card-glass: rgba(255, 255, 255, 0.7); /* Translucent White */
+$card-hover-bg: #ffffff;               /* Solid White on hover */
+$text-primary: #1e293b;                /* Dark Slate text (for readability on white) */
+$teal-accent: #49c5b6;                 /* Your Brand Teal */
+$primary-glow: rgba(73, 197, 182, 0.3); /* Softer glow for light mode */
+
 .custom-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 300px;
-    height: 300px !important;
-    margin: 20px;
-    background-color: #f7f7f7;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-decoration: none;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-    }
+  /* Layout & Sizing */
+  width: 300px;
+  height: 300px !important;
+  margin: 20px;
+  padding: 24px;
   
+  /* Light Glassmorphism Styling */
+  background: $card-glass;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.9); /* Stronger white border */
+  border-radius: 20px;
+  
+  /* Transitions */
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  /* Soft shadow for depth on light background */
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 2px 4px -1px rgba(0, 0, 0, 0.03);
+
+  /* Hover Effects */
+  &:hover {
+    transform: translateY(-8px);
+    background: $card-hover-bg;
+    border-color: rgba(73, 197, 182, 0.5); /* Teal border on hover */
+    
+    /* Lifted shadow */
+    box-shadow: 
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 0 15px $primary-glow;
+
     .card-icon {
-      font-size: 48px;
-      color: #49c5b6;
-    }
-  
-    .card-title {
-      margin-top: 10px;
-      font-size: 18px;
-      color: black;
-      text-align: center;
+      transform: scale(1.1) rotate(5deg);
+      /* Icon stays teal or gets slightly darker/brighter, 
+         white icon on white card won't be visible */
+      color: darken($teal-accent, 10%); 
+      filter: drop-shadow(0 4px 6px rgba(73, 197, 182, 0.4));
     }
   }
-  
+
+  /* Icon Styling */
+  .card-icon {
+    font-size: 56px;
+    color: $teal-accent;
+    margin-bottom: 24px;
+    transition: all 0.3s ease;
+  }
+
+  /* Title Styling */
+  .card-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: $text-primary; /* Dark text */
+    text-align: center;
+    letter-spacing: 0.02em;
+    margin: 0;
+  }
+}

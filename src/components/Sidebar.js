@@ -1,55 +1,72 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import { FaHome, FaChartBar, FaAngleLeft, FaAngleRight, FaTools, FaCogs, FaFileAlt} from 'react-icons/fa';
-
+import { NavLink, useLocation } from 'react-router-dom'; // Added useLocation for manual active check
+import { FaHome, FaChartBar, FaAngleLeft, FaAngleRight, FaTools, FaCogs, FaFileAlt } from 'react-icons/fa';
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-
-   const username = process.env.REACT_APP_USERNAME;
-  const password = process.env.REACT_APP_PASSWORD;
-
+  const location = useLocation(); // Hook to get current URL
   const decisionWorkflowLink = `https://gbn-management.cds-probono.eu/?automatic_keycloak_login=true`;
-
 
   const toggleSidebar = () => {
     setIsCollapsed(!isCollapsed);
   };
+
+  // Helper to check if external link should look "active" (optional)
+  const isGbnActive = location.pathname.includes('gbn'); 
 
   return (
     <div id="left-sidebar" className={isCollapsed ? 'collapsed' : ''}>
       <button onClick={toggleSidebar} className="collapse-btn">
         {isCollapsed ? <FaAngleRight /> : <FaAngleLeft />}
       </button>
+
       <div className="sidebar-nav">
-        <ul className="metismenu">
+        {/* CHANGED: Class name changed to avoid conflicts */}
+        <ul className="custom-sidebar-list">
+          
+          {/* 1. Home */}
           <li>
-            <NavLink to="/">
-             <i><FaHome /></i>  {!isCollapsed && <span>Home</span>}
+            <NavLink to="/" end>
+              <FaHome /> 
+              {!isCollapsed && <span>Home</span>}
             </NavLink>
           </li>
+
+          {/* 2. Solutions Catalogue */}
           <li>
             <NavLink to="/tools">
-            <i><FaTools/></i> {!isCollapsed && <span>Solutions Catalogue</span>}
+              <FaTools /> 
+              {!isCollapsed && <span>Solutions Catalogue</span>}
             </NavLink>
           </li>
+
+          {/* 3. GBN Management (External) */}
           <li>
-            <NavLink to={decisionWorkflowLink} >
-            <i><FaCogs /></i>{!isCollapsed && <span>GBN management</span>}
-            </NavLink>
+            <a 
+              href={decisionWorkflowLink} 
+              className={isGbnActive ? 'active' : ''} // Manual active class if needed
+            >
+              <FaCogs />
+              {!isCollapsed && <span>GBN management</span>}
+            </a>
           </li>
-          <li className="bottom-link">
-            <li>
+
+          {/* 4. Data Visualizations */}
+          <li>
             <NavLink to="/labs">
-            <i><FaChartBar /></i>{!isCollapsed && <span>Data Visualizations</span>}
+              <FaChartBar />
+              {!isCollapsed && <span>Data Visualizations</span>}
             </NavLink>
           </li>
+
+          {/* 5. Tools Description */}
           <li>
             <NavLink to="/tools-descriptions">
-            <i><FaFileAlt /></i>{!isCollapsed && <span>Tools Description</span>}
+              <FaFileAlt />
+              {!isCollapsed && <span>Tools Description</span>}
             </NavLink>
           </li>
-          </li>
+
         </ul>
       </div>
     </div>

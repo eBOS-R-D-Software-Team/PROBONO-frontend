@@ -1,43 +1,154 @@
-.list-of-labs {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Exactly 3 cards per row */
-  gap: 24px; /* Space between cards */
-  padding: 20px;
-  justify-content: center;
+/* Variables (Match your Global Theme) */
+$bg-light: #f8fafc;
+$text-primary: #1e293b;
+$text-secondary: #64748b;
+$teal-accent: #49c5b6; 
+$card-bg: #ffffff;
+$shadow-soft: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+$shadow-hover: 0 20px 40px -5px rgba(0, 0, 0, 0.1);
 
-  /* Responsive adjustments for smaller screens */
-  @media (max-width: 992px) {
-    grid-template-columns: repeat(2, 1fr); /* 2 cards per row for medium screens */
-  }
+.list-of-labs-page {
+  padding: 40px;
+  background-color: $bg-light;
+  min-height: 100vh;
+  font-family: 'Segoe UI', system-ui, sans-serif;
 
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr; /* Single column for smaller screens */
-  }
-
-  .breadcrumb {
-    grid-column: 1 / -1; /* Span the breadcrumb across all columns */
-    margin-bottom: 20px;
+  /* --- Breadcrumb Styling --- */
+  .breadcrumb-container {
     display: flex;
     align-items: center;
-    font-size: 1rem;
-    color: #555;
+    font-size: 14px;
+    color: $text-secondary;
+    margin-bottom: 40px;
+    padding-left: 10px; 
 
-    a {
+    .crumb-link {
       text-decoration: none;
-      color: #007bff; /* Brand primary color */
-      font-weight: bold;
-      transition: color 0.3s ease;
+      color: $text-secondary;
+      font-weight: 500;
+      transition: color 0.2s;
+      &:hover { color: $teal-accent; }
+    }
+    .crumb-arrow { margin: 0 12px; font-size: 10px; color: #cbd5e1; }
+    .crumb-current { color: $teal-accent; font-weight: 600; }
+  }
 
-      &:hover {
-        color: #0056b3; /* Darker blue on hover */
-        text-decoration: underline;
+  /* --- Grid Layout --- */
+  .labs-grid-container {
+    display: grid;
+    /* CHANGED: Forced 3 columns */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px;
+    width: 100%;
+    
+    /* Ensure rows are equal height */
+    align-items: stretch;
+
+    /* Responsive: Switch to 2 columns on laptops/tablets */
+    @media (max-width: 1100px) {
+      grid-template-columns: repeat(2, 1fr); 
+    }
+
+    /* Responsive: Switch to 1 column on mobile */
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* --- Modern Lab Card (Image Based) --- */
+  .lab-card-modern {
+    display: flex;
+    flex-direction: column;
+    background-color: $card-bg;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    overflow: hidden; 
+    
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: $shadow-soft;
+    
+    /* Ensure consistent height in the 3x3 grid */
+    height: 100%; 
+    min-height: 380px; 
+
+    /* 1. Image Area */
+    .image-wrapper {
+      width: 100%;
+      height: 200px; /* Slightly taller for better 3-col aspect ratio */
+      background-color: #f1f5f9;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
       }
     }
 
-    svg {
-      margin: 0 8px;
-      font-size: 0.9rem;
-      color: #999; /* Neutral gray for arrows */
+    /* 2. Text Content Area */
+    .content-wrapper {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1; /* Fills remaining space */
     }
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: $text-primary;
+      margin: 0 0 10px 0;
+      line-height: 1.3;
+      transition: color 0.2s;
+    }
+
+    .card-description {
+      font-size: 14px;
+      color: $text-secondary;
+      line-height: 1.6;
+      margin: 0 0 20px 0;
+      
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* Limit text to 3 lines */
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .read-more {
+      margin-top: auto; 
+      font-size: 13px;
+      font-weight: 600;
+      color: $teal-accent;
+      opacity: 0;
+      transform: translateX(-10px);
+      transition: all 0.3s ease;
+    }
+
+    /* --- Hover Effects --- */
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: $shadow-hover;
+      border-color: rgba(73, 197, 182, 0.3);
+
+      .image-wrapper img {
+        transform: scale(1.05);
+      }
+
+      .card-title {
+        color: $teal-accent;
+      }
+
+      .read-more {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  }
+
+  /* --- Mobile Adjustments --- */
+  @media (max-width: 768px) {
+    padding: 20px;
   }
 }

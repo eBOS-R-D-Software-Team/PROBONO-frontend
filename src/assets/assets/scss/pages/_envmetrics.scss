@@ -1,75 +1,135 @@
-.environmental-metrics {
-    padding: 20px;
-  
-    .breadcrumb {
-      display: flex;
-      align-items: center;
-      font-size: 1rem;
-      color: #555;
-      margin-bottom: 20px;
-  
-      a {
-        text-decoration: none;
-        color: #007bff; /* Brand primary color */
-        font-weight: bold;
-        transition: color 0.3s ease;
-  
-        &:hover {
-          color: #0056b3; /* Darker blue on hover */
-          text-decoration: underline;
-        }
-      }
-  
-      svg {
-        margin: 0 8px;
-        font-size: 0.9rem;
-        color: #999; /* Neutral gray for arrows */
-      }
+/* Variables (Match Global Theme) */
+$bg-light: #f8fafc;
+$text-primary: #1e293b;
+$text-secondary: #64748b;
+$teal-accent: #49c5b6; 
+$card-bg: #ffffff;
+$shadow-soft: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+$shadow-hover: 0 20px 40px -5px rgba(0, 0, 0, 0.1);
+
+.env-metrics-page {
+  padding: 40px;
+  background-color: $bg-light;
+  min-height: 100vh;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+
+  /* --- Breadcrumb Styling --- */
+  .breadcrumb-container {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: $text-secondary;
+    margin-bottom: 40px;
+    padding-left: 10px;
+
+    .crumb-link {
+      text-decoration: none;
+      color: $text-secondary;
+      font-weight: 500;
+      transition: color 0.2s;
+      &:hover { color: $teal-accent; }
     }
-  
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
-      gap: 24px;
-  
-      @media (max-width: 768px) {
-        grid-template-columns: repeat(2, 1fr); /* 2 cards per row for smaller screens */
-      }
-  
-      @media (max-width: 480px) {
-        grid-template-columns: 1fr; /* Single column for mobile */
-      }
+
+    .crumb-arrow {
+      margin: 0 12px;
+      font-size: 10px;
+      color: #cbd5e1;
     }
-  
-    .metric-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background-color: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-  
-      &:hover {
-        transform: scale(1.05);
-        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-      }
-  
-      .metric-icon {
-        font-size: 2rem; /* Icon size */
-        color: #4caf50; /* Green color */
-        margin-bottom: 10px;
-      }
-  
-      .metric-title {
-        font-size: 1rem;
-        font-weight: bold;
-        color: #333;
-        text-align: center;
-      }
+
+    .crumb-current {
+      color: $teal-accent;
+      font-weight: 600;
     }
   }
-  
+
+  /* --- Grid Layout --- */
+  .metrics-grid-container {
+    display: grid;
+    /* Strict 3-column grid */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    width: 100%;
+
+    /* Responsive: 2 columns on medium screens */
+    @media (max-width: 1100px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Responsive: 1 column on mobile */
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* --- Modern Metric Card --- */
+  .metric-card-modern {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    background-color: $card-bg;
+    padding: 40px 24px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: $shadow-soft;
+    min-height: 220px; /* Consistent height */
+
+    /* Icon Wrapper */
+    .icon-wrapper {
+      margin-bottom: 24px;
+      color: $teal-accent;
+      font-size: 48px; /* Force icon size */
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      filter: drop-shadow(0 4px 6px rgba(73, 197, 182, 0.2));
+
+      /* Ensure SVGs inherit color/size */
+      svg {
+        display: block;
+        margin: 0 auto;
+        width: 1em;
+        height: 1em;
+      }
+    }
+
+    /* Title */
+    .card-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: $text-primary;
+      margin: 0;
+      line-height: 1.4;
+      transition: color 0.2s;
+    }
+
+    /* Hover Effects */
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: $shadow-hover;
+      border-color: rgba(73, 197, 182, 0.3);
+
+      .icon-wrapper {
+        transform: scale(1.15) rotate(3deg);
+        color: darken($teal-accent, 5%);
+      }
+
+      .card-title {
+        color: $teal-accent;
+      }
+    }
+
+    &:active {
+      transform: translateY(-4px);
+    }
+  }
+
+  /* --- Mobile Adjustments --- */
+  @media (max-width: 768px) {
+    padding: 20px;
+    /* Grid adjustments handled in .metrics-grid-container query */
+  }
+}

@@ -1,85 +1,48 @@
 import React from 'react';
-import Card from '../components/cards';
-import { ImAirplane, ImPower, ImTree, ImWrench, ImCog, ImStatsDots, ImHammer, ImCalculator, ImLab, ImSun } from "react-icons/im";
+import ToolCard from '../components/ToolCard'; // Import the new component
+import { ImAirplane, ImPower, ImWrench, ImCog, ImStatsDots, ImHammer, ImLab, ImSun } from "react-icons/im";
 import { SlArrowRight } from "react-icons/sl";
 import EnergyClassLogo from '../assets/images/Energy_class_simulation_icon.png';
+ // Ensure this import exists
 
 const ListOfTools = () => {
-  //const ventilationToolLink = `https://v24121.ita.es/VentilationTool_Voila/`;
-
   const tools = [
-
-    //{ title: 'Demand and Response Platform', link: '/tools/demand-response', icon: ImPower },
     { title: 'Demolition Tool', link: 'https://probono.usc.es/', icon: ImHammer },
     { title: 'Open knowledge-base', link: 'https://www.probonoh2020kb.eu', icon: ImStatsDots },
-        {
-      title: 'Ventilation Assessment Tool',
-      link: 'https://v24121.ita.es/VentilationTool_HMI/',
-      icon: ImAirplane,
-    },
-     {
-      title: 'Demand and Response Platform Building Layer – DaRA',
-      link: 'http://dara.tpf.be/',
-      icon: ImCog,
-    },
-
-  {
-  title: 'Energy class simulator',
-  link: 'https://energy-class-simulation.cds-probono.eu/',
-  icon: ({ size = 36 }) => (
-    <img
-      src={EnergyClassLogo}
-      alt="Energy class simulator"
-      style={{ width: size, height: size, objectFit: 'contain' }}
-    />
-  ),
-},
-{
-      title: 'ePREDICT',
-      link: 'https://anylogic.stamtech.dev/model/dcf2263c-2acb-40d1-ba83-3c7a92c1e55d',
-      icon: ImLab,
-    },
-
+    { title: 'Ventilation Assessment Tool', link: 'https://v24121.ita.es/VentilationTool_HMI/', icon: ImAirplane },
+    { title: 'Demand and Response Platform Building Layer – DaRA', link: 'http://dara.tpf.be/', icon: ImCog },
     {
-      title: 'CMS Optimization tool',
-      link: 'https://probono-dev.stamtech.dev/sign-in?redirectURL=%2Fconstruction-sites',
-      icon: ImWrench,
+      title: 'Energy class simulator',
+      link: 'https://energy-class-simulation.cds-probono.eu/',
+      icon: ({ size }) => (
+        <img
+          src={EnergyClassLogo}
+          alt="Energy Class Sim"
+          style={{ width: size, height: size, objectFit: 'contain' }}
+        />
+      ),
     },
-
-    {
-    title: 'Vcomfort sensor tool',
-    link: '/cvs',           
-    icon: ImSun,
-  },
-
-  {
-    title: '3D model Viewer',
-    link: '/paraview-vis',           
-    icon: ImPower,
-  },
-
-
-
-    //{ title: 'BIPV Design Tool', link: '/tools/bipv', icon: ImTree },
-    //{ title: 'Bio-Solar Roof Design and Simulation Tools', link: '/tools/bio-solar', icon: ImWrench },
-    //{ title: 'Energy Positive Building Design Tool', link: '/tools/energy-positive', icon: ImCog },
-    
-    //{ title: 'LCA Impact Assessment Tool', link: '/tools/lca', icon: ImCalculator },
-    //{ title: 'PESTLE Framework Analysis', link: '/tools/pestle', icon: ImHammer },
+    { title: 'ePREDICT', link: 'https://anylogic.stamtech.dev/model/dcf2263c-2acb-40d1-ba83-3c7a92c1e55d', icon: ImLab },
+    { title: 'CMS Optimization tool', link: 'https://probono-dev.stamtech.dev/sign-in?redirectURL=%2Fconstruction-sites', icon: ImWrench },
+    { title: 'Vcomfort sensor tool', link: '/cvs', icon: ImSun },
+    { title: '3D model Viewer', link: '/paraview-vis', icon: ImPower },
   ];
 
   return (
-    <div className="list-of-tools">
-      <div className="breadcrumb">
-        <a href="/">Home </a>
-        <SlArrowRight /> <a href="/">List of tools</a>
+    <div className="list-of-tools-page">
+      
+      {/* Sleek Breadcrumb */}
+      <div className="breadcrumb-container">
+        <a href="/" className="crumb-link">Home</a>
+        <SlArrowRight className="crumb-arrow" />
+        <span className="crumb-current">Solutions Catalogue</span>
       </div>
-      <div className="tools-grid">
+
+      <div className="tools-grid-container">
         {tools.map((tool, index) => (
-          <Card
+          <ToolCard
             key={index}
             title={tool.title}
-            onClick={tool.action}
             link={tool.link}
             icon={tool.icon}
           />

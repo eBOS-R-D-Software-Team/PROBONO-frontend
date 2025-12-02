@@ -1,109 +1,191 @@
-/* 🌍 Google Map Styling */
-.map-container {
-    height: 500px;
+/* Variables (Global Theme Match) */
+$bg-light: #f8fafc;
+$text-primary: #1e293b;
+$text-secondary: #64748b;
+$teal-accent: #49c5b6; 
+$card-bg: #ffffff;
+$shadow-soft: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+$border-light: rgba(255, 255, 255, 0.6);
+
+.aurahus-page {
+  padding: 40px;
+  background-color: $bg-light;
+  min-height: 100vh;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+
+  /* --- Breadcrumb --- */
+  .breadcrumb-container {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: $text-secondary;
+    margin-bottom: 30px;
+    padding-left: 5px;
+
+    .crumb-link {
+      text-decoration: none;
+      color: $text-secondary;
+      font-weight: 500;
+      transition: color 0.2s;
+      &:hover { color: $teal-accent; }
+    }
+    .crumb-arrow { margin: 0 12px; font-size: 10px; color: #cbd5e1; }
+    .crumb-current { color: $teal-accent; font-weight: 600; }
+  }
+
+  /* --- Map --- */
+  .map-container {
     width: 100%;
-    border-radius: 12px; /* Rounded corners */
+    height: 400px;
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Subtle shadow */
-    margin-bottom: 20px;
-}
+    margin-bottom: 30px;
+    box-shadow: $shadow-soft;
+    border: 1px solid rgba(255,255,255,0.8);
+  }
 
-/* 🏠 Page Container */
-.aurahus-container {
-    text-align: center;
+  /* --- Controls Card --- */
+  .controls-card {
+    background-color: $card-bg;
+    border-radius: 20px;
     padding: 30px;
-    font-family: 'Poppins', sans-serif;
-    background-color: #f4f6f9; /* Light gray background */
-    min-height: 100vh;
-}
+    box-shadow: $shadow-soft;
+    border: 1px solid $border-light;
+    margin-bottom: 30px;
 
-/* 📌 Title Styling */
-.aurahus-container h1 {
-    font-size: 26px;
-    font-weight: bold;
-    color: #2c3e50; /* Dark gray-blue */
-    margin-bottom: 15px;
-}
+    .controls-header {
+      margin-bottom: 24px;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 15px;
 
-/* 🎛️ Toggle Button */
-.toggle-heatmap-btn {
-    padding: 12px 24px;
-    font-size: 16px;
-    font-weight: 600;
-    color: white;
-    background: linear-gradient(45deg, #1976D2, #0D47A1); /* Blue gradient */
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 10px rgba(25, 118, 210, 0.3);
-    margin-bottom: 20px;
-}
-
-.toggle-heatmap-btn:hover {
-    background: linear-gradient(45deg, #0D47A1, #082E75);
-    transform: scale(1.05); /* Slight zoom effect */
-}
-
-.toggle-heatmap-btn:active {
-    transform: scale(0.95);
-}
-
-/* 📌 Responsive Design */
-@media (max-width: 768px) {
-    .toggle-heatmap-btn {
-        width: 100%;
-        font-size: 14px;
+      h2 {
+        font-size: 20px;
+        font-weight: 600;
+        color: $text-primary;
+        margin: 0;
+      }
     }
 
-    .aurahus-container {
-        padding: 20px;
+    .selectors-row {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+      align-items: flex-end; /* Key change: aligns button with inputs, not labels */
+
+      .select-group {
+        display: flex;
+        flex-direction: column;
+        min-width: 200px;
+
+        label {
+          font-size: 13px;
+          font-weight: 600;
+          color: $text-secondary;
+          margin-bottom: 8px;
+        }
+
+        select {
+          padding: 10px 12px;
+          border-radius: 8px;
+          border: 1px solid #cbd5e1;
+          color: $text-primary;
+          background-color: #fff;
+          font-size: 14px;
+          outline: none;
+          cursor: pointer;
+          height: 42px; /* Fixed height for alignment */
+          transition: border-color 0.2s;
+
+          &:focus { border-color: $teal-accent; }
+        }
+      }
+
+      /* Style the button container or button itself */
+      .action-group {
+        .toggle-btn {
+          height: 42px; /* Matches input height */
+          background-color: #f1f5f9;
+          color: $text-secondary;
+          border: 1px solid #cbd5e1;
+          padding: 0 24px;
+          border-radius: 8px;
+          font-weight: 600;
+          font-size: 14px;
+          cursor: pointer;
+          transition: all 0.2s;
+          display: flex;
+          align-items: center;
+
+          &:hover { 
+            background-color: #e2e8f0; 
+            color: $text-primary;
+          }
+          
+          &.active { 
+            background-color: $teal-accent; 
+            color: #fff; 
+            border-color: $teal-accent;
+          }
+        }
+      }
     }
-}
 
-.download-btn {
-  background: linear-gradient(90deg, #4f8cff 0%, #48e6fa 100%);
-  color: #fff;
-  font-weight: 600;
-  padding: 0.75rem 2rem;
-  font-size: 1.15rem;
-  border: none;
-  border-radius: 2rem;
-  box-shadow: 0 2px 12px rgba(80,180,255,0.12);
-  cursor: pointer;
-  transition: background 0.3s, transform 0.2s;
-  outline: none;
-}
-.download-btn:hover:not(:disabled) {
-  background: linear-gradient(90deg, #337dff 0%, #1ecbe1 100%);
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 6px 16px rgba(80,180,255,0.18);
-}
-.download-btn:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
+    .heatmap-viewport {
+      border: 1px dashed #e2e8f0;
+      border-radius: 12px;
+      background-color: #f8fafc;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+  }
 
-.alert-error {
-  margin: 1rem auto;
-  padding: 0.75rem 1.5rem;
-  border-radius: 1rem;
-  background: #fff4f4;
-  color: #d9292e;
-  font-weight: 500;
-  text-align: center;
-  max-width: 400px;
-  box-shadow: 0 2px 12px rgba(217,41,46,0.07);
-}
+  /* --- Downloads --- */
+  .downloads-section {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
 
-.alert-success {
-  margin: 1rem auto;
-  padding: 0.75rem 1.5rem;
-  border-radius: 1rem;
-  background: #f4fff8;
-  color: #1fae6b;
-  font-weight: 500;
-  text-align: center;
-  max-width: 400px;
-  box-shadow: 0 2px 12px rgba(31,174,107,0.07);
+    .download-btn {
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+
+      &.primary {
+        background-color: $teal-accent;
+        color: #fff;
+        &:hover:not(:disabled) { background-color: darken($teal-accent, 10%); transform: translateY(-2px); }
+        &:disabled { background-color: #cbd5e1; cursor: not-allowed; }
+      }
+
+      &.secondary {
+        background-color: #fff;
+        color: $text-primary;
+        border: 1px solid #e2e8f0;
+        &:hover:not(:disabled) { background-color: #f1f5f9; transform: translateY(-2px); }
+      }
+    }
+  }
+
+  /* --- Mobile --- */
+  @media (max-width: 768px) {
+    padding: 20px;
+    .selectors-row { 
+        flex-direction: column; 
+        align-items: flex-start; 
+        gap: 16px; 
+        
+        .select-group, .action-group, .toggle-btn { width: 100%; }
+    }
+  }
 }

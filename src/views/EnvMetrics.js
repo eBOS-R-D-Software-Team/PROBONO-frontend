@@ -5,6 +5,8 @@ import { SlArrowRight } from "react-icons/sl";
 import { useSelector } from "react-redux";
 import { selectLabs } from "../reducers/labsReducer";
 import { labMetrics } from "../config/labMetricsConfig";
+import MetricCard from "../components/MetricCard";
+
 
 const EnvMetrics = () => {
   const { labId } = useParams();
@@ -17,37 +19,40 @@ const EnvMetrics = () => {
 
   const metrics = labMetrics[labId] || [];
 
+  const handleMetricClick = (metric) => {
+    // Replace :labId placeholder if present in path
+    const path = metric.path.includes(":labId")
+      ? metric.path.replace(":labId", labId)
+      : metric.path;
+
+    navigate(path, {
+      state: {
+        labId: numericLabId,
+        labName,
+      },
+    });
+  };
+
   return (
-    <div className="environmental-metrics">
-      <div className="breadcrumb">
-        <a href="/">Home</a> <SlArrowRight />{" "}
-        <a href="/labs">Data Visualizations</a> <SlArrowRight />{" "}
-        <span>{labName}</span>
+    <div className="env-metrics-page">
+      
+      {/* Sleek Breadcrumb */}
+      <div className="breadcrumb-container">
+        <a href="/" className="crumb-link">Home</a>
+        <SlArrowRight className="crumb-arrow" />
+        <a href="/labs" className="crumb-link">Data Visualizations</a>
+        <SlArrowRight className="crumb-arrow" />
+        <span className="crumb-current">{labName}</span>
       </div>
 
-      <div className="metrics-grid">
+      <div className="metrics-grid-container">
         {metrics.map((metric) => (
-          <div
+          <MetricCard
             key={metric.id}
-            className="metric-card"
-            onClick={() =>
-              navigate(
-                metric.path.includes(":labId")
-                  ? metric.path.replace(":labId", labId)
-                  : metric.path,
-                {
-                  state: {
-                    labId: numericLabId,
-                    labName,
-                  },
-                }
-              )
-            }
-            style={{ cursor: "pointer" }}
-          >
-            <div className="metric-icon">{metric.icon}</div>
-            <div className="metric-title">{metric.title}</div>
-          </div>
+            title={metric.title}
+            icon={metric.icon}
+            onClick={() => handleMetricClick(metric)}
+          />
         ))}
       </div>
     </div>
