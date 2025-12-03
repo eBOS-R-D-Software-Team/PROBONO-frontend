@@ -2,7 +2,7 @@
 $bg-light: #f8fafc;
 $text-primary: #1e293b;
 $text-secondary: #64748b;
-$teal-accent: #49c5b6; 
+$teal-accent: #2CB67D; 
 $card-bg: #ffffff;
 $shadow-soft: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
 $border-light: rgba(255, 255, 255, 0.6);
@@ -81,7 +81,7 @@ $border-light: rgba(255, 255, 255, 0.6);
         label {
           font-size: 13px;
           font-weight: 600;
-          color: $text-secondary;
+          color: $teal-accent;
           margin-bottom: 8px;
         }
 
@@ -106,8 +106,8 @@ $border-light: rgba(255, 255, 255, 0.6);
         .toggle-btn {
           height: 42px; /* Matches input height */
           background-color: #f1f5f9;
-          color: $text-secondary;
-          border: 1px solid #cbd5e1;
+          color: $teal-accent;
+          border: 1px solid $teal-accent;
           padding: 0 24px;
           border-radius: 8px;
           font-weight: 600;
@@ -169,8 +169,8 @@ $border-light: rgba(255, 255, 255, 0.6);
       }
 
       &.secondary {
-        background-color: #fff;
-        color: $text-primary;
+        background-color: #2CB67D;
+        color: #fff;
         border: 1px solid #e2e8f0;
         &:hover:not(:disabled) { background-color: #f1f5f9; transform: translateY(-2px); }
       }

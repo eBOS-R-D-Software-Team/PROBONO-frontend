@@ -10,11 +10,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      {/* Added a Hero Section so the page isn't just floating cards */}
-      <div className="hero-section">
-        <h1>Welcome to <span className="highlight">PROBONO</span></h1>
-      </div>
-
+    
       <div className="cards-container">
         
         {/* 1. Solutions Catalogue (Internal Link) */}

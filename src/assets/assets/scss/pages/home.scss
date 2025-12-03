@@ -5,7 +5,7 @@ $bg-light: #f8fafc;         /* Slate 50 - slightly off-white */
 $text-primary: #1e293b;     /* Slate 800 - Dark Grey */
 $text-secondary: #64748b;   /* Slate 500 - Muted Grey */
 $card-white: rgba(255, 255, 255, 0.7); /* Translucent White */
-$accent-blue: #0ea5e9;      /* Sky Blue */
+$accent-blue: #2CB67D;      /* Sky Blue */
 $accent-green: #22c55e;     /* Green */
 
 .home-container {
@@ -94,7 +94,7 @@ $accent-green: #22c55e;     /* Green */
 
     .icon-wrapper {
       font-size: 3.5rem;
-      color: $accent-blue;
+      color: $teal-accent;
       margin-bottom: 24px;
       transition: transform 0.3s ease;
       /* Subtle drop shadow on the icon */

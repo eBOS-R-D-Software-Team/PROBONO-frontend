@@ -136,13 +136,13 @@ label {
 
 	&.custom-color-green input[type="radio"] {
 		&:checked + span i:after {
-			background-color: #53D76A;
+			background-color: $teal-accent;
 		}
 	}
 
 	&.custom-bgcolor-green input[type="radio"] {
 		&:checked + span i {
-			background-color: #53D76A;
+			background-color: $teal-accent;
 			
 			&:after {
 				background-color: $col-white;

@@ -1,8 +1,8 @@
 /* Variables for Light Theme Cards */
 $card-glass: rgba(255, 255, 255, 0.7); /* Translucent White */
 $card-hover-bg: #ffffff;               /* Solid White on hover */
-$text-primary: #1e293b;                /* Dark Slate text (for readability on white) */
-$teal-accent: #49c5b6;                 /* Your Brand Teal */
+$text-primary: #2CB67D;                /* Dark Slate text (for readability on white) */
+$teal-accent: #2CB67D;                 /* Your Brand Teal */
 $primary-glow: rgba(73, 197, 182, 0.3); /* Softer glow for light mode */
 
 .custom-card {
@@ -38,7 +38,7 @@ $primary-glow: rgba(73, 197, 182, 0.3); /* Softer glow for light mode */
   &:hover {
     transform: translateY(-8px);
     background: $card-hover-bg;
-    border-color: rgba(73, 197, 182, 0.5); /* Teal border on hover */
+    border-color: $teal-accent; /* Teal border on hover */
     
     /* Lifted shadow */
     box-shadow: 
@@ -50,7 +50,7 @@ $primary-glow: rgba(73, 197, 182, 0.3); /* Softer glow for light mode */
       /* Icon stays teal or gets slightly darker/brighter, 
          white icon on white card won't be visible */
       color: darken($teal-accent, 10%); 
-      filter: drop-shadow(0 4px 6px rgba(73, 197, 182, 0.4));
+      filter: drop-shadow(0 4px 6px $teal-accent);
     }
   }
 
