@@ -2,24 +2,23 @@ import React, { useEffect, useState } from "react";
 import Plot from "react-plotly.js";
 import { extractCoordinatesFromVTP } from "../utils/parseVTP";
 
-const VTP_FILE_URL = "/TemperatureContourExample.vtp"; 
+const VTP_FILE_URL = "/TemperatureContourExample.vtp";
 const API_BASE = "https://data-platform.cds-probono.eu/cvs/contour?rom=ROM_Kitchen2Dummy&contour=T";
 
 export default function GeometryHeatmap() {
-  const [radiation, setRadiation] = useState(3); 
-  const [geometry, setGeometry] = useState(null); 
+  const [radiation, setRadiation] = useState(3);
+  const [geometry, setGeometry] = useState(null);
   const [plotData, setPlotData] = useState(null);
   const [status, setStatus] = useState("Loading geometry...");
   const [isFetching, setIsFetching] = useState(false);
 
-  // 1. Load Geometry ONLY ONCE
+  // 1. Load Geometry (Once)
   useEffect(() => {
     async function loadGeometry() {
       try {
         const vtpRes = await fetch(VTP_FILE_URL);
         if (!vtpRes.ok) throw new Error("VTP file not found");
         const vtpText = await vtpRes.text();
-        // Parser returns { x: [...], z: [...] }
         const coords = extractCoordinatesFromVTP(vtpText);
         setGeometry(coords);
       } catch (err) {
@@ -30,7 +29,7 @@ export default function GeometryHeatmap() {
     loadGeometry();
   }, []);
 
-  // 2. Load Data whenever 'radiation' changes
+  // 2. Load Data (On Slider Change)
   useEffect(() => {
     if (!geometry) return;
 
@@ -43,12 +42,11 @@ export default function GeometryHeatmap() {
         const apiRes = await fetch(url);
         const apiJson = await apiRes.json();
         
-        if (!active) return; 
+        if (!active) return;
 
         let temperatures = [];
         const inputData = apiJson.data || apiJson;
         
-        // Parsing Logic
         const parseLine = (str) => {
           if (typeof str !== "string") return [];
           return str.replace(/^data\d+/, "").trim().split(/\s+/).map(Number);
@@ -66,16 +64,14 @@ export default function GeometryHeatmap() {
         }
 
         temperatures = temperatures.filter(t => typeof t === 'number' && !isNaN(t));
-        
         const count = Math.min(geometry.x.length, temperatures.length);
         if (count === 0) throw new Error("No valid data found.");
 
-        // --- FIX WAS HERE: Changed geometry.y to geometry.z ---
         const validX = geometry.x.slice(0, count);
-        const validZ = geometry.z.slice(0, count); 
+        const validZ = geometry.z.slice(0, count);
         const validT = temperatures.slice(0, count);
 
-        // --- GRID RECONSTRUCTION ---
+        // --- SMART GRID RECONSTRUCTION ---
         const getMedianStep = (arr) => {
             const sorted = [...new Set(arr)].sort((a, b) => a - b);
             const diffs = [];
@@ -101,14 +97,12 @@ export default function GeometryHeatmap() {
         const xAxis = Array(cols).fill(0).map((_, i) => minX + i * stepX);
         const yAxis = Array(rows).fill(0).map((_, i) => minZ + i * stepZ);
 
-        // Fill Grid
         for (let i = 0; i < count; i++) {
           const c = Math.round((validX[i] - minX) / stepX);
           const r = Math.round((validZ[i] - minZ) / stepZ);
-          
           if (r >= 0 && r < rows && c >= 0 && c < cols) {
              gridZ[r][c] = validT[i];
-             // Gap filler (radius 1 neighbor to prevent white lines)
+             // Gap filler
              if (c + 1 < cols && gridZ[r][c+1] === null) gridZ[r][c+1] = validT[i];
              if (r + 1 < rows && gridZ[r+1][c] === null) gridZ[r+1][c] = validT[i];
           }
@@ -120,7 +114,7 @@ export default function GeometryHeatmap() {
           z: gridZ, 
           type: "heatmap",
           colorscale: "RdBu",
-          reversescale: true,
+          reversescale: false, // <--- FIX 1: False ensures Red=Hot, Blue=Cold
           zsmooth: "best",
           connectgaps: false,
           colorbar: { title: 'Temp (°C)', thickness: 20 },
@@ -144,28 +138,19 @@ export default function GeometryHeatmap() {
 
   return (
     <div className="flex flex-col gap-4 w-full">
-      
-      {/* CONTROLS */}
       <div className="flex items-center justify-between bg-slate-50 p-3 rounded-lg border">
         <div className="flex items-center gap-4">
           <span className="text-sm font-semibold text-slate-700">Radiation Level:</span>
           <input 
-            type="range" 
-            min="1" 
-            max="10" 
-            step="1" 
-            value={radiation}
+            type="range" min="1" max="10" step="1" value={radiation}
             onChange={(e) => setRadiation(Number(e.target.value))}
             className="w-48 cursor-pointer"
           />
           <span className="font-mono text-slate-900 font-bold">{radiation}</span>
         </div>
-        <div className="text-xs text-slate-500">
-          {isFetching ? "Updating..." : "Live"}
-        </div>
+        <div className="text-xs text-slate-500">{isFetching ? "Updating..." : "Live"}</div>
       </div>
 
-      {/* PLOT */}
       <div className="w-full h-[600px] border rounded-xl shadow-sm bg-white overflow-hidden relative flex">
         <div className="flex-grow relative">
            {plotData ? (
@@ -174,8 +159,15 @@ export default function GeometryHeatmap() {
                layout={{
                  title: `Temperature Contour (Param: ${radiation})`,
                  autosize: true,
-                 xaxis: { title: "X (m)", showgrid: false, zeroline: false, scaleanchor: "y", scaleratio: 1, showticklabels: false },
-                 yaxis: { title: "Z (m)", showgrid: false, zeroline: false, showticklabels: false },
+                 xaxis: { 
+                    title: "X (m)", showgrid: false, zeroline: false, 
+                    scaleanchor: "y", scaleratio: 1, showticklabels: false 
+                 },
+                 yaxis: { 
+                    title: "Z (m)", showgrid: false, zeroline: false, 
+                    showticklabels: false, 
+                    autorange: "reversed" // <--- FIX 2: Flips the view (Top-Down)
+                 },
                  margin: { t: 50, l: 10, r: 10, b: 10 },
                  plot_bgcolor: "rgba(0,0,0,0)",
                  paper_bgcolor: "rgba(0,0,0,0)",
@@ -189,7 +181,6 @@ export default function GeometryHeatmap() {
            )}
         </div>
 
-        {/* REFERENCE IMAGE */}
         <div className="absolute bottom-4 left-4 w-64 border-2 border-slate-200 shadow-xl rounded-lg overflow-hidden bg-white z-10">
            <div className="bg-slate-100 border-b text-slate-500 text-[10px] px-2 py-1 font-bold uppercase tracking-wider">
              3D Context Reference
