@@ -45,7 +45,7 @@ import Cvs from './views/Cvs';
 function App() {
   return (
     <>
-    <TokenDebugger />
+    
     <Router>
        <ToastContainer position="top-center" autoClose={2000} hideProgressBar closeOnClick />
       <Routes>
