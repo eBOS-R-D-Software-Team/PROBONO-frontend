@@ -173,8 +173,7 @@ export default function ToolDescriptions() {
     <div className="list-of-tools">
       <div className="breadcrumb">
         <a href="/">Home</a>
-        <SlArrowRight /> <a href="/">List of tools</a>
-        <SlArrowRight /> <span>Descriptions</span>
+        <SlArrowRight /> <span>Tools Description</span>
       </div>
 
       {/* Filter bar */}

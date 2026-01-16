@@ -6,6 +6,7 @@ import {
   ImOffice,
   ImSun,
   ImLoop2,
+  ImCompass, ImEarth,
 } from "react-icons/im";
 import { FaBolt, FaGasPump, FaTruck } from "react-icons/fa";
 import {
@@ -117,6 +118,18 @@ export const labMetrics = {
       title: "ProFormalise",
       icon: <ImOffice />,
       path: "/heatmap-aurahus",
+    },
+    {
+      id: 4,
+      title: "SEEDS",
+      icon: <ImEarth />,
+      path: "",
+    },
+    {
+      id: 5,
+      title: "ProBIM Explorer",
+      icon: <ImCompass />,
+      path: "",
     },
     
   ],

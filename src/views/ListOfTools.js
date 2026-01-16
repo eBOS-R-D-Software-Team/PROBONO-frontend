@@ -1,6 +1,6 @@
 import React from 'react';
 import ToolCard from '../components/ToolCard'; // Import the new component
-import { ImAirplane, ImPower, ImWrench, ImCog, ImStatsDots, ImHammer, ImLab, ImSun } from "react-icons/im";
+import { ImAirplane, ImPower, ImWrench, ImCog, ImStatsDots, ImHammer, ImLab, ImSun, ImCompass, ImEarth } from "react-icons/im";
 import { SlArrowRight } from "react-icons/sl";
 import EnergyClassLogo from '../assets/images/Energy_class_simulation_icon.png';
  // Ensure this import exists
@@ -26,6 +26,8 @@ const ListOfTools = () => {
     { title: 'CMS Optimization tool', link: 'https://probono-dev.stamtech.dev/sign-in?redirectURL=%2Fconstruction-sites', icon: ImWrench },
     { title: 'Vcomfort sensor tool', link: '/cvs', icon: ImSun },
     { title: '3D model Viewer', link: '/paraview-vis', icon: ImPower },
+    { title: 'SEEDS', link: '', icon:ImEarth  },
+    { title: ' ProBIM Explorer', link: '', icon: ImCompass },
   ];
 
   return (

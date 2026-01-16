@@ -2,6 +2,7 @@
 import React from "react";
 import SeriesChart from "../components/SeriesChart";
 import GeometryHeatmap from "../components/GeometryHeatmap";
+import Geometry3DViewer from "../components/Geometry3DViewer";
 import { useLocation } from "react-router-dom";
 import { SlArrowRight } from "react-icons/sl";
 
@@ -24,7 +25,7 @@ export default function Cvs() {
       {/* Header */}
       <header className="page-header">
         <h1 className="title">Vcomfort Sensor</h1>
-        <p className="subtitle">Validating outputs with high-quality 2D visuals</p>
+        <p className="subtitle">Validating outputs with high-quality 3D visuals</p>
       </header>
 
       {/* Content Layout */}
@@ -37,7 +38,7 @@ export default function Cvs() {
 
         {/* Chart 2 Container */}
         <section className="chart-card">
-          <GeometryHeatmap />
+          <Geometry3DViewer />
         </section>
 
       </div>
