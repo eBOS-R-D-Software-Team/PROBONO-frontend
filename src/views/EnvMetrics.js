@@ -20,18 +20,25 @@ const EnvMetrics = () => {
   const metrics = labMetrics[labId] || [];
 
   const handleMetricClick = (metric) => {
-    // Replace :labId placeholder if present in path
-    const path = metric.path.includes(":labId")
-      ? metric.path.replace(":labId", labId)
-      : metric.path;
+  // If it's an external link (http/https), open in new tab
+  if (typeof metric.path === "string" && /^https?:\/\//.test(metric.path)) {
+    window.open(metric.path, "_blank", "noopener,noreferrer");
+    return;
+  }
 
-    navigate(path, {
-      state: {
-        labId: numericLabId,
-        labName,
-      },
-    });
-  };
+  // Replace :labId placeholder if present in path (internal routes)
+  const path = metric.path?.includes(":labId")
+    ? metric.path.replace(":labId", labId)
+    : metric.path;
+
+  navigate(path, {
+    state: {
+      labId: numericLabId,
+      labName,
+    },
+  });
+};
+
 
   return (
     <div className="env-metrics-page">
