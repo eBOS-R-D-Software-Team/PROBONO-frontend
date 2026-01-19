@@ -3,6 +3,8 @@ import ToolCard from '../components/ToolCard'; // Import the new component
 import { ImAirplane, ImPower, ImWrench, ImCog, ImStatsDots, ImHammer, ImLab, ImSun, ImCompass, ImEarth } from "react-icons/im";
 import { SlArrowRight } from "react-icons/sl";
 import EnergyClassLogo from '../assets/images/Energy_class_simulation_icon.png';
+import DownloadToolCard from "../components/DownloadToolCard";
+import { ImDownload } from "react-icons/im";
  // Ensure this import exists
 
 const ListOfTools = () => {
@@ -40,6 +42,9 @@ const ListOfTools = () => {
         <span className="crumb-current">Solutions Catalogue</span>
       </div>
 
+     
+  
+
       <div className="tools-grid-container">
         {tools.map((tool, index) => (
           <ToolCard
@@ -49,6 +54,13 @@ const ListOfTools = () => {
             icon={tool.icon}
           />
         ))}
+        {/* ✅ NEW: Cartif TRNSYS ZIP download card */}
+  <DownloadToolCard
+    title="Cartif TRNSYS"
+    icon={ImDownload}
+    filename="TRNSYS_PROBONO.zip"
+    communityId="/public"
+  />
       </div>
     </div>
   );

@@ -1,0 +1,55 @@
+.tool-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 28px 24px;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.tool-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.1);
+}
+
+.tool-card-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2fb26a; /* PROBONO green */
+}
+
+.tool-card-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 6px;
+}
+
+.tool-card-sub {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.tool-card-cta {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2fb26a;
+}
+
+/* Spinner */
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid rgba(47,178,106,0.2);
+  border-top: 3px solid #2fb26a;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
