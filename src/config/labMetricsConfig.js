@@ -123,7 +123,7 @@ export const labMetrics = {
       id: 4,
       title: "SEEDS",
       icon: <ImEarth />,
-      path: "",
+      path: "https://seeds.cds-probono.eu/",
     },
     {
       id: 5,

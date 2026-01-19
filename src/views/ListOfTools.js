@@ -26,7 +26,7 @@ const ListOfTools = () => {
     { title: 'CMS Optimization tool', link: 'https://probono-dev.stamtech.dev/sign-in?redirectURL=%2Fconstruction-sites', icon: ImWrench },
     { title: 'Vcomfort sensor tool', link: '/cvs', icon: ImSun },
     { title: '3D model Viewer', link: '/paraview-vis', icon: ImPower },
-    { title: 'SEEDS', link: '', icon:ImEarth  },
+    { title: 'SEEDS', link: 'https://seeds.cds-probono.eu/', icon:ImEarth  },
     { title: ' ProBIM Explorer', link: '', icon: ImCompass },
   ];
 
