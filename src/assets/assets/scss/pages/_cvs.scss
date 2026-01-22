@@ -9,6 +9,9 @@ $shadow-hover: 0 20px 40px -5px rgba(0, 0, 0, 0.1);
 $border-light: rgba(255, 255, 255, 0.6);
 
 .cvs-page {
+  .chart-card--viewer{
+    padding: 12px;
+  }
   padding: 40px;
   background-color: $bg-light;
   min-height: 100vh;

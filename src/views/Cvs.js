@@ -37,7 +37,7 @@ export default function Cvs() {
         </section>
 
         {/* Chart 2 Container */}
-        <section className="chart-card">
+        <section className="chart-card chart-card--viewer">
           <Geometry3DViewer />
         </section>
 
