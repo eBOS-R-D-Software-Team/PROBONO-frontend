@@ -154,7 +154,7 @@ useEffect(() => {
 
     {/* Sub info */}
     <p className="tool-card-sub">
-  {loading ? "Downloading… (this may take a few minutes)" : allowed ? "ZIP download" : `Group: ${communityId}`}
+  {loading ? "Downloading… (this may take a few minutes)" : allowed ? "" : `Group: ${communityId}`}
 </p>
 
 

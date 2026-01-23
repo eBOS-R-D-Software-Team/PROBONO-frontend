@@ -56,7 +56,7 @@ const ListOfTools = () => {
         ))}
         {/* ✅ NEW: Cartif TRNSYS ZIP download card */}
   <DownloadToolCard
-    title="Cartif TRNSYS"
+    title="GeoNorte-DSS"
     icon={ImDownload}
     filename="TRNSYS_PROBONO.zip"
     communityId="/public"
