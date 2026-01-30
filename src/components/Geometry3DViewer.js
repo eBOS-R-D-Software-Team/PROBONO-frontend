@@ -48,14 +48,19 @@ export default function Geometry3DViewer() {
     buildingActor.getProperty().setOpacity(0.3); 
     buildingActor.getProperty().setColor(0.7, 0.7, 0.7); 
 
-    // 4. Style: Temperature Data
+    // 4. Style: Temperature Data (High Quality)
     const lut = vtkColorTransferFunction.newInstance();
+    lut.setNumberOfValues(2048); // High-res gradient steps
     lut.addRGBPoint(15.0, 0.23, 0.29, 0.75); // Blue
     lut.addRGBPoint(20.0, 0.90, 0.96, 0.98); // White
     lut.addRGBPoint(25.0, 0.70, 0.01, 0.14); // Red
     
     dataMapper.setLookupTable(lut);
     dataMapper.setUseLookupTableScalarRange(true);
+    
+    // *** PARAVIEW SMOOTHNESS FIX ***
+    dataMapper.setInterpolateScalarsBeforeMapping(true);
+
     dataActor.setMapper(dataMapper);
 
     // 5. Load Data
@@ -78,11 +83,8 @@ export default function Geometry3DViewer() {
       renderer.resetCamera();
       const camera = renderer.getActiveCamera();
       
-      // Higher angle (60 degrees) fills the screen better for floor plans
       camera.elevation(60); 
       camera.azimuth(-20);
-      
-      // Stronger Zoom to remove empty borders
       camera.zoom(2.0); 
       
       renderWindow.render();
@@ -297,6 +299,4 @@ export default function Geometry3DViewer() {
     </div>
   </div>
 );
-
-
 }

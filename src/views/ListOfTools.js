@@ -1,16 +1,51 @@
 import React from 'react';
-import ToolCard from '../components/ToolCard'; // Import the new component
-import { ImAirplane, ImPower, ImWrench, ImCog, ImStatsDots, ImHammer, ImLab, ImSun, ImCompass, ImEarth } from "react-icons/im";
+import { useKeycloak } from '@react-keycloak/web'; // Assuming you use this for Keycloak
+import ToolCard from '../components/ToolCard';
+import {
+  ImAirplane, ImPower, ImWrench, ImCog,
+  ImStatsDots, ImHammer, ImLab, ImSun,
+  ImCompass, ImEarth, ImDownload
+} from "react-icons/im";
 import { SlArrowRight } from "react-icons/sl";
 import EnergyClassLogo from '../assets/images/Energy_class_simulation_icon.png';
 import DownloadToolCard from "../components/DownloadToolCard";
-import { ImDownload } from "react-icons/im";
- // Ensure this import exists
-
+ 
 const ListOfTools = () => {
+  const { keycloak } = useKeycloak();
+ 
+  const handleToolClick = (e, tool) => {
+    // Only apply the postMessage logic for the Knowledge-base tool
+    if (tool.link === 'https://www.probonoh2020kb.eu/') {
+      e.preventDefault();
+ 
+      // 1. Open the new tab
+      const secondWindow = window.open(tool.link, '_blank');
+ 
+      // 2. Handshake / Message Logic
+      // We use an interval because the new tab takes a moment to load its listeners
+      const messageInterval = setInterval(() => {
+        if (secondWindow && keycloak?.tokenParsed?.email) {
+          secondWindow.postMessage(
+            {
+              email: keycloak.tokenParsed.email,
+              type: 'connectedInHmi'
+            },
+            'https://www.probonoh2020kb.eu/' // Target origin
+          );
+          
+          console.log("Message sent to Knowledge-base");
+          clearInterval(messageInterval); // Stop trying once sent
+        }
+      }, 1000);
+ 
+      // Safety: Clear interval after 10 seconds so it doesn't run forever if tab fails
+      setTimeout(() => clearInterval(messageInterval), 10000);
+    }
+  };
+ 
   const tools = [
     { title: 'Demolition Tool', link: 'https://probono.usc.es/', icon: ImHammer },
-    { title: 'Open knowledge-base', link: 'https://www.probonoh2020kb.eu', icon: ImStatsDots },
+    { title: 'Open knowledge-base', link: 'https://www.probonoh2020kb.eu/', icon: ImStatsDots },
     { title: 'Ventilation Assessment Tool', link: 'https://v24121.ita.es/VentilationTool_HMI/', icon: ImAirplane },
     { title: 'Demand and Response Platform Building Layer – DaRA', link: 'http://dara.tpf.be/', icon: ImCog },
     {
@@ -28,42 +63,43 @@ const ListOfTools = () => {
     { title: 'CMS Optimization tool', link: 'https://probono-dev.stamtech.dev/sign-in?redirectURL=%2Fconstruction-sites', icon: ImWrench },
     { title: 'Vcomfort sensor tool', link: '/cvs', icon: ImSun },
     { title: '3D model Viewer', link: '/paraview-vis', icon: ImPower },
-    { title: 'SEEDS', link: 'https://seeds.cds-probono.eu/', icon:ImEarth  },
+    { title: 'SEEDS', link: 'https://seeds.cds-probono.eu/', icon: ImEarth },
     { title: ' ProBIM Explorer', link: '', icon: ImCompass },
   ];
-
+ 
   return (
     <div className="list-of-tools-page">
-      
       {/* Sleek Breadcrumb */}
       <div className="breadcrumb-container">
         <a href="/" className="crumb-link">Home</a>
         <SlArrowRight className="crumb-arrow" />
         <span className="crumb-current">Solutions Catalogue</span>
       </div>
-
-     
-  
-
+ 
       <div className="tools-grid-container">
         {tools.map((tool, index) => (
-          <ToolCard
+          <div
             key={index}
-            title={tool.title}
-            link={tool.link}
-            icon={tool.icon}
-          />
+            onClick={(e) => handleToolClick(e, tool)}
+            style={{ cursor: 'pointer' }}
+          >
+            <ToolCard
+              title={tool.title}
+              link={tool.link}
+              icon={tool.icon}
+            />
+          </div>
         ))}
-        {/* ✅ NEW: Cartif TRNSYS ZIP download card */}
-  <DownloadToolCard
-    title="GeoNorte-DSS"
-    icon={ImDownload}
-    filename="TRNSYS_PROBONO.zip"
-    communityId="/public"
-  />
+ 
+        <DownloadToolCard
+          title="GeoNorte-DSS"
+          icon={ImDownload}
+          filename="TRNSYS_PROBONO.zip"
+          communityId="/public"
+        />
       </div>
     </div>
   );
 };
-
+ 
 export default ListOfTools;
