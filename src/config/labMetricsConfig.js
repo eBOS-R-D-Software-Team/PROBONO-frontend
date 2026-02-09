@@ -129,7 +129,7 @@ export const labMetrics = {
       id: 5,
       title: "ProBIM Explorer",
       icon: <ImCompass />,
-      path: "",
+      path: "https://probim-explorer.cds-probono.eu",
     },
     
   ],

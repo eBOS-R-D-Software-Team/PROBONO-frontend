@@ -64,7 +64,7 @@ const ListOfTools = () => {
     { title: 'Vcomfort sensor tool', link: '/cvs', icon: ImSun },
     { title: '3D model Viewer', link: '/paraview-vis', icon: ImPower },
     { title: 'SEEDS', link: 'https://seeds.cds-probono.eu/', icon: ImEarth },
-    { title: ' ProBIM Explorer', link: '', icon: ImCompass },
+    { title: ' ProBIM Explorer', link: 'https://probim-explorer.cds-probono.eu', icon: ImCompass },
   ];
  
   return (
