@@ -19,10 +19,9 @@ import {
 } from "chart.js";
 import { SlArrowRight } from "react-icons/sl";
 import { Line } from "react-chartjs-2";
-import { useLocation } from "react-router-dom";
 
 // ✅ Ant Design
-import { notification, Spin } from "antd";
+import { message, Spin } from "antd";
 
 ChartJS.register(
   LineElement,
@@ -241,10 +240,10 @@ const HEGR_AVAILABLE_COLUMNS = [
   "Carbon Equivalent:Facility [kg](Hourly) ",
 ];
 
+
 export default function HegrEnergyPlusPanel() {
   const dispatch = useDispatch();
   const hegr = useSelector((state) => state.hegr);
-  const location = useLocation();
 
   const {
     taskId,
@@ -267,34 +266,25 @@ export default function HegrEnergyPlusPanel() {
   // track which taskId the UI considers as "current timeseries"
   const [timeseriesTaskId, setTimeseriesTaskId] = useState(null);
 
-  // ✅ AntD notifications setup (center-ish)
-  const [api, contextHolder] = notification.useNotification();
+  // ✅ small, clean toasts (NOT the huge notification panel)
+  const [msgApi, msgContext] = message.useMessage();
 
-  const showToast = (message, type = "info") => {
-    // type: "success" | "info" | "warning" | "error"
-    api[type]({
-      message,
-      placement: "top", // closest thing to "center" without a modal
-      duration: 2.2,
-      style: {
-        width: 520,
-        marginTop: 140, // pushes it towards the center
-        borderRadius: 12,
-      },
+  const showToast = (content, type = "info") => {
+    msgApi.open({
+      type,
+      content,
+      duration: 2,
     });
   };
 
-  // ✅ Loader overlay conditions
-  const isSimRunning = status === "pending" || status === "running";
-  const showOverlay = isStarting || isSimRunning || isFetchingTimeseries;
-
-  const overlayText = isStarting
-    ? "Starting simulation…"
-    : isSimRunning
-    ? "Simulation is running…"
-    : isFetchingTimeseries
-    ? "Loading timeseries…"
-    : "";
+  // configure message position + avoid stacking spam
+  useEffect(() => {
+    message.config({
+      top: 90, // nice under the top bar
+      maxCount: 2,
+      duration: 2,
+    });
+  }, []);
 
   const requestedColumns = useMemo(
     () =>
@@ -305,6 +295,17 @@ export default function HegrEnergyPlusPanel() {
     [requestedColumnsRaw]
   );
 
+  const isSimRunning = status === "pending" || status === "running";
+  const showOverlay = isStarting || isSimRunning || isFetchingTimeseries;
+
+  const overlayText = isStarting
+    ? "Starting simulation…"
+    : isSimRunning
+    ? "Simulation is running…"
+    : isFetchingTimeseries
+    ? "Retrieving simulated data…"
+    : "";
+
   const handleStart = () => {
     // invalidate old chart/timeseries context so we don't need refresh
     setTimeseriesTaskId(null);
@@ -312,10 +313,10 @@ export default function HegrEnergyPlusPanel() {
     setTimeKey("Date/Time");
 
     dispatch(startHegrSimulation());
-    showToast("Simulation started on HEGR API…", "info");
+    showToast("Simulation started…", "info");
   };
 
-  // Polling effect: whenever we have a taskId AND status is pending/running
+  // Polling effect
   useEffect(() => {
     if (!taskId) return;
     if (status !== "pending" && status !== "running") return;
@@ -338,26 +339,22 @@ export default function HegrEnergyPlusPanel() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [taskId, status]);
 
-  const handleFetchTimeseries = () => {
+  const handleRetrieveData = () => {
     if (!taskId) return;
 
-    // bind next timeseries response to THIS task
     setTimeseriesTaskId(taskId);
-
-    // force re-select var after new data arrives
     setSelectedVar(null);
 
-    showToast("Fetching timeseries JSON…", "info");
+    showToast("Retrieving simulated data…", "info");
     dispatch(fetchHegrTimeseries({ taskId, columns: requestedColumns }));
   };
 
-  // When new timeseries arrive, set timeKey/selectedVar safely for NEW columns
+  // When new timeseries arrive, set timeKey/selectedVar safely
   useEffect(() => {
     if (!timeseries || timeseries.length === 0) return;
 
     const keys = Object.keys(timeseries[0]);
 
-    // 1) Ensure timeKey exists
     let resolvedTimeKey = timeKey;
     if (!keys.includes(resolvedTimeKey)) {
       resolvedTimeKey =
@@ -365,34 +362,26 @@ export default function HegrEnergyPlusPanel() {
       setTimeKey(resolvedTimeKey);
     }
 
-    // 2) Ensure selectedVar exists
     if (!selectedVar || !keys.includes(selectedVar)) {
       const varCandidate = keys.find((k) => k !== resolvedTimeKey) || keys[0];
       setSelectedVar(varCandidate);
     }
 
-    showToast("Timeseries loaded successfully.", "success");
+    showToast("Data loaded.", "success");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeseries]);
 
-  // show toast on fetch error
   useEffect(() => {
-    if (timeseriesError) {
-      showToast("Failed to load timeseries. Check columns.", "error");
-    }
+    if (timeseriesError) showToast("Failed to load data. Check columns.", "error");
   }, [timeseriesError]);
 
-  // show toast on status error
   useEffect(() => {
-    if (statusError) {
-      showToast(`Status error: ${statusError}`, "error");
-    }
+    if (statusError) showToast(`Status error: ${statusError}`, "error");
   }, [statusError]);
 
-  // show toast when simulation completes / fails
   useEffect(() => {
     if (status === "completed") {
-      showToast("Simulation completed. You can fetch timeseries now.", "success");
+      showToast("Simulation completed. You can retrieve data now.", "success");
     } else if (status === "failed") {
       showToast("Simulation failed. Please try again.", "error");
     }
@@ -427,24 +416,22 @@ export default function HegrEnergyPlusPanel() {
   }, [timeseries, selectedVar, timeKey]);
 
   const handleCopyColumn = (colName) => {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
+    if (navigator.clipboard?.writeText) {
       navigator.clipboard
         .writeText(colName)
-        .then(() => {
-          showToast("Column name copied to clipboard.", "success");
-        })
-        .catch(() => {
-          showToast("Could not copy column name.", "error");
-        });
+        .then(() => showToast("Copied.", "success"))
+        .catch(() => showToast("Could not copy.", "error"));
     } else {
-      showToast("Clipboard not supported in this browser.", "warning");
+      showToast("Clipboard not supported.", "warning");
     }
   };
+const canRetrieve =
+  !!taskId && status === "completed" && !isFetchingTimeseries && !isSimRunning;
 
   return (
     <div className="hegr-panel">
-      {/* ✅ AntD notification holder */}
-      {contextHolder}
+      {/* ✅ AntD message holder */}
+      {msgContext}
 
       {/* ✅ Fullscreen loader overlay */}
       {showOverlay && (
@@ -452,7 +439,7 @@ export default function HegrEnergyPlusPanel() {
           style={{
             position: "fixed",
             inset: 0,
-            background: "rgba(0,0,0,0.35)",
+            background: "rgba(0,0,0,0.30)",
             backdropFilter: "blur(2px)",
             zIndex: 9999,
             display: "flex",
@@ -464,48 +451,54 @@ export default function HegrEnergyPlusPanel() {
           <div
             style={{
               background: "white",
-              borderRadius: 16,
-              padding: "22px 26px",
-              minWidth: 320,
-              maxWidth: 520,
-              width: "min(520px, 92vw)",
-              boxShadow: "0 12px 40px rgba(0,0,0,0.25)",
+              borderRadius: 14,
+              padding: "18px 22px",
+              width: "min(420px, 92vw)",
+              boxShadow: "0 12px 40px rgba(0,0,0,0.22)",
               textAlign: "center",
             }}
           >
             <Spin size="large" />
-            <div style={{ marginTop: 14, fontSize: 15, fontWeight: 600 }}>
+            <div style={{ marginTop: 12, fontSize: 14, fontWeight: 600 }}>
               {overlayText}
             </div>
-            <div style={{ marginTop: 6, opacity: 0.7, fontSize: 13 }}>
+            <div style={{ marginTop: 6, opacity: 0.7, fontSize: 12.5 }}>
               Please don’t close this tab.
             </div>
           </div>
         </div>
       )}
 
-      {/* Sleek Breadcrumb */}
+      {/* Breadcrumb */}
       <div className="breadcrumb-container">
-        <a href="/" className="crumb-link">
-          Home
-        </a>
+        <a href="/" className="crumb-link">Home</a>
         <SlArrowRight className="crumb-arrow" />
-        <a href="/tools" className="crumb-link">
-          Solutions Catalogue
-        </a>
+        <a href="/tools" className="crumb-link">Solutions Catalogue</a>
         <SlArrowRight className="crumb-arrow" />
         <span className="crumb-current">HEGR EnergyPlus ResultViewer</span>
       </div>
 
-      {/* Top controls */}
+      {/* ✅ Top row: Columns+Start | Status+TaskID+Retrieve | Plot selectors */}
       <div className="hegr-panel__top">
-        {/* Start / status card */}
-        <div className="hegr-panel__card hegr-panel__status">
+        {/* Card 1: Columns + Start */}
+        <div className="hegr-panel__card">
+          <div className="hegr-panel__card-title" style={{ fontWeight: 700, marginBottom: 10 }}>
+            Simulation setup
+          </div>
+
+          <label className="hegr-panel__label">Columns to simulate (one per line)</label>
+          <textarea
+            className="hegr-panel__textarea"
+            value={requestedColumnsRaw}
+            onChange={(e) => setRequestedColumnsRaw(e.target.value)}
+            rows={8}
+          />
+
           <button
             className="hegr-panel__button hegr-panel__button--primary-wide"
             onClick={handleStart}
             disabled={isStarting || isSimRunning}
-            title={isSimRunning ? "Simulation is running" : ""}
+            style={{ marginTop: 10 }}
           >
             {isStarting
               ? "Starting simulation..."
@@ -514,14 +507,23 @@ export default function HegrEnergyPlusPanel() {
               : "Start simulation"}
           </button>
 
+          <div className="hegr-panel__hint" style={{ marginTop: 8 }}>
+            Tip: pick columns from the table below and paste them here.
+          </div>
+        </div>
+
+        {/* Card 2: Status + TaskId + Retrieve */}
+        <div className="hegr-panel__card hegr-panel__status">
+          <div className="hegr-panel__card-title" style={{ fontWeight: 700, marginBottom: 10 }}>
+            Execution status
+          </div>
+
           <div className="hegr-panel__status-label">Simulation status</div>
           <div className="hegr-panel__status-badge">
             <span
               className={
                 "hegr-panel__status-dot" +
-                (status === "pending"
-                  ? " hegr-panel__status-dot--pending"
-                  : status === "running"
+                (status === "pending" || status === "running"
                   ? " hegr-panel__status-dot--pending"
                   : status === "failed"
                   ? " hegr-panel__status-dot--failed"
@@ -534,54 +536,42 @@ export default function HegrEnergyPlusPanel() {
           </div>
 
           {taskId && (
-            <div className="hegr-panel__task-id">
+            <div className="hegr-panel__task-id" style={{ marginTop: 12 }}>
               <span className="hegr-panel__label">Task ID</span>
-              <div>{taskId}</div>
+              <div style={{ wordBreak: "break-all" }}>{taskId}</div>
             </div>
           )}
 
-          {isPolling && <div className="hegr-panel__hint">Checking status…</div>}
-          {statusError && (
-            <div className="hegr-panel__error">Error: {statusError}</div>
-          )}
-        </div>
+          {isPolling && <div className="hegr-panel__hint" style={{ marginTop: 8 }}>Checking status…</div>}
+          {statusError && <div className="hegr-panel__error">Error: {statusError}</div>}
 
-        {/* Column selection + fetch button */}
-        <div className="hegr-panel__card">
-          <label className="hegr-panel__label">
-            Columns to request (one per line)
-          </label>
-          <textarea
-            className="hegr-panel__textarea"
-            value={requestedColumnsRaw}
-            onChange={(e) => setRequestedColumnsRaw(e.target.value)}
-            rows={7}
-          />
-
-          <button
-            className="hegr-panel__button hegr-panel__button--ghost hegr-panel__button--full"
-            onClick={handleFetchTimeseries}
-            disabled={
-              !taskId || status !== "completed" || isFetchingTimeseries || isSimRunning
-            }
-          >
-            {isFetchingTimeseries
-              ? "Loading timeseries..."
-              : "Fetch timeseries JSON"}
-          </button>
+        <button
+  className={
+    "hegr-panel__button hegr-panel__button--full " +
+    (status === "completed"
+      ? "hegr-panel__button--primary-wide" // ✅ blue
+      : "hegr-panel__button--ghost")       // ✅ grey outline
+  }
+  onClick={handleRetrieveData}
+  disabled={!canRetrieve}
+  style={{ marginTop: 14 }}
+>
+  {isFetchingTimeseries ? "Retrieving data..." : "Retrieve simulated data"}
+</button>
 
           {timeseriesError && (
-            <div className="hegr-panel__error">Error: {timeseriesError}</div>
+            <div className="hegr-panel__error" style={{ marginTop: 8 }}>
+              Error: {timeseriesError}
+            </div>
           )}
-
-          <div className="hegr-panel__hint">
-            Tip: use the list of available columns below and copy any variable
-            name you need.
-          </div>
         </div>
 
-        {/* Variable selection */}
+        {/* Card 3: Plot selection */}
         <div className="hegr-panel__card hegr-panel__card--selector">
+          <div className="hegr-panel__card-title" style={{ fontWeight: 700, marginBottom: 10 }}>
+            Plot controls
+          </div>
+
           <div>
             <span className="hegr-panel__label">Time column</span>
             <select
@@ -590,8 +580,7 @@ export default function HegrEnergyPlusPanel() {
               onChange={(e) => setTimeKey(e.target.value)}
               disabled={!timeseries || !timeseries.length}
             >
-              {timeseries &&
-                timeseries.length > 0 &&
+              {timeseries?.length > 0 &&
                 Object.keys(timeseries[0]).map((k) => (
                   <option key={k} value={k}>
                     {k}
@@ -600,7 +589,7 @@ export default function HegrEnergyPlusPanel() {
             </select>
           </div>
 
-          <div>
+          <div style={{ marginTop: 12 }}>
             <span className="hegr-panel__label">Variable to plot</span>
             <select
               className="hegr-panel__select"
@@ -614,14 +603,14 @@ export default function HegrEnergyPlusPanel() {
                 </option>
               ))}
             </select>
-            <div className="hegr-panel__hint">
-              First load timeseries, then pick any column to visualize.
+            <div className="hegr-panel__hint" style={{ marginTop: 6 }}>
+              Retrieve data first, then choose a variable to visualize.
             </div>
           </div>
         </div>
       </div>
 
-      {/* Chart: only show if timeseries is for current taskId */}
+      {/* Chart */}
       {chartData && timeseriesTaskId === taskId && (
         <div className="hegr-panel__chart-card hegr-panel__chart-card--large">
           <Line
@@ -630,9 +619,7 @@ export default function HegrEnergyPlusPanel() {
               responsive: true,
               maintainAspectRatio: false,
               plugins: { legend: { display: true } },
-              scales: {
-                x: { ticks: { maxRotation: 45, minRotation: 45 } },
-              },
+              scales: { x: { ticks: { maxRotation: 45, minRotation: 45 } } },
             }}
           />
         </div>
@@ -642,8 +629,7 @@ export default function HegrEnergyPlusPanel() {
       <div className="hegr-panel__table-card">
         <h3>Available columns from HEGR simulation</h3>
         <p className="hegr-panel__hint" style={{ marginBottom: "0.4rem" }}>
-          Click “Copy” on any row and paste it into the textbox above to request
-          that variable.
+          Click “Copy” on any row and paste it into “Columns to simulate”.
         </p>
         <div className="hegr-panel__table-scroll">
           <table className="hegr-panel__table">
