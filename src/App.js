@@ -36,6 +36,7 @@ import CvsSeries2D from './views/CvsSeries2D';
 import ContourHeatmap2D from './views/ContourHeatmap2D';
 import TokenDebugger from './components/TokenDebugger';
 import DubPetrolDatavis from './views/DubPetrolDatavis';
+import HegrEnergyPlusPanel from "./components/HegrEnergyPlusPanel";
 import Cvs from './views/Cvs';
 
 
@@ -88,6 +89,7 @@ function App() {
               </MainLayout>
             }
           />
+          <Route path="/hegr-energyplus" element={<MainLayout><HegrEnergyPlusPanel /></MainLayout>} />
           <Route
             path="/data-visualizations"
             element={

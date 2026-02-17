@@ -18,6 +18,7 @@ import dubSolarReducer from '../reducers/dubSolarSlice';
 import dubWoodChips35Reducer from '../reducers/dubWoodChips35Slice';
 import smartcitizenReducer from '../reducers/smartcitizenSlice';
 import influx from '../reducers/influxExplorerDirectSlice';
+import hegrReducer from '../reducers/hegrSlice';
 
 
 const store = configureStore({
@@ -40,6 +41,7 @@ const store = configureStore({
     dubWoodChips35: dubWoodChips35Reducer,
     smartcitizen: smartcitizenReducer,
     influx: influx,
+    hegr: hegrReducer,
 
     
 

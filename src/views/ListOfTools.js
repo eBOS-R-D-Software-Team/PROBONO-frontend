@@ -65,6 +65,7 @@ const ListOfTools = () => {
     { title: '3D model Viewer', link: '/paraview-vis', icon: ImPower },
     { title: 'SEEDS', link: 'https://seeds.cds-probono.eu/', icon: ImEarth },
     { title: ' ProBIM Explorer', link: 'https://probim-explorer.cds-probono.eu', icon: ImCompass },
+    { title: ' HEGR EnergyPlus Resultviewer', link: '/hegr-energyplus', icon: ImLab },
   ];
  
   return (

@@ -1,0 +1,394 @@
+.hegr-panel {
+   .breadcrumb-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0; /* keep arrows spacing controlled */
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+    padding-left: 10px;
+
+    .crumb-link {
+      text-decoration: none;
+      color: #6b7280;
+      font-weight: 500;
+      transition: color 0.2s;
+
+      &:hover {
+        color: #14b8a6; /* teal accent */
+      }
+    }
+
+    /* Works for SlArrowRight component (SVG) */
+    .crumb-arrow {
+      margin: 0 12px;
+      font-size: 10px;
+      color: #cbd5e1;
+      flex-shrink: 0;
+    }
+
+    .crumb-current {
+      color: #14b8a6;
+      font-weight: 600;
+    }
+  }
+  padding: 1.5rem 1.75rem 2.5rem;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background: var(--hegr-bg, #f5f7fb);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  color: #1f2933;
+}
+
+.hegr-panel__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #111827;
+  }
+
+  .hegr-panel__subtitle {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #6b7280;
+  }
+}
+
+/* Top area: 3 cards that use the whole width */
+.hegr-panel__top {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  gap: 1.25rem;
+  align-items: stretch;
+
+  @media (max-width: 1200px) {
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+  }
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Generic card style */
+.hegr-panel__card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Selector card spacing */
+.hegr-panel__card--selector {
+  justify-content: space-between;
+}
+
+/* Status / start block */
+.hegr-panel__status-label {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b7280;
+  margin-top: 0.4rem;
+  margin-bottom: 0.2rem;
+}
+
+.hegr-panel__status-value {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.hegr-panel__task-id {
+  font-size: 0.78rem;
+  color: #6b7280;
+  word-break: break-all;
+}
+
+.hegr-panel__status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 999px;
+  padding: 0.18rem 0.7rem;
+  font-size: 0.8rem;
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.hegr-panel__status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #9ca3af;
+}
+
+.hegr-panel__status-dot--ok {
+  background: #22c55e;
+}
+
+.hegr-panel__status-dot--pending {
+  background: #eab308;
+}
+
+.hegr-panel__status-dot--failed {
+  background: #ef4444;
+}
+
+/* Buttons */
+.hegr-panel__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  border: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, opacity 0.1s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.4);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(37, 99, 235, 0.35);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
+    box-shadow: none;
+    transform: none;
+    background: #9ca3af;
+  }
+}
+
+/* Make the main “Start simulation” button wide */
+.hegr-panel__button--primary-wide {
+  width: 100%;
+  justify-content: center;
+}
+
+/* Secondary button variant */
+.hegr-panel__button--ghost {
+  background: transparent;
+  color: #1f2933;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  box-shadow: none;
+
+  &:hover {
+    background: rgba(148, 163, 184, 0.12);
+  }
+
+  &:active {
+    background: rgba(148, 163, 184, 0.18);
+  }
+}
+
+/* full-width button */
+.hegr-panel__button--full {
+  width: 100%;
+}
+
+/* Small inline error text */
+.hegr-panel__error {
+  font-size: 0.8rem;
+  color: #ef4444;
+}
+
+/* Labels & textarea */
+.hegr-panel__label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #4b5563;
+  display: inline-block;
+  margin-bottom: 0.25rem;
+}
+
+.hegr-panel__textarea {
+  width: 100%;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.8rem;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  padding: 0.55rem 0.65rem;
+  outline: none;
+  resize: vertical;
+  min-height: 150px;
+  background: #f9fafb;
+
+  &:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.45);
+    background: #ffffff;
+  }
+}
+
+/* Selects for time/variable */
+.hegr-panel__select {
+  width: 100%;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  padding: 0.4rem 0.85rem;
+  font-size: 0.85rem;
+  background: #ffffff;
+  outline: none;
+
+  &:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.4);
+  }
+}
+
+/* Chart card */
+.hegr-panel__chart-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 1.1rem 1.35rem;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  min-height: 340px;
+}
+
+.hegr-panel__chart-card--large {
+  min-height: 480px;
+}
+
+/* Table card */
+.hegr-panel__table-card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 1rem 1.35rem 0.75rem;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+/* Scrollable table container */
+.hegr-panel__table-scroll {
+  max-height: 270px;
+  overflow: auto;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+/* Table styles */
+.hegr-panel__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+
+  thead {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: linear-gradient(90deg, #f3f4f6, #e5e7eb);
+  }
+
+  th,
+  td {
+    padding: 0.35rem 0.5rem;
+    border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+    white-space: nowrap;
+  }
+
+  th {
+    font-weight: 600;
+    color: #4b5563;
+    text-align: left;
+  }
+
+  tbody tr:nth-child(even) {
+    background: #f9fafb;
+  }
+
+  tbody tr:hover {
+    background: #eff6ff;
+  }
+}
+
+/* Copy button in table */
+.hegr-panel__copy-btn {
+  padding: 0.25rem 0.6rem;
+  font-size: 0.7rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.7);
+  background: #ffffff;
+  cursor: pointer;
+  transition: background 0.08s ease, transform 0.08s ease;
+
+  &:hover {
+    background: #e5f0ff;
+    transform: translateY(-0.5px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* Tiny helper text */
+.hegr-panel__hint {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.1rem;
+}
+
+/* Toast popup */
+.hegr-panel__toast {
+  position: fixed;
+  right: 1.75rem;
+  bottom: 1.75rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 12px 25px rgba(15, 23, 42, 0.28);
+  color: #ffffff;
+  z-index: 9999;
+  animation: hegr-toast-in 0.16s ease-out;
+}
+
+.hegr-panel__toast--info {
+  background: #2563eb;
+}
+
+.hegr-panel__toast--success {
+  background: #16a34a;
+}
+
+.hegr-panel__toast--error {
+  background: #dc2626;
+}
+
+@keyframes hegr-toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
