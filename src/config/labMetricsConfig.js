@@ -85,23 +85,29 @@ export const labMetrics = {
 
   // Porto Living Lab (id: 3)
   3: [
-    {
-      id: 1,
-      title: "CO2 Emissions",
-      icon: <ImLeaf />,
-      path: "/data-visualizations",
-    },
-    {
-      id: 4,
-      title: "Energy Consumption",
-      icon: <ImSun />,
-      path: "/porto-lot2-consumption",
-    },
+    // {
+    //   id: 1,
+    //   title: "CO2 Emissions",
+    //   icon: <ImLeaf />,
+    //   path: "/data-visualizations",
+    // },
+    // {
+    //   id: 4,
+    //   title: "Energy Consumption",
+    //   icon: <ImSun />,
+    //   path: "/porto-lot2-consumption",
+    // },
+    // {
+    //   id: 6,
+    //   title: "Energy Production",
+    //   icon: <ImSun />,
+    //   path: "/porto-lot4-production",
+    // },
     {
       id: 6,
-      title: "Energy Production",
+      title: "Porto data aggregations",
       icon: <ImSun />,
-      path: "/porto-lot4-production",
+      path: "/porto-aggregates",
     },
   ],
 

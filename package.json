@@ -23,6 +23,7 @@
     "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
     "chart.js": "^4.4.3",
+    "chartjs-adapter-date-fns": "^3.0.0",
     "d3": "^7.9.0",
     "date-fns": "^3.6.0",
     "itk-vtk-viewer": "^14.51.0",

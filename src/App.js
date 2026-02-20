@@ -38,7 +38,7 @@ import TokenDebugger from './components/TokenDebugger';
 import DubPetrolDatavis from './views/DubPetrolDatavis';
 import HegrEnergyPlusPanel from "./components/HegrEnergyPlusPanel";
 import Cvs from './views/Cvs';
-
+import PortoAggregatesExplorer from "./views/PortoAggregatesExplorer";
 
 
 
@@ -122,6 +122,8 @@ function App() {
               </MainLayout>
             }
           />
+
+          <Route path="/porto-aggregates" element={<MainLayout><PortoAggregatesExplorer /></MainLayout>} />
           <Route
             path="/dub-elec-visualizations"
             element={

@@ -407,9 +407,13 @@ export default function HegrEnergyPlusPanel() {
       datasets: [
         {
           label: selectedVar,
-          data: values,
-          borderWidth: 1.5,
-          pointRadius: 0,
+      data: values,
+      borderWidth: 2,
+      borderColor: "#2563eb",          // ✅ blue line
+      backgroundColor: "rgba(37,99,235,0.12)", // ✅ light fill
+      fill: true,                      // ✅ fill under the line
+      tension: 0.25,                   // ✅ smoother line
+      pointRadius: 0,                  // keeps it clean for long series
         },
       ],
     };
@@ -618,7 +622,19 @@ const canRetrieve =
             options={{
               responsive: true,
               maintainAspectRatio: false,
-              plugins: { legend: { display: true } },
+              plugins: {
+  legend: { display: true, labels: { color: "#111827" } },
+},
+scales: {
+  x: {
+    ticks: { maxRotation: 45, minRotation: 45, color: "#6b7280" },
+    grid: { color: "rgba(148,163,184,0.25)" },
+  },
+  y: {
+    ticks: { color: "#6b7280" },
+    grid: { color: "rgba(148,163,184,0.25)" },
+  },
+},
               scales: { x: { ticks: { maxRotation: 45, minRotation: 45 } } },
             }}
           />
