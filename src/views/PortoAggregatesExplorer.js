@@ -53,7 +53,14 @@ const Popup = ({ open, title, message, type = "info", onClose }) => {
             'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", marginBottom: 10, gap: 10 }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            marginBottom: 10,
+            gap: 10,
+          }}
+        >
           <span
             style={{
               width: 10,
@@ -63,7 +70,14 @@ const Popup = ({ open, title, message, type = "info", onClose }) => {
               boxShadow: `0 0 12px ${colors.dot}`,
             }}
           />
-          <h3 style={{ margin: 0, fontSize: 16, fontWeight: 600, color: colors.title }}>
+          <h3
+            style={{
+              margin: 0,
+              fontSize: 16,
+              fontWeight: 600,
+              color: colors.title,
+            }}
+          >
             {title}
           </h3>
         </div>
@@ -108,62 +122,59 @@ const Popup = ({ open, title, message, type = "info", onClose }) => {
   );
 };
 
-const LoadingOverlay = ({ text = "Loading aggregates data..." }) => {
-  return (
+const LoadingOverlay = ({ text = "Loading aggregates data..." }) => (
+  <div
+    style={{
+      position: "fixed",
+      inset: 0,
+      background: "rgba(15,23,42,0.35)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 1200,
+      backdropFilter: "blur(1px)",
+    }}
+  >
     <div
       style={{
-        position: "fixed",
-        inset: 0,
-        background: "rgba(15,23,42,0.35)",
+        background: "#020617",
+        padding: "14px 18px",
+        borderRadius: 999,
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
-        zIndex: 1200,
-        backdropFilter: "blur(1px)",
+        gap: 10,
+        boxShadow:
+          "0 16px 40px rgba(15,23,42,0.8), 0 0 0 1px rgba(148,163,184,0.5)",
+        color: "#e5e7eb",
+        fontFamily:
+          'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
       }}
     >
       <div
         style={{
-          background: "#020617",
-          padding: "14px 18px",
-          borderRadius: 999,
-          display: "flex",
-          alignItems: "center",
-          gap: 10,
-          boxShadow:
-            "0 16px 40px rgba(15,23,42,0.8), 0 0 0 1px rgba(148,163,184,0.5)",
-          color: "#e5e7eb",
-          fontFamily:
-            'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif',
+          width: 18,
+          height: 18,
+          borderRadius: "999px",
+          border: "2px solid rgba(148,163,184,0.4)",
+          borderTopColor: "#38bdf8",
+          animation: "spin 0.8s linear infinite",
         }}
-      >
-        <div
-          style={{
-            width: 18,
-            height: 18,
-            borderRadius: "999px",
-            border: "2px solid rgba(148,163,184,0.4)",
-            borderTopColor: "#38bdf8",
-            animation: "spin 0.8s linear infinite",
-          }}
-        />
-        <span style={{ fontSize: 13, fontWeight: 500 }}>{text}</span>
-      </div>
-
-      <style>
-        {`
-          @keyframes spin {
-            from { transform: rotate(0deg); }
-            to   { transform: rotate(360deg); }
-          }
-        `}
-      </style>
+      />
+      <span style={{ fontSize: 13, fontWeight: 500 }}>{text}</span>
     </div>
-  );
-};
 
-/* ───────── helpers ───────── */
+    <style>
+      {`
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+      `}
+    </style>
+  </div>
+);
 
+/* helpers */
 const toISO = (d) => new Date(d).toISOString();
 
 /* ───────── main component ───────── */
@@ -179,18 +190,18 @@ const PortoAggregatesExplorer = () => {
     (s) => s.portoAggregates
   );
 
-  const measOptions = useMemo(
-    () => [
-      { value: "__ALL__", label: "All measurements" },
-      ...MEASUREMENTS.map((m) => ({ value: m, label: m })),
-    ],
+  // options for multi-select
+  const measurementOptions = useMemo(
+    () => MEASUREMENTS.map((m) => ({ value: m, label: m })),
     []
   );
 
-  // Default to show all
-  const [measurement, setMeasurement] = useState(measOptions[0]);
+  // default: all selected
+  const [selectedMeasurements, setSelectedMeasurements] = useState(
+    measurementOptions
+  );
 
-  // Default range close to known data start
+  // time range
   const [start, setStart] = useState(() => new Date("2025-12-01T00:00:00Z"));
   const [end, setEnd] = useState(() => new Date("2025-12-03T00:00:00Z"));
   const [hasQueried, setHasQueried] = useState(false);
@@ -208,17 +219,31 @@ const PortoAggregatesExplorer = () => {
     setPopupOpen(true);
   };
 
-  const onConfirm = () => {
+  const onConfirm = async () => {
     if (!start || !end) {
-      openPopup("Missing time range", "Please select both a start and end time.", "warning");
+      openPopup(
+        "Missing time range",
+        "Please select both a start and end time.",
+        "warning"
+      );
       return;
     }
     if (start > end) {
-      openPopup("Invalid time range", "Start time cannot be after end time.", "warning");
+      openPopup(
+        "Invalid time range",
+        "Start time cannot be after end time.",
+        "warning"
+      );
       return;
     }
-    if (!measurement) {
-      openPopup("Measurement required", "Please select a measurement.", "warning");
+
+    const list = (selectedMeasurements || []).map((o) => o.value);
+    if (list.length === 0) {
+      openPopup(
+        "Measurement required",
+        "Please select at least one measurement.",
+        "warning"
+      );
       return;
     }
 
@@ -228,42 +253,42 @@ const PortoAggregatesExplorer = () => {
     const startISO = toISO(start);
     const endISO = toISO(end);
 
-    const list =
-      measurement.value === "__ALL__" ? MEASUREMENTS : [measurement.value];
+    try {
+      const results = await Promise.all(
+        list.map((m) =>
+          dispatch(fetchAggregateSeries({ measurement: m, startISO, endISO })).unwrap()
+        )
+      );
 
-    Promise.all(
-      list.map((m) =>
-        dispatch(fetchAggregateSeries({ measurement: m, startISO, endISO })).unwrap()
-      )
-    )
-      .then((results) => {
-        const total = results.reduce((sum, r) => sum + (r.points?.length || 0), 0);
-        if (total === 0) {
-          openPopup(
-            "No data for this period",
-            "No points were found.\n\nTip: your sample data starts at 2025-12-01, so try a range around that date.",
-            "info"
-          );
-        }
-      })
-      .catch((err) => {
-        console.error("[PortoAggregatesExplorer] fetch failed:", err);
+      const total = results.reduce(
+        (sum, r) => sum + (r.points?.length || 0),
+        0
+      );
+      if (total === 0) {
         openPopup(
-          "Failed to load data",
-          "Something went wrong while loading the aggregates.\n\nPlease try again. If the problem persists, contact the administrator.",
-          "error"
+          "No data for this period",
+          "No points were found.\n\nTip: your sample data starts at 2025-12-01, so try a range around that date.",
+          "info"
         );
-      });
+      }
+    } catch (err) {
+      console.error("[PortoAggregatesExplorer] fetch failed:", err);
+      openPopup(
+        "Failed to load data",
+        "Something went wrong while loading the aggregates.\n\nPlease try again. If the problem persists, contact the administrator.",
+        "error"
+      );
+    }
   };
 
   const datasets = useMemo(() => {
-    return Object.entries(seriesByMeasurement).map(([name, points]) => ({
+    return Object.entries(seriesByMeasurement || {}).map(([name, points]) => ({
       label: name,
       data: points,
     }));
   }, [seriesByMeasurement]);
 
-  /* ───── Google Map (same as your example) ───── */
+  /* Google Map */
   useEffect(() => {
     const init = () => {
       const g = window.google;
@@ -299,10 +324,8 @@ const PortoAggregatesExplorer = () => {
           "radial-gradient(circle at top left, rgba(56,189,248,0.09), transparent 55%), radial-gradient(circle at bottom right, rgba(52,211,153,0.08), transparent 55%)",
       }}
     >
-      {/* global loading overlay */}
       {loading && <LoadingOverlay />}
 
-      {/* popup */}
       <Popup
         open={popupOpen}
         title={popupTitle}
@@ -311,7 +334,7 @@ const PortoAggregatesExplorer = () => {
         onClose={() => setPopupOpen(false)}
       />
 
-      {/* breadcrumb — fixed to match your example */}
+      {/* breadcrumb */}
       <div
         className="breadcrumb"
         style={{
@@ -353,7 +376,7 @@ const PortoAggregatesExplorer = () => {
         </span>
       </div>
 
-      {/* map — same as your example */}
+      {/* map */}
       <div
         id="map-lot4"
         style={{
@@ -379,8 +402,11 @@ const PortoAggregatesExplorer = () => {
           flexWrap: "wrap",
         }}
       >
-        <div className="selectors" style={{ display: "flex", gap: 16, flexWrap: "wrap" }}>
-          <div className="select-box" style={{ minWidth: 300 }}>
+        <div
+          className="selectors"
+          style={{ display: "flex", gap: 16, flexWrap: "wrap" }}
+        >
+          <div className="select-box" style={{ minWidth: 320 }}>
             <label
               style={{
                 display: "block",
@@ -390,13 +416,14 @@ const PortoAggregatesExplorer = () => {
                 color: "#475569",
               }}
             >
-              Measurement
+              Measurements
             </label>
             <Select
-              value={measurement}
-              onChange={setMeasurement}
-              options={measOptions}
-              placeholder="Choose a measurement…"
+              isMulti
+              value={selectedMeasurements}
+              onChange={(opts) => setSelectedMeasurements(opts || [])}
+              options={measurementOptions}
+              placeholder="Select measurements…"
             />
           </div>
 
@@ -479,7 +506,7 @@ const PortoAggregatesExplorer = () => {
         </div>
       )}
 
-      {/* friendly no-data */}
+      {/* no-data */}
       {!loading && !error && hasQueried && datasets.length === 0 && (
         <div
           className="no-data-message"
