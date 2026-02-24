@@ -61,11 +61,39 @@ export default function PortoAggregatesGraph({ datasets = [], title = "" }) {
       },
       scales: {
         x: {
-          type: "time",
-          time: { tooltipFormat: "yyyy-MM-dd HH:mm", unit: "hour" },
-          grid: { color: "rgba(148,163,184,0.25)" },
-          ticks: { color: "#334155" },
-        },
+  type: "time",
+  time: {
+    unit: "hour",
+    tooltipFormat: "yyyy-MM-dd HH:mm",
+  },
+  ticks: {
+    color: "#334155",
+    autoSkip: true,
+
+    // Make “day change” ticks possible
+    major: { enabled: true },
+
+    callback: (value) => {
+      const d = new Date(value);
+      if (Number.isNaN(d.getTime())) return value;
+
+      const hh = d.getHours();
+      const mm = d.getMinutes();
+
+      // Show date ONLY at midnight
+      if (hh === 0 && mm === 0) {
+        const yyyy = d.getFullYear();
+        const mo = String(d.getMonth() + 1).padStart(2, "0");
+        const dd = String(d.getDate()).padStart(2, "0");
+        return `${yyyy}-${mo}-${dd}`;
+      }
+
+      // Otherwise show time only
+      return `${String(hh).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
+    },
+  },
+  grid: { color: "rgba(148,163,184,0.25)" },
+},
         y: {
           grid: { color: "rgba(148,163,184,0.25)" },
           ticks: { color: "#334155" },

@@ -2,32 +2,51 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import useContainerWidth from "../hooks/useContainerWidth";
 import { niceTicks } from "../utils/math";
 
-// Direct endpoint (no proxy)
-const DEFAULT_URL =
-  "https://data-platform.cds-probono.eu/cvs/points?rom=ROM_Kitchen2Dummy&params=2&tendencies=all&tendencies_format=json";
+// Base endpoint (without params)
+const DEFAULT_BASE_URL =
+  "https://data-platform.cds-probono.eu/cvs/points?rom=ROM_Kitchen2Dummy&tendencies=all&tendencies_format=json";
+
+// helper to set/replace a query param in a url string
+function setQueryParam(urlStr, key, value) {
+  const u = new URL(urlStr);
+  u.searchParams.set(key, String(value));
+  return u.toString();
+}
 
 export default function SeriesChart({
-  url = DEFAULT_URL,
+  baseUrl = DEFAULT_BASE_URL,
   title = "Trends (Points)",
   xLabel = "RadiationLevel",
   yLabel = "Value",
   height = 420,
+
+  // new props (optional)
+  minParam = 1,
+  maxParam = 10,
+  defaultParam = 2,
 }) {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
+
+  // NEW: param state
+  const [param, setParam] = useState(defaultParam);
+
   const [series, setSeries] = useState([]);
   const [err, setErr] = useState("");
   const [hover, setHover] = useState(null);
 
   const width = useContainerWidth(containerRef, 720);
 
+  // NEW: computed url includes params=<param>
+  const url = useMemo(() => setQueryParam(baseUrl, "params", param), [baseUrl, param]);
+
   useEffect(() => {
-    let alive = true;
+    const controller = new AbortController();
     setErr("");
-    fetch(url)
+
+    fetch(url, { signal: controller.signal })
       .then((r) => (r.ok ? r.json() : Promise.reject(`${r.status} ${r.statusText}`)))
       .then((j) => {
-        if (!alive) return;
         const outputs = j?.data?.OutputValues ?? [];
         const s = outputs.map((o) => ({
           name: o.name,
@@ -39,10 +58,12 @@ export default function SeriesChart({
         }));
         setSeries(s);
       })
-      .catch((e) => alive && setErr(String(e)));
-    return () => {
-      alive = false;
-    };
+      .catch((e) => {
+        if (e?.name === "AbortError") return;
+        setErr(String(e));
+      });
+
+    return () => controller.abort();
   }, [url]);
 
   const domains = useMemo(() => {
@@ -60,6 +81,7 @@ export default function SeriesChart({
   useEffect(() => {
     const cvs = canvasRef.current;
     if (!cvs || !domains) return;
+
     const padding = 56;
     const w = width,
       h = height;
@@ -69,7 +91,7 @@ export default function SeriesChart({
     // Title
     ctx.fillStyle = "#0f172a";
     ctx.font = "600 15px Inter, system-ui, sans-serif";
-    ctx.fillText(title, padding, 26);
+    ctx.fillText(`${title} (params=${param})`, padding, 26);
 
     const plotTop = 36;
     const plotLeft = padding;
@@ -80,6 +102,7 @@ export default function SeriesChart({
       plotLeft +
       ((x - domains.minX) / (domains.maxX - domains.minX || 1)) *
         (plotRight - plotLeft);
+
     const yScale = (y) =>
       plotBottom -
       ((y - domains.minY) / (domains.maxY - domains.minY || 1)) *
@@ -88,11 +111,13 @@ export default function SeriesChart({
     // Axes
     ctx.strokeStyle = "#94a3b8";
     ctx.lineWidth = 1;
+
     // X
     ctx.beginPath();
     ctx.moveTo(plotLeft, plotBottom);
     ctx.lineTo(plotRight, plotBottom);
     ctx.stroke();
+
     // Y
     ctx.beginPath();
     ctx.moveTo(plotLeft, plotTop);
@@ -102,6 +127,7 @@ export default function SeriesChart({
     // Grid + ticks
     ctx.fillStyle = "#475569";
     ctx.font = "12px Inter, system-ui, sans-serif";
+
     const xt = niceTicks(domains.minX, domains.maxX, 5);
     xt.forEach((v) => {
       const x = xScale(v);
@@ -110,13 +136,16 @@ export default function SeriesChart({
       ctx.moveTo(x, plotTop);
       ctx.lineTo(x, plotBottom);
       ctx.stroke();
+
       ctx.strokeStyle = "#94a3b8";
       ctx.beginPath();
       ctx.moveTo(x, plotBottom);
       ctx.lineTo(x, plotBottom + 5);
       ctx.stroke();
+
       ctx.fillText(String(v), x - 10, plotBottom + 18);
     });
+
     const yt = niceTicks(domains.minY, domains.maxY, 5);
     yt.forEach((v) => {
       const y = yScale(v);
@@ -125,11 +154,13 @@ export default function SeriesChart({
       ctx.moveTo(plotLeft, y);
       ctx.lineTo(plotRight, y);
       ctx.stroke();
+
       ctx.strokeStyle = "#94a3b8";
       ctx.beginPath();
       ctx.moveTo(plotLeft - 5, y);
       ctx.lineTo(plotLeft, y);
       ctx.stroke();
+
       ctx.fillText(String(v), 12, y + 4);
     });
 
@@ -148,6 +179,7 @@ export default function SeriesChart({
     // Lines + points
     series.forEach((s, i) => {
       const pts = [...s.points].sort((a, b) => a.x - b.x);
+
       ctx.strokeStyle = color(i);
       ctx.lineWidth = 2;
       ctx.beginPath();
@@ -158,6 +190,7 @@ export default function SeriesChart({
         else ctx.lineTo(X, Y);
       });
       ctx.stroke();
+
       pts.forEach((p) => {
         const X = xScale(p.x),
           Y = yScale(p.y);
@@ -183,21 +216,24 @@ export default function SeriesChart({
       ctx.fillText(s.name, legendX + 18, legendY);
       legendY += 18;
     });
-  }, [series, domains, width, height, title, xLabel, yLabel]);
+  }, [series, domains, width, height, title, xLabel, yLabel, param]);
 
   // Hover tooltip
   useEffect(() => {
     const cvs = canvasRef.current;
     if (!cvs || !domains) return;
+
     const padding = 56;
     const plotTop = 36;
     const plotLeft = padding;
     const plotRight = width - padding;
     const plotBottom = height - padding;
+
     const xScale = (x) =>
       plotLeft +
       ((x - domains.minX) / (domains.maxX - domains.minX || 1)) *
         (plotRight - plotLeft);
+
     const yScale = (y) =>
       plotBottom -
       ((y - domains.minY) / (domains.maxY - domains.minY || 1)) *
@@ -207,8 +243,10 @@ export default function SeriesChart({
       const rect = cvs.getBoundingClientRect();
       const mx = e.clientX - rect.left;
       const my = e.clientY - rect.top;
+
       let best = null;
       let bestD2 = 1e9;
+
       series.forEach((s, i) => {
         s.points.forEach((p) => {
           const dx = mx - xScale(p.x);
@@ -220,11 +258,14 @@ export default function SeriesChart({
           }
         });
       });
+
       setHover(best);
     }
+
     function onLeave() {
       setHover(null);
     }
+
     cvs.addEventListener("mousemove", onMove);
     cvs.addEventListener("mouseleave", onLeave);
     return () => {
@@ -235,20 +276,49 @@ export default function SeriesChart({
 
   function exportPNG() {
     if (!canvasRef.current) return;
-    const url = canvasRef.current.toDataURL("image/png");
+    const pngUrl = canvasRef.current.toDataURL("image/png");
     const a = document.createElement("a");
-    a.href = url;
-    a.download = "cvs-points.png";
+    a.href = pngUrl;
+    a.download = `cvs-points-params-${param}.png`;
     a.click();
   }
 
   return (
     <div ref={containerRef} className="w-full">
-      <div className="flex items-center justify-between mb-2">
+      {/* Controls */}
+      <div className="flex items-center justify-between mb-2 gap-3 flex-wrap">
         <div className="text-sm text-slate-600">
-          {err ? <span className="text-red-600">{err}</span> : ""}
+          {err ? <span className="text-red-600">{err}</span> : null}
         </div>
-        <div className="flex gap-2">
+
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setParam((p) => Math.max(minParam, p - 1))}
+            className="px-3 py-1.5 rounded-xl shadow-sm border text-sm bg-white hover:bg-slate-50"
+          >
+            −
+          </button>
+
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-xl border bg-white">
+            <span className="text-sm text-slate-600"></span>
+            <span className="text-sm font-semibold text-slate-900">{param}</span>
+            <input
+              type="range"
+              min={minParam}
+              max={maxParam}
+              value={param}
+              onChange={(e) => setParam(Number(e.target.value))}
+              className="w-40"
+            />
+          </div>
+
+          <button
+            onClick={() => setParam((p) => Math.min(maxParam, p + 1))}
+            className="px-3 py-1.5 rounded-xl shadow-sm border text-sm bg-white hover:bg-slate-50"
+          >
+            +
+          </button>
+
           <button
             onClick={exportPNG}
             className="px-3 py-1.5 rounded-xl shadow-sm border text-sm bg-white hover:bg-slate-50"
@@ -257,6 +327,7 @@ export default function SeriesChart({
           </button>
         </div>
       </div>
+
       <div className="relative">
         <canvas
           ref={canvasRef}
@@ -272,9 +343,7 @@ export default function SeriesChart({
             <div className="font-semibold">{hover.name}</div>
             <div>x: {hover.x}</div>
             <div>y: {hover.y.toFixed(3)}</div>
-            {hover.selected ? (
-              <div className="text-emerald-600">selected</div>
-            ) : null}
+            {hover.selected ? <div className="text-emerald-600">selected</div> : null}
           </div>
         )}
       </div>
