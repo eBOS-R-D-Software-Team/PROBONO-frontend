@@ -59,7 +59,7 @@ const ListOfTools = () => {
         />
       ),
     },
-    { title: 'ePREDICT', link: 'https://anylogic.stamtech.dev/model/dcf2263c-2acb-40d1-ba83-3c7a92c1e55d', icon: ImLab },
+    { title: 'Demand and Response Platform Neighbourhood Layer - ePREDICT', link: 'https://anylogic.stamtech.dev/model/dcf2263c-2acb-40d1-ba83-3c7a92c1e55d', icon: ImLab },
     { title: 'CMS Optimization tool', link: 'https://probono-dev.stamtech.dev/sign-in?redirectURL=%2Fconstruction-sites', icon: ImWrench },
     { title: 'Vcomfort sensor tool', link: '/cvs', icon: ImSun },
     { title: '3D model Viewer', link: '/paraview-vis', icon: ImPower },
