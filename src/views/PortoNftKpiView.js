@@ -70,11 +70,16 @@ export default function PortoNftKpiView() {
   const meta = useSelector(selectNftMeta);
 
   const [buildingId, setBuildingId] = useState(params.buildingId);
-  const [monthRange, setMonthRange] = useState(() => durationToRange(params.duration || "2025-01:2025-12"));
+  const [monthRange, setMonthRange] = useState(() =>
+    durationToRange(params.duration || "2025-01:2025-12")
+  );
   const duration = useMemo(() => rangeToDuration(monthRange), [monthRange]);
 
-  // chart KPI selection (avoid mixing very different scales)
+  // chart KPI selection
   const [activeKpi, setActiveKpi] = useState("pec"); // "pec" | "co2" | "scr"
+
+  // show chart ONLY after user fetch
+  const [hasFetched, setHasFetched] = useState(false);
 
   // drawer
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -86,6 +91,7 @@ export default function PortoNftKpiView() {
 
   function onFetch() {
     if (!duration) return;
+    setHasFetched(true);
     dispatch(setNftParams({ buildingId, duration }));
     dispatch(fetchNftsAll({ ...params, buildingId, duration }));
   }
@@ -95,21 +101,29 @@ export default function PortoNftKpiView() {
     setDrawerOpen(true);
   }
 
-  // ----- chart data (labels + chosen KPI + boundary)
+  // chart data (depends on items + active KPI)
   const chart = useMemo(() => buildChart(items, activeKpi), [items, activeKpi]);
 
   return (
     <div className="porto-nft">
       {/* Breadcrumb */}
       <div className="breadcrumb-container">
-        <a href="/" className="crumb-link">Home</a>
+        <a href="/" className="crumb-link">
+          Home
+        </a>
         <SlArrowRight className="crumb-arrow" />
-        <a href="/labs" className="crumb-link">Data Visualizations</a>
+        <a href="/labs" className="crumb-link">
+          Data Visualizations
+        </a>
 
         {labName && (
           <>
             <SlArrowRight className="crumb-arrow" />
-            <span className="crumb-current" onClick={() => navigate(-1)} style={{ cursor: "pointer" }}>
+            <span
+              className="crumb-current"
+              onClick={() => navigate(-1)}
+              style={{ cursor: "pointer" }}
+            >
               {labName}
             </span>
           </>
@@ -175,28 +189,44 @@ export default function PortoNftKpiView() {
 
       {err && <div className="notice notice--error">❌ {err}</div>}
 
-      {/* Chart */}
-      <div className="chart-card">
-        <div className="chart-top">
-          <div className="chart-title">Monthly KPI trend (with boundary)</div>
+      {/* Chart: show ONLY after Fetch + data exists */}
+      {hasFetched && items.length > 0 && (
+        <div className="chart-card">
+          <div className="chart-top">
+            <div className="chart-title">Monthly KPI trend (with boundary)</div>
 
-          <div className="kpi-toggle">
-            <button className={activeKpi === "pec" ? "active" : ""} onClick={() => setActiveKpi("pec")}>
-              PEC
-            </button>
-            <button className={activeKpi === "co2" ? "active" : ""} onClick={() => setActiveKpi("co2")}>
-              CO₂
-            </button>
-            <button className={activeKpi === "scr" ? "active" : ""} onClick={() => setActiveKpi("scr")}>
-              SCR
-            </button>
+            <div className="kpi-toggle">
+              <button
+                className={activeKpi === "pec" ? "active" : ""}
+                onClick={() => setActiveKpi("pec")}
+              >
+                PEC
+              </button>
+              <button
+                className={activeKpi === "co2" ? "active" : ""}
+                onClick={() => setActiveKpi("co2")}
+              >
+                CO₂
+              </button>
+              <button
+                className={activeKpi === "scr" ? "active" : ""}
+                onClick={() => setActiveKpi("scr")}
+              >
+                SCR
+              </button>
+            </div>
+          </div>
+
+          <div className="chart-wrap">
+            <Line data={chart.data} options={chart.options} />
           </div>
         </div>
+      )}
 
-        <div className="chart-wrap">
-          <Line data={chart.data} options={chart.options} />
-        </div>
-      </div>
+      {/* Optional: after fetch, no data */}
+      {hasFetched && !loading && items.length === 0 && (
+        <div className="notice notice--warn">No data for the selected duration.</div>
+      )}
 
       {/* Table */}
       <div className="table-wrap">
@@ -299,36 +329,37 @@ function buildChart(items, kpi) {
   const boundary = labels.map(() => (typeof boundaryVal === "number" ? boundaryVal : null));
 
   const titleMap = { pec: "PEC", co2: "CO₂", scr: "SCR" };
+
   const data = {
     labels,
-   datasets: [
-  {
-    label: titleMap[kpi],
-    data: values,
-    tension: 0.25,
-    pointRadius: 3,
+    datasets: [
+      {
+        label: titleMap[kpi],
+        data: values,
+        tension: 0.25,
+        pointRadius: 3,
 
-    // ✅ bold & visible
-    borderColor: KPI_COLORS[kpi],
-    backgroundColor: KPI_COLORS[kpi],
-    borderWidth: 3,
-    pointBackgroundColor: KPI_COLORS[kpi],
-    pointBorderColor: "#ffffff",
-    pointBorderWidth: 2,
-  },
-  {
-    label: "Boundary",
-    data: boundary,
-    tension: 0,
-    pointRadius: 0,
+        // ✅ bold & visible
+        borderColor: KPI_COLORS[kpi],
+        backgroundColor: KPI_COLORS[kpi],
+        borderWidth: 3,
+        pointBackgroundColor: KPI_COLORS[kpi],
+        pointBorderColor: "#ffffff",
+        pointBorderWidth: 2,
+      },
+      {
+        label: "Boundary",
+        data: boundary,
+        tension: 0,
+        pointRadius: 0,
 
-    // ✅ bold boundary line
-    borderColor: BOUNDARY_COLOR,
-    backgroundColor: BOUNDARY_COLOR,
-    borderWidth: 3,
-    borderDash: [10, 6],
-  },
-],
+        // ✅ bold boundary line
+        borderColor: BOUNDARY_COLOR,
+        backgroundColor: BOUNDARY_COLOR,
+        borderWidth: 3,
+        borderDash: [10, 6],
+      },
+    ],
   };
 
   const options = {
@@ -336,7 +367,15 @@ function buildChart(items, kpi) {
     maintainAspectRatio: false,
     interaction: { mode: "index", intersect: false },
     plugins: {
-      legend: { display: true },
+      legend: {
+        display: true,
+        labels: {
+          boxWidth: 14,
+          boxHeight: 14,
+          padding: 16,
+          font: { size: 12, weight: "bold" },
+        },
+      },
       tooltip: { enabled: true },
     },
     scales: {
@@ -357,7 +396,6 @@ function buildChart(items, kpi) {
 function formatTick(v, kpi) {
   if (typeof v !== "number") return v;
   if (kpi === "scr") return `${v}%`;
-  // show compact-ish numbers for big ranges
   if (Math.abs(v) >= 1_000_000) return `${Math.round(v / 1_000_000)}M`;
   if (Math.abs(v) >= 1_000) return `${Math.round(v / 1_000)}k`;
   return String(v);
