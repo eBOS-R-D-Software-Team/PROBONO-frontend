@@ -109,6 +109,12 @@ export const labMetrics = {
       icon: <ImSun />,
       path: "/porto-aggregates",
     },
+    {
+      id: 6,
+      title: "PBN TrustedDBL",
+      icon: <ImOffice />,
+      path: "/porto-nft",
+    },
   ],
 
   // Aarhus Living Lab (id: 4)

@@ -1,0 +1,326 @@
+/* src/styles/portoNftKpiView.scss */
+
+/* If you already have these variables globally, remove this block */
+$text-secondary: #64748b;
+$teal-accent: #0f766e;
+
+.porto-nft {
+  padding: 16px;
+
+  /* --- Breadcrumb --- */
+  .breadcrumb-container {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: $text-secondary;
+    margin-bottom: 30px;
+    padding-left: 5px;
+
+    .crumb-link {
+      text-decoration: none;
+      color: $text-secondary;
+      font-weight: 500;
+      transition: color 0.2s;
+      &:hover {
+        color: $teal-accent;
+      }
+    }
+    .crumb-arrow {
+      margin: 0 12px;
+      font-size: 10px;
+      color: #cbd5e1;
+    }
+    .crumb-current {
+      color: $teal-accent;
+      font-weight: 600;
+    }
+  }
+
+  .subtitle {
+    color: #64748b;
+    margin: 0 0 14px 0;
+    font-size: 13px;
+  }
+
+  /* Controls card */
+  .controls-card {
+    background: #ffffff;
+    border: 1px solid #eef2f7;
+    border-radius: 14px;
+    padding: 14px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    margin-bottom: 12px;
+
+    .controls-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: end;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 210px;
+
+      label {
+        font-size: 12px;
+        color: #475569;
+        font-weight: 600;
+      }
+
+      input,
+      select {
+        height: 38px;
+        padding: 0 10px;
+        border-radius: 10px;
+        border: 1px solid #e2e8f0;
+        background: #fff;
+        font-size: 13px;
+        color: #0f172a;
+        outline: none;
+
+        &:focus {
+          border-color: rgba(15, 118, 110, 0.55);
+          box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.10);
+        }
+      }
+    }
+
+    .fetch-btn {
+      height: 38px;
+      padding: 0 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(15, 118, 110, 0.35);
+      background: rgba(15, 118, 110, 0.08);
+      color: $teal-accent;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.05s, background 0.2s, border-color 0.2s;
+
+      &:hover {
+        background: rgba(15, 118, 110, 0.12);
+        border-color: rgba(15, 118, 110, 0.55);
+      }
+      &:active {
+        transform: translateY(1px);
+      }
+      &:disabled {
+        cursor: not-allowed;
+        opacity: 0.65;
+      }
+    }
+  }
+
+  /* KPI pills */
+  .kpi-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+
+    .pill {
+      background: #fff;
+      border: 1px solid #eef2f7;
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: #0f172a;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+
+      b {
+        font-weight: 800;
+      }
+    }
+  }
+
+  /* Notice / error */
+  .notice {
+    margin-bottom: 10px;
+    padding: 10px 12px;
+    border: 1px solid #eef2f7;
+    border-radius: 12px;
+    background: #fff;
+    color: #0f172a;
+    font-size: 13px;
+  }
+
+  .notice--warn {
+    border-color: rgba(245, 158, 11, 0.35);
+    background: rgba(245, 158, 11, 0.07);
+  }
+
+  .notice--error {
+    border-color: rgba(239, 68, 68, 0.30);
+    background: rgba(239, 68, 68, 0.06);
+  }
+
+  /* Table */
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid #eef2f7;
+    border-radius: 14px;
+    background: #fff;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 920px; /* keeps layout nice */
+  }
+
+  thead tr {
+    background: #f8fafc;
+  }
+
+  th,
+  td {
+    padding: 12px 12px;
+    font-size: 13px;
+    border-bottom: 1px solid #eef2f7;
+    vertical-align: middle;
+  }
+
+  th {
+    color: #334155;
+    font-weight: 800;
+    letter-spacing: 0.2px;
+  }
+
+  td {
+    color: #0f172a;
+  }
+
+  .left {
+    text-align: left;
+  }
+  .right {
+    text-align: right;
+  }
+
+  tbody tr {
+    transition: background 0.15s;
+    &:hover {
+      background: #fbfdff;
+    }
+  }
+
+  .token-cell {
+    max-width: 340px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #475569;
+  }
+
+  /* Status badges */
+  .status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-weight: 800;
+    font-size: 12px;
+    border: 1px solid transparent;
+  }
+
+  .status--ok {
+    background: rgba(34, 197, 94, 0.10);
+    border-color: rgba(34, 197, 94, 0.25);
+    color: #166534;
+  }
+
+  .status--bad {
+    background: rgba(239, 68, 68, 0.10);
+    border-color: rgba(239, 68, 68, 0.25);
+    color: #991b1b;
+  }
+
+  .status--na {
+    background: rgba(148, 163, 184, 0.10);
+    border-color: rgba(148, 163, 184, 0.25);
+    color: #475569;
+  }
+}
+
+/* Make AntD RangePicker match input height & radius */
+.ant-picker {
+  height: 38px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  box-shadow: none;
+
+  &:hover { border-color: rgba(15, 118, 110, 0.55); }
+}
+
+.ant-picker-focused {
+  border-color: rgba(15, 118, 110, 0.55) !important;
+  box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.10) !important;
+}
+
+/* --- Chart card --- */
+.porto-nft {
+  .chart-card {
+    background: #ffffff;
+    border: 1px solid #eef2f7;
+    border-radius: 14px;
+    padding: 14px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+    margin-bottom: 12px;
+
+    .chart-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .chart-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .kpi-toggle {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+
+      button {
+        height: 34px;
+        padding: 0 12px;
+        border-radius: 10px;
+        border: 1px solid #e2e8f0;
+        background: #fff;
+        cursor: pointer;
+        font-weight: 700;
+        color: #334155;
+
+        &:hover {
+          border-color: rgba(15, 118, 110, 0.55);
+        }
+
+        &.active {
+          border-color: rgba(15, 118, 110, 0.55);
+          background: rgba(15, 118, 110, 0.08);
+          color: #0f766e;
+        }
+      }
+    }
+
+    .chart-wrap {
+      height: 320px;
+    }
+  }
+
+  /* clickable rows */
+  .clickable-row {
+    cursor: pointer;
+  }
+}

@@ -39,6 +39,7 @@ import DubPetrolDatavis from './views/DubPetrolDatavis';
 import HegrEnergyPlusPanel from "./components/HegrEnergyPlusPanel";
 import Cvs from './views/Cvs';
 import PortoAggregatesExplorer from "./views/PortoAggregatesExplorer";
+import PortoNftKpiView from "./views/PortoNftKpiView";
 
 
 
@@ -103,6 +104,14 @@ function App() {
             element={
               <MainLayout>
                 <CvsSeries2D />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="/porto-nft"
+            element={
+              <MainLayout>
+                <PortoNftKpiView /> 
               </MainLayout>
             }
           />
