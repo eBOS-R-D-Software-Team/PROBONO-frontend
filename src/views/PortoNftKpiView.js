@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SlArrowRight } from "react-icons/sl";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -20,6 +20,7 @@ import { Line } from "react-chartjs-2";
 
 
 import {
+  clearNfts,
   fetchNftsAll,
   selectNftError,
   selectNftInvalidCount,
@@ -88,6 +89,12 @@ export default function PortoNftKpiView() {
   const location = useLocation();
   const navigate = useNavigate();
   const labName = location.state?.labName;
+
+  useEffect(() => {
+    return () => {
+      dispatch(clearNfts());
+    };
+  }, [dispatch]);
 
   function onFetch() {
     if (!duration) return;
