@@ -78,7 +78,7 @@ export default function DownloadToolCard({
   notification.open({
   key: DL_KEY,
   message: "Downloading",
-  description: `${filename} (≈216 MB) — please keep this tab open.`,
+  description: `${filename} please keep this tab open.`,
   placement: "top",
   duration: 0, // stays
 });
