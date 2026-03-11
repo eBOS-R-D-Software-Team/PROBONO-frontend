@@ -95,8 +95,8 @@ const ListOfTools = () => {
         <DownloadToolCard
           title="GeoNorte-DSS"
           icon={ImDownload}
-          filename="TRNSYS_PROBONO.zip"
-          communityId="/public"
+          filename="GeoNorte - DSS.zip"
+          communityId="/madrid"
         />
       </div>
     </div>
