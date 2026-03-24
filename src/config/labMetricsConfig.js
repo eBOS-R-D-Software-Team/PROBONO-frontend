@@ -145,4 +145,13 @@ export const labMetrics = {
     },
     
   ],
+
+// Prague Living Lab (id: 5)
+  6: [
+    {
+      id: 1,
+      title: "Prague LL data visualizations",
+      icon: <ImEarth />,
+      path: "/prague-living-lab",
+    },],
 };

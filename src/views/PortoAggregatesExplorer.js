@@ -7,6 +7,7 @@ import { SlArrowRight } from "react-icons/sl";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import PortoAggregatesGraph from "../components/PortoAggregatesGraph";
+import UC2RecommendationPanel from "../components/Uc2recommendationpanel";
 import {
   MEASUREMENTS,
   fetchAggregateSeries,
@@ -532,6 +533,11 @@ const PortoAggregatesExplorer = () => {
             datasets={datasets}
             title="Porto — Aggregates (Grid / Total_Consumption / Total_Production)"
           />
+          {/* <UC2RecommendationPanel
+  datasets={datasets}
+  startDate={start}
+  endDate={end}
+/> */}
         </div>
       )}
     </div>

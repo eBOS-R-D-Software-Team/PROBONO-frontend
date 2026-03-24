@@ -40,6 +40,7 @@ import HegrEnergyPlusPanel from "./components/HegrEnergyPlusPanel";
 import Cvs from './views/Cvs';
 import PortoAggregatesExplorer from "./views/PortoAggregatesExplorer";
 import PortoNftKpiView from "./views/PortoNftKpiView";
+import PragueLivingLabExplorer from "./views/PragueLivingLabExplorer";
 
 
 
@@ -107,6 +108,7 @@ function App() {
               </MainLayout>
             }
           />
+          <Route path="/prague-living-lab" element={<MainLayout><PragueLivingLabExplorer /></MainLayout>} />
           <Route
             path="/porto-nft"
             element={
