@@ -41,7 +41,7 @@ export default function Cvs() {
         <section className="chart-card chart-card--viewer">
 
           {/* Toggle switch */}
-          {/*<div
+          <div
             style={{
               display: "flex",
               alignItems: "center",
@@ -90,7 +90,7 @@ export default function Cvs() {
               />
             </div>
 
-            {/*<span
+            {<span
               style={{
                 fontSize: 12,
                 fontWeight: viewerMode === "3d" ? 700 : 400,
@@ -103,9 +103,9 @@ export default function Cvs() {
             </span>}
           </div>
 
-          {/* Viewer content */}
-          {/*viewerMode === "2d" ? <Geometry3DViewer /> : <Geometry3DTestViewer />*/}
-          <Geometry3DViewer />
+          {/* Viewer content*/ }
+          {viewerMode === "2d" ? <Geometry3DViewer /> : <Geometry3DTestViewer />}
+      
 
         </section>
       </div>

@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { fetchNftPage } from "../api/nftApi";
 import { getMockNftResponse } from "../data/nftMockData";
 
-const USE_FAKE_NFT = true;
+const USE_FAKE_NFT = false;
 
 
 // -------- helpers
