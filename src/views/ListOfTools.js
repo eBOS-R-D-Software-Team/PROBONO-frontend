@@ -17,6 +17,8 @@ import {
 import { SlArrowRight } from "react-icons/sl";
 import EnergyClassLogo from '../assets/images/Energy_class_simulation_icon.png';
 import DownloadToolCard from "../components/DownloadToolCard";
+import HegrLogo from '../assets/images/picto_HEGR.png';
+
 
 const ListOfTools = () => {
   const { keycloak } = useKeycloak();
@@ -72,7 +74,13 @@ const ListOfTools = () => {
     { title: '3D model Viewer', link: '/paraview-vis', icon: ImPower },
     { title: 'SEEDS', link: 'https://seeds.cds-probono.eu/', icon: ImEarth },
     { title: 'ProBIM Explorer', link: 'https://probim-explorer.cds-probono.eu', icon: ImCog },
-    { title: 'HEGR EnergyPlus Resultviewer', link: '/hegr-energyplus', icon: ImLab },
+    { title: 'HEGR EnergyPlus Resultviewer', link: '/hegr-energyplus',  icon: ({ size }) => (
+        <img
+          src={HegrLogo}
+          alt="Hegr Energyplus"
+          style={{ width: size, height: size, objectFit: 'contain' }}
+        />
+      ), },
     { title: 'UrbanMP', link: 'https://urbanmp.cds-probono.eu/select-location', icon: ImCompass },
   ];
 
