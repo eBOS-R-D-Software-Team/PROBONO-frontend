@@ -1,21 +1,19 @@
 /**
  * UC2RecommendationPanel.jsx
  *
- * Facilities Manager recommendation panel — UC2
- * Uses FULL PERIOD average (not last N readings) since data is
- * loaded manually for a selected historical time range.
+ * Energy Recommendation panel — UC2 (Porto Lot 4)
+ * Aligned with Sonae Sierra / Sonae Campus Facility Management Team
+ * specification (UseCase2_PortoLL_rev20260417).
  *
- * Real Porto Lot 4 data profile (Dec 2025 – Jan 2026):
- *   - Solar active:    08:00–17:00 only, peak 10:00–14:00
- *   - Avg self-suff:   19.6% during solar hours
- *   - Grid dependency: 92.5% overall
- *   - Export events:   15 occurrences (grid < 0 kW)
+ * Self-consumption thresholds (partner-defined):
+ *   ⬜ Low      < 20%        — colourless (no positive signal)
+ *   🟡 Yellow   20–40%       — moderate self-consumption
+ *   🟢 Green    > 40%        — strong self-consumption
+ *   ⚡ Export   grid < 0     — surplus, special alert (extension)
  *
- * Signal thresholds (calibrated to real data, daytime only):
- *   ⚡ Export  avg grid < 0       — surplus, special alert
- *   🟢 Green   ≥ 35% renewable    — good solar window
- *   🟡 Amber   15–34%             — partial solar
- *   🔴 Red     < 15%              — grid dominant
+ * Self-consumption % = (Total_Production / Total_Consumption) × 100
+ * Calculated from solar-hour readings only (08:00–17:00) to exclude
+ * nighttime zeros from distorting the average.
  *
  * Usage:
  *   <UC2RecommendationPanel datasets={datasets} startDate={start} endDate={end} />
@@ -24,9 +22,9 @@
 import React, { useMemo } from "react";
 
 /* ─────────────────────────────────────────────────────────────
-   THRESHOLDS — calibrated from real data
+   THRESHOLDS — partner-defined (Sonae Sierra)
 ───────────────────────────────────────────────────────────── */
-const T = { green: 35, amber: 15 };
+const T = { green: 40, yellow: 20 };
 const SOLAR_START = 8, SOLAR_END = 17, PEAK_START = 10, PEAK_END = 14;
 
 /* ─────────────────────────────────────────────────────────────
@@ -36,22 +34,22 @@ const SIGNAL = {
   export: {
     color: "#6366f1", bg: "#eef2ff", border: "#c7d2fe",
     label: "Grid Export Detected",
-    sublabel: "Production exceeded consumption during this period — surplus energy was available",
+    sublabel: "Production exceeded consumption — surplus energy was available during this period",
   },
   green: {
     color: "#22c55e", bg: "#f0fdf4", border: "#bbf7d0",
-    label: "Good Solar Coverage",
-    sublabel: "Renewable generation covered a meaningful share of demand in this period",
+    label: "Strong Self-Consumption",
+    sublabel: "Self-consumption above 40% — local production covered a meaningful share of demand",
   },
-  amber: {
-    color: "#f59e0b", bg: "#fffbeb", border: "#fde68a",
-    label: "Partial Solar Coverage",
-    sublabel: "Renewable output was limited — the site relied heavily on the grid",
+  yellow: {
+    color: "#eab308", bg: "#fefce8", border: "#fde68a",
+    label: "Moderate Self-Consumption",
+    sublabel: "Self-consumption between 20% and 40% — partial coverage from local production",
   },
-  red: {
-    color: "#ef4444", bg: "#fef2f2", border: "#fecaca",
-    label: "Grid Dominant Period",
-    sublabel: "Renewable production was minimal — grid supplied most of the demand",
+  low: {
+    color: "#94a3b8", bg: "#f8fafc", border: "#e2e8f0",
+    label: "Low Self-Consumption",
+    sublabel: "Self-consumption below 20% — site relied predominantly on the grid",
   },
 };
 
@@ -82,29 +80,29 @@ const RECS = {
   green: [
     {
       icon: "☀️",
-      title: "Schedule non-priority loads during 10:00–14:00",
-      body: "This period had good renewable coverage. For similar conditions, activate deferred loads (HVAC pre-conditioning, water heating, auxiliary systems) during the 10:00–14:00 solar peak to minimise grid draw.",
+      title: "Maintain current load scheduling strategy",
+      body: "This period showed strong self-consumption (above 40%). The current scheduling of loads is well aligned with local production. Continue to align flexible loads with the 10:00–14:00 solar peak window.",
       priority: "high",
     },
     {
       icon: "🚗",
-      title: "EV charging — align with solar peak",
-      body: "Coordinate with the Smart EV Hub to schedule charging sessions during 10:00–14:00 when production peaks on clear days. Historical data shows average production of ~815 kW during this window.",
-      priority: "high",
+      title: "EV charging — solar-aligned",
+      body: "Continue coordinating with the Smart EV Hub to schedule charging sessions during the solar window. Self-consumption above 40% indicates an effective alignment between consumption and production.",
+      priority: "medium",
     },
     {
-      icon: "📅",
-      title: "Shift energy-intensive tasks to solar window",
-      body: "Any scheduled maintenance, cleaning equipment, or building automation tasks should be moved to the 10:00–14:00 window on sunny days to reduce grid consumption and lower energy costs.",
+      icon: "📈",
+      title: "Explore further self-consumption gains",
+      body: "Even at this level, additional gains may be possible by shifting more flexible loads into the solar window. Review which non-essential loads currently run outside 08:00–17:00.",
       priority: "medium",
     },
   ],
-  amber: [
+  yellow: [
     {
       icon: "⚖️",
       title: "Optimise load scheduling around solar window",
-      body: `Renewable coverage averaged ${T.amber}–${T.green}% in this period. The 10:00–14:00 solar window remains the best opportunity to connect non-priority loads. Outside this window the site is almost entirely grid-dependent.`,
-      priority: "medium",
+      body: `Self-consumption averaged ${T.yellow}–${T.green}% in this period. The 10:00–14:00 solar window remains the best opportunity to connect non-priority loads. Outside this window the site is largely grid-dependent.`,
+      priority: "high",
     },
     {
       icon: "🚗",
@@ -113,23 +111,23 @@ const RECS = {
       priority: "medium",
     },
     {
-      icon: "🔍",
-      title: "Investigate factors limiting production",
-      body: "With self-sufficiency below 35%, it is worth checking for panel shading, soiling, or inverter underperformance that may be reducing output below its potential.",
-      priority: "low",
+      icon: "📅",
+      title: "Shift flexible loads to solar hours",
+      body: "Identify loads currently running outside the solar window that could be rescheduled to 10:00–14:00, such as HVAC pre-conditioning, water heating, or auxiliary building systems.",
+      priority: "medium",
     },
   ],
-  red: [
+  low: [
     {
       icon: "📅",
-      title: "Shift all flexible loads to 10:00–14:00 solar window",
-      body: "Grid supplied the vast majority of demand in this period. The most impactful action is to reschedule any flexible loads — HVAC pre-conditioning, water heating, EV charging — to coincide with the 10:00–14:00 production peak on future days.",
+      title: "Shift flexible loads to 10:00–14:00 solar window",
+      body: "Self-consumption was below 20% in this period. The most impactful action is to reschedule any flexible loads — HVAC pre-conditioning, water heating, EV charging — to coincide with the solar peak window where local production is highest.",
       priority: "high",
     },
     {
       icon: "🚗",
       title: "EV charging strategy: 10:00–14:00 only",
-      body: "Coordinate with the Smart EV Hub to queue all non-urgent charging sessions for the 10:00–14:00 window. Outside this window the site is running entirely on grid energy.",
+      body: "Coordinate with the Smart EV Hub to queue all non-urgent charging sessions for the 10:00–14:00 window. Outside this window the site is running predominantly on grid energy.",
       priority: "high",
     },
     {
@@ -141,7 +139,7 @@ const RECS = {
     {
       icon: "🔍",
       title: "Assess production capacity",
-      body: "Consistently low self-sufficiency may indicate that the installed solar capacity is undersized relative to site demand. A capacity review could identify opportunities for additional generation.",
+      body: "Consistently low self-consumption may indicate that the installed solar capacity is undersized relative to site demand, or that production is being limited by panel shading, soiling, or inverter underperformance. A capacity review could identify opportunities.",
       priority: "low",
     },
   ],
@@ -170,11 +168,11 @@ const solarAvg = (data) => {
   return vals.length ? vals.reduce((a, b) => a + b, 0) / vals.length : null;
 };
 
-const getLevel = (renewablePct, avgGridVal) => {
-  if (avgGridVal < 0)              return "export";
-  if (renewablePct >= T.green)     return "green";
-  if (renewablePct >= T.amber)     return "amber";
-  return "red";
+const getLevel = (selfConsPct, avgGridVal) => {
+  if (avgGridVal < 0)            return "export";
+  if (selfConsPct > T.green)     return "green";
+  if (selfConsPct >= T.yellow)   return "yellow";
+  return "low";
 };
 
 const daysBetween = (a, b) => {
@@ -185,9 +183,9 @@ const daysBetween = (a, b) => {
 /* ─────────────────────────────────────────────────────────────
    DONUT GAUGE
 ───────────────────────────────────────────────────────────── */
-const DonutGauge = ({ renewablePct, gridPct, signal }) => {
+const DonutGauge = ({ selfConsPct, gridPct, signal }) => {
   const R = 50, stroke = 11, circ = 2 * Math.PI * R;
-  const renArc  = Math.min(renewablePct / 100, 1) * circ;
+  const renArc  = Math.min(selfConsPct / 100, 1) * circ;
   const gridArc = Math.min(gridPct / 100, 1) * circ;
   return (
     <svg width={136} height={148} viewBox="0 0 136 148" style={{ flexShrink: 0 }}>
@@ -202,13 +200,13 @@ const DonutGauge = ({ renewablePct, gridPct, signal }) => {
         style={{ transition: "stroke-dasharray 0.8s ease" }} />
       <text x={68} y={62} textAnchor="middle" fontSize={22} fontWeight={700}
         fill={signal.color} fontFamily="system-ui,-apple-system,sans-serif">
-        {fmt(renewablePct, 0)}%
+        {fmt(selfConsPct, 0)}%
       </text>
-      <text x={68} y={76} textAnchor="middle" fontSize={9.5} fill="#94a3b8"
-        fontFamily="system-ui,-apple-system,sans-serif">Renewable</text>
+      <text x={68} y={76} textAnchor="middle" fontSize={9} fill="#94a3b8"
+        fontFamily="system-ui,-apple-system,sans-serif">Self-cons.</text>
       <circle cx={16} cy={112} r={4} fill={signal.color} />
       <text x={24} y={116} fontSize={9} fill="#475569" fontFamily="system-ui,-apple-system,sans-serif">
-        Production {fmt(renewablePct, 0)}%
+        Self-cons. {fmt(selfConsPct, 0)}%
       </text>
       <circle cx={16} cy={128} r={4} fill="#fb923c" />
       <text x={24} y={132} fontSize={9} fill="#475569" fontFamily="system-ui,-apple-system,sans-serif">
@@ -219,24 +217,33 @@ const DonutGauge = ({ renewablePct, gridPct, signal }) => {
 };
 
 /* ─────────────────────────────────────────────────────────────
-   TRAFFIC LIGHT
+   3-TIER SIGNAL INDICATOR (replaces the traffic light)
+   Reflects the partner's 3-tier scale: low / yellow / green
 ───────────────────────────────────────────────────────────── */
-const TrafficLight = ({ level }) => {
+const SignalIndicator = ({ level }) => {
   const activeKey = level === "export" ? "green" : level;
+  const TIERS = [
+    { k: "green",  c: "#22c55e", label: "G" },
+    { k: "yellow", c: "#eab308", label: "Y" },
+    { k: "low",    c: "#94a3b8", label: "L" },
+  ];
   return (
     <div style={{
-      display: "flex", flexDirection: "column", alignItems: "center", gap: 6,
-      background: "#1e293b", borderRadius: 999, padding: "10px 8px",
-      boxShadow: "0 2px 8px rgba(15,23,42,0.2)", width: 32, flexShrink: 0,
+      display: "flex", flexDirection: "column", alignItems: "center", gap: 5,
+      background: "#1e293b", borderRadius: 999, padding: "10px 7px",
+      boxShadow: "0 2px 8px rgba(15,23,42,0.2)", width: 30, flexShrink: 0,
     }}>
-      {[{ k: "red", c: "#ef4444" }, { k: "amber", c: "#f59e0b" }, { k: "green", c: "#22c55e" }].map(({ k, c }) => (
-        <div key={k} style={{
-          width: 16, height: 16, borderRadius: "50%",
-          background: k === activeKey ? c : `${c}28`,
-          boxShadow: k === activeKey ? `0 0 10px ${c}, 0 0 20px ${c}55` : "none",
-          transition: "all 0.3s ease",
-        }} />
-      ))}
+      {TIERS.map(({ k, c }) => {
+        const active = k === activeKey;
+        return (
+          <div key={k} style={{
+            width: 16, height: 16, borderRadius: "50%",
+            background: active ? c : `${c}28`,
+            boxShadow: active ? `0 0 10px ${c}, 0 0 20px ${c}55` : "none",
+            transition: "all 0.3s ease",
+          }} />
+        );
+      })}
     </div>
   );
 };
@@ -258,7 +265,7 @@ const PeriodBadge = ({ solarHoursPct, days }) => (
       <p style={{ margin: "2px 0 0", fontSize: 11, color: "#475569", lineHeight: 1.4 }}>
         Solar-hour readings ({SOLAR_START}:00–{SOLAR_END}:00) represent{" "}
         <strong>{fmt(solarHoursPct, 0)}%</strong> of the selected period.
-        Nighttime zeros are excluded from the renewable % calculation.
+        Nighttime zeros are excluded from the self-consumption calculation.
       </p>
     </div>
   </div>
@@ -322,7 +329,7 @@ const ThresholdLegend = () => (
   <div style={{
     padding: "10px 12px", background: "#fff",
     border: "1px solid #e2e8f0", borderRadius: 8,
-    minWidth: 160, alignSelf: "flex-start",
+    minWidth: 170, alignSelf: "flex-start",
     fontFamily: "system-ui,-apple-system,sans-serif",
   }}>
     <p style={{ margin: "0 0 6px", fontSize: 10, fontWeight: 700, color: "#94a3b8", letterSpacing: "0.06em" }}>
@@ -330,9 +337,9 @@ const ThresholdLegend = () => (
     </p>
     {[
       { color: "#6366f1", label: "Grid avg < 0 — Export" },
-      { color: "#22c55e", label: `≥ ${T.green}% — Connect loads` },
-      { color: "#f59e0b", label: `${T.amber}–${T.green - 1}% — Selective` },
-      { color: "#ef4444", label: `< ${T.amber}% — Defer loads` },
+      { color: "#22c55e", label: `> ${T.green}% — Strong` },
+      { color: "#eab308", label: `${T.yellow}–${T.green}% — Moderate` },
+      { color: "#94a3b8", label: `< ${T.yellow}% — Low` },
     ].map(({ color, label }) => (
       <div key={label} style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 4 }}>
         <span style={{ width: 8, height: 8, borderRadius: "50%", background: color, flexShrink: 0 }} />
@@ -340,8 +347,8 @@ const ThresholdLegend = () => (
       </div>
     ))}
     <p style={{ margin: "8px 0 0", fontSize: 9, color: "#94a3b8", lineHeight: 1.4 }}>
-      Solar hours only: {SOLAR_START}:00–{SOLAR_END}:00<br />
-      Calibrated · Porto Lot 4
+      Self-consumption scale<br />
+      defined by Sonae Sierra
     </p>
   </div>
 );
@@ -359,21 +366,20 @@ const UC2RecommendationPanel = ({ datasets = [], startDate, endDate }) => {
 
     if (!prodData.length || !consData.length) return null;
 
-    // ── Use solar-hours average to avoid nighttime zeros distorting the %
-    const avgProd     = solarAvg(prodData);   // avg production during 08-17
-    const avgCons     = solarAvg(consData);   // avg consumption during 08-17
-    const avgGridFull = avg(gridData);         // full period grid avg (for export detection)
-    const avgConsFull = avg(consData);         // full period consumption avg (for pills)
+    // Use solar-hours average to avoid nighttime zeros distorting the %
+    const avgProd     = solarAvg(prodData);
+    const avgCons     = solarAvg(consData);
+    const avgGridFull = avg(gridData);
+    const avgConsFull = avg(consData);
 
     if (!avgCons || avgCons === 0) return null;
 
-    const renewablePct = Math.min(100, Math.max(0, (avgProd / avgCons) * 100));
-    const gridPct      = Math.max(0, 100 - renewablePct);
-    const level        = getLevel(renewablePct, avgGridFull);
-    const signal       = SIGNAL[level];
-    const recs         = RECS[level];
+    const selfConsPct = Math.min(100, Math.max(0, (avgProd / avgCons) * 100));
+    const gridPct     = Math.max(0, 100 - selfConsPct);
+    const level       = getLevel(selfConsPct, avgGridFull);
+    const signal      = SIGNAL[level];
+    const recs        = RECS[level];
 
-    // % of readings that fall in solar hours
     const solarCount = consData.filter((p) => {
       const h = new Date(p.t).getUTCHours();
       return h >= SOLAR_START && h < SOLAR_END;
@@ -383,7 +389,7 @@ const UC2RecommendationPanel = ({ datasets = [], startDate, endDate }) => {
     const days = daysBetween(startDate, endDate);
 
     return {
-      renewablePct, gridPct, level, signal, recs,
+      selfConsPct, gridPct, level, signal, recs,
       avgProd, avgCons, avgConsFull, avgGridFull,
       solarHoursPct, days,
     };
@@ -392,7 +398,7 @@ const UC2RecommendationPanel = ({ datasets = [], startDate, endDate }) => {
   if (!datasets.length || !analysis) return null;
 
   const {
-    renewablePct, gridPct, level, signal, recs,
+    selfConsPct, gridPct, level, signal, recs,
     avgProd, avgCons, avgConsFull, avgGridFull,
     solarHoursPct, days,
   } = analysis;
@@ -417,7 +423,7 @@ const UC2RecommendationPanel = ({ datasets = [], startDate, endDate }) => {
           borderRadius: 999, letterSpacing: "0.06em",
         }}>UC2</span>
         <p style={{ margin: 0, fontSize: 13, fontWeight: 600, color: "#0f172a" }}>
-          Facilities Manager — Energy Recommendation
+          Energy Recommendation
         </p>
         <span style={{ marginLeft: "auto", fontSize: 10, color: "#94a3b8" }}>
           Based on full period average · solar hours (08:00–17:00) only
@@ -430,15 +436,16 @@ const UC2RecommendationPanel = ({ datasets = [], startDate, endDate }) => {
         padding: "16px 20px", background: signal.bg,
         borderBottom: `1px solid ${signal.border}`, flexWrap: "wrap",
       }}>
-        <TrafficLight level={level} />
-        <DonutGauge renewablePct={renewablePct} gridPct={gridPct} signal={signal} />
+        <SignalIndicator level={level} />
+        <DonutGauge selfConsPct={selfConsPct} gridPct={gridPct} signal={signal} />
 
         <div style={{ flex: 1, minWidth: 200, display: "flex", flexDirection: "column", gap: 10 }}>
           {/* Title */}
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
             <span style={{
               width: 10, height: 10, borderRadius: "50%",
-              background: signal.color, boxShadow: `0 0 8px ${signal.color}`,
+              background: signal.color,
+              boxShadow: level === "low" ? "none" : `0 0 8px ${signal.color}`,
             }} />
             <span style={{ fontSize: 16, fontWeight: 700, color: "#0f172a" }}>{signal.label}</span>
           </div>
@@ -449,10 +456,10 @@ const UC2RecommendationPanel = ({ datasets = [], startDate, endDate }) => {
 
           {/* Metric pills */}
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-            <Pill label="Renewable (solar hrs)"   value={`${fmt(renewablePct)}%`}      valueColor={signal.color} />
-            <Pill label="Grid (solar hrs)"        value={`${fmt(gridPct)}%`}           valueColor="#fb923c" />
-            <Pill label="Avg Production"          value={`${fmt(avgProd, 0)} kW`}      valueColor="#64748b" />
-            <Pill label="Avg Consumption"         value={`${fmt(avgConsFull, 0)} kW`}  valueColor="#64748b" />
+            <Pill label="Self-consumption (solar hrs)" value={`${fmt(selfConsPct)}%`}      valueColor={signal.color} />
+            <Pill label="Grid (solar hrs)"             value={`${fmt(gridPct)}%`}           valueColor="#fb923c" />
+            <Pill label="Avg Production"               value={`${fmt(avgProd, 0)} kW`}      valueColor="#64748b" />
+            <Pill label="Avg Consumption"              value={`${fmt(avgConsFull, 0)} kW`}  valueColor="#64748b" />
           </div>
         </div>
 
@@ -472,10 +479,9 @@ const UC2RecommendationPanel = ({ datasets = [], startDate, endDate }) => {
           margin: "12px 0 0", fontSize: 10, color: "#94a3b8",
           borderTop: "1px solid #f1f5f9", paddingTop: 10,
         }}>
-          ℹ️ Renewable % is calculated from the average of solar-hour readings (08:00–17:00) only,
-          to exclude nighttime zeros from distorting the result. Thresholds are calibrated from
-          Porto Lot 4 historical data (Dec 2025 – Jan 2026) and should be reviewed with the
-          facilities management team before operational use.
+          ℹ️ Self-consumption % is calculated as (Production / Consumption) × 100 from the average of solar-hour
+          readings (08:00–17:00) only. Thresholds (&lt; 20% / 20–40% / &gt; 40%) follow the Sonae Sierra UC2
+          specification (rev. 2026-04-17).
         </p>
       </div>
     </div>

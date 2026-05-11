@@ -6,8 +6,9 @@ import "rsuite/dist/rsuite.min.css";
 import { SlArrowRight } from "react-icons/sl";
 import { useLocation, useNavigate } from "react-router-dom";
 
-import PortoAggregatesGraph from "../components/PortoAggregatesGraph";
+import Portoaggregatesgraphwithlayer from "../components/Portoaggregatesgraphwithlayer";
 import UC2RecommendationPanel from "../components/Uc2recommendationpanel";
+import PortoAggregatesStats from "../components/PortoAggregatesStats";
 import {
   MEASUREMENTS,
   fetchAggregateSeries,
@@ -529,15 +530,20 @@ const PortoAggregatesExplorer = () => {
       {/* results */}
       {datasets.length > 0 && (
         <div style={{ marginTop: 8 }}>
-          <PortoAggregatesGraph
+          <Portoaggregatesgraphwithlayer
             datasets={datasets}
             title="Porto — Aggregates (Grid / Total_Consumption / Total_Production)"
           />
-          {/* <UC2RecommendationPanel
+          <PortoAggregatesStats
+      datasets={datasets}
+      startDate={start}
+      endDate={end}
+    />
+           <UC2RecommendationPanel
   datasets={datasets}
   startDate={start}
   endDate={end}
-/> */}
+/> 
         </div>
       )}
     </div>
