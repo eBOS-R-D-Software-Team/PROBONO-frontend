@@ -1,57 +1,58 @@
 import React, { useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom'; // Added useLocation for manual active check
-import { FaHome, FaChartBar, FaAngleLeft, FaAngleRight, FaTools, FaCogs, FaFileAlt } from 'react-icons/fa';
+import { NavLink, useLocation } from 'react-router-dom';
+import { FaHome, FaChartBar, FaAngleLeft, FaAngleRight, FaTools, FaCogs, FaFileAlt, FaSearch } from 'react-icons/fa';
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const location = useLocation(); // Hook to get current URL
+  const location = useLocation();
+
   const decisionWorkflowLink = `https://gbn-management.cds-probono.eu/?automatic_keycloak_login=true`;
+  const solutionFinderLink = `https://solution-finder.cds-probono.eu`;
 
-  const toggleSidebar = () => {
-    setIsCollapsed(!isCollapsed);
-  };
-
-  // Helper to check if external link should look "active" (optional)
-  const isGbnActive = location.pathname.includes('gbn'); 
+  const toggleSidebar = () => setIsCollapsed(!isCollapsed);
+  const isGbnActive = location.pathname.includes('gbn');
 
   return (
     <div id="left-sidebar" className={isCollapsed ? 'collapsed' : ''}>
       <button onClick={toggleSidebar} className="collapse-btn">
         {isCollapsed ? <FaAngleRight /> : <FaAngleLeft />}
       </button>
-
       <div className="sidebar-nav">
-        {/* CHANGED: Class name changed to avoid conflicts */}
         <ul className="custom-sidebar-list">
-          
+
           {/* 1. Home */}
           <li>
             <NavLink to="/" end>
-              <FaHome /> 
+              <FaHome />
               {!isCollapsed && <span>Home</span>}
             </NavLink>
           </li>
 
-          {/* 2. Solutions Catalogue */}
+          {/* 2. Solution Finder (External) */}
+          <li>
+            <a href={solutionFinderLink} target="_blank" rel="noopener noreferrer">
+              <FaSearch />
+              {!isCollapsed && <span>Solution Finder</span>}
+            </a>
+          </li>
+
+          {/* 3. Solutions Catalogue */}
           <li>
             <NavLink to="/tools">
-              <FaTools /> 
+              <FaTools />
               {!isCollapsed && <span>Solutions Catalogue</span>}
             </NavLink>
           </li>
 
-          {/* 3. GBN Management (External) */}
+          {/* 4. GBN Management (External) */}
           <li>
-            <a 
-              href={decisionWorkflowLink} 
-              className={isGbnActive ? 'active' : ''} // Manual active class if needed
-            >
+            <a href={decisionWorkflowLink} className={isGbnActive ? 'active' : ''}>
               <FaCogs />
               {!isCollapsed && <span>GBN management</span>}
             </a>
           </li>
 
-          {/* 4. Data Visualizations */}
+          {/* 5. Data Visualizations */}
           <li>
             <NavLink to="/labs">
               <FaChartBar />
@@ -59,7 +60,7 @@ const Sidebar = () => {
             </NavLink>
           </li>
 
-          {/* 5. Tools Description */}
+          {/* 6. Tools Description */}
           <li>
             <NavLink to="/tools-descriptions">
               <FaFileAlt />
