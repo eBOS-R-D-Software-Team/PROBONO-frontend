@@ -18,6 +18,7 @@ import { SlArrowRight } from "react-icons/sl";
 import EnergyClassLogo from '../assets/images/Energy_class_simulation_icon.png';
 import DownloadToolCard from "../components/DownloadToolCard";
 import HegrLogo from '../assets/images/picto_HEGR.png';
+import CoeurVertLogo from '../assets/images/coeurvert.svg';
 
 
 const ListOfTools = () => {
@@ -82,6 +83,17 @@ const ListOfTools = () => {
         />
       ), },
     { title: 'UrbanMP', link: 'https://urbanmp.cds-probono.eu/select-location', icon: ImCompass },
+    {
+  title: 'Green Pulse Monitor',
+  link: 'https://green-pulse-monitor.cds-probono.eu/',
+  icon: ({ size }) => (
+    <img
+      src={CoeurVertLogo}
+      alt="Green Pulse Monitor"
+      style={{ width: size, height: size, objectFit: 'contain' }}
+    />
+  ),
+},
   ];
 
   return (
