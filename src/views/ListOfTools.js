@@ -12,7 +12,8 @@ import {
   ImSun,
   ImCompass,
   ImEarth,
-  ImDownload
+  ImDownload,
+  ImBinoculars
 } from "react-icons/im";
 import { SlArrowRight } from "react-icons/sl";
 import EnergyClassLogo from '../assets/images/Energy_class_simulation_icon.png';
@@ -74,7 +75,7 @@ const ListOfTools = () => {
     { title: 'Vcomfort sensor tool', link: '/cvs', icon: ImSun },
     { title: '3D model Viewer', link: '/paraview-vis', icon: ImPower },
     { title: 'SEEDS', link: 'https://seeds.cds-probono.eu/', icon: ImEarth },
-    { title: 'ProBIM Explorer', link: 'https://probim-explorer.cds-probono.eu', icon: ImCog },
+    { title: 'ProBIM Explorer', link: 'https://probim-explorer.cds-probono.eu', icon: ImBinoculars },
     { title: 'HEGR EnergyPlus Resultviewer', link: '/hegr-energyplus',  icon: ({ size }) => (
         <img
           src={HegrLogo}
