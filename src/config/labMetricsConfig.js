@@ -6,7 +6,7 @@ import {
   ImOffice,
   ImSun,
   ImLoop2,
-  ImCompass, ImEarth,
+  ImCompass, ImEarth,ImBinoculars,
 } from "react-icons/im";
 import { FaBolt, FaGasPump, FaTruck } from "react-icons/fa";
 import {
@@ -140,7 +140,7 @@ export const labMetrics = {
     {
       id: 5,
       title: "ProBIM Explorer",
-      icon: <ImCompass />,
+      icon: <ImBinoculars />,
       path: "https://probim-explorer.cds-probono.eu",
     },
     

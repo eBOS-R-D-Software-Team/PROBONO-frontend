@@ -21,6 +21,7 @@ import influx from '../reducers/influxExplorerDirectSlice';
 import hegrReducer from '../reducers/hegrSlice';
 import portoAggregatesReducer from '../reducers/portoAggregatesSlice';
 import nftReducer from "../reducers/nftSlice";
+import sumoSimulationReducer from "../reducers/sumoSimulationSlice";
 
 
 const store = configureStore({
@@ -46,6 +47,7 @@ const store = configureStore({
     hegr: hegrReducer,
     portoAggregates : portoAggregatesReducer,
     nft: nftReducer,
+    sumoSimulation: sumoSimulationReducer,
 
     
 

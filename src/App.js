@@ -41,6 +41,7 @@ import Cvs from './views/Cvs';
 import PortoAggregatesExplorer from "./views/PortoAggregatesExplorer";
 import PortoNftKpiView from "./views/PortoNftKpiView";
 import PragueLivingLabExplorer from "./views/PragueLivingLabExplorer";
+import SumoSimulation from "./views/SumoSimulation";
 
 
 
@@ -122,6 +123,14 @@ function App() {
             element={
               <MainLayout>
                 <ContourHeatmap2D />
+              </MainLayout>
+            }
+          />
+          <Route
+            path="//sumosimulation"
+            element={
+              <MainLayout>
+                <SumoSimulation />
               </MainLayout>
             }
           />
