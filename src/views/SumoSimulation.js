@@ -71,6 +71,17 @@ const CHART_PALETTE = [
 const COMPLETED_STATUSES = ["finished", "terminated", "completed", "done", "success"];
 const ERROR_STATUSES = ["failed", "error", "aborted", "crashed"];
 
+// Selectable scenarios. NOTE: this is a hard-coded list — the SUMO API has no
+// endpoint to enumerate scenarios, so it must be kept in sync with the backend.
+const SCENARIOS = [
+  "baseline",
+  "scenarioA",
+  "scenarioB",
+  "scenarioC",
+  "scenarioD",
+  "scenarioE",
+];
+
 /* ------------------------------------------------------------------ */
 /* KPI helpers — adaptive: works with whatever JSON the parser builds.  */
 /* ------------------------------------------------------------------ */
@@ -180,7 +191,7 @@ const lineOptions = (xLabel, yLabel) => ({
   scales: {
     x: {
       title: { display: true, text: xLabel },
-      ticks: { maxTicksLimit: 8, autoSkip: true },
+      ticks: { maxTicksLimit: 12, autoSkip: true },
       grid: { display: false },
     },
     y: {
@@ -319,7 +330,7 @@ const KpiSection = ({ kpis, kpisLoading, kpiError, onDownload }) => {
           <Box
             sx={{
               display: "grid",
-              gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+              gridTemplateColumns: "1fr",
               gap: 2,
             }}
           >
@@ -329,7 +340,7 @@ const KpiSection = ({ kpis, kpisLoading, kpiError, onDownload }) => {
                   <Typography variant="subtitle2" sx={{ mb: 1 }}>
                     {s.label}
                   </Typography>
-                  <Box sx={{ height: 240 }}>
+                  <Box sx={{ height: { xs: 280, md: 380 } }}>
                     <Line
                       data={{
                         labels: series.xValues,
@@ -529,10 +540,11 @@ const SumoSimulation = () => {
                   onChange={(e) => dispatch(setScenario(e.target.value))}
                   disabled={loading || isRunning}
                 >
-                  <MenuItem value="baseline">baseline</MenuItem>
-                  <MenuItem value="scenarioA">scenarioA</MenuItem>
-                  <MenuItem value="scenarioB">scenarioB</MenuItem>
-                  <MenuItem value="scenarioC">scenarioC</MenuItem>
+                  {SCENARIOS.map((s) => (
+                    <MenuItem key={s} value={s}>
+                      {s}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
 

@@ -127,7 +127,7 @@ function App() {
             }
           />
           <Route
-            path="//sumosimulation"
+            path="/sumosimulation"
             element={
               <MainLayout>
                 <SumoSimulation />

@@ -20,6 +20,7 @@ import EnergyClassLogo from '../assets/images/Energy_class_simulation_icon.png';
 import DownloadToolCard from "../components/DownloadToolCard";
 import HegrLogo from '../assets/images/picto_HEGR.png';
 import CoeurVertLogo from '../assets/images/coeurvert.svg';
+import SumoIcon from '../assets/images/sumoicon.png';
 
 
 const ListOfTools = () => {
@@ -95,6 +96,17 @@ const ListOfTools = () => {
     />
   ),
 },
+    {
+      title: 'SUMO Mobility Simulation',
+      link: '/sumosimulation',
+      icon: ({ size }) => (
+        <img
+          src={SumoIcon}
+          alt="SUMO Mobility Simulation"
+          style={{ width: size, height: size, objectFit: 'contain' }}
+        />
+      ),
+    },
   ];
 
   return (
