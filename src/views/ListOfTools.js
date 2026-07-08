@@ -21,6 +21,7 @@ import DownloadToolCard from "../components/DownloadToolCard";
 import HegrLogo from '../assets/images/picto_HEGR.png';
 import CoeurVertLogo from '../assets/images/coeurvert.svg';
 import SumoIcon from '../assets/images/sumoicon.png';
+import ThermalComfortIcon from '../assets/images/2.png';
 
 
 const ListOfTools = () => {
@@ -103,6 +104,17 @@ const ListOfTools = () => {
         <img
           src={SumoIcon}
           alt="SUMO Mobility Simulation"
+          style={{ width: size, height: size, objectFit: 'contain' }}
+        />
+      ),
+    },
+    {
+      title: 'Thermal Comfort Recommendation Engine',
+      link: 'https://thermal-comfort-recom.cds-probono.eu/',
+      icon: ({ size }) => (
+        <img
+          src={ThermalComfortIcon}
+          alt="Thermal Comfort Recommendation Engine"
           style={{ width: size, height: size, objectFit: 'contain' }}
         />
       ),
