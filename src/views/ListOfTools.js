@@ -59,7 +59,7 @@ const ListOfTools = () => {
   const tools = [
     { title: 'Demolition Tool', link: 'https://probono.usc.es/', icon: ImHammer },
     { title: 'Open knowledge-base', link: 'https://www.probonoh2020kb.eu/', icon: ImStatsDots },
-    { title: 'Ventilation Assessment Tool', link: 'https://v24121.ita.es/VentilationTool_HMI/', icon: ImAirplane },
+    { title: 'Ventilation Assessment Tool', link: 'https://v26093.ita.es/VentilationTool_HMI/', icon: ImAirplane },
     { title: 'Demand and Response Platform Building Layer – DaRA', link: 'http://dara.tpf.be/', icon: ImCog },
     {
       title: 'Energy class simulator',
