@@ -2,21 +2,21 @@
  * UC2EnergyReport.jsx
  *
  * UC2 energy report aligned with Sonae Sierra spec (rev. 2026-04-17)
- * + April 2026 feedback:
+ * + April 2026 FM feedback:
  *   - Seasonal solar hours (Winter 09–17, Spring 08–18, Summer 07–19, Autumn 08–18)
- *   - Totals presented in MWh
+ *   - All energy values presented in MWh (totals + breakdown charts)
  *
  * Indicators:
  *   ▸ % self-consumption (overall + during seasonal solar hours)
  *   ▸ Average % self-consumption / hour, per day of week
- *   ▸ Average consumption / hour, per day of week
- *   ▸ Average PV production / hour, per day of week
+ *   ▸ Average consumption / hour, per day of week      (kW — power, not energy)
+ *   ▸ Average PV production / hour, per day of week    (kW — power, not energy)
  *   ▸ Total energy consumption      (MWh)
  *   ▸ Total energy PV production    (MWh)
  *   ▸ Total energy self-consumption (MWh)
  *   ▸ Total energy grid import      (MWh)
  *   ▸ Total energy surplus          (MWh)
- *   ▸ Daily / Weekly / Monthly self-consumption vs grid (kWh)
+ *   ▸ Daily / Weekly / Monthly self-consumption vs grid (MWh)
  */
 
 import React, { useMemo, useRef, useState } from "react";
@@ -54,6 +54,9 @@ const fmt = (v, dec = 1) =>
 
 const fmtKwh = (v) => fmt(v, 0);
 const fmtMwh = (v) => fmt(v / 1000, 2);
+/** value already expressed in MWh */
+const fmtMwhVal = (v) => fmt(v, 2);
+const toMwh = (kwh) => kwh / 1000;
 
 const buildSeriesMap = (data) => {
   const m = new Map();
@@ -114,7 +117,7 @@ const weekKey  = (d) => {
 const monthKey = (d) => `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, "0")}`;
 
 /* ─────────────────────────────────────────────────────────────
-   KPI CARD (now with MWh + kWh sublabel)
+   KPI CARD
 ───────────────────────────────────────────────────────────── */
 const KpiCard = ({ label, value, unit, sublabel, color = "#22c55e", icon }) => (
   <div style={{
@@ -163,7 +166,7 @@ const UC2EnergyReport = ({ datasets = [], startDate, endDate }) => {
     const instants = computeInstants(prodData, consData);
     if (!instants.length) return null;
 
-    // Energy totals
+    // Energy totals (kWh internally)
     const totalCons    = energyKwh(instants, "cons");
     const totalProd    = energyKwh(instants, "prod");
     const totalSc      = energyKwh(instants, "sc");
@@ -174,12 +177,12 @@ const UC2EnergyReport = ({ datasets = [], startDate, endDate }) => {
     const scPctOverall = totalCons > 0 ? (totalSc / totalCons) * 100 : 0;
 
     // Seasonal solar-hours filter
-    const solarInstants = instants.filter((i) => isSolarHour(i.t));
+    const solarInstants  = instants.filter((i) => isSolarHour(i.t));
     const totalConsSolar = energyKwh(solarInstants, "cons");
     const totalScSolar   = energyKwh(solarInstants, "sc");
     const scPctSolar     = totalConsSolar > 0 ? (totalScSolar / totalConsSolar) * 100 : 0;
 
-    // Day-of-week profiles
+    // Day-of-week profiles (kW — power averages)
     const dowProd = dayOfWeekProfile(instants, "prod");
     const dowCons = dayOfWeekProfile(instants, "cons");
     const dowSc   = dayOfWeekProfile(instants, "sc");
@@ -187,7 +190,7 @@ const UC2EnergyReport = ({ datasets = [], startDate, endDate }) => {
       dowCons[i] > 0 ? (sc / dowCons[i]) * 100 : 0
     );
 
-    // Period breakdowns
+    // Period breakdowns (kWh internally, rendered as MWh)
     const daily   = groupBy(instants, dayKey);
     const weekly  = groupBy(instants, weekKey);
     const monthly = groupBy(instants, monthKey);
@@ -204,31 +207,33 @@ const UC2EnergyReport = ({ datasets = [], startDate, endDate }) => {
 
   if (!datasets.length || !report) return null;
 
-  /* Chart data builders (kWh for daily/weekly readability, MWh axis for monthly) */
+  /* ── Chart data — values converted to MWh ── */
   const stackedChart = (rows, labelFn) => ({
     labels: rows.map((r) => labelFn(r.key)),
     datasets: [
       {
-        label: "Self-consumption (kWh)",
-        data: rows.map((r) => r.sc),
+        label: "Self-consumption (MWh)",
+        data: rows.map((r) => toMwh(r.sc)),
         backgroundColor: COLORS.selfCons, stack: "energy", borderWidth: 0,
       },
       {
-        label: "Grid import (kWh)",
-        data: rows.map((r) => r.grid),
+        label: "Grid import (MWh)",
+        data: rows.map((r) => toMwh(r.grid)),
         backgroundColor: COLORS.grid, stack: "energy", borderWidth: 0,
       },
     ],
   });
 
-  const chartOptions = (yLabel) => ({
+  const chartOptions = (yLabel = "Energy (MWh)") => ({
     responsive: true, maintainAspectRatio: false, animation: false,
     plugins: {
       legend: { position: "top", labels: { color: "#334155", font: { size: 11 }, boxWidth: 12 } },
       tooltip: {
         backgroundColor: "#0f172a",
         titleFont: { size: 12, weight: 700 }, bodyFont: { size: 11 },
-        callbacks: { label: (ctx) => `${ctx.dataset.label}: ${fmtKwh(ctx.parsed.y)} kWh` },
+        callbacks: {
+          label: (ctx) => `${ctx.dataset.label}: ${fmtMwhVal(ctx.parsed.y)} MWh`,
+        },
       },
     },
     scales: {
@@ -239,7 +244,7 @@ const UC2EnergyReport = ({ datasets = [], startDate, endDate }) => {
       },
       y: {
         stacked: true,
-        ticks: { color: "#94a3b8", font: { size: 10 }, callback: (v) => fmtKwh(v) },
+        ticks: { color: "#94a3b8", font: { size: 10 }, callback: (v) => fmt(v, 0) },
         grid: { color: "#f1f5f9" },
         title: { display: true, text: yLabel, color: "#94a3b8", font: { size: 10 } },
       },
@@ -288,7 +293,7 @@ const UC2EnergyReport = ({ datasets = [], startDate, endDate }) => {
     doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(...P.muted);
     doc.text("PERIOD", M, 38.5);
     doc.setFont("helvetica", "normal"); doc.setTextColor(...P.body);
-    doc.text(`${fmtDate(startDate)}   →   ${fmtDate(endDate)}`, M + 22, 38.5);
+    doc.text(`${fmtDate(startDate)}   -   ${fmtDate(endDate)}`, M + 22, 38.5);
 
     y = 50;
 
@@ -301,14 +306,14 @@ const UC2EnergyReport = ({ datasets = [], startDate, endDate }) => {
     };
 
     /* ── Energy totals (MWh primary, kWh secondary) ── */
-    y = section("Energy Totals", y);
+    y = section("Energy Totals (MWh)", y);
     const kpis = [
       { lbl: "Total Consumption",       val: fmtMwh(report.totalCons),    unit: "MWh", sub: `${fmtKwh(report.totalCons)} kWh`,    color: [14, 165, 233] },
       { lbl: "Total PV Production",     val: fmtMwh(report.totalProd),    unit: "MWh", sub: `${fmtKwh(report.totalProd)} kWh`,    color: P.sc },
       { lbl: "Total Self-Consumption",  val: fmtMwh(report.totalSc),      unit: "MWh", sub: `${fmtKwh(report.totalSc)} kWh`,      color: P.sc },
       { lbl: "Total Grid Import",       val: fmtMwh(report.totalGrid),    unit: "MWh", sub: `${fmtKwh(report.totalGrid)} kWh`,    color: P.grid },
       { lbl: "Total Surplus (Export)",  val: fmtMwh(report.totalSurplus), unit: "MWh", sub: `${fmtKwh(report.totalSurplus)} kWh`, color: P.surplus },
-      { lbl: "% Self-Consumption",      val: `${fmt(report.scPctOverall)}`, unit: "%", sub: "overall",                           color: P.sc },
+      { lbl: "% Self-Consumption",      val: `${fmt(report.scPctOverall)}`, unit: "%", sub: "overall",                            color: P.sc },
     ];
     const cw = (CW - 4) / 3, ch = 25;
     kpis.forEach((kpi, i) => {
@@ -332,8 +337,8 @@ const UC2EnergyReport = ({ datasets = [], startDate, endDate }) => {
       startY: y, margin: { left: M, right: M },
       head: [["Indicator", "Value"]],
       body: [
-        ["% Self-consumption (overall)",                    `${fmt(report.scPctOverall)} %`],
-        ["% Self-consumption (seasonal solar hours only)",  `${fmt(report.scPctSolar)} %`],
+        ["% Self-consumption (overall)",                   `${fmt(report.scPctOverall)} %`],
+        ["% Self-consumption (seasonal solar hours only)", `${fmt(report.scPctSolar)} %`],
       ],
       theme: "plain",
       styles: { font: "helvetica", fontSize: 9, textColor: P.body, fillColor: P.white, lineColor: P.cardBdr, lineWidth: 0.3, cellPadding: { top: 5, bottom: 5, left: 4, right: 4 } },
@@ -342,16 +347,16 @@ const UC2EnergyReport = ({ datasets = [], startDate, endDate }) => {
     });
     y = doc.lastAutoTable.finalY + 8;
 
-    /* ── Seasonal Solar Hours Legend ── */
+    /* ── Seasonal solar hours ── */
     y = section("Seasonal Solar Hours (per FM feedback)", y);
     autoTable(doc, {
       startY: y, margin: { left: M, right: M },
       head: [["Season", "Months", "Solar hours"]],
       body: [
-        ["Winter", "Nov–Feb", "09:00–17:00"],
-        ["Spring", "Mar–Apr", "08:00–18:00"],
-        ["Summer", "May–Aug", "07:00–19:00"],
-        ["Autumn", "Sep–Oct", "08:00–18:00"],
+        ["Winter", "Nov-Feb", "09:00-17:00"],
+        ["Spring", "Mar-Apr", "08:00-18:00"],
+        ["Summer", "May-Aug", "07:00-19:00"],
+        ["Autumn", "Sep-Oct", "08:00-18:00"],
       ],
       theme: "plain",
       styles: { font: "helvetica", fontSize: 9, textColor: P.body, fillColor: P.white, lineColor: P.cardBdr, lineWidth: 0.3, cellPadding: { top: 4, bottom: 4, left: 4, right: 4 } },
@@ -398,9 +403,9 @@ const UC2EnergyReport = ({ datasets = [], startDate, endDate }) => {
       } catch (_) {}
     };
 
-    addChart("Daily Self-Consumption vs Grid",   dailyChartRef);
-    addChart("Weekly Self-Consumption vs Grid",  weeklyChartRef);
-    addChart("Monthly Self-Consumption vs Grid", monthlyChartRef);
+    addChart("Daily Self-Consumption vs Grid (MWh)",   dailyChartRef);
+    addChart("Weekly Self-Consumption vs Grid (MWh)",  weeklyChartRef);
+    addChart("Monthly Self-Consumption vs Grid (MWh)", monthlyChartRef);
 
     /* ── Footer ── */
     const total = doc.internal.getNumberOfPages();
@@ -409,7 +414,7 @@ const UC2EnergyReport = ({ datasets = [], startDate, endDate }) => {
       doc.setFillColor(...P.white); doc.rect(0, 284, W, 13, "F");
       doc.setDrawColor(...P.cardBdr); doc.setLineWidth(0.4); doc.line(M, 285, W - M, 285);
       doc.setFont("helvetica", "normal"); doc.setFontSize(7); doc.setTextColor(...P.muted);
-      doc.text("PROBONO — UC2 Energy Report | Aligned with Sonae Sierra spec + FM feedback (April 2026)", M, 292);
+      doc.text("PROBONO - UC2 Energy Report", M, 292);
       doc.text(`Page ${p} of ${total}  ·  ${new Date().toLocaleDateString("en-GB")}`, W - M, 292, { align: "right" });
     }
 
@@ -421,13 +426,13 @@ const UC2EnergyReport = ({ datasets = [], startDate, endDate }) => {
     <>
       {/* Hidden charts for PDF capture */}
       <div style={{ position: "absolute", left: -9999, top: -9999, width: 900, height: 280 }}>
-        <Bar ref={dailyChartRef}   data={dailyData}   options={chartOptions("kWh")} width={900} height={280} />
+        <Bar ref={dailyChartRef}   data={dailyData}   options={chartOptions()} width={900} height={280} />
       </div>
       <div style={{ position: "absolute", left: -9999, top: -9999, width: 900, height: 280 }}>
-        <Bar ref={weeklyChartRef}  data={weeklyData}  options={chartOptions("kWh")} width={900} height={280} />
+        <Bar ref={weeklyChartRef}  data={weeklyData}  options={chartOptions()} width={900} height={280} />
       </div>
       <div style={{ position: "absolute", left: -9999, top: -9999, width: 900, height: 280 }}>
-        <Bar ref={monthlyChartRef} data={monthlyData} options={chartOptions("kWh")} width={900} height={280} />
+        <Bar ref={monthlyChartRef} data={monthlyData} options={chartOptions()} width={900} height={280} />
       </div>
 
       <div style={{
@@ -454,6 +459,7 @@ const UC2EnergyReport = ({ datasets = [], startDate, endDate }) => {
                 UC2 Energy Report
               </p>
               <p style={{ margin: "2px 0 0", fontSize: 10, color: "#94a3b8" }}>
+                
                 {report.seasons?.length ? ` · Seasons: ${report.seasons.join(", ")}` : ""}
               </p>
             </div>
@@ -492,7 +498,7 @@ const UC2EnergyReport = ({ datasets = [], startDate, endDate }) => {
           </div>
         </div>
 
-        {/* Energy totals — MWh primary */}
+        {/* Energy totals — MWh */}
         <div style={{ padding: "8px 16px" }}>
           <p style={{ margin: "8px 0 10px", fontSize: 11, fontWeight: 700, color: "#64748b", letterSpacing: "0.06em", textTransform: "uppercase" }}>
             Energy Totals (MWh)
@@ -555,11 +561,11 @@ const UC2EnergyReport = ({ datasets = [], startDate, endDate }) => {
           </div>
         </div>
 
-        {/* Period breakdown */}
+        {/* Period breakdown — MWh */}
         <div style={{ padding: "16px" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10, flexWrap: "wrap", gap: 10 }}>
             <p style={{ margin: 0, fontSize: 11, fontWeight: 700, color: "#64748b", letterSpacing: "0.06em", textTransform: "uppercase" }}>
-              Self-Consumption vs Grid — Period Breakdown
+              Self-Consumption vs Grid — Period Breakdown (MWh)
             </p>
             <div style={{ display: "flex", gap: 4, padding: 3, background: "#f1f5f9", borderRadius: 8 }}>
               {[
@@ -596,7 +602,7 @@ const UC2EnergyReport = ({ datasets = [], startDate, endDate }) => {
                 : breakdownView === "weekly" ? weeklyData
                 : monthlyData
               }
-              options={chartOptions("Energy (kWh)")}
+              options={chartOptions("Energy (MWh)")}
             />
           </div>
 
@@ -614,8 +620,10 @@ const UC2EnergyReport = ({ datasets = [], startDate, endDate }) => {
           fontSize: 10, color: "#94a3b8",
           borderTop: "1px solid #f1f5f9",
         }}>
-          ℹ️ Energy totals presented in MWh (kWh shown as sublabel). Self-consumption per timestamp is
-          computed as min(production, consumption). Seasonal solar hours applied : winter 09–17, spring 08–18, summer 07–19, autumn 08–18.
+          ℹ️ All energy values presented in MWh (kWh shown as sublabel on totals). Day-of-week figures are
+          power averages in kW. Self-consumption per timestamp is computed as min(production, consumption).
+          Seasonal solar hours applied : winter 09–17,
+          spring 08–18, summer 07–19, autumn 08–18.
         </p>
       </div>
     </>
