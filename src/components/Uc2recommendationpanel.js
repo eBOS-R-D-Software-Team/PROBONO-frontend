@@ -264,7 +264,7 @@ const PeriodBadge = ({ solarHoursPct, days, seasons }) => (
       <p style={{ margin: "2px 0 0", fontSize: 11, color: "#475569", lineHeight: 1.4 }}>
         Seasonal solar-hour readings represent{" "}
         <strong>{fmt(solarHoursPct, 0)}%</strong> of the selected period.
-        Solar-window boundaries adjust by season per Sonae Sierra spec.
+        Solar-window boundaries adjust by season.
       </p>
     </div>
   </div>
@@ -473,7 +473,7 @@ const UC2RecommendationPanel = ({ datasets = [], startDate, endDate }) => {
           borderTop: "1px solid #f1f5f9", paddingTop: 10,
         }}>
           ℹ️ Self-consumption % is calculated from the average of seasonal solar-hour readings only.
-          Solar-window boundaries follow the Sonae Sierra FM Team feedback (April 2026): winter 09–17,
+          Solar-window boundaries: winter 09–17,
           spring 08–18, summer 07–19, autumn 08–18.
           Thresholds (&lt; 20% / 20–40% / &gt; 40%) follow the UC2 spec (rev. 2026-04-17).
         </p>
