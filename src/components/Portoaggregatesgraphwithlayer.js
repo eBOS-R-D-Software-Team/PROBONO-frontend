@@ -9,14 +9,8 @@
  *   🟡 20–40%      → yellow
  *   🟢 > 40%       → green
  *
- * Self-consumption % per time bucket:
- *   SC(t)  = min(production(t), consumption(t))
- *   SC%(t) = SC(t) / consumption(t) × 100
- *
- * Bucket size is adaptive: hourly for short ranges, daily for longer ones.
- *
- * Use this component on visualizations that need the UC2 colour overlay.
- * For other dashboards keep using the original PortoAggregatesGraph.
+ * Seasonal solar hours applied per Sonae Sierra FM feedback (April 2026)
+ * are enforced when computing SC% for the layer buckets.
  */
 
 import React, { useMemo, useState } from "react";
@@ -32,6 +26,7 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import "chartjs-adapter-date-fns";
+import { isSolarHour } from "./seasonalSolarHours.js";
 
 ChartJS.register(
   LineElement,
@@ -51,7 +46,7 @@ const COLORS = [
 ];
 
 /* ─────────────────────────────────────────────────────────────
-   SELF-CONSUMPTION LAYER LOGIC
+   LAYER LOGIC
 ───────────────────────────────────────────────────────────── */
 const T = { green: 40, yellow: 20 };
 
@@ -68,11 +63,10 @@ const getLayerColor = (pct) => {
   return LAYER_COLORS.none;
 };
 
-/** Build self-consumption % buckets over time. */
+/** Build SC% buckets over time. Only bucket hours within the seasonal solar window. */
 function buildBuckets(prodData, consData) {
   if (!prodData?.length || !consData?.length) return [];
 
-  // align by timestamp
   const consMap = new Map(consData.map((p) => [p.t, p.y || 0]));
   const points = prodData
     .map((p) => ({
@@ -80,24 +74,21 @@ function buildBuckets(prodData, consData) {
       prod: p.y || 0,
       cons: consMap.get(p.t) ?? 0,
     }))
+    // ← seasonal solar-hour filter
+    .filter((p) => isSolarHour(p.t))
     .sort((a, b) => a.t - b.t);
 
   if (!points.length) return [];
 
-  // Determine bucket size based on the total range
   const rangeMs = points[points.length - 1].t - points[0].t;
   const oneDay = 86_400_000;
   const useDaily = rangeMs >= 3 * oneDay;
-  const bucketMs = useDaily ? oneDay : 3_600_000; // daily or hourly
+  const bucketMs = useDaily ? oneDay : 3_600_000;
 
-  // Floor the timestamp to the bucket boundary
   const floor = (d) => {
     const t = new Date(d);
-    if (useDaily) {
-      t.setUTCHours(0, 0, 0, 0);
-    } else {
-      t.setUTCMinutes(0, 0, 0);
-    }
+    if (useDaily) t.setUTCHours(0, 0, 0, 0);
+    else          t.setUTCMinutes(0, 0, 0);
     return t.getTime();
   };
 
@@ -122,7 +113,7 @@ function buildBuckets(prodData, consData) {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   CHART.JS PLUGIN — draws the colour layer behind the lines
+   PLUGIN
 ───────────────────────────────────────────────────────────── */
 const selfConsumptionLayerPlugin = {
   id: "selfConsumptionLayer",
@@ -149,7 +140,6 @@ const selfConsumptionLayerPlugin = {
       let xStart = xScale.getPixelForValue(b.start);
       let xEnd   = xScale.getPixelForValue(b.end);
 
-      // clamp to chart area
       xStart = Math.max(xStart, left);
       xEnd   = Math.min(xEnd,   right);
       if (xEnd <= xStart) continue;
@@ -165,7 +155,7 @@ const selfConsumptionLayerPlugin = {
 ChartJS.register(selfConsumptionLayerPlugin);
 
 /* ─────────────────────────────────────────────────────────────
-   LEGEND COMPONENT
+   LEGEND
 ───────────────────────────────────────────────────────────── */
 const LayerLegend = ({ enabled }) => (
   <div
@@ -203,6 +193,9 @@ const LayerLegend = ({ enabled }) => (
         <span>{label}</span>
       </span>
     ))}
+    <span style={{ fontSize: 10, color: "#94a3b8" }}>
+      Seasonal solar hours applied
+    </span>
     <span style={{ marginLeft: "auto", fontSize: 10, color: "#94a3b8", opacity: enabled ? 1 : 0.5 }}>
       {enabled ? "Layer ON" : "Layer OFF"}
     </span>
@@ -215,7 +208,6 @@ const LayerLegend = ({ enabled }) => (
 export default function PortoAggregatesGraphWithLayer({ datasets = [], title = "" }) {
   const [layerEnabled, setLayerEnabled] = useState(true);
 
-  /* ── chart data (identical to PortoAggregatesGraph) ── */
   const chartData = useMemo(() => ({
     datasets: datasets.map((ds, i) => ({
       label: ds.label,
@@ -232,7 +224,6 @@ export default function PortoAggregatesGraphWithLayer({ datasets = [], title = "
     })),
   }), [datasets]);
 
-  /* ── build SC buckets for the layer ── */
   const buckets = useMemo(() => {
     const prod = datasets.find((d) => d.label === "Total_Production")?.data;
     const cons = datasets.find((d) => d.label === "Total_Consumption")?.data;
@@ -241,7 +232,6 @@ export default function PortoAggregatesGraphWithLayer({ datasets = [], title = "
 
   const layerAvailable = buckets.length > 0;
 
-  /* ── chart options ── */
   const options = useMemo(() => ({
     responsive: true,
     maintainAspectRatio: false,
@@ -256,7 +246,6 @@ export default function PortoAggregatesGraphWithLayer({ datasets = [], title = "
           },
         },
       },
-      // 👇 the custom layer plugin reads its config from here
       selfConsumptionLayer: {
         enabled: layerEnabled && layerAvailable,
         buckets,
@@ -303,7 +292,6 @@ export default function PortoAggregatesGraphWithLayer({ datasets = [], title = "
           "0 18px 40px rgba(15,23,42,0.22), 0 0 0 1px rgba(148,163,184,0.4)",
       }}
     >
-      {/* ── header row ── */}
       <div
         style={{
           display: "flex",
@@ -320,7 +308,6 @@ export default function PortoAggregatesGraphWithLayer({ datasets = [], title = "
           </div>
         ) : <span />}
 
-        {/* ── Layer toggle ── */}
         {layerAvailable && (
           <button
             onClick={() => setLayerEnabled((v) => !v)}
@@ -366,12 +353,10 @@ export default function PortoAggregatesGraphWithLayer({ datasets = [], title = "
         )}
       </div>
 
-      {/* ── chart ── */}
       <div style={{ height: 420 }}>
         <Line data={chartData} options={options} />
       </div>
 
-      {/* ── layer legend ── */}
       {layerAvailable && (
         <div style={{ marginTop: 10 }}>
           <LayerLegend enabled={layerEnabled} />

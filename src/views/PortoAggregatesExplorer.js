@@ -8,7 +8,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import Portoaggregatesgraphwithlayer from "../components/Portoaggregatesgraphwithlayer";
 import UC2RecommendationPanel from "../components/Uc2recommendationpanel";
-import PortoAggregatesStats from "../components/PortoAggregatesStats";
+import UC2EnergyReport from "../components/Uc2energyreport";
+
 import {
   MEASUREMENTS,
   fetchAggregateSeries,
@@ -534,16 +535,20 @@ const PortoAggregatesExplorer = () => {
             datasets={datasets}
             title="Porto — Aggregates (Grid / Total_Consumption / Total_Production)"
           />
-          <PortoAggregatesStats
-      datasets={datasets}
-      startDate={start}
-      endDate={end}
-    />
-           <UC2RecommendationPanel
-  datasets={datasets}
-  startDate={start}
-  endDate={end}
-/> 
+
+         <UC2EnergyReport
+            datasets={datasets}
+            startDate={start}
+            endDate={end}
+          />
+
+          <UC2RecommendationPanel
+            datasets={datasets}
+            startDate={start}
+            endDate={end}
+          />
+
+          
         </div>
       )}
     </div>
