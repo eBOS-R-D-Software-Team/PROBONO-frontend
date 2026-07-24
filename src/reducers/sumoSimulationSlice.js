@@ -137,6 +137,54 @@ const parseStatistics = (xmlText) => {
   return Object.keys(kpis).length ? kpis : null;
 };
 
+// Emissions totals from <emissions .../> children inside tripinfo entries.
+// SUMO writes absolute emission values in mg (fuel in mg on SUMO >= 1.14,
+// ml on older versions) — units confirmed as mg against the delivered package.
+// Per-vehicle values are also derived: absolute totals scale with the number
+// of vehicles that ran, so they are not comparable across scenarios on their
+// own when vehicle counts differ.
+const parseEmissionsFromTrips = (trips) => {
+  const totals = { CO2_abs: 0, NOx_abs: 0, fuel_abs: 0, CO_abs: 0, PMx_abs: 0, HC_abs: 0 };
+  let found = false;
+
+  trips.forEach((t) => {
+    const em = t.getElementsByTagName("emissions")[0];
+    if (!em) return;
+    Object.keys(totals).forEach((attr) => {
+      const v = numAttr(em, attr);
+      if (v != null) {
+        totals[attr] += v;
+        found = true;
+      }
+    });
+  });
+
+  if (!found) return null;
+
+  const n = trips.length || 1;
+  const kpis = {};
+
+  if (totals.CO2_abs > 0) {
+    kpis.total_co2_kg = round1(totals.CO2_abs / 1e6);
+    kpis.co2_per_vehicle_g = round1(totals.CO2_abs / n / 1e3);
+  }
+ if (totals.NOx_abs > 0) {
+    kpis.total_nox_g = round1(totals.NOx_abs / 1e3);
+    // NOx per vehicle is ~0.04 g and rounds away in grams — report in mg
+    // (SUMO's absolute emission values are already in mg).
+    kpis.nox_per_vehicle_mg = round1(totals.NOx_abs / n);
+  }
+  if (totals.fuel_abs > 0) {
+    kpis.total_fuel_kg = round1(totals.fuel_abs / 1e6);
+    kpis.fuel_per_vehicle_g = round1(totals.fuel_abs / n / 1e3);
+  }
+  if (totals.CO_abs > 0) kpis.total_co_g = round1(totals.CO_abs / 1e3);
+  if (totals.PMx_abs > 0) kpis.total_pmx_g = round1(totals.PMx_abs / 1e3);
+  if (totals.HC_abs > 0) kpis.total_hc_g = round1(totals.HC_abs / 1e3);
+
+  return Object.keys(kpis).length ? kpis : null;
+};
+
 // tripinfo.xml -> aggregate scalar KPIs (fallback if no statistics.xml)
 const parseTripinfo = (xmlText) => {
   const doc = parseXml(xmlText);
@@ -171,7 +219,21 @@ const parseTripinfo = (xmlText) => {
     avg_time_loss_s: round1(sums.timeLoss / n),
   };
   if (speedCount) kpis.avg_speed_kmh = round1((sums.speed / speedCount) * 3.6);
+
+  const emissions = parseEmissionsFromTrips(trips);
+  if (emissions) Object.assign(kpis, emissions);
+
   return kpis;
+};
+
+// Extract only the emissions totals from a tripinfo file, so they can be
+// merged into KPIs sourced from statistics.xml.
+const parseEmissionsOnly = (xmlText) => {
+  const doc = parseXml(xmlText);
+  if (!doc) return null;
+  const trips = Array.from(doc.getElementsByTagName("tripinfo"));
+  if (!trips.length) return null;
+  return parseEmissionsFromTrips(trips);
 };
 
 // E1 induction-loop detector -> per-interval time series (flow / speed / occupancy).
@@ -299,6 +361,7 @@ const parseResultZip = async (blob) => {
   const tripName = find(/tripinfo/i); // tripinfo / tripinfos
   const e1Name = find(/(^|[^a-z])e1|induction|detector/i);
   const edgeName = find(/edge.?data|meandata|edgedata/i);
+  const emissionName = find(/emission/i);
 
   const result = { kpis: {}, timeseries: {}, _files: files };
 
@@ -310,6 +373,20 @@ const parseResultZip = async (blob) => {
   if (!Object.keys(result.kpis).length && tripName) {
     const kpis = parseTripinfo(await readFile(tripName));
     if (kpis) result.kpis = kpis;
+  }
+
+  // --- emissions (CO2 / NOx / fuel): merge in if present anywhere ---
+  const hasEmissions = Object.keys(result.kpis).some((k) =>
+    /co2|nox|fuel|pmx|_co_/i.test(k)
+  );
+  if (!hasEmissions) {
+    if (emissionName) {
+      const em = parseEmissionsOnly(await readFile(emissionName));
+      if (em) Object.assign(result.kpis, em);
+    } else if (tripName) {
+      const em = parseEmissionsOnly(await readFile(tripName));
+      if (em) Object.assign(result.kpis, em);
+    }
   }
 
   // --- time series: summary -> edge mean-data -> E1 detector ---
@@ -490,6 +567,10 @@ const initialState = {
   status: null,
   statusDetails: null,
   kpis: null,
+  // Cached KPIs from the most recent successful "baseline" run. Kept so other
+  // scenarios can be compared against the reference case without re-running it.
+  baselineKpis: null,
+  baselineRunAt: null,
   runStartedAt: null,
   loading: false,
   statusLoading: false,
@@ -508,7 +589,19 @@ const sumoSimulationSlice = createSlice({
       state.scenario = action.payload;
     },
 
-    resetSumoSimulation: () => initialState,
+    clearBaselineKpis: (state) => {
+      state.baselineKpis = null;
+      state.baselineRunAt = null;
+    },
+
+    // Reset clears the current run but deliberately keeps the cached baseline,
+    // so the user doesn't have to re-run baseline to keep comparing scenarios.
+    resetSumoSimulation: (state) => ({
+      ...initialState,
+      scenario: state.scenario,
+      baselineKpis: state.baselineKpis,
+      baselineRunAt: state.baselineRunAt,
+    }),
   },
   extraReducers: (builder) => {
     builder
@@ -579,6 +672,17 @@ const sumoSimulationSlice = createSlice({
       .addCase(fetchSumoKpis.fulfilled, (state, action) => {
         state.kpisLoading = false;
         state.kpis = action.payload || null;
+
+        // If these results came from the baseline run, cache them as the
+        // reference case for scenario comparison.
+        const ranScenario = String(
+          state.statusDetails?.scenario || state.scenario || ""
+        ).toLowerCase();
+
+        if (ranScenario === "baseline" && action.payload) {
+          state.baselineKpis = action.payload;
+          state.baselineRunAt = Date.now();
+        }
       })
 
       .addCase(fetchSumoKpis.rejected, (state, action) => {
@@ -604,7 +708,7 @@ const sumoSimulationSlice = createSlice({
   },
 });
 
-export const { setScenario, resetSumoSimulation } =
+export const { setScenario, clearBaselineKpis, resetSumoSimulation } =
   sumoSimulationSlice.actions;
 
 export default sumoSimulationSlice.reducer;

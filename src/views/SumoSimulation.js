@@ -10,6 +10,7 @@ import {
   CardContent,
   Chip,
   CircularProgress,
+  Collapse,
   Dialog,
   DialogContent,
   Divider,
@@ -71,15 +72,52 @@ const CHART_PALETTE = [
 const COMPLETED_STATUSES = ["finished", "terminated", "completed", "done", "success"];
 const ERROR_STATUSES = ["failed", "error", "aborted", "crashed"];
 
-// Selectable scenarios. NOTE: this is a hard-coded list — the SUMO API has no
-// endpoint to enumerate scenarios, so it must be kept in sync with the backend.
+// Selectable scenarios.
+// `id`    = technical string sent to /execute — MUST match the strings
+//           registered in the backend. Scenario D may still use the earlier
+//           "D small" wording internally; pending confirmation from Filippos.
+// `label` = clean user-facing name shown in the UI.
 const SCENARIOS = [
-  "baseline",
-  "scenarioA",
-  "scenarioB",
-  "scenarioC",
-  "scenarioD",
-  "scenarioE",
+  {
+    id: "baseline",
+    label: "Baseline",
+    title: "Baseline",
+    summary: "Official calibrated reference case for the school corridor.",
+  },
+  {
+    id: "scenarioA",
+    label: "Scenario A",
+    title: "Scenario A — 30 km/h school zone",
+    summary: "Enhanced 30 km/h school-zone intervention.",
+  },
+  {
+    id: "scenarioB",
+    label: "Scenario B",
+    title: "Scenario B — 30 km/h + chicane",
+    summary:
+      "30 km/h zone with chicane / geometric traffic calming.",
+  },
+  {
+    id: "scenarioC",
+    label: "Scenario C",
+    title: "Scenario C — Shared space",
+    summary: "Shared-space proxy.",
+    note: "Shared-space proxy, a simplified representation of shared-space conditions, not a fully designed layout.",
+  },
+  {
+    id: "scenarioD",
+    label: "Scenario D",
+    title: "Scenario D — One-way / access filter",
+    summary: "Local one-way / access-filter proxy.",
+    note: "Local circulation proxy on a clipped local network not a full wider-network reconstruction. KPIs may appear more favourable than a complete model would show, so interpret with care.",
+  },
+  {
+    id: "scenarioE",
+    label: "Scenario E",
+    title: "Scenario E — Reduced one-way / access filter",
+    summary: "Reduced one-way / access-filter proxy.",
+    note: "Local circulation proxy on a clipped local network not a full wider-network reconstruction. KPIs may appear more favourable than a complete model would show, so interpret with care.",
+  },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -103,12 +141,40 @@ const UNIT_SUFFIXES = [
   ["_km_h", " (km/h)"],
   ["_kmh", " (km/h)"],
   ["_pct", " (%)"],
+  ["_kg", " (kg)"],
+  ["_g", " (g)"],
   ["_s", " (s)"],
   ["_m", " (m)"],
 ];
 
+// Explicit labels for keys where the generic humanizer reads badly (chemical
+// formulae) or where SUMO's field name is ambiguous to a non-expert reader.
+const LABEL_OVERRIDES = {
+  total_co2_kg: "Total CO₂ (kg)",
+  total_nox_g: "Total NOₓ (g)",
+  total_fuel_kg: "Total fuel (kg)",
+  total_co_g: "Total CO (g)",
+  total_pmx_g: "Total PM (g)",
+  total_hc_g: "Total HC (g)",
+  co2_per_vehicle_g: "CO₂ per trip (g)",
+  nox_per_vehicle_mg: "NOₓ per trip (mg)",
+  fuel_per_vehicle_g: "Fuel per trip (g)",
+  mean_density: "Mean density (veh/km)",
+  // SUMO's "left" = vehicles that left the edge during the interval, i.e.
+  // throughput — not vehicles remaining in the network.
+  vehicles_left: "Vehicles leaving edges (throughput)",
+  mean_speed_m_s: "Mean speed (m/s)",
+  mean_waiting_time_s: "Mean waiting time (s)",
+  running_vehicles: "Running vehicles",
+  halting_vehicles: "Halting vehicles",
+  flow_veh_h: "Flow (veh/h)",
+  occupancy_pct: "Occupancy (%)",
+  time_s: "Time (s)",
+};
+
 const prettyLabel = (key) => {
   const k = String(key);
+  if (LABEL_OVERRIDES[k]) return LABEL_OVERRIDES[k];
   for (const [suffix, unit] of UNIT_SUFFIXES) {
     if (k.toLowerCase().endsWith(suffix)) {
       return humanize(k.slice(0, k.length - suffix.length)) + unit;
@@ -117,11 +183,78 @@ const prettyLabel = (key) => {
   return humanize(k);
 };
 
+// Fixed locale so every user of the platform sees identical separators,
+// regardless of their browser language.
+const NUMBER_LOCALE = "en-GB";
+
 const formatValue = (value) => {
   if (!isNumber(value)) return String(value);
   const rounded =
     Math.abs(value) >= 100 ? Math.round(value) : Math.round(value * 100) / 100;
-  return rounded.toLocaleString();
+  return rounded.toLocaleString(NUMBER_LOCALE);
+};
+
+/* --- Baseline comparison -------------------------------------------- */
+
+// For a delta to be labelled an improvement we need to know which direction is
+// "good" for each indicator. Anything not listed is shown as a neutral change.
+const LOWER_IS_BETTER = [
+  "duration",
+  "waiting",
+  "timeloss",
+  "time_loss",
+  "delay",
+  "teleport",
+  "collision",
+  "halting",
+  "density",
+  "co2",
+  "nox",
+  "fuel",
+  "emission",
+];
+
+const HIGHER_IS_BETTER = ["speed", "flow", "inserted", "arrived", "completed"];
+
+const matches = (key, list) => {
+  const k = String(key).toLowerCase();
+  return list.some((token) => k.includes(token));
+};
+
+// Returns { pct, direction } where direction is "good" | "bad" | "neutral".
+const computeDelta = (key, value, baselineValue) => {
+  if (!isNumber(value) || !isNumber(baselineValue) || baselineValue === 0) {
+    return null;
+  }
+
+  const pct = ((value - baselineValue) / Math.abs(baselineValue)) * 100;
+
+  // Treat sub-0.05% moves as unchanged to avoid noisy colouring.
+  if (Math.abs(pct) < 0.05) {
+    return { pct: 0, direction: "neutral", baselineValue };
+  }
+
+  let direction = "neutral";
+  if (matches(key, LOWER_IS_BETTER)) {
+    direction = pct < 0 ? "good" : "bad";
+  } else if (matches(key, HIGHER_IS_BETTER)) {
+    direction = pct > 0 ? "good" : "bad";
+  }
+
+  return { pct, direction, baselineValue };
+};
+
+const formatPct = (pct) => {
+  if (pct === 0) return "0%";
+  const abs = Math.abs(pct);
+  const shown = abs >= 10 ? Math.round(abs) : Math.round(abs * 10) / 10;
+  return `${pct > 0 ? "+" : "−"}${shown}%`;
+};
+
+const DELTA_COLOR = {
+  good: "#249C6A",
+  bad: "#C0392B",
+  neutral: "#6B7280",
 };
 
 // Scalar KPIs -> stat cards. Reads `kpis.kpis` if present, else top-level numbers.
@@ -213,7 +346,15 @@ const formatElapsed = (ms) => {
 /* KPI section                                                         */
 /* ------------------------------------------------------------------ */
 
-const KpiSection = ({ kpis, kpisLoading, kpiError, onDownload }) => {
+const KpiSection = ({
+  kpis,
+  kpisLoading,
+  kpiError,
+  limitationNote,
+  baselineKpis,
+  isBaselineRun,
+  onDownload,
+}) => {
   if (kpisLoading) {
     return (
       <Card variant="outlined" sx={{ borderColor: "rgba(44,182,125,0.25)" }}>
@@ -250,6 +391,32 @@ const KpiSection = ({ kpis, kpisLoading, kpiError, onDownload }) => {
   const series = extractSeries(kpis);
   const files = Array.isArray(kpis._files) ? kpis._files : [];
 
+  // Lookup of baseline scalar values by key, for percentage comparison.
+  const baselineScalars = {};
+  if (baselineKpis) {
+    extractScalars(baselineKpis).forEach((b) => {
+      baselineScalars[b.key] = b.value;
+    });
+  }
+  const canCompare =
+    !isBaselineRun && Object.keys(baselineScalars).length > 0;
+
+  // Absolute totals (emissions, fuel) scale with how many vehicles actually
+  // ran, and SUMO's trip averages cover completed trips only. If the vehicle
+  // count differs materially from baseline, the comparison needs a caveat.
+  const vehicleKey = ["total_vehicles", "vehicles_inserted"].find(
+    (k) => isNumber(baselineScalars[k])
+  );
+  const currentVehicles = vehicleKey
+    ? scalars.find((s) => s.key === vehicleKey)?.value
+    : null;
+  const vehicleDelta =
+    canCompare && vehicleKey
+      ? computeDelta(vehicleKey, currentVehicles, baselineScalars[vehicleKey])
+      : null;
+  const vehicleCountShifted =
+    vehicleDelta && Math.abs(vehicleDelta.pct) >= 2;
+
   if (!scalars.length && !series) {
     return (
       <Alert severity="info" action={
@@ -279,11 +446,55 @@ const KpiSection = ({ kpis, kpisLoading, kpiError, onDownload }) => {
 
   return (
     <Stack spacing={3}>
+      {limitationNote && (
+        <Alert severity="warning">{limitationNote}</Alert>
+      )}
+
       {scalars.length > 0 && (
         <Box>
-          <Typography variant="subtitle1" fontWeight={700} sx={{ mb: 1.5 }}>
-            Key indicators
-          </Typography>
+          <Stack
+            direction="row"
+            spacing={1}
+            alignItems="center"
+            sx={{ mb: 1.5 }}
+            flexWrap="wrap"
+            useFlexGap
+          >
+            <Typography variant="subtitle1" fontWeight={700}>
+              Key indicators
+            </Typography>
+            {isBaselineRun ? (
+              <Chip size="small" label="Reference case" variant="outlined" />
+            ) : (
+              canCompare && (
+                <Chip
+                  size="small"
+                  label="Change vs baseline"
+                  variant="outlined"
+                  sx={{ borderColor: "rgba(44,182,125,0.5)" }}
+                />
+              )
+            )}
+          </Stack>
+
+          {!isBaselineRun && !canCompare && (
+            <Alert severity="info" sx={{ mb: 2, py: 0.5 }}>
+              Run the baseline scenario once to enable comparison — results are
+              kept for this session.
+            </Alert>
+          )}
+
+          {vehicleCountShifted && (
+            <Alert severity="warning" sx={{ mb: 2 }}>
+              This scenario ran {formatPct(vehicleDelta.pct)} vehicles compared
+              to baseline. Absolute totals (emissions, fuel) scale with the
+              number of vehicles, and trip averages cover completed trips only
+              so use the per-trip indicators for a like-for-like comparison
+              rather than reading the totals as a direct effect of the
+              intervention.
+            </Alert>
+          )}
+
           <Box
             sx={{
               display: "grid",
@@ -295,29 +506,57 @@ const KpiSection = ({ kpis, kpisLoading, kpiError, onDownload }) => {
               gap: 2,
             }}
           >
-            {scalars.map((kpi) => (
-              <Card
-                key={kpi.key}
-                variant="outlined"
-                sx={{ borderColor: "rgba(44,182,125,0.3)", borderRadius: 2 }}
-              >
-                <CardContent sx={{ py: 2 }}>
-                  <Typography
-                    variant="caption"
-                    color="text.secondary"
-                    sx={{ display: "block", lineHeight: 1.3 }}
-                  >
-                    {kpi.label}
-                  </Typography>
-                  <Typography
-                    variant="h6"
-                    sx={{ color: PROBONO_GREEN_DARK, fontWeight: 800, mt: 0.5 }}
-                  >
-                    {formatValue(kpi.value)}
-                  </Typography>
-                </CardContent>
-              </Card>
-            ))}
+            {scalars.map((kpi) => {
+              const delta = canCompare
+                ? computeDelta(kpi.key, kpi.value, baselineScalars[kpi.key])
+                : null;
+
+              return (
+                <Card
+                  key={kpi.key}
+                  variant="outlined"
+                  sx={{ borderColor: "rgba(44,182,125,0.3)", borderRadius: 2 }}
+                >
+                  <CardContent sx={{ py: 2 }}>
+                    <Typography
+                      variant="caption"
+                      color="text.secondary"
+                      sx={{ display: "block", lineHeight: 1.3 }}
+                    >
+                      {kpi.label}
+                    </Typography>
+                    <Typography
+                      variant="h6"
+                      sx={{ color: PROBONO_GREEN_DARK, fontWeight: 800, mt: 0.5 }}
+                    >
+                      {formatValue(kpi.value)}
+                    </Typography>
+
+                    {delta && (
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          display: "block",
+                          mt: 0.5,
+                          fontWeight: 700,
+                          color: DELTA_COLOR[delta.direction],
+                        }}
+                      >
+                        {formatPct(delta.pct)}
+                        <Typography
+                          component="span"
+                          variant="caption"
+                          color="text.secondary"
+                          sx={{ ml: 0.5, fontWeight: 400 }}
+                        >
+                          vs {formatValue(delta.baselineValue)}
+                        </Typography>
+                      </Typography>
+                    )}
+                  </CardContent>
+                </Card>
+              );
+            })}
           </Box>
         </Box>
       )}
@@ -386,6 +625,7 @@ const SumoSimulation = () => {
     status = null,
     statusDetails = null,
     kpis = null,
+    baselineKpis = null,
     runStartedAt = null,
     loading = false,
     statusLoading = false,
@@ -397,6 +637,15 @@ const SumoSimulation = () => {
   } = sumoSimulation;
 
   const normalizedStatus = String(status || "").toLowerCase();
+
+  const selectedScenario =
+    SCENARIOS.find((s) => s.id === scenario) || null;
+
+  // The scenario that actually produced the current results (from the run's
+  // status details), so the KPI limitation note reflects the run — not a
+  // dropdown value the user may have changed afterwards.
+  const ranScenario =
+    SCENARIOS.find((s) => s.id === (statusDetails?.scenario || scenario)) || null;
 
   const isCompleted = COMPLETED_STATUSES.includes(normalizedStatus);
   const isErrorStatus = ERROR_STATUSES.includes(normalizedStatus);
@@ -416,6 +665,7 @@ const SumoSimulation = () => {
     message: "",
   });
   const [hideRunDialog, setHideRunDialog] = useState(false);
+  const [showAllScenarios, setShowAllScenarios] = useState(false);
   const [tick, setTick] = useState(Date.now());
 
   const prevCompletedRef = useRef(false);
@@ -541,12 +791,98 @@ const SumoSimulation = () => {
                   disabled={loading || isRunning}
                 >
                   {SCENARIOS.map((s) => (
-                    <MenuItem key={s} value={s}>
-                      {s}
+                    <MenuItem key={s.id} value={s.id}>
+                      {s.label}
                     </MenuItem>
                   ))}
                 </Select>
               </FormControl>
+
+              {selectedScenario && (
+                <Card
+                  variant="outlined"
+                  sx={{ borderColor: "rgba(44,182,125,0.35)", borderRadius: 2 }}
+                >
+                  <CardContent sx={{ py: 2 }}>
+                    <Typography variant="subtitle1" fontWeight={700}>
+                      {selectedScenario.title}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      sx={{ mt: 0.5 }}
+                    >
+                      {selectedScenario.summary}
+                    </Typography>
+                    {selectedScenario.note && (
+                      <Alert severity="warning" sx={{ mt: 1.5, py: 0.5 }}>
+                        {selectedScenario.note}
+                      </Alert>
+                    )}
+                  </CardContent>
+                </Card>
+              )}
+
+              <Box>
+                <Button
+                  size="small"
+                  onClick={() => setShowAllScenarios((v) => !v)}
+                  sx={{ color: PROBONO_GREEN_DARK, px: 0 }}
+                >
+                  {showAllScenarios
+                    ? "Hide scenario overview"
+                    : "About the scenarios"}
+                </Button>
+
+                <Collapse in={showAllScenarios}>
+                  <Box
+                    sx={{
+                      display: "grid",
+                      gridTemplateColumns: { xs: "1fr", sm: "1fr 1fr" },
+                      gap: 2,
+                      mt: 1,
+                    }}
+                  >
+                    {SCENARIOS.map((s) => (
+                      <Card
+                        key={s.id}
+                        variant="outlined"
+                        sx={{
+                          borderRadius: 2,
+                          borderColor:
+                            s.id === scenario ? PROBONO_GREEN : undefined,
+                          borderWidth: s.id === scenario ? 2 : 1,
+                        }}
+                      >
+                        <CardContent sx={{ py: 1.5 }}>
+                          <Typography variant="subtitle2" fontWeight={700}>
+                            {s.title}
+                          </Typography>
+                          <Typography
+                            variant="body2"
+                            color="text.secondary"
+                            sx={{ mt: 0.5 }}
+                          >
+                            {s.summary}
+                          </Typography>
+                          {s.note && (
+                            <Typography
+                              variant="caption"
+                              sx={{
+                                display: "block",
+                                mt: 1,
+                                color: "warning.main",
+                              }}
+                            >
+                              ⚠ {s.note}
+                            </Typography>
+                          )}
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </Box>
+                </Collapse>
+              </Box>
 
               <Stack direction="row" spacing={2} flexWrap="wrap" useFlexGap>
                 <Button
@@ -674,6 +1010,9 @@ const SumoSimulation = () => {
                     kpis={kpis}
                     kpisLoading={kpisLoading}
                     kpiError={kpiError}
+                    limitationNote={ranScenario?.note}
+                    baselineKpis={baselineKpis}
+                    isBaselineRun={ranScenario?.id === "baseline"}
                     onDownload={handleDownloadResult}
                   />
                 </>
