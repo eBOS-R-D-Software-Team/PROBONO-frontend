@@ -139,7 +139,7 @@ const parseStatistics = (xmlText) => {
 
 // Emissions totals from <emissions .../> children inside tripinfo entries.
 // SUMO writes absolute emission values in mg (fuel in mg on SUMO >= 1.14,
-// ml on older versions) — units confirmed as mg against the delivered package.
+// ml on older versions). Units confirmed as mg against the delivered package.
 // Per-vehicle values are also derived: absolute totals scale with the number
 // of vehicles that ran, so they are not comparable across scenarios on their
 // own when vehicle counts differ.
@@ -168,10 +168,8 @@ const parseEmissionsFromTrips = (trips) => {
     kpis.total_co2_kg = round1(totals.CO2_abs / 1e6);
     kpis.co2_per_vehicle_g = round1(totals.CO2_abs / n / 1e3);
   }
- if (totals.NOx_abs > 0) {
+  if (totals.NOx_abs > 0) {
     kpis.total_nox_g = round1(totals.NOx_abs / 1e3);
-    // NOx per vehicle is ~0.04 g and rounds away in grams — report in mg
-    // (SUMO's absolute emission values are already in mg).
     kpis.nox_per_vehicle_mg = round1(totals.NOx_abs / n);
   }
   if (totals.fuel_abs > 0) {
@@ -234,6 +232,30 @@ const parseEmissionsOnly = (xmlText) => {
   const trips = Array.from(doc.getElementsByTagName("tripinfo"));
   if (!trips.length) return null;
   return parseEmissionsFromTrips(trips);
+};
+
+// Mean stop count per trip, from tripinfo `waitingCount` (the number of times
+// a vehicle had to halt). Included to match the "Mean stop count per vehicle"
+// metric in the handover comparison tables.
+const parseStopCountOnly = (xmlText) => {
+  const doc = parseXml(xmlText);
+  if (!doc) return null;
+
+  const trips = Array.from(doc.getElementsByTagName("tripinfo"));
+  if (!trips.length) return null;
+
+  let total = 0;
+  let found = false;
+  trips.forEach((t) => {
+    const v = numAttr(t, "waitingCount");
+    if (v != null) {
+      total += v;
+      found = true;
+    }
+  });
+
+  if (!found) return null;
+  return { avg_stop_count: Math.round((total / trips.length) * 100) / 100 };
 };
 
 // E1 induction-loop detector -> per-interval time series (flow / speed / occupancy).
@@ -389,6 +411,12 @@ const parseResultZip = async (blob) => {
     }
   }
 
+  // --- mean stop count per trip: only available from tripinfo ---
+  if (!("avg_stop_count" in result.kpis) && tripName) {
+    const sc = parseStopCountOnly(await readFile(tripName));
+    if (sc) Object.assign(result.kpis, sc);
+  }
+
   // --- time series: summary -> edge mean-data -> E1 detector ---
   if (summaryName) {
     const series = parseSummary(await readFile(summaryName));
@@ -460,7 +488,7 @@ export const checkSumoStatus = createAsyncThunk(
 
         // Right after /execute, the run may not be registered yet and the
         // endpoint returns 404 "not found". That's a transient race, not a
-        // real failure — report it as pending so polling keeps going.
+        // real failure, so report it as pending and let polling continue.
         if (response.status === 404 || /not\s*found/i.test(text)) {
           return { status: "pending", _transient: true };
         }
@@ -510,7 +538,7 @@ export const fetchSumoKpis = createAsyncThunk(
         return await response.json();
       }
 
-      // Otherwise the result is a file package (zip) — parse it client-side.
+      // Otherwise the result is a file package (zip), parsed client-side.
       const blob = await response.blob();
       return await parseResultZip(blob);
     } catch (error) {

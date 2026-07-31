@@ -57,7 +57,7 @@ ChartJS.register(
   Legend
 );
 
-// PROBONO brand green — keep as the single accent colour.
+// PROBONO brand green, kept as the single accent colour.
 const PROBONO_GREEN = "#2CB67D";
 const PROBONO_GREEN_DARK = "#249C6A";
 const CHART_PALETTE = [
@@ -72,56 +72,99 @@ const CHART_PALETTE = [
 const COMPLETED_STATUSES = ["finished", "terminated", "completed", "done", "success"];
 const ERROR_STATUSES = ["failed", "error", "aborted", "crashed"];
 
-// Selectable scenarios.
-// `id`    = technical string sent to /execute — MUST match the strings
-//           registered in the backend. Scenario D may still use the earlier
-//           "D small" wording internally; pending confirmation from Filippos.
-// `label` = clean user-facing name shown in the UI.
+// Selectable scenarios. All display copy below is taken from the official
+// package `frontend_content_handover.md`, so the platform wording matches the
+// study documentation rather than being paraphrased.
+// `id`     = technical string sent to /execute. Confirmed working against the
+//            backend; "D small" is an internal name only, displayed as
+//            "Scenario D" per Filippos's instruction.
+// `label`  = user-facing name shown in the dropdown.
+// `status` = modelling status label, exactly as specified in the handover.
 const SCENARIOS = [
   {
     id: "baseline",
     label: "Baseline",
     title: "Baseline",
     summary: "Official calibrated reference case for the school corridor.",
+    details: [
+      "Matches the school sensor day for cars, bikes+moto, and pedestrians.",
+      "Used as the comparison reference for all KPI charts.",
+    ],
+    status: "Reference baseline",
+    statusLevel: "reference",
   },
   {
     id: "scenarioA",
     label: "Scenario A",
-    title: "Scenario A — 30 km/h school zone",
-    summary: "Enhanced 30 km/h school-zone intervention.",
+    title: "Scenario A: Enhanced 30 km/h Zone",
+    summary:
+      "Low-cost enhancement of the existing 30 km/h school zone through clearer operation and stronger visibility.",
+    details: [
+      "Improves the reading of the school zone without a major street rebuild.",
+      "Best presented as an operational and visibility upgrade rather than a geometric redesign.",
+    ],
+    status: "Official scenario",
+    statusLevel: "official",
   },
   {
     id: "scenarioB",
     label: "Scenario B",
-    title: "Scenario B — 30 km/h + chicane",
+    title: "Scenario B: 30 km/h Zone With Chicane",
     summary:
-      "30 km/h zone with chicane / geometric traffic calming.",
+      "Medium-intensity calming scenario that keeps the 30 km/h zone but introduces a chicane.",
+    details: [
+      "Adds stronger geometric slowing than Scenario A.",
+      "Keeps the corridor motor-accessible while increasing driver attention.",
+    ],
+    status: "Official scenario",
+    statusLevel: "official",
   },
   {
     id: "scenarioC",
     label: "Scenario C",
-    title: "Scenario C — Shared space",
-    summary: "Shared-space proxy.",
-    note: "Shared-space proxy, a simplified representation of shared-space conditions, not a fully designed layout.",
+    title: "Scenario C: Shared Space",
+    summary:
+      "High-impact shared-space concept with low speed and stronger pedestrian priority.",
+    details: [
+      "Represents the strongest public-space reallocation concept in the study.",
+      "Presented as the best stable SUMO proxy of a shared space, not a literal free-crossing public-realm model.",
+    ],
+    status: "Official scenario with modeling limits",
+    statusLevel: "limits",
+    note: "Scenario C is the best stable SUMO proxy of the shared-space concept. It should not be read as a literal model of pedestrians moving freely anywhere along the whole frontage.",
   },
   {
     id: "scenarioD",
     label: "Scenario D",
-    title: "Scenario D — One-way / access filter",
-    summary: "Local one-way / access-filter proxy.",
-    note: "Local circulation proxy on a clipped local network not a full wider-network reconstruction. KPIs may appear more favourable than a complete model would show, so interpret with care.",
+    title: "Scenario D small: One-Way Option A",
+    summary:
+      "Small-area proxy of one-way option A with bus and bicycle counterflow.",
+    details: [
+      "Represents the corridor-level one-way idea from the concept figure.",
+      "Should not be presented as a full network circulation reconstruction.",
+    ],
+    status: "Proxy scenario",
+    statusLevel: "proxy",
+    note: "Scenario D small and Scenario E are local one-way proxies. Their lower delay and lower emissions do not mean the whole wider area necessarily performs better. In the small modeled area, some motor traffic is assumed to leave the study area after the one-way restrictions are applied.",
   },
   {
     id: "scenarioE",
     label: "Scenario E",
-    title: "Scenario E — Reduced one-way / access filter",
-    summary: "Reduced one-way / access-filter proxy.",
-    note: "Local circulation proxy on a clipped local network not a full wider-network reconstruction. KPIs may appear more favourable than a complete model would show, so interpret with care.",
+    title: "Scenario E: Reduced One-Way Option B",
+    summary:
+      "Small-area proxy of the reduced one-way option B with bus and bicycle counterflow.",
+    details: [
+      "Represents the reduced one-way idea on a shorter corridor section.",
+      "Should also be presented as a local proxy, not a full circulation reconstruction.",
+    ],
+    status: "Proxy scenario",
+    statusLevel: "proxy",
+    note: "Scenario D small and Scenario E are local one-way proxies. Their lower delay and lower emissions do not mean the whole wider area necessarily performs better. In the small modeled area, some motor traffic is assumed to leave the study area after the one-way restrictions are applied.",
   },
 ];
 
 /* ------------------------------------------------------------------ */
-/* KPI helpers — adaptive: works with whatever JSON the parser builds.  */
+/* KPI helpers: adaptive, works with whatever JSON the parser builds.   */
 /* ------------------------------------------------------------------ */
 
 const isNumber = (v) => typeof v === "number" && Number.isFinite(v);
@@ -160,8 +203,9 @@ const LABEL_OVERRIDES = {
   nox_per_vehicle_mg: "NOₓ per trip (mg)",
   fuel_per_vehicle_g: "Fuel per trip (g)",
   mean_density: "Mean density (veh/km)",
+  avg_stop_count: "Avg stops per trip",
   // SUMO's "left" = vehicles that left the edge during the interval, i.e.
-  // throughput — not vehicles remaining in the network.
+  // throughput, not vehicles remaining in the network.
   vehicles_left: "Vehicles leaving edges (throughput)",
   mean_speed_m_s: "Mean speed (m/s)",
   mean_waiting_time_s: "Mean waiting time (s)",
@@ -207,6 +251,7 @@ const LOWER_IS_BETTER = [
   "teleport",
   "collision",
   "halting",
+  "stop_count",
   "density",
   "co2",
   "nox",
@@ -255,6 +300,31 @@ const DELTA_COLOR = {
   good: "#249C6A",
   bad: "#C0392B",
   neutral: "#6B7280",
+};
+
+// Status chip styling per confidence level. Proxy scenarios are deliberately
+// amber so their indicative nature is visible at a glance.
+const STATUS_CHIP_SX = {
+  reference: {
+    color: "#249C6A",
+    borderColor: "rgba(44,182,125,0.6)",
+    backgroundColor: "rgba(44,182,125,0.08)",
+  },
+  official: {
+    color: "#2F6FA8",
+    borderColor: "rgba(47,111,168,0.5)",
+    backgroundColor: "rgba(47,111,168,0.08)",
+  },
+  limits: {
+    color: "#8A6D1F",
+    borderColor: "rgba(138,109,31,0.5)",
+    backgroundColor: "rgba(138,109,31,0.08)",
+  },
+  proxy: {
+    color: "#B26A00",
+    borderColor: "rgba(178,106,0,0.5)",
+    backgroundColor: "rgba(178,106,0,0.08)",
+  },
 };
 
 // Scalar KPIs -> stat cards. Reads `kpis.kpis` if present, else top-level numbers.
@@ -351,6 +421,7 @@ const KpiSection = ({
   kpisLoading,
   kpiError,
   limitationNote,
+  scenarioStatus,
   baselineKpis,
   isBaselineRun,
   onDownload,
@@ -463,23 +534,27 @@ const KpiSection = ({
             <Typography variant="subtitle1" fontWeight={700}>
               Key indicators
             </Typography>
-            {isBaselineRun ? (
-              <Chip size="small" label="Reference case" variant="outlined" />
-            ) : (
-              canCompare && (
-                <Chip
-                  size="small"
-                  label="Change vs baseline"
-                  variant="outlined"
-                  sx={{ borderColor: "rgba(44,182,125,0.5)" }}
-                />
-              )
+            {scenarioStatus && (
+              <Chip
+                size="small"
+                label={scenarioStatus.status}
+                variant="outlined"
+                sx={STATUS_CHIP_SX[scenarioStatus.statusLevel]}
+              />
+            )}
+            {!isBaselineRun && canCompare && (
+              <Chip
+                size="small"
+                label="Change vs baseline"
+                variant="outlined"
+                sx={{ borderColor: "rgba(44,182,125,0.5)" }}
+              />
             )}
           </Stack>
 
           {!isBaselineRun && !canCompare && (
             <Alert severity="info" sx={{ mb: 2, py: 0.5 }}>
-              Run the baseline scenario once to enable comparison — results are
+              Run the baseline scenario once to enable comparison. Results are
               kept for this session.
             </Alert>
           )}
@@ -488,7 +563,7 @@ const KpiSection = ({
             <Alert severity="warning" sx={{ mb: 2 }}>
               This scenario ran {formatPct(vehicleDelta.pct)} vehicles compared
               to baseline. Absolute totals (emissions, fuel) scale with the
-              number of vehicles, and trip averages cover completed trips only
+              number of vehicles, and trip averages cover completed trips only,
               so use the per-trip indicators for a like-for-like comparison
               rather than reading the totals as a direct effect of the
               intervention.
@@ -642,7 +717,7 @@ const SumoSimulation = () => {
     SCENARIOS.find((s) => s.id === scenario) || null;
 
   // The scenario that actually produced the current results (from the run's
-  // status details), so the KPI limitation note reflects the run — not a
+  // status details), so the KPI limitation note reflects the run, not a
   // dropdown value the user may have changed afterwards.
   const ranScenario =
     SCENARIOS.find((s) => s.id === (statusDetails?.scenario || scenario)) || null;
@@ -804,9 +879,25 @@ const SumoSimulation = () => {
                   sx={{ borderColor: "rgba(44,182,125,0.35)", borderRadius: 2 }}
                 >
                   <CardContent sx={{ py: 2 }}>
-                    <Typography variant="subtitle1" fontWeight={700}>
-                      {selectedScenario.title}
-                    </Typography>
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      alignItems="center"
+                      flexWrap="wrap"
+                      useFlexGap
+                    >
+                      <Typography variant="subtitle1" fontWeight={700}>
+                        {selectedScenario.title}
+                      </Typography>
+                      {selectedScenario.status && (
+                        <Chip
+                          size="small"
+                          label={selectedScenario.status}
+                          variant="outlined"
+                          sx={STATUS_CHIP_SX[selectedScenario.statusLevel]}
+                        />
+                      )}
+                    </Stack>
                     <Typography
                       variant="body2"
                       color="text.secondary"
@@ -814,6 +905,21 @@ const SumoSimulation = () => {
                     >
                       {selectedScenario.summary}
                     </Typography>
+                    {selectedScenario.details?.length > 0 && (
+                      <Box component="ul" sx={{ pl: 2.5, mt: 1, mb: 0 }}>
+                        {selectedScenario.details.map((d) => (
+                          <Typography
+                            component="li"
+                            variant="body2"
+                            color="text.secondary"
+                            key={d}
+                            sx={{ mb: 0.25 }}
+                          >
+                            {d}
+                          </Typography>
+                        ))}
+                      </Box>
+                    )}
                     {selectedScenario.note && (
                       <Alert severity="warning" sx={{ mt: 1.5, py: 0.5 }}>
                         {selectedScenario.note}
@@ -858,6 +964,14 @@ const SumoSimulation = () => {
                           <Typography variant="subtitle2" fontWeight={700}>
                             {s.title}
                           </Typography>
+                          {s.status && (
+                            <Chip
+                              size="small"
+                              label={s.status}
+                              variant="outlined"
+                              sx={{ mt: 0.75, ...STATUS_CHIP_SX[s.statusLevel] }}
+                            />
+                          )}
                           <Typography
                             variant="body2"
                             color="text.secondary"
@@ -967,7 +1081,7 @@ const SumoSimulation = () => {
                 </Alert>
               )}
 
-              {/* Non-blocking poll hiccup — quiet caption, no red alert. */}
+              {/* Non-blocking poll hiccup: quiet caption, no red alert. */}
               {statusError && isRunning && (
                 <Typography variant="caption" color="text.secondary">
                   Waiting for the run to register… (auto-retrying)
@@ -1011,6 +1125,7 @@ const SumoSimulation = () => {
                     kpisLoading={kpisLoading}
                     kpiError={kpiError}
                     limitationNote={ranScenario?.note}
+                    scenarioStatus={ranScenario}
                     baselineKpis={baselineKpis}
                     isBaselineRun={ranScenario?.id === "baseline"}
                     onDownload={handleDownloadResult}
@@ -1024,7 +1139,7 @@ const SumoSimulation = () => {
         </Card>
       </Box>
 
-      {/* Running modal — keeps the user informed until the run finishes */}
+      {/* Running modal: keeps the user informed until the run finishes */}
       <Dialog
         open={isRunning && !hideRunDialog}
         maxWidth="xs"
