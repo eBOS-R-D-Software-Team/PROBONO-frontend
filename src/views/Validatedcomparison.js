@@ -12,7 +12,7 @@
 // label. Warnings sit next to the affected KPIs.
 
 import React, { useEffect, useMemo, useState } from "react";
-import { SlArrowRight, SlArrowDown } from "react-icons/sl";
+import { SlArrowRight, SlArrowDown, SlClose } from "react-icons/sl";
 import {
   Alert,
   Box,
@@ -21,7 +21,11 @@ import {
   CardContent,
   CircularProgress,
   Collapse,
+  Dialog,
+  DialogContent,
+  DialogTitle,
   Divider,
+  IconButton,
   MenuItem,
   Select,
   Stack,
@@ -130,8 +134,12 @@ const TOGGLE_BUTTON_SX = {
 };
 
 // Collapsible strip of scenario schematics (with alt text) for a group.
+// Clicking a schematic opens it enlarged in a modal overlay; closing the modal
+// returns to exactly the same view (same tab, same scroll position) since it
+// is layered on top and changes no page state.
 const ScenarioSchematics = ({ scenarios }) => {
   const [open, setOpen] = useState(false);
+  const [zoomed, setZoomed] = useState(null); // the scenario whose figure is enlarged
   const withFig = scenarios.filter((s) => s.figure);
   if (!withFig.length) return null;
 
@@ -162,17 +170,100 @@ const ScenarioSchematics = ({ scenarios }) => {
                   {s.label}: {s.title}
                 </Typography>
                 <Box
-                  component="img"
-                  src={`${FIG_BASE}/${s.figure}`}
-                  alt={s.figureAlt || `${s.label} corridor schematic`}
-                  sx={{ width: "100%", height: "auto", borderRadius: 1, display: "block" }}
-                  loading="lazy"
-                />
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Enlarge schematic: ${s.label} ${s.title}`}
+                  onClick={() => setZoomed(s)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setZoomed(s);
+                    }
+                  }}
+                  sx={{
+                    position: "relative",
+                    cursor: "zoom-in",
+                    borderRadius: 1,
+                    overflow: "hidden",
+                    transition: "box-shadow 0.15s, transform 0.15s",
+                    "&:hover": {
+                      boxShadow: "0 0 0 2px rgba(47,111,168,0.5)",
+                    },
+                    "&:hover .zoom-hint": { opacity: 1 },
+                    "&:focus-visible": {
+                      outline: "2px solid #2F6FA8",
+                      outlineOffset: 2,
+                    },
+                  }}
+                >
+                  <Box
+                    component="img"
+                    src={`${FIG_BASE}/${s.figure}`}
+                    alt={s.figureAlt || `${s.label} corridor schematic`}
+                    sx={{ width: "100%", height: "auto", display: "block" }}
+                    loading="lazy"
+                  />
+                  <Box
+                    className="zoom-hint"
+                    sx={{
+                      position: "absolute",
+                      bottom: 8,
+                      right: 8,
+                      px: 1,
+                      py: 0.25,
+                      borderRadius: 1,
+                      fontSize: "0.7rem",
+                      color: "#fff",
+                      backgroundColor: "rgba(0,0,0,0.6)",
+                      opacity: 0,
+                      transition: "opacity 0.15s",
+                      pointerEvents: "none",
+                    }}
+                  >
+                    Click to enlarge
+                  </Box>
+                </Box>
               </CardContent>
             </Card>
           ))}
         </Box>
       </Collapse>
+
+      {/* Lightbox overlay: opens on top and closes back to the same view. */}
+      <Dialog
+        open={Boolean(zoomed)}
+        onClose={() => setZoomed(null)}
+        maxWidth="lg"
+        fullWidth
+      >
+        {zoomed && (
+          <>
+            <DialogTitle
+              sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", pr: 1 }}
+            >
+              <Typography component="span" variant="subtitle1" fontWeight={700}>
+                {zoomed.label}: {zoomed.title}
+              </Typography>
+              <IconButton aria-label="Close enlarged schematic" onClick={() => setZoomed(null)} size="small">
+                <SlClose />
+              </IconButton>
+            </DialogTitle>
+            <DialogContent dividers>
+              <Box
+                component="img"
+                src={`${FIG_BASE}/${zoomed.figure}`}
+                alt={zoomed.figureAlt || `${zoomed.label} corridor schematic`}
+                sx={{ width: "100%", height: "auto", display: "block" }}
+              />
+              {zoomed.figureAlt && (
+                <Typography variant="body2" color="text.secondary" sx={{ mt: 1.5 }}>
+                  {zoomed.figureAlt}
+                </Typography>
+              )}
+            </DialogContent>
+          </>
+        )}
+      </Dialog>
     </Box>
   );
 };
