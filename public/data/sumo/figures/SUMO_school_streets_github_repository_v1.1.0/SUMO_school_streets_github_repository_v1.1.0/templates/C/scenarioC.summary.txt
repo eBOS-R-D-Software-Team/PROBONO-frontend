@@ -1,0 +1,49 @@
+Scenario C build summary
+
+Assumptions
+- Scenario C builds on the already filtered/calmed Scenario A demand files and the already relocated Scenario A bus stops.
+- The school-frontage corridor between Rue du Vieux Moulin and Clos du Bergoje is approximated as a shared-space zone by capping 12 core corridor edges at 5.56 m/s (20 km/h).
+- Pedestrians retain multiple entry points into the shared-space zone through distributed low-priority crossings across the frontage band and at both side-street entries, while the longer corridor links remain crossing-based in the operational KPI build.
+- A detector-aligned school-frontage pedestrian path is retained at the school sensor proxy so pedestrians visibly cross through the shared-space frontage where school access activity is most expected without forcing a full carriageway split in the vehicle network.
+- Additional west/east frontage path proxies were tested under the full sensor-based pedestrian demand but not retained in the official KPI build because they destabilized vehicle operations; the stable Scenario C proxy keeps one detector-aligned school-frontage crossing plus the other distributed shared-space crossings.
+- SUMO's sublane model is enabled with lateral-resolution 1.2 m to approximate the unmarked, mixed-surface character of the shared space more faithfully than rigid lane-following.
+- Literal frontage-walk trajectories on the carriageway were tested but not retained in the final KPI build because they destabilized the corridor in SUMO; the stable proxy keeps pedestrian freedom concentrated at multiple unsignalized shared-space crossings instead.
+- Corridor pedestrian connectors are retained at 5 key nodes and prepared as low-priority shared-space crossings/path proxies so pedestrians can cross the frontage band at several points without relying on zebra-style signal control.
+- Traffic signal 2213731092 is retained in the operational KPI build as a stability proxy under the full sensor-based pedestrian demand, while the rest of the corridor is still modeled as low-speed shared space.
+- Parking removal is inherited from the existing scenario files; no parkingArea or parkingRoadside objects were present to remove in the builder.
+- Raised materials, curb removal, lighting changes, and surface coloring are not explicit SUMO objects, so they are represented only through speed and control changes.
+- The narrative idea of pedestrians crossing literally anywhere is approximated through multiple low-priority crossings distributed across the zone rather than longitudinal carriageway walking, which proved to be the most stable SUMO proxy for this corridor.
+
+Scenario C outputs
+- Passenger trips copied/calmed: 6697
+- Truck trips copied/calmed: 336
+- PT flows copied/calmed: 2
+- Bike/moto trips copied/calmed: 965
+- Passenger vTypes calmed: veh_passenger_diesel_be2025, veh_passenger_electric_be2025, veh_passenger_gas_be2025, veh_passenger_hybrid_be2025, veh_passenger_other_be2025, veh_passenger_petrol_be2025
+- Truck vTypes calmed: truck_truck
+- PT vTypes calmed: pt_bus
+- Bike/moto vTypes calmed: motorcycle_motorcycle
+- Shared-space edges: 1046472243#3, 1046472245#0, 1046472245#1, 1046472245#3, 33128974#0, 33128974#1, 33128974#2, 1046472243#0, 1046472243#2, -33128974#0, -33128974#1, -33128974#2
+- Pedestrian shared-surface path edges kept in KPI build: none
+- Candidate pedestrian frontage-walk routes found: 0
+- Controlled pedestrian frontage-walk routes kept: 0
+- Shared-space total modeled length: 299.45 m
+- Shared-space crossings/path proxies prepared: 2213731089:33128974#2 -33128974#2, 5111429130:34633123#1 -34633123#1, 9623554422:1046472243#0, cluster_141816691_5111428876:23160627#1 -23160627#1, scenarioC_school_frontage_mid:scenarioC_school_frontage_mid_n_link,scenarioC_school_frontage_mid_s_link
+- School-frontage path proxy offsets: mid@40m (sensor)
+- School-frontage crossing reassignments after routing: 0 persons (no extra frontage proxies kept in the official build)
+- Pedestrians using any school-frontage path proxy: 237 persons across 237 walk stages (mid persons=237/walks=237)
+- Signal logics removed: 0 (signal connections removed: 0)
+- Relocated stops reused: 4 stops with 8 access connectors
+- Loop detectors kept on: 33128974#0_0, -33128974#0_0
+
+Scenario C files
+- osm.scenarioC.net.xml.gz
+- osm.passenger.trips.schoolcal.scenarioC.be2025.xml
+- osm.truck.trips.schoolcal.scenarioC.valid.xml
+- osm_pt.schoolcal.scenarioC.rou.xml
+- osm.pedestrian.rou.scenarioC.xml
+- osm.bike_moto.trips.schoolcal.scenarioC.xml
+- osm_stops.scenarioC.add.xml
+- output.scenarioC.add.xml
+- school_loops.scenarioC.add.xml
+- osm.schoolcal.scenarioC.be2025.sumocfg

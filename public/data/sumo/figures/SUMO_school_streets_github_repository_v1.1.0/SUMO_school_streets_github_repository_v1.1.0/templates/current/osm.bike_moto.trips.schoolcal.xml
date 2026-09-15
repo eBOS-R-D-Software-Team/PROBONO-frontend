@@ -1,0 +1,970 @@
+<?xml version='1.0' encoding='utf-8'?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <vType id="bike_bicycle" vClass="bicycle" emissionClass="Zero/default" />
+    <vType id="motorcycle_motorcycle" vClass="motorcycle" emissionClass="HBEFA4/MC_4S_gt250cc_preEuro" />
+    <trip id="schoolBike_30_neg_0000" depart="27090.00" from="-34876563#1" to="-34633123#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_30_pos_0000" depart="27090.00" from="1046472243#3" to="23160618" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_30_neg_0001" depart="27270.00" from="-34876563#1" to="-34633123#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_30_pos_0001" depart="27270.00" from="1046472243#3" to="23160618" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_30_neg_0002" depart="27450.00" from="-34876563#1" to="-34633123#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_30_pos_0002" depart="27450.00" from="1046472243#3" to="23160618" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_30_neg_0003" depart="27630.00" from="-34876563#1" to="-34633123#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_30_pos_0003" depart="27630.00" from="1046472243#3" to="23160618" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_30_neg_0004" depart="27810.00" from="-34876563#1" to="-34633123#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_30_pos_0004" depart="27810.00" from="1046472243#3" to="23160618" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_31_neg_0000" depart="27920.45" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_31_neg_0001" depart="27961.36" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_31_neg_0002" depart="28002.27" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_31_neg_0003" depart="28043.18" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_31_neg_0004" depart="28084.09" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_31_neg_0005" depart="28125.00" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_31_neg_0006" depart="28165.91" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_31_neg_0007" depart="28206.82" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_31_neg_0008" depart="28247.73" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_31_neg_0009" depart="28288.64" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_31_neg_0010" depart="28329.55" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_31_neg_0011" depart="28370.45" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_31_neg_0012" depart="28411.36" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_31_neg_0013" depart="28452.27" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_31_neg_0014" depart="28493.18" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_31_neg_0015" depart="28534.09" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_31_neg_0016" depart="28575.00" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_31_neg_0017" depart="28615.91" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_31_neg_0018" depart="28656.82" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_31_neg_0019" depart="28697.73" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_31_neg_0020" depart="28738.64" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_31_neg_0021" depart="28779.55" from="23160642#0" to="1046472242" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0000" depart="28819.57" from="525423123#0" to="420605292#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0001" depart="28858.70" from="-23160627#3" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0002" depart="28897.83" from="513973969#0" to="14798483#2" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0003" depart="28936.96" from="525423123#0" to="420605292#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0004" depart="28976.09" from="-23160627#3" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0005" depart="29015.22" from="513973969#0" to="14798483#2" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0006" depart="29054.35" from="525423123#0" to="420605292#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0007" depart="29093.48" from="-23160627#3" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0008" depart="29132.61" from="513973969#0" to="14798483#2" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0009" depart="29171.74" from="525423123#0" to="420605292#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0010" depart="29210.87" from="-23160627#3" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0011" depart="29250.00" from="513973969#0" to="14798483#2" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0012" depart="29289.13" from="525423123#0" to="420605292#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0013" depart="29328.26" from="-23160627#3" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0014" depart="29367.39" from="513973969#0" to="14798483#2" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0015" depart="29406.52" from="525423123#0" to="420605292#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0016" depart="29445.65" from="-23160627#3" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0017" depart="29484.78" from="513973969#0" to="14798483#2" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0018" depart="29523.91" from="525423123#0" to="420605292#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0019" depart="29563.04" from="-23160627#3" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0020" depart="29602.17" from="513973969#0" to="14798483#2" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0021" depart="29641.30" from="525423123#0" to="420605292#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_32_neg_0022" depart="29680.43" from="-23160627#3" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_33_pos_0000" depart="29722.50" from="40357844#0" to="23160618" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_33_pos_0001" depart="29767.50" from="16088708#0" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_33_neg_0000" depart="29812.50" from="-33128976#4" to="-34633123#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_33_pos_0002" depart="29812.50" from="71760726" to="33128976#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_33_pos_0003" depart="29857.50" from="-1046472244" to="-514430613#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_33_pos_0004" depart="29902.50" from="-14798483#2" to="514430613#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_33_pos_0005" depart="29947.50" from="40357844#0" to="23160618" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_33_pos_0006" depart="29992.50" from="16088708#0" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_33_neg_0001" depart="30037.50" from="-33128976#4" to="-34633123#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_33_pos_0007" depart="30037.50" from="71760726" to="33128976#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_33_pos_0008" depart="30082.50" from="-1046472244" to="-514430613#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_33_pos_0009" depart="30127.50" from="-14798483#2" to="514430613#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_33_pos_0010" depart="30172.50" from="40357844#0" to="23160618" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_33_pos_0011" depart="30217.50" from="16088708#0" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_33_neg_0002" depart="30262.50" from="-33128976#4" to="-34633123#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_33_pos_0012" depart="30262.50" from="71760726" to="33128976#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_33_pos_0013" depart="30307.50" from="-1046472244" to="-514430613#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_33_pos_0014" depart="30352.50" from="-14798483#2" to="514430613#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_33_pos_0015" depart="30397.50" from="40357844#0" to="23160618" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_33_pos_0016" depart="30442.50" from="16088708#0" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_33_neg_0003" depart="30487.50" from="-33128976#4" to="-34633123#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_33_pos_0017" depart="30487.50" from="71760726" to="33128976#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_33_pos_0018" depart="30532.50" from="-1046472244" to="-514430613#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_33_pos_0019" depart="30577.50" from="-14798483#2" to="514430613#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_34_neg_0000" depart="30625.00" from="40357986#1" to="-34633123#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_34_pos_0000" depart="30650.00" from="1046472245#0" to="33128976#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_34_neg_0001" depart="30675.00" from="33128976#1" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_34_neg_0002" depart="30725.00" from="40357986#1" to="-34633123#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_34_pos_0001" depart="30750.00" from="1046472245#0" to="33128976#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_34_neg_0003" depart="30775.00" from="33128976#1" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_34_neg_0004" depart="30825.00" from="40357986#1" to="-34633123#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_34_pos_0002" depart="30850.00" from="1046472245#0" to="33128976#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_34_neg_0005" depart="30875.00" from="33128976#1" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_34_neg_0006" depart="30925.00" from="40357986#1" to="-34633123#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_34_pos_0003" depart="30950.00" from="1046472245#0" to="33128976#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_34_neg_0007" depart="30975.00" from="33128976#1" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_34_neg_0008" depart="31025.00" from="40357986#1" to="-34633123#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_34_pos_0004" depart="31050.00" from="1046472245#0" to="33128976#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_34_neg_0009" depart="31075.00" from="33128976#1" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_34_neg_0010" depart="31125.00" from="40357986#1" to="-34633123#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_34_pos_0005" depart="31150.00" from="1046472245#0" to="33128976#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_34_neg_0011" depart="31175.00" from="33128976#1" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_34_neg_0012" depart="31225.00" from="40357986#1" to="-34633123#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_34_pos_0006" depart="31250.00" from="1046472245#0" to="33128976#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_34_neg_0013" depart="31275.00" from="33128976#1" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_34_neg_0014" depart="31325.00" from="40357986#1" to="-34633123#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_34_pos_0007" depart="31350.00" from="1046472245#0" to="33128976#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_34_neg_0015" depart="31375.00" from="33128976#1" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_34_neg_0016" depart="31425.00" from="40357986#1" to="-34633123#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_34_pos_0008" depart="31450.00" from="1046472245#0" to="33128976#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_34_neg_0017" depart="31475.00" from="33128976#1" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_35_pos_0000" depart="31537.50" from="16088708#0" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_35_neg_0000" depart="31545.00" from="513973969#0" to="14798483#2" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_35_pos_0001" depart="31612.50" from="16088708#0" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_35_neg_0001" depart="31635.00" from="-513973969#1" to="1165966443" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_35_pos_0002" depart="31687.50" from="-420605286" to="-525423119#0" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_35_neg_0002" depart="31725.00" from="23160642#1" to="1046472245#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_35_pos_0003" depart="31762.50" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_35_neg_0003" depart="31815.00" from="33128974#3" to="1046472245#3" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_35_pos_0004" depart="31837.50" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_35_neg_0004" depart="31905.00" from="-16088703#1" to="1165966443" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_35_pos_0005" depart="31912.50" from="16088708#0" to="435654120#1" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_35_pos_0006" depart="31987.50" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_35_neg_0005" depart="31995.00" from="-33128976#4" to="-34633123#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_35_pos_0007" depart="32062.50" from="1046472245#0" to="435654120#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_35_neg_0006" depart="32085.00" from="525423119#1" to="420605292#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_35_pos_0008" depart="32137.50" from="-14798483#2" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_35_neg_0007" depart="32175.00" from="40357986#1" to="1046472245#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_35_pos_0009" depart="32212.50" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_35_neg_0008" depart="32265.00" from="-34876563#1" to="420605292#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_35_pos_0010" depart="32287.50" from="71760726" to="-582782542" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_35_neg_0009" depart="32355.00" from="513973969#0" to="14798483#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_35_pos_0011" depart="32362.50" from="40357844#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0000" depart="32418.75" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0001" depart="32456.25" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0002" depart="32493.75" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0003" depart="32531.25" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0004" depart="32568.75" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0005" depart="32606.25" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0006" depart="32643.75" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0007" depart="32681.25" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0008" depart="32718.75" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0009" depart="32756.25" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0010" depart="32793.75" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0011" depart="32831.25" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0012" depart="32868.75" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0013" depart="32906.25" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0014" depart="32943.75" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0015" depart="32981.25" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0016" depart="33018.75" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0017" depart="33056.25" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0018" depart="33093.75" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0019" depart="33131.25" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0020" depart="33168.75" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0021" depart="33206.25" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0022" depart="33243.75" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_36_pos_0023" depart="33281.25" from="-14798483#2" to="33128974#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_37_pos_0000" depart="33340.91" from="40357844#0" to="-23160627#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_37_pos_0001" depart="33422.73" from="40357844#0" to="-23160627#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_37_pos_0002" depart="33504.55" from="40357844#0" to="-23160627#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_37_pos_0003" depart="33586.36" from="40357844#0" to="-23160627#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_37_pos_0004" depart="33668.18" from="40357844#0" to="-23160627#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_37_pos_0005" depart="33750.00" from="40357844#0" to="-23160627#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_37_pos_0006" depart="33831.82" from="40357844#0" to="-23160627#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_37_pos_0007" depart="33913.64" from="40357844#0" to="-23160627#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_37_pos_0008" depart="33995.45" from="40357844#0" to="-23160627#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_37_pos_0009" depart="34077.27" from="40357844#0" to="-23160627#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_37_pos_0010" depart="34159.09" from="40357844#0" to="-23160627#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_38_pos_0000" depart="34256.25" from="1046472245#1" to="-16088703#0" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_38_neg_0000" depart="34264.29" from="-23160627#3" to="1046472245#3" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_38_pos_0001" depart="34368.75" from="1046472245#1" to="-16088703#0" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_38_neg_0001" depart="34392.86" from="-23160627#3" to="1046472245#3" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_38_pos_0002" depart="34481.25" from="1046472245#1" to="-16088703#0" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_38_neg_0002" depart="34521.43" from="-23160627#3" to="1046472245#3" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_38_pos_0003" depart="34593.75" from="1046472245#1" to="-16088703#0" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_38_neg_0003" depart="34650.00" from="-23160627#3" to="1046472245#3" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_38_pos_0004" depart="34706.25" from="1046472245#1" to="-16088703#0" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_38_neg_0004" depart="34778.57" from="-23160627#3" to="1046472245#3" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_38_pos_0005" depart="34818.75" from="1046472245#1" to="-16088703#0" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_38_neg_0005" depart="34907.14" from="-23160627#3" to="1046472245#3" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_38_pos_0006" depart="34931.25" from="1046472245#1" to="-16088703#0" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_38_neg_0006" depart="35035.71" from="-23160627#3" to="1046472245#3" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_38_pos_0007" depart="35043.75" from="1046472245#1" to="-16088703#0" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_39_pos_0000" depart="35156.25" from="-1046472244" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_39_neg_0000" depart="35212.50" from="-40357986#1" to="1046472244" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_39_pos_0001" depart="35268.75" from="1046472245#0" to="435654120#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_39_pos_0002" depart="35381.25" from="-1046472244" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_39_neg_0001" depart="35437.50" from="-40357986#1" to="1046472244" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_39_pos_0003" depart="35493.75" from="1046472245#0" to="435654120#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_39_pos_0004" depart="35606.25" from="-1046472244" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_39_neg_0002" depart="35662.50" from="-40357986#1" to="1046472244" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_39_pos_0005" depart="35718.75" from="1046472245#0" to="435654120#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_39_pos_0006" depart="35831.25" from="-1046472244" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_39_neg_0003" depart="35887.50" from="-40357986#1" to="1046472244" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_39_pos_0007" depart="35943.75" from="1046472245#0" to="435654120#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_40_neg_0000" depart="36026.47" from="33128974#2" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_40_neg_0001" depart="36079.41" from="33128974#2" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_40_neg_0002" depart="36132.35" from="33128974#2" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_40_neg_0003" depart="36185.29" from="33128974#2" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_40_neg_0004" depart="36238.24" from="33128974#2" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_40_neg_0005" depart="36291.18" from="33128974#2" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_40_neg_0006" depart="36344.12" from="33128974#2" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_40_neg_0007" depart="36397.06" from="33128974#2" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_40_neg_0008" depart="36450.00" from="33128974#2" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_40_neg_0009" depart="36502.94" from="33128974#2" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_40_neg_0010" depart="36555.88" from="33128974#2" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_40_neg_0011" depart="36608.82" from="33128974#2" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_40_neg_0012" depart="36661.76" from="33128974#2" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_40_neg_0013" depart="36714.71" from="33128974#2" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_40_neg_0014" depart="36767.65" from="33128974#2" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_40_neg_0015" depart="36820.59" from="33128974#2" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_40_neg_0016" depart="36873.53" from="33128974#2" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_41_neg_0000" depart="36932.14" from="-33128976#4" to="14798483#2" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_41_neg_0001" depart="36996.43" from="-33128976#4" to="14798483#2" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_41_neg_0002" depart="37060.71" from="-33128976#4" to="14798483#2" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_41_neg_0003" depart="37125.00" from="-33128976#4" to="14798483#2" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_41_neg_0004" depart="37189.29" from="-33128976#4" to="14798483#2" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_41_neg_0005" depart="37253.57" from="-33128976#4" to="14798483#2" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_41_neg_0006" depart="37317.86" from="-33128976#4" to="14798483#2" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_41_neg_0007" depart="37382.14" from="-33128976#4" to="14798483#2" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_41_neg_0008" depart="37446.43" from="-33128976#4" to="14798483#2" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_41_neg_0009" depart="37510.71" from="-33128976#4" to="14798483#2" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_41_neg_0010" depart="37575.00" from="-33128976#4" to="14798483#2" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_41_neg_0011" depart="37639.29" from="-33128976#4" to="14798483#2" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_41_neg_0012" depart="37703.57" from="-33128976#4" to="14798483#2" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_41_neg_0013" depart="37767.86" from="-33128976#4" to="14798483#2" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_42_neg_0000" depart="37856.25" from="-514430613#1" to="-1046472244" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_42_neg_0001" depart="37968.75" from="-514430613#1" to="-1046472244" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_42_neg_0002" depart="38081.25" from="-514430613#1" to="-1046472244" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_42_neg_0003" depart="38193.75" from="-514430613#1" to="-1046472244" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_42_neg_0004" depart="38306.25" from="-514430613#1" to="-1046472244" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_42_neg_0005" depart="38418.75" from="-514430613#1" to="-1046472244" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_42_neg_0006" depart="38531.25" from="-514430613#1" to="-1046472244" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_42_neg_0007" depart="38643.75" from="-514430613#1" to="-1046472244" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_43_pos_0000" depart="38740.91" from="1046472245#0" to="-243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_43_pos_0001" depart="38822.73" from="1046472245#0" to="-243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_43_pos_0002" depart="38904.55" from="1046472245#0" to="-243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_43_pos_0003" depart="38986.36" from="1046472245#0" to="-243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_43_pos_0004" depart="39068.18" from="1046472245#0" to="-243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_43_pos_0005" depart="39150.00" from="1046472245#0" to="-243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_43_pos_0006" depart="39231.82" from="1046472245#0" to="-243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_43_pos_0007" depart="39313.64" from="1046472245#0" to="-243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_43_pos_0008" depart="39395.45" from="1046472245#0" to="-243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_43_pos_0009" depart="39477.27" from="1046472245#0" to="-243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_43_pos_0010" depart="39559.09" from="1046472245#0" to="-243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_44_pos_0000" depart="39622.50" from="71760726" to="-582782542" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_44_pos_0001" depart="39667.50" from="40357844#0" to="-582782542" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_44_pos_0002" depart="39712.50" from="71760726" to="-582782542" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_44_pos_0003" depart="39757.50" from="40357844#0" to="-582782542" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_44_pos_0004" depart="39802.50" from="71760726" to="-582782542" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_44_pos_0005" depart="39847.50" from="40357844#0" to="-582782542" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_44_pos_0006" depart="39892.50" from="71760726" to="-582782542" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_44_pos_0007" depart="39937.50" from="40357844#0" to="-582782542" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_44_pos_0008" depart="39982.50" from="71760726" to="-582782542" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_44_pos_0009" depart="40027.50" from="40357844#0" to="-582782542" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_44_pos_0010" depart="40072.50" from="71760726" to="-582782542" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_44_pos_0011" depart="40117.50" from="40357844#0" to="-582782542" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_44_pos_0012" depart="40162.50" from="71760726" to="-582782542" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_44_pos_0013" depart="40207.50" from="40357844#0" to="-582782542" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_44_pos_0014" depart="40252.50" from="71760726" to="-582782542" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_44_pos_0015" depart="40297.50" from="40357844#0" to="-582782542" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_44_pos_0016" depart="40342.50" from="71760726" to="-582782542" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_44_pos_0017" depart="40387.50" from="40357844#0" to="-582782542" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_44_pos_0018" depart="40432.50" from="71760726" to="-582782542" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_44_pos_0019" depart="40477.50" from="40357844#0" to="-582782542" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_45_neg_0000" depart="40540.91" from="33128974#3" to="1046472245#3" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_45_pos_0000" depart="40545.00" from="34633123#0" to="525423123#0" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_45_neg_0001" depart="40622.73" from="-34876563#1" to="420605292#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_45_pos_0001" depart="40635.00" from="14798483#1" to="-525423119#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_45_neg_0002" depart="40704.55" from="33128974#3" to="1046472245#3" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_45_pos_0002" depart="40725.00" from="34633123#0" to="525423123#0" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_45_neg_0003" depart="40786.36" from="-34876563#1" to="420605292#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_45_pos_0003" depart="40815.00" from="14798483#1" to="-525423119#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_45_neg_0004" depart="40868.18" from="33128974#3" to="1046472245#3" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_45_pos_0004" depart="40905.00" from="34633123#0" to="525423123#0" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_45_neg_0005" depart="40950.00" from="-34876563#1" to="420605292#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_45_pos_0005" depart="40995.00" from="14798483#1" to="-525423119#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_45_neg_0006" depart="41031.82" from="33128974#3" to="1046472245#3" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_45_pos_0006" depart="41085.00" from="34633123#0" to="525423123#0" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_45_neg_0007" depart="41113.64" from="-34876563#1" to="420605292#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_45_pos_0007" depart="41175.00" from="14798483#1" to="-525423119#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_45_neg_0008" depart="41195.45" from="33128974#3" to="1046472245#3" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_45_pos_0008" depart="41265.00" from="34633123#0" to="525423123#0" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_45_neg_0009" depart="41277.27" from="-34876563#1" to="420605292#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_45_pos_0009" depart="41355.00" from="14798483#1" to="-525423119#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_45_neg_0010" depart="41359.09" from="33128974#3" to="1046472245#3" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_46_pos_0000" depart="41475.00" from="1046472245#0" to="-23160627#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_46_neg_0000" depart="41550.00" from="23160627#1" to="14798483#2" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_46_pos_0001" depart="41625.00" from="-34633123#1" to="-23160627#4" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_46_pos_0002" depart="41775.00" from="1046472245#0" to="-23160627#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_46_neg_0001" depart="41850.00" from="23160627#1" to="14798483#2" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_46_pos_0003" depart="41925.00" from="-34633123#1" to="-23160627#4" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_46_pos_0004" depart="42075.00" from="1046472245#0" to="-23160627#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_46_neg_0002" depart="42150.00" from="23160627#1" to="14798483#2" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_46_pos_0005" depart="42225.00" from="-34633123#1" to="-23160627#4" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_47_neg_0000" depart="42322.50" from="-33128974#2" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_47_neg_0001" depart="42367.50" from="-33128974#3" to="-39441373#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_47_neg_0002" depart="42412.50" from="-33128974#2" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_47_neg_0003" depart="42457.50" from="-33128974#3" to="-39441373#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_47_neg_0004" depart="42502.50" from="-33128974#2" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_47_neg_0005" depart="42547.50" from="-33128974#3" to="-39441373#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_47_neg_0006" depart="42592.50" from="-33128974#2" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_47_neg_0007" depart="42637.50" from="-33128974#3" to="-39441373#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_47_neg_0008" depart="42682.50" from="-33128974#2" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_47_neg_0009" depart="42727.50" from="-33128974#3" to="-39441373#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_47_neg_0010" depart="42772.50" from="-33128974#2" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_47_neg_0011" depart="42817.50" from="-33128974#3" to="-39441373#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_47_neg_0012" depart="42862.50" from="-33128974#2" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_47_neg_0013" depart="42907.50" from="-33128974#3" to="-39441373#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_47_neg_0014" depart="42952.50" from="-33128974#2" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_47_neg_0015" depart="42997.50" from="-33128974#3" to="-39441373#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_47_neg_0016" depart="43042.50" from="-33128974#2" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_47_neg_0017" depart="43087.50" from="-33128974#3" to="-39441373#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_47_neg_0018" depart="43132.50" from="-33128974#2" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_47_neg_0019" depart="43177.50" from="-33128974#3" to="-39441373#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_48_pos_0000" depart="43225.00" from="34633123#1" to="243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_48_pos_0001" depart="43275.00" from="34633123#1" to="243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_48_pos_0002" depart="43325.00" from="34633123#1" to="243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_48_pos_0003" depart="43375.00" from="34633123#1" to="243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_48_pos_0004" depart="43425.00" from="34633123#1" to="243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_48_pos_0005" depart="43475.00" from="34633123#1" to="243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_48_pos_0006" depart="43525.00" from="34633123#1" to="243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_48_pos_0007" depart="43575.00" from="34633123#1" to="243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_48_pos_0008" depart="43625.00" from="34633123#1" to="243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_48_pos_0009" depart="43675.00" from="34633123#1" to="243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_48_pos_0010" depart="43725.00" from="34633123#1" to="243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_48_pos_0011" depart="43775.00" from="34633123#1" to="243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_48_pos_0012" depart="43825.00" from="34633123#1" to="243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_48_pos_0013" depart="43875.00" from="34633123#1" to="243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_48_pos_0014" depart="43925.00" from="34633123#1" to="243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_48_pos_0015" depart="43975.00" from="34633123#1" to="243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_48_pos_0016" depart="44025.00" from="34633123#1" to="243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_48_pos_0017" depart="44075.00" from="34633123#1" to="243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_49_pos_0000" depart="44123.68" from="-420605286" to="-525423119#0" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_49_neg_0000" depart="44150.00" from="-40357986#0" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_49_pos_0001" depart="44171.05" from="34633123#0" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_49_pos_0002" depart="44218.42" from="-420605286" to="-525423119#0" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_49_neg_0001" depart="44250.00" from="-40357986#0" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_49_pos_0003" depart="44265.79" from="34633123#0" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_49_pos_0004" depart="44313.16" from="-420605286" to="-525423119#0" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_49_neg_0002" depart="44350.00" from="-40357986#0" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_49_pos_0005" depart="44360.53" from="34633123#0" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_49_pos_0006" depart="44407.89" from="-420605286" to="-525423119#0" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_49_neg_0003" depart="44450.00" from="-40357986#0" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_49_pos_0007" depart="44455.26" from="34633123#0" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_49_pos_0008" depart="44502.63" from="-420605286" to="-525423119#0" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_49_neg_0004" depart="44550.00" from="-40357986#0" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_49_pos_0009" depart="44550.00" from="34633123#0" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_49_pos_0010" depart="44597.37" from="-420605286" to="-525423119#0" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_49_pos_0011" depart="44644.74" from="34633123#0" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_49_neg_0005" depart="44650.00" from="-40357986#0" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_49_pos_0012" depart="44692.11" from="-420605286" to="-525423119#0" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_49_pos_0013" depart="44739.47" from="34633123#0" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_49_neg_0006" depart="44750.00" from="-40357986#0" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_49_pos_0014" depart="44786.84" from="-420605286" to="-525423119#0" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_49_pos_0015" depart="44834.21" from="34633123#0" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_49_neg_0007" depart="44850.00" from="-40357986#0" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_49_pos_0016" depart="44881.58" from="-420605286" to="-525423119#0" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_49_pos_0017" depart="44928.95" from="34633123#0" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_49_neg_0008" depart="44950.00" from="-40357986#0" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_49_pos_0018" depart="44976.32" from="-420605286" to="-525423119#0" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0000" depart="45020.45" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0001" depart="45061.36" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0002" depart="45102.27" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0003" depart="45143.18" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0004" depart="45184.09" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0005" depart="45225.00" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0006" depart="45265.91" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0007" depart="45306.82" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0008" depart="45347.73" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0009" depart="45388.64" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0010" depart="45429.55" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0011" depart="45470.45" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0012" depart="45511.36" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0013" depart="45552.27" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0014" depart="45593.18" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0015" depart="45634.09" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0016" depart="45675.00" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0017" depart="45715.91" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0018" depart="45756.82" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0019" depart="45797.73" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0020" depart="45838.64" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_50_pos_0021" depart="45879.55" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_51_pos_0000" depart="45926.47" from="16088708#0" to="-525423119#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_51_neg_0000" depart="45975.00" from="165043062" to="-39441373#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_51_pos_0001" depart="45979.41" from="-14798483#2" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_51_pos_0002" depart="46032.35" from="16088708#0" to="435654120#1" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_51_pos_0003" depart="46085.29" from="16088708#0" to="-525423119#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_51_neg_0001" depart="46125.00" from="165043062" to="-39441373#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_51_pos_0004" depart="46138.24" from="-14798483#2" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_51_pos_0005" depart="46191.18" from="16088708#0" to="435654120#1" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_51_pos_0006" depart="46244.12" from="16088708#0" to="-525423119#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_51_neg_0002" depart="46275.00" from="165043062" to="-39441373#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_51_pos_0007" depart="46297.06" from="-14798483#2" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_51_pos_0008" depart="46350.00" from="16088708#0" to="435654120#1" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_51_pos_0009" depart="46402.94" from="16088708#0" to="-525423119#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_51_neg_0003" depart="46425.00" from="165043062" to="-39441373#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_51_pos_0010" depart="46455.88" from="-14798483#2" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_51_pos_0011" depart="46508.82" from="16088708#0" to="435654120#1" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_51_pos_0012" depart="46561.76" from="16088708#0" to="-525423119#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_51_neg_0004" depart="46575.00" from="165043062" to="-39441373#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_51_pos_0013" depart="46614.71" from="-14798483#2" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_51_pos_0014" depart="46667.65" from="16088708#0" to="435654120#1" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_51_pos_0015" depart="46720.59" from="16088708#0" to="-525423119#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_51_neg_0005" depart="46725.00" from="165043062" to="-39441373#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_51_pos_0016" depart="46773.53" from="-14798483#2" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_52_pos_0000" depart="46825.00" from="71760726" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_52_neg_0000" depart="46850.00" from="435654120#0" to="1165966443" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_52_pos_0001" depart="46875.00" from="-14798483#2" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_52_pos_0002" depart="46925.00" from="71760726" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_52_neg_0001" depart="46950.00" from="435654120#0" to="1165966443" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_52_pos_0003" depart="46975.00" from="-14798483#2" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_52_pos_0004" depart="47025.00" from="71760726" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_52_neg_0002" depart="47050.00" from="435654120#0" to="1165966443" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_52_pos_0005" depart="47075.00" from="-14798483#2" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_52_pos_0006" depart="47125.00" from="71760726" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_52_neg_0003" depart="47150.00" from="435654120#0" to="1165966443" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_52_pos_0007" depart="47175.00" from="-14798483#2" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_52_pos_0008" depart="47225.00" from="71760726" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_52_neg_0004" depart="47250.00" from="435654120#0" to="1165966443" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_52_pos_0009" depart="47275.00" from="-14798483#2" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_52_pos_0010" depart="47325.00" from="71760726" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_52_neg_0005" depart="47350.00" from="435654120#0" to="1165966443" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_52_pos_0011" depart="47375.00" from="-14798483#2" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_52_pos_0012" depart="47425.00" from="71760726" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_52_neg_0006" depart="47450.00" from="435654120#0" to="1165966443" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_52_pos_0013" depart="47475.00" from="-14798483#2" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_52_pos_0014" depart="47525.00" from="71760726" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_52_neg_0007" depart="47550.00" from="435654120#0" to="1165966443" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_52_pos_0015" depart="47575.00" from="-14798483#2" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_52_pos_0016" depart="47625.00" from="71760726" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_52_neg_0008" depart="47650.00" from="435654120#0" to="1165966443" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_52_pos_0017" depart="47675.00" from="-14798483#2" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_53_pos_0000" depart="47730.00" from="1165966443" to="435654120#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_53_pos_0001" depart="47790.00" from="1165966443" to="435654120#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_53_pos_0002" depart="47850.00" from="1165966443" to="435654120#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_53_pos_0003" depart="47910.00" from="1165966443" to="435654120#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_53_pos_0004" depart="47970.00" from="1165966443" to="435654120#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_53_pos_0005" depart="48030.00" from="1165966443" to="435654120#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_53_pos_0006" depart="48090.00" from="1165966443" to="435654120#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_53_pos_0007" depart="48150.00" from="1165966443" to="435654120#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_53_pos_0008" depart="48210.00" from="1165966443" to="435654120#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_53_pos_0009" depart="48270.00" from="1165966443" to="435654120#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_53_pos_0010" depart="48330.00" from="1165966443" to="435654120#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_53_pos_0011" depart="48390.00" from="1165966443" to="435654120#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_53_pos_0012" depart="48450.00" from="1165966443" to="435654120#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_53_pos_0013" depart="48510.00" from="1165966443" to="435654120#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_53_pos_0014" depart="48570.00" from="1165966443" to="435654120#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0000" depart="48618.75" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0001" depart="48656.25" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0002" depart="48693.75" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0003" depart="48731.25" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0004" depart="48768.75" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0005" depart="48806.25" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0006" depart="48843.75" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0007" depart="48881.25" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0008" depart="48918.75" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0009" depart="48956.25" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0010" depart="48993.75" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0011" depart="49031.25" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0012" depart="49068.75" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0013" depart="49106.25" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0014" depart="49143.75" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0015" depart="49181.25" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0016" depart="49218.75" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0017" depart="49256.25" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0018" depart="49293.75" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0019" depart="49331.25" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0020" depart="49368.75" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0021" depart="49406.25" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0022" depart="49443.75" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_54_pos_0023" depart="49481.25" from="16088708#0" to="435654120#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_55_neg_0000" depart="49523.68" from="-513973969#1" to="1165966443" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_55_neg_0001" depart="49571.05" from="-33128976#2" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_55_neg_0002" depart="49618.42" from="525423119#1" to="420605292#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_55_neg_0003" depart="49665.79" from="-513973969#1" to="1165966443" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_55_neg_0004" depart="49713.16" from="-33128976#2" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_55_neg_0005" depart="49760.53" from="525423119#1" to="420605292#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_55_neg_0006" depart="49807.89" from="-513973969#1" to="1165966443" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_55_neg_0007" depart="49855.26" from="-33128976#2" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_55_neg_0008" depart="49902.63" from="525423119#1" to="420605292#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_55_neg_0009" depart="49950.00" from="-513973969#1" to="1165966443" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_55_neg_0010" depart="49997.37" from="-33128976#2" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_55_neg_0011" depart="50044.74" from="525423119#1" to="420605292#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_55_neg_0012" depart="50092.11" from="-513973969#1" to="1165966443" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_55_neg_0013" depart="50139.47" from="-33128976#2" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_55_neg_0014" depart="50186.84" from="525423119#1" to="420605292#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_55_neg_0015" depart="50234.21" from="-513973969#1" to="1165966443" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_55_neg_0016" depart="50281.58" from="-33128976#2" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_55_neg_0017" depart="50328.95" from="525423119#1" to="420605292#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_55_neg_0018" depart="50376.32" from="-513973969#1" to="1165966443" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_56_neg_0000" depart="50464.29" from="-33128974#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_56_pos_0000" depart="50464.29" from="40357844#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_56_neg_0001" depart="50592.86" from="-33128974#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_56_pos_0001" depart="50592.86" from="40357844#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_56_neg_0002" depart="50721.43" from="-33128974#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_56_pos_0002" depart="50721.43" from="40357844#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_56_neg_0003" depart="50850.00" from="-33128974#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_56_pos_0003" depart="50850.00" from="40357844#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_56_neg_0004" depart="50978.57" from="-33128974#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_56_pos_0004" depart="50978.57" from="40357844#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_56_neg_0005" depart="51107.14" from="-33128974#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_56_pos_0005" depart="51107.14" from="40357844#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_56_neg_0006" depart="51235.71" from="-33128974#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_56_pos_0006" depart="51235.71" from="40357844#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_57_neg_0000" depart="51330.00" from="33128976#1" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_57_neg_0001" depart="51390.00" from="33128976#1" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_57_neg_0002" depart="51450.00" from="33128976#1" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_57_neg_0003" depart="51510.00" from="33128976#1" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_57_neg_0004" depart="51570.00" from="33128976#1" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_57_neg_0005" depart="51630.00" from="33128976#1" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_57_neg_0006" depart="51690.00" from="33128976#1" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_57_neg_0007" depart="51750.00" from="33128976#1" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_57_neg_0008" depart="51810.00" from="33128976#1" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_57_neg_0009" depart="51870.00" from="33128976#1" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_57_neg_0010" depart="51930.00" from="33128976#1" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_57_neg_0011" depart="51990.00" from="33128976#1" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_57_neg_0012" depart="52050.00" from="33128976#1" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_57_neg_0013" depart="52110.00" from="33128976#1" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_57_neg_0014" depart="52170.00" from="33128976#1" to="-34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0000" depart="52216.07" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0001" depart="52248.21" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0002" depart="52280.36" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0003" depart="52312.50" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0004" depart="52344.64" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0005" depart="52376.79" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0006" depart="52408.93" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0007" depart="52441.07" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0008" depart="52473.21" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0009" depart="52505.36" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0010" depart="52537.50" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0011" depart="52569.64" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0012" depart="52601.79" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0013" depart="52633.93" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0014" depart="52666.07" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0015" depart="52698.21" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0016" depart="52730.36" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0017" depart="52762.50" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0018" depart="52794.64" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0019" depart="52826.79" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0020" depart="52858.93" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0021" depart="52891.07" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0022" depart="52923.21" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0023" depart="52955.36" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0024" depart="52987.50" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0025" depart="53019.64" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0026" depart="53051.79" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_58_neg_0027" depart="53083.93" from="-40357986#0" to="1165966443" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0000" depart="53120.45" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0001" depart="53161.36" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0002" depart="53202.27" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0003" depart="53243.18" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0004" depart="53284.09" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0005" depart="53325.00" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0006" depart="53365.91" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0007" depart="53406.82" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0008" depart="53447.73" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0009" depart="53488.64" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0010" depart="53529.55" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0011" depart="53570.45" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0012" depart="53611.36" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0013" depart="53652.27" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0014" depart="53693.18" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0015" depart="53734.09" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0016" depart="53775.00" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0017" depart="53815.91" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0018" depart="53856.82" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0019" depart="53897.73" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0020" depart="53938.64" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_59_neg_0021" depart="53979.55" from="-23160627#1" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_60_neg_0000" depart="54045.00" from="-514430613#1" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_60_pos_0000" depart="54045.00" from="39441373#1" to="16088703#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_60_neg_0001" depart="54135.00" from="-514430613#1" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_60_pos_0001" depart="54135.00" from="39441373#1" to="16088703#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_60_neg_0002" depart="54225.00" from="-514430613#1" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_60_pos_0002" depart="54225.00" from="39441373#1" to="16088703#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_60_neg_0003" depart="54315.00" from="-514430613#1" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_60_pos_0003" depart="54315.00" from="39441373#1" to="16088703#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_60_neg_0004" depart="54405.00" from="-514430613#1" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_60_pos_0004" depart="54405.00" from="39441373#1" to="16088703#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_60_neg_0005" depart="54495.00" from="-514430613#1" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_60_pos_0005" depart="54495.00" from="39441373#1" to="16088703#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_60_neg_0006" depart="54585.00" from="-514430613#1" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_60_pos_0006" depart="54585.00" from="39441373#1" to="16088703#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_60_neg_0007" depart="54675.00" from="-514430613#1" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_60_pos_0007" depart="54675.00" from="39441373#1" to="16088703#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_60_neg_0008" depart="54765.00" from="-514430613#1" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_60_pos_0008" depart="54765.00" from="39441373#1" to="16088703#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_60_neg_0009" depart="54855.00" from="-514430613#1" to="1046472243#2" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_60_pos_0009" depart="54855.00" from="39441373#1" to="16088703#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_61_neg_0000" depart="54937.50" from="23160642#0" to="420605292#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_61_neg_0001" depart="55012.50" from="-16088703#1" to="1165966443" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_61_neg_0002" depart="55087.50" from="23160642#0" to="420605292#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_61_neg_0003" depart="55162.50" from="-16088703#1" to="1165966443" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_61_neg_0004" depart="55237.50" from="23160642#0" to="420605292#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_61_neg_0005" depart="55312.50" from="-16088703#1" to="1165966443" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_61_neg_0006" depart="55387.50" from="23160642#0" to="420605292#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_61_neg_0007" depart="55462.50" from="-16088703#1" to="1165966443" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_61_neg_0008" depart="55537.50" from="23160642#0" to="420605292#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_61_neg_0009" depart="55612.50" from="-16088703#1" to="1165966443" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_61_neg_0010" depart="55687.50" from="23160642#0" to="420605292#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_61_neg_0011" depart="55762.50" from="-16088703#1" to="1165966443" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_62_neg_0000" depart="55825.00" from="513973969#0" to="14798483#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_62_neg_0001" depart="55875.00" from="513973969#0" to="14798483#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_62_neg_0002" depart="55925.00" from="513973969#0" to="14798483#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_62_neg_0003" depart="55975.00" from="513973969#0" to="14798483#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_62_neg_0004" depart="56025.00" from="513973969#0" to="14798483#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_62_neg_0005" depart="56075.00" from="513973969#0" to="14798483#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_62_neg_0006" depart="56125.00" from="513973969#0" to="14798483#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_62_neg_0007" depart="56175.00" from="513973969#0" to="14798483#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_62_neg_0008" depart="56225.00" from="513973969#0" to="14798483#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_62_neg_0009" depart="56275.00" from="513973969#0" to="14798483#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_62_neg_0010" depart="56325.00" from="513973969#0" to="14798483#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_62_neg_0011" depart="56375.00" from="513973969#0" to="14798483#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_62_neg_0012" depart="56425.00" from="513973969#0" to="14798483#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_62_neg_0013" depart="56475.00" from="513973969#0" to="14798483#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_62_neg_0014" depart="56525.00" from="513973969#0" to="14798483#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_62_neg_0015" depart="56575.00" from="513973969#0" to="14798483#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_62_neg_0016" depart="56625.00" from="513973969#0" to="14798483#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_62_neg_0017" depart="56675.00" from="513973969#0" to="14798483#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_63_neg_0000" depart="56750.00" from="-514430613#1" to="34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_63_pos_0000" depart="56756.25" from="-14798483#2" to="-525423119#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_63_neg_0001" depart="56850.00" from="-514430613#1" to="34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_63_pos_0001" depart="56868.75" from="-14798483#2" to="-525423119#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_63_neg_0002" depart="56950.00" from="-514430613#1" to="34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_63_pos_0002" depart="56981.25" from="-14798483#2" to="-525423119#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_63_neg_0003" depart="57050.00" from="-514430613#1" to="34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_63_pos_0003" depart="57093.75" from="-14798483#2" to="-525423119#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_63_neg_0004" depart="57150.00" from="-514430613#1" to="34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_63_pos_0004" depart="57206.25" from="-14798483#2" to="-525423119#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_63_neg_0005" depart="57250.00" from="-514430613#1" to="34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_63_pos_0005" depart="57318.75" from="-14798483#2" to="-525423119#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_63_neg_0006" depart="57350.00" from="-514430613#1" to="34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_63_pos_0006" depart="57431.25" from="-14798483#2" to="-525423119#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_63_neg_0007" depart="57450.00" from="-514430613#1" to="34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_63_pos_0007" depart="57543.75" from="-14798483#2" to="-525423119#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_63_neg_0008" depart="57550.00" from="-514430613#1" to="34633123#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_64_pos_0000" depart="57634.62" from="34633123#0" to="525423123#0" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_64_neg_0000" depart="57640.91" from="525423123#0" to="420605292#1" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_64_pos_0001" depart="57703.85" from="39441373#1" to="33128974#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_64_neg_0001" depart="57722.73" from="435654120#0" to="1165966443" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_64_pos_0002" depart="57773.08" from="40357844#0" to="23160618" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_64_neg_0002" depart="57804.55" from="16088703#0" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_64_pos_0003" depart="57842.31" from="34633123#1" to="243526236#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_64_neg_0003" depart="57886.36" from="-514430613#1" to="-1046472244" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_64_pos_0004" depart="57911.54" from="71760726" to="33128974#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_64_neg_0004" depart="57968.18" from="23160642#0" to="420605292#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_64_pos_0005" depart="57980.77" from="-14798483#2" to="514430613#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_64_neg_0005" depart="58050.00" from="513973969#0" to="14798483#2" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_64_pos_0006" depart="58050.00" from="-39441373#1" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_64_pos_0007" depart="58119.23" from="1046472243#3" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_64_neg_0006" depart="58131.82" from="-513973969#1" to="1165966443" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_64_pos_0008" depart="58188.46" from="40357844#0" to="-23160627#3" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_64_neg_0007" depart="58213.64" from="23160642#1" to="1046472245#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_64_pos_0009" depart="58257.69" from="-14798483#2" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_64_neg_0008" depart="58295.45" from="33128974#3" to="1046472245#3" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_64_pos_0010" depart="58326.92" from="-420605286" to="-582782542" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_64_neg_0009" depart="58377.27" from="-16088703#1" to="1165966443" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_64_pos_0011" depart="58396.15" from="-1046472244" to="-513973969#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_64_neg_0010" depart="58459.09" from="-33128976#4" to="-34633123#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_64_pos_0012" depart="58465.38" from="1165966443" to="435654120#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_65_neg_0000" depart="58518.75" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0001" depart="58556.25" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0002" depart="58593.75" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0003" depart="58631.25" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0004" depart="58668.75" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0005" depart="58706.25" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0006" depart="58743.75" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0007" depart="58781.25" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0008" depart="58818.75" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0009" depart="58856.25" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0010" depart="58893.75" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0011" depart="58931.25" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0012" depart="58968.75" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0013" depart="59006.25" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0014" depart="59043.75" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0015" depart="59081.25" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0016" depart="59118.75" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0017" depart="59156.25" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0018" depart="59193.75" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0019" depart="59231.25" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0020" depart="59268.75" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0021" depart="59306.25" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0022" depart="59343.75" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_65_neg_0023" depart="59381.25" from="-23160627#3" to="1046472245#1" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_66_pos_0000" depart="59413.24" from="39441373#1" to="33128974#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0001" depart="59439.71" from="16088708#0" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0002" depart="59466.18" from="-14798483#2" to="514430613#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0003" depart="59492.65" from="39441373#1" to="33128974#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0004" depart="59519.12" from="16088708#0" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0005" depart="59545.59" from="-14798483#2" to="514430613#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0006" depart="59572.06" from="39441373#1" to="33128974#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0007" depart="59598.53" from="16088708#0" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0008" depart="59625.00" from="-14798483#2" to="514430613#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0009" depart="59651.47" from="39441373#1" to="33128974#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0010" depart="59677.94" from="16088708#0" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0011" depart="59704.41" from="-14798483#2" to="514430613#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0012" depart="59730.88" from="39441373#1" to="33128974#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0013" depart="59757.35" from="16088708#0" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0014" depart="59783.82" from="-14798483#2" to="514430613#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0015" depart="59810.29" from="39441373#1" to="33128974#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0016" depart="59836.76" from="16088708#0" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0017" depart="59863.24" from="-14798483#2" to="514430613#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0018" depart="59889.71" from="39441373#1" to="33128974#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0019" depart="59916.18" from="16088708#0" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0020" depart="59942.65" from="-14798483#2" to="514430613#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0021" depart="59969.12" from="39441373#1" to="33128974#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0022" depart="59995.59" from="16088708#0" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0023" depart="60022.06" from="-14798483#2" to="514430613#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0024" depart="60048.53" from="39441373#1" to="33128974#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0025" depart="60075.00" from="16088708#0" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0026" depart="60101.47" from="-14798483#2" to="514430613#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0027" depart="60127.94" from="39441373#1" to="33128974#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0028" depart="60154.41" from="16088708#0" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0029" depart="60180.88" from="-14798483#2" to="514430613#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0030" depart="60207.35" from="39441373#1" to="33128974#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0031" depart="60233.82" from="16088708#0" to="34876563#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0032" depart="60260.29" from="-14798483#2" to="514430613#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_66_pos_0033" depart="60286.76" from="39441373#1" to="33128974#3" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0000" depart="60316.07" from="34633123#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0001" depart="60348.21" from="71760726" to="33128974#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0002" depart="60380.36" from="34633123#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0003" depart="60412.50" from="71760726" to="33128974#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0004" depart="60444.64" from="34633123#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0005" depart="60476.79" from="71760726" to="33128974#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0006" depart="60508.93" from="34633123#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0007" depart="60541.07" from="71760726" to="33128974#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0008" depart="60573.21" from="34633123#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0009" depart="60605.36" from="71760726" to="33128974#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0010" depart="60637.50" from="34633123#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0011" depart="60669.64" from="71760726" to="33128974#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0012" depart="60701.79" from="34633123#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0013" depart="60733.93" from="71760726" to="33128974#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0014" depart="60766.07" from="34633123#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0015" depart="60798.21" from="71760726" to="33128974#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0016" depart="60830.36" from="34633123#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0017" depart="60862.50" from="71760726" to="33128974#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0018" depart="60894.64" from="34633123#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0019" depart="60926.79" from="71760726" to="33128974#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0020" depart="60958.93" from="34633123#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0021" depart="60991.07" from="71760726" to="33128974#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0022" depart="61023.21" from="34633123#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0023" depart="61055.36" from="71760726" to="33128974#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0024" depart="61087.50" from="34633123#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0025" depart="61119.64" from="71760726" to="33128974#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0026" depart="61151.79" from="34633123#0" to="16088703#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_67_pos_0027" depart="61183.93" from="71760726" to="33128974#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0000" depart="61216.07" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0001" depart="61248.21" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0002" depart="61280.36" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0003" depart="61312.50" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0004" depart="61344.64" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0005" depart="61376.79" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0006" depart="61408.93" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0007" depart="61441.07" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0008" depart="61473.21" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0009" depart="61505.36" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0010" depart="61537.50" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0011" depart="61569.64" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0012" depart="61601.79" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0013" depart="61633.93" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0014" depart="61666.07" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0015" depart="61698.21" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0016" depart="61730.36" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0017" depart="61762.50" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0018" depart="61794.64" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0019" depart="61826.79" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0020" depart="61858.93" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0021" depart="61891.07" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0022" depart="61923.21" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0023" depart="61955.36" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0024" depart="61987.50" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0025" depart="62019.64" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0026" depart="62051.79" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_68_pos_0027" depart="62083.93" from="1046472243#0" to="435654120#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0000" depart="62112.16" from="1165966443" to="-33128976#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0001" depart="62136.49" from="1046472243#3" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0002" depart="62160.81" from="1165966443" to="-33128976#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0003" depart="62185.14" from="1046472243#3" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0004" depart="62209.46" from="1165966443" to="-33128976#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0005" depart="62233.78" from="1046472243#3" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0006" depart="62258.11" from="1165966443" to="-33128976#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0007" depart="62282.43" from="1046472243#3" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0008" depart="62306.76" from="1165966443" to="-33128976#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0009" depart="62331.08" from="1046472243#3" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0010" depart="62355.41" from="1165966443" to="-33128976#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0011" depart="62379.73" from="1046472243#3" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0012" depart="62404.05" from="1165966443" to="-33128976#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0013" depart="62428.38" from="1046472243#3" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0014" depart="62452.70" from="1165966443" to="-33128976#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0015" depart="62477.03" from="1046472243#3" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0016" depart="62501.35" from="1165966443" to="-33128976#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0017" depart="62525.68" from="1046472243#3" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0018" depart="62550.00" from="1165966443" to="-33128976#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0019" depart="62574.32" from="1046472243#3" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0020" depart="62598.65" from="1165966443" to="-33128976#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0021" depart="62622.97" from="1046472243#3" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0022" depart="62647.30" from="1165966443" to="-33128976#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0023" depart="62671.62" from="1046472243#3" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0024" depart="62695.95" from="1165966443" to="-33128976#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0025" depart="62720.27" from="1046472243#3" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0026" depart="62744.59" from="1165966443" to="-33128976#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0027" depart="62768.92" from="1046472243#3" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0028" depart="62793.24" from="1165966443" to="-33128976#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0029" depart="62817.57" from="1046472243#3" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0030" depart="62841.89" from="1165966443" to="-33128976#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0031" depart="62866.22" from="1046472243#3" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0032" depart="62890.54" from="1165966443" to="-33128976#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0033" depart="62914.86" from="1046472243#3" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0034" depart="62939.19" from="1165966443" to="-33128976#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0035" depart="62963.51" from="1046472243#3" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_69_pos_0036" depart="62987.84" from="1165966443" to="-33128976#0" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0000" depart="63016.67" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0001" depart="63050.00" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0002" depart="63083.33" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0003" depart="63116.67" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0004" depart="63150.00" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0005" depart="63183.33" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0006" depart="63216.67" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0007" depart="63250.00" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0008" depart="63283.33" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0009" depart="63316.67" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0010" depart="63350.00" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0011" depart="63383.33" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0012" depart="63416.67" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0013" depart="63450.00" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0014" depart="63483.33" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0015" depart="63516.67" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0016" depart="63550.00" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0017" depart="63583.33" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0018" depart="63616.67" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0019" depart="63650.00" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0020" depart="63683.33" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0021" depart="63716.67" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0022" depart="63750.00" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0023" depart="63783.33" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0024" depart="63816.67" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0025" depart="63850.00" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_70_pos_0026" depart="63883.33" from="-420605286" to="243526236#1" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_71_pos_0000" depart="63923.68" from="39441373#1" to="33128974#2" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_71_neg_0000" depart="63945.00" from="23160627#4" to="-34633123#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_71_pos_0001" depart="63971.05" from="-420605286" to="-582782542" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_71_pos_0002" depart="64018.42" from="39441373#1" to="33128974#2" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_71_neg_0001" depart="64035.00" from="23160627#4" to="-34633123#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_71_pos_0003" depart="64065.79" from="-420605286" to="-582782542" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_71_pos_0004" depart="64113.16" from="39441373#1" to="33128974#2" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_71_neg_0002" depart="64125.00" from="23160627#4" to="-34633123#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_71_pos_0005" depart="64160.53" from="-420605286" to="-582782542" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_71_pos_0006" depart="64207.89" from="39441373#1" to="33128974#2" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_71_neg_0003" depart="64215.00" from="23160627#4" to="-34633123#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_71_pos_0007" depart="64255.26" from="-420605286" to="-582782542" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_71_pos_0008" depart="64302.63" from="39441373#1" to="33128974#2" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_71_neg_0004" depart="64305.00" from="23160627#4" to="-34633123#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_71_pos_0009" depart="64350.00" from="-420605286" to="-582782542" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_71_neg_0005" depart="64395.00" from="23160627#4" to="-34633123#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_71_pos_0010" depart="64397.37" from="39441373#1" to="33128974#2" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_71_pos_0011" depart="64444.74" from="-420605286" to="-582782542" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_71_neg_0006" depart="64485.00" from="23160627#4" to="-34633123#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_71_pos_0012" depart="64492.11" from="39441373#1" to="33128974#2" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_71_pos_0013" depart="64539.47" from="-420605286" to="-582782542" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_71_neg_0007" depart="64575.00" from="23160627#4" to="-34633123#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_71_pos_0014" depart="64586.84" from="39441373#1" to="33128974#2" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_71_pos_0015" depart="64634.21" from="-420605286" to="-582782542" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_71_neg_0008" depart="64665.00" from="23160627#4" to="-34633123#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_71_pos_0016" depart="64681.58" from="39441373#1" to="33128974#2" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_71_pos_0017" depart="64728.95" from="-420605286" to="-582782542" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_71_neg_0009" depart="64755.00" from="23160627#4" to="-34633123#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_71_pos_0018" depart="64776.32" from="39441373#1" to="33128974#2" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0000" depart="64818.75" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0001" depart="64856.25" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0002" depart="64893.75" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0003" depart="64931.25" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0004" depart="64968.75" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0005" depart="65006.25" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0006" depart="65043.75" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0007" depart="65081.25" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0008" depart="65118.75" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0009" depart="65156.25" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0010" depart="65193.75" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0011" depart="65231.25" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0012" depart="65268.75" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0013" depart="65306.25" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0014" depart="65343.75" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0015" depart="65381.25" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0016" depart="65418.75" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0017" depart="65456.25" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0018" depart="65493.75" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0019" depart="65531.25" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0020" depart="65568.75" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0021" depart="65606.25" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0022" depart="65643.75" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_72_pos_0023" depart="65681.25" from="-1046472244" to="40357986#1" departLane="best" type="motorcycle_motorcycle" via="33128974#0" />
+    <trip id="schoolBike_73_neg_0000" depart="65740.91" from="-34876563#1" to="-40357844#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_73_pos_0000" depart="65740.91" from="34633123#0" to="525423119#2" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_73_neg_0001" depart="65822.73" from="-34876563#1" to="-40357844#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_73_pos_0001" depart="65822.73" from="34633123#0" to="525423119#2" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_73_neg_0002" depart="65904.55" from="-34876563#1" to="-40357844#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_73_pos_0002" depart="65904.55" from="34633123#0" to="525423119#2" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_73_neg_0003" depart="65986.36" from="-34876563#1" to="-40357844#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_73_pos_0003" depart="65986.36" from="34633123#0" to="525423119#2" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_73_neg_0004" depart="66068.18" from="-34876563#1" to="-40357844#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_73_pos_0004" depart="66068.18" from="34633123#0" to="525423119#2" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_73_neg_0005" depart="66150.00" from="-34876563#1" to="-40357844#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_73_pos_0005" depart="66150.00" from="34633123#0" to="525423119#2" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_73_neg_0006" depart="66231.82" from="-34876563#1" to="-40357844#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_73_pos_0006" depart="66231.82" from="34633123#0" to="525423119#2" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_73_neg_0007" depart="66313.64" from="-34876563#1" to="-40357844#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_73_pos_0007" depart="66313.64" from="34633123#0" to="525423119#2" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_73_neg_0008" depart="66395.45" from="-34876563#1" to="-40357844#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_73_pos_0008" depart="66395.45" from="34633123#0" to="525423119#2" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_73_neg_0009" depart="66477.27" from="-34876563#1" to="-40357844#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_73_pos_0009" depart="66477.27" from="34633123#0" to="525423119#2" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_73_neg_0010" depart="66559.09" from="-34876563#1" to="-40357844#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_73_pos_0010" depart="66559.09" from="34633123#0" to="525423119#2" departLane="best" type="bike_bicycle" departSpeed="max" via="33128974#0" />
+    <trip id="schoolBike_74_neg_0000" depart="66622.50" from="16088703#0" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_74_neg_0001" depart="66667.50" from="513973969#0" to="1046472243#3" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_74_neg_0002" depart="66712.50" from="16088703#0" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_74_neg_0003" depart="66757.50" from="513973969#0" to="1046472243#3" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_74_neg_0004" depart="66802.50" from="16088703#0" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_74_neg_0005" depart="66847.50" from="513973969#0" to="1046472243#3" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_74_neg_0006" depart="66892.50" from="16088703#0" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_74_neg_0007" depart="66937.50" from="513973969#0" to="1046472243#3" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_74_neg_0008" depart="66982.50" from="16088703#0" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_74_neg_0009" depart="67027.50" from="513973969#0" to="1046472243#3" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_74_neg_0010" depart="67072.50" from="16088703#0" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_74_neg_0011" depart="67117.50" from="513973969#0" to="1046472243#3" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_74_neg_0012" depart="67162.50" from="16088703#0" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_74_neg_0013" depart="67207.50" from="513973969#0" to="1046472243#3" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_74_neg_0014" depart="67252.50" from="16088703#0" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_74_neg_0015" depart="67297.50" from="513973969#0" to="1046472243#3" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_74_neg_0016" depart="67342.50" from="16088703#0" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_74_neg_0017" depart="67387.50" from="513973969#0" to="1046472243#3" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_74_neg_0018" depart="67432.50" from="16088703#0" to="-1046472244" departLane="best" type="motorcycle_motorcycle" via="-33128974#0" />
+    <trip id="schoolBike_74_neg_0019" depart="67477.50" from="513973969#0" to="1046472243#3" departLane="best" type="motorcycle_motorcycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_75_neg_0000" depart="67534.62" from="23160642#1" to="1046472245#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_75_neg_0001" depart="67603.85" from="23160642#1" to="1046472245#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_75_neg_0002" depart="67673.08" from="23160642#1" to="1046472245#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_75_neg_0003" depart="67742.31" from="23160642#1" to="1046472245#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_75_neg_0004" depart="67811.54" from="23160642#1" to="1046472245#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_75_neg_0005" depart="67880.77" from="23160642#1" to="1046472245#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_75_neg_0006" depart="67950.00" from="23160642#1" to="1046472245#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_75_neg_0007" depart="68019.23" from="23160642#1" to="1046472245#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_75_neg_0008" depart="68088.46" from="23160642#1" to="1046472245#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_75_neg_0009" depart="68157.69" from="23160642#1" to="1046472245#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_75_neg_0010" depart="68226.92" from="23160642#1" to="1046472245#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_75_neg_0011" depart="68296.15" from="23160642#1" to="1046472245#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_75_neg_0012" depart="68365.38" from="23160642#1" to="1046472245#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_76_neg_0000" depart="68440.91" from="40357986#1" to="1046472245#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_76_neg_0001" depart="68522.73" from="-33128976#4" to="420605292#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_76_neg_0002" depart="68604.55" from="-23160627#2" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_76_neg_0003" depart="68686.36" from="40357986#1" to="1046472245#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_76_neg_0004" depart="68768.18" from="-33128976#4" to="420605292#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_76_neg_0005" depart="68850.00" from="-23160627#2" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_76_neg_0006" depart="68931.82" from="40357986#1" to="1046472245#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_76_neg_0007" depart="69013.64" from="-33128976#4" to="420605292#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_76_neg_0008" depart="69095.45" from="-23160627#2" to="-16088708#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_76_neg_0009" depart="69177.27" from="40357986#1" to="1046472245#0" departLane="best" type="bike_bicycle" via="-33128974#0" />
+    <trip id="schoolBike_76_neg_0010" depart="69259.09" from="-33128976#4" to="420605292#1" departLane="best" type="bike_bicycle" departSpeed="max" via="-33128974#0" />
+    <trip id="schoolBike_77_pos_0000" depart="69337.50" from="1165966443" to="525423123#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_77_pos_0001" depart="69412.50" from="-39441373#1" to="34876563#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_77_pos_0002" depart="69487.50" from="1165966443" to="525423123#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_77_pos_0003" depart="69562.50" from="-39441373#1" to="34876563#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_77_pos_0004" depart="69637.50" from="1165966443" to="525423123#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_77_pos_0005" depart="69712.50" from="-39441373#1" to="34876563#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_77_pos_0006" depart="69787.50" from="1165966443" to="525423123#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_77_pos_0007" depart="69862.50" from="-39441373#1" to="34876563#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_77_pos_0008" depart="69937.50" from="1165966443" to="525423123#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_77_pos_0009" depart="70012.50" from="-39441373#1" to="34876563#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_77_pos_0010" depart="70087.50" from="1165966443" to="525423123#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+    <trip id="schoolBike_77_pos_0011" depart="70162.50" from="-39441373#1" to="34876563#1" departLane="best" type="bike_bicycle" via="33128974#0" />
+</routes>

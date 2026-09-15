@@ -1,0 +1,103 @@
+comparison,candidate,reference,metric,candidate_valid_mean,reference_valid_mean,absolute_change,percent_change,candidate_status
+Scenario A quantifiable component at observed demand,A_OBS,current,frontage_spot_motorized_passages,8610.0,8610.0,0.0,0.0,stable
+Scenario A quantifiable component at observed demand,A_OBS,current,frontage_spot_motorized_mean_speed_kmh,35.269816306620214,32.76730202090592,2.502514285714291,7.637230200147871,stable
+Scenario A quantifiable component at observed demand,A_OBS,current,frontage_spot_motorized_over_36_pct,48.92682926829268,36.339140534262484,12.587688734030195,34.63947839427256,stable
+Scenario A quantifiable component at observed demand,A_OBS,current,CO2_kg,687.1404471879989,878.0855919780003,-190.94514479000134,-21.745618711254895,stable
+Scenario A quantifiable component at observed demand,A_OBS,current,CO2_g_per_vkm,250.29348186136696,319.84596611636016,-69.5524842549932,-21.745618711254895,stable
+Scenario A quantifiable component at observed demand,A_OBS,current,vkt_km,2745.33895999974,2745.33895999974,0.0,0.0,stable
+Scenario B design at observed demand,B_OBS,current,frontage_spot_motorized_passages,8610.0,8610.0,0.0,0.0,stable
+Scenario B design at observed demand,B_OBS,current,frontage_spot_motorized_mean_speed_kmh,29.26998104529617,32.76730202090592,-3.497320975609753,-10.673203956121933,stable
+Scenario B design at observed demand,B_OBS,current,frontage_spot_motorized_over_36_pct,11.591173054587689,36.339140534262484,-24.747967479674795,-68.10278701099463,stable
+Scenario B design at observed demand,B_OBS,current,CO2_kg,723.6352362539994,878.0855919780003,-154.45035572400081,-17.589441978666525,stable
+Scenario B design at observed demand,B_OBS,current,CO2_g_per_vkm,262.28042509803697,319.84596611636016,-57.56554101832319,-17.99789496090778,stable
+Scenario B design at observed demand,B_OBS,current,vkt_km,2759.0135099998947,2745.33895999974,13.674550000154795,0.49810060613266094,stable
+Scenario C design at observed demand,C_OBS,current,frontage_spot_motorized_passages,8610.0,8610.0,0.0,0.0,stable
+Scenario C design at observed demand,C_OBS,current,frontage_spot_motorized_mean_speed_kmh,22.353817421602788,32.76730202090592,-10.413484599303136,-31.780109917683212,stable
+Scenario C design at observed demand,C_OBS,current,frontage_spot_motorized_over_36_pct,0.09291521486643438,36.339140534262484,-36.246225319396046,-99.74431091792378,stable
+Scenario C design at observed demand,C_OBS,current,CO2_kg,760.9801567860007,878.0855919780003,-117.1054351919995,-13.336448776958576,stable
+Scenario C design at observed demand,C_OBS,current,CO2_g_per_vkm,277.1944465810032,319.84596611636016,-42.651519535356954,-13.33501874456666,stable
+Scenario C design at observed demand,C_OBS,current,vkt_km,2745.29365999987,2745.33895999974,-0.04529999986971234,-0.0016500694642717863,stable
+C1 rebuilt-network zero-crossing control versus C0,C1_X0,C_OBS,frontage_spot_motorized_passages,8610.0,8610.0,0.0,0.0,stable
+C1 rebuilt-network zero-crossing control versus C0,C1_X0,C_OBS,frontage_spot_motorized_mean_speed_kmh,16.055212264808365,22.353817421602788,-6.298605156794423,-28.17686589274651,stable
+C1 rebuilt-network zero-crossing control versus C0,C1_X0,C_OBS,frontage_spot_motorized_over_36_pct,0.0,0.09291521486643438,-0.09291521486643438,-100.0,stable
+C1 rebuilt-network zero-crossing control versus C0,C1_X0,C_OBS,CO2_kg,964.9351084019991,760.9801567860007,203.9549516159983,26.801612341299666,stable
+C1 rebuilt-network zero-crossing control versus C0,C1_X0,C_OBS,CO2_g_per_vkm,338.7139450656533,277.1944465810032,61.519498484650114,22.193625898155418,stable
+C1 rebuilt-network zero-crossing control versus C0,C1_X0,C_OBS,vkt_km,2848.820140000332,2745.29365999987,103.52648000046156,3.771053039202606,stable
+C1 low crossing interaction versus identical-network control,C1_L25,C1_X0,frontage_spot_motorized_passages,8610.0,8610.0,0.0,0.0,stable
+C1 low crossing interaction versus identical-network control,C1_L25,C1_X0,frontage_spot_motorized_mean_speed_kmh,15.519776445993031,16.055212264808365,-0.5354358188153334,-3.3349656795815923,stable
+C1 low crossing interaction versus identical-network control,C1_L25,C1_X0,frontage_spot_motorized_over_36_pct,0.0,0.0,0.0,,stable
+C1 low crossing interaction versus identical-network control,C1_L25,C1_X0,CO2_kg,970.3161636479996,964.9351084019991,5.381055246000528,0.5576598052186056,stable
+C1 low crossing interaction versus identical-network control,C1_L25,C1_X0,CO2_g_per_vkm,340.60281659195465,338.7139450656533,1.8888715263013296,0.5576598052185916,stable
+C1 low crossing interaction versus identical-network control,C1_L25,C1_X0,vkt_km,2848.820140000332,2848.820140000332,0.0,0.0,stable
+C1 central crossing interaction versus identical-network control,C1_M50,C1_X0,frontage_spot_motorized_passages,8610.0,8610.0,0.0,0.0,stable
+C1 central crossing interaction versus identical-network control,C1_M50,C1_X0,frontage_spot_motorized_mean_speed_kmh,15.0030037630662,16.055212264808365,-1.0522085017421645,-6.5536878889388115,stable
+C1 central crossing interaction versus identical-network control,C1_M50,C1_X0,frontage_spot_motorized_over_36_pct,0.0,0.0,0.0,,stable
+C1 central crossing interaction versus identical-network control,C1_M50,C1_X0,CO2_kg,976.0694077660007,964.9351084019991,11.134299364001663,1.1538909992031332,stable
+C1 central crossing interaction versus identical-network control,C1_M50,C1_X0,CO2_g_per_vkm,342.62233479081175,338.7139450656533,3.908389725158429,1.1538909992031363,stable
+C1 central crossing interaction versus identical-network control,C1_M50,C1_X0,vkt_km,2848.820140000332,2848.820140000332,0.0,0.0,stable
+C1 high crossing interaction versus identical-network control,C1_H75,C1_X0,frontage_spot_motorized_passages,8610.0,8610.0,0.0,0.0,stable
+C1 high crossing interaction versus identical-network control,C1_H75,C1_X0,frontage_spot_motorized_mean_speed_kmh,14.431502717770035,16.055212264808365,-1.6237095470383291,-10.113286079669965,stable
+C1 high crossing interaction versus identical-network control,C1_H75,C1_X0,frontage_spot_motorized_over_36_pct,0.0,0.0,0.0,,stable
+C1 high crossing interaction versus identical-network control,C1_H75,C1_X0,CO2_kg,982.4726799559985,964.9351084019991,17.53757155399944,1.8174871451244947,stable
+C1 high crossing interaction versus identical-network control,C1_H75,C1_X0,CO2_g_per_vkm,344.87002747596557,338.7139450656533,6.156082410312251,1.8174871451244827,stable
+C1 high crossing interaction versus identical-network control,C1_H75,C1_X0,vkt_km,2848.820140000332,2848.820140000332,0.0,0.0,stable
+A plus 15% demand response versus current,A_DR15,current,frontage_spot_motorized_passages,7325.0,8610.0,-1285.0,-14.924506387921022,stable
+A plus 15% demand response versus current,A_DR15,current,frontage_spot_motorized_mean_speed_kmh,35.88144819112628,32.76730202090592,3.1141461702203586,9.50382234165479,stable
+A plus 15% demand response versus current,A_DR15,current,frontage_spot_motorized_over_36_pct,52.09556313993174,36.339140534262484,15.756422605669258,43.35937056852861,stable
+A plus 15% demand response versus current,A_DR15,current,CO2_kg,592.1484337700005,878.0855919780003,-285.9371582079998,-32.56370003337485,stable
+A plus 15% demand response versus current,A_DR15,current,CO2_g_per_vkm,249.61812363220193,319.84596611636016,-70.22784248415823,-21.95676979668685,stable
+A plus 15% demand response versus current,A_DR15,current,vkt_km,2372.2173099998836,2745.33895999974,-373.12164999985634,-13.59109586962958,stable
+B plus 15% demand response versus current,B_DR15,current,frontage_spot_motorized_passages,7325.0,8610.0,-1285.0,-14.924506387921022,stable
+B plus 15% demand response versus current,B_DR15,current,frontage_spot_motorized_mean_speed_kmh,29.736281119453924,32.76730202090592,-3.031020901451999,-9.250138749654067,stable
+B plus 15% demand response versus current,B_DR15,current,frontage_spot_motorized_over_36_pct,12.857337883959044,36.339140534262484,-23.48180265030344,-64.6184865824318,stable
+B plus 15% demand response versus current,B_DR15,current,CO2_kg,624.7742771499996,878.0855919780003,-253.3113148280006,-28.848134753855195,stable
+B plus 15% demand response versus current,B_DR15,current,CO2_g_per_vkm,262.06802016000086,319.84596611636016,-57.777945956359304,-18.064303470170906,stable
+B plus 15% demand response versus current,B_DR15,current,vkt_km,2384.015709999851,2745.33895999974,-361.32324999988896,-13.161334730044524,stable
+C plus 15% demand response versus current,C_DR15,current,frontage_spot_motorized_passages,7325.0,8610.0,-1285.0,-14.924506387921022,stable
+C plus 15% demand response versus current,C_DR15,current,frontage_spot_motorized_mean_speed_kmh,22.90787385665529,32.76730202090592,-9.859428164250634,-30.089227846589882,stable
+C plus 15% demand response versus current,C_DR15,current,frontage_spot_motorized_over_36_pct,0.11467576791808873,36.339140534262484,-36.2244647663444,-99.68442905849696,stable
+C plus 15% demand response versus current,C_DR15,current,CO2_kg,653.1203064840008,878.0855919780003,-224.96528549399943,-25.61997230671287,stable
+C plus 15% demand response versus current,C_DR15,current,CO2_g_per_vkm,275.3251088527993,319.84596611636016,-44.520857263560856,-13.919468112774053,stable
+C plus 15% demand response versus current,C_DR15,current,vkt_km,2372.1785099999256,2745.33895999974,-373.1604499998143,-13.592509174162219,stable
+A plus 30% demand response versus current,A_DR30,current,frontage_spot_motorized_passages,6065.0,8610.0,-2545.0,-29.558652729384438,stable
+A plus 30% demand response versus current,A_DR30,current,frontage_spot_motorized_mean_speed_kmh,36.387031162407254,32.76730202090592,3.619729141501331,11.046771989930392,stable
+A plus 30% demand response versus current,A_DR30,current,frontage_spot_motorized_over_36_pct,55.16570486397362,36.339140534262484,18.82656432971114,51.80795157210845,stable
+A plus 30% demand response versus current,A_DR30,current,CO2_kg,503.7360109999997,878.0855919780003,-374.3495809780006,-42.6324705015066,stable
+A plus 30% demand response versus current,A_DR30,current,CO2_g_per_vkm,251.07357356294727,319.84596611636016,-68.77239255341289,-21.50172265370808,stable
+A plus 30% demand response versus current,A_DR30,current,vkt_km,2006.328279999993,2745.33895999974,-739.010679999747,-26.91874084647883,stable
+B plus 30% demand response versus current,B_DR30,current,frontage_spot_motorized_passages,6065.0,8610.0,-2545.0,-29.558652729384438,stable
+B plus 30% demand response versus current,B_DR30,current,frontage_spot_motorized_mean_speed_kmh,30.158352118713935,32.76730202090592,-2.6089499021919877,-7.962052843189371,stable
+B plus 30% demand response versus current,B_DR30,current,frontage_spot_motorized_over_36_pct,14.776586974443529,36.339140534262484,-21.562553559818955,-59.33699378357237,stable
+B plus 30% demand response versus current,B_DR30,current,CO2_kg,532.758031834,878.0855919780003,-345.32756014400024,-39.3273233610525,stable
+B plus 30% demand response versus current,B_DR30,current,CO2_g_per_vkm,264.2272627072582,319.84596611636016,-55.618703409101954,-17.389215216448232,stable
+B plus 30% demand response versus current,B_DR30,current,vkt_km,2016.2871399998246,2745.33895999974,-729.0518199999153,-26.55598564047568,stable
+C plus 30% demand response versus current,C_DR30,current,frontage_spot_motorized_passages,6065.0,8610.0,-2545.0,-29.558652729384438,stable
+C plus 30% demand response versus current,C_DR30,current,frontage_spot_motorized_mean_speed_kmh,23.395669315746083,32.76730202090592,-9.37163270515984,-28.600562533896223,stable
+C plus 30% demand response versus current,C_DR30,current,frontage_spot_motorized_over_36_pct,0.16488046166529266,36.339140534262484,-36.17426007259719,-99.54627308394971,stable
+C plus 30% demand response versus current,C_DR30,current,CO2_kg,553.5552800999999,878.0855919780003,-324.53031187800036,-36.95884716055462,stable
+C plus 30% demand response versus current,C_DR30,current,CO2_g_per_vkm,275.90912090331506,319.84596611636016,-43.9368452130451,-13.73687645541881,stable
+C plus 30% demand response versus current,C_DR30,current,vkt_km,2006.2956899999633,2745.33895999974,-739.0432699997766,-26.91992794943786,stable
+B versus A at matched 15% response,B_DR15,A_DR15,frontage_spot_motorized_passages,7325.0,7325.0,0.0,0.0,stable
+B versus A at matched 15% response,B_DR15,A_DR15,frontage_spot_motorized_mean_speed_kmh,29.736281119453924,35.88144819112628,-6.145167071672358,-17.126307274275785,stable
+B versus A at matched 15% response,B_DR15,A_DR15,frontage_spot_motorized_over_36_pct,12.857337883959044,52.09556313993174,-39.238225255972694,-75.31970649895177,stable
+B versus A at matched 15% response,B_DR15,A_DR15,CO2_kg,624.7742771499996,592.1484337700005,32.625843379999196,5.509740720292368,stable
+B versus A at matched 15% response,B_DR15,A_DR15,CO2_g_per_vkm,262.06802016000086,249.61812363220193,12.449896527798927,4.987577162523319,stable
+B versus A at matched 15% response,B_DR15,A_DR15,vkt_km,2384.015709999851,2372.2173099998836,11.798399999967387,0.4973574701707225,stable
+C versus A at matched 15% response,C_DR15,A_DR15,frontage_spot_motorized_passages,7325.0,7325.0,0.0,0.0,stable
+C versus A at matched 15% response,C_DR15,A_DR15,frontage_spot_motorized_mean_speed_kmh,22.90787385665529,35.88144819112628,-12.973574334470992,-36.156774568757356,stable
+C versus A at matched 15% response,C_DR15,A_DR15,frontage_spot_motorized_over_36_pct,0.11467576791808873,52.09556313993174,-51.980887372013655,-99.7798742138365,stable
+C versus A at matched 15% response,C_DR15,A_DR15,CO2_kg,653.1203064840008,592.1484337700005,60.97187271400037,10.296721098426948,stable
+C versus A at matched 15% response,C_DR15,A_DR15,CO2_g_per_vkm,275.3251088527993,249.61812363220193,25.706985220597375,10.298525141738166,stable
+C versus A at matched 15% response,C_DR15,A_DR15,vkt_km,2372.1785099999256,2372.2173099998836,-0.03879999995797334,-0.0016356005748046432,stable
+B versus A at matched 30% response,B_DR30,A_DR30,frontage_spot_motorized_passages,6065.0,6065.0,0.0,0.0,stable
+B versus A at matched 30% response,B_DR30,A_DR30,frontage_spot_motorized_mean_speed_kmh,30.158352118713935,36.387031162407254,-6.228679043693319,-17.117854479231024,stable
+B versus A at matched 30% response,B_DR30,A_DR30,frontage_spot_motorized_over_36_pct,14.776586974443529,55.16570486397362,-40.3891178895301,-73.21417897064978,stable
+B versus A at matched 30% response,B_DR30,A_DR30,CO2_kg,532.758031834,503.7360109999997,29.02202083400033,5.761355194040386,stable
+B versus A at matched 30% response,B_DR30,A_DR30,CO2_g_per_vkm,264.2272627072582,251.07357356294727,13.153689144310931,5.238977944850551,stable
+B versus A at matched 30% response,B_DR30,A_DR30,vkt_km,2016.2871399998246,2006.328279999993,9.958859999831702,0.49637240819990525,stable
+C versus A at matched 30% response,C_DR30,A_DR30,frontage_spot_motorized_passages,6065.0,6065.0,0.0,0.0,stable
+C versus A at matched 30% response,C_DR30,A_DR30,frontage_spot_motorized_mean_speed_kmh,23.395669315746083,36.387031162407254,-12.99136184666117,-35.70327512754877,stable
+C versus A at matched 30% response,C_DR30,A_DR30,frontage_spot_motorized_over_36_pct,0.16488046166529266,55.16570486397362,-55.00082440230833,-99.70111781935562,stable
+C versus A at matched 30% response,C_DR30,A_DR30,CO2_kg,553.5552800999999,503.7360109999997,49.81926910000021,9.889955852292688,stable
+C versus A at matched 30% response,C_DR30,A_DR30,CO2_g_per_vkm,275.90912090331506,251.07357356294727,24.835547340367782,9.89174089010256,stable
+C versus A at matched 30% response,C_DR30,A_DR30,vkt_km,2006.2956899999633,2006.328279999993,-0.03259000002958601,-0.0016243602980857213,stable

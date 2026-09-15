@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <vType id="pt_bus" vClass="bus" emissionClass="HBEFA4/UBus_Std_gt15-18t_Euro-VI_A-C" tau="1.60" lcAssertive="0.55" jmTimegapMinor="2.00" sigma="0.55" />
+    <vType id="pt_tram" vClass="tram" />
+    <vType id="pt_train" vClass="rail" />
+    <vType id="pt_subway" vClass="subway" />
+    <vType id="pt_light_rail" vClass="rail_urban" />
+    <vType id="pt_monorail" vClass="rail_urban" />
+    <vType id="pt_trolleybus" vClass="bus" />
+    <vType id="pt_minibus" vClass="bus" />
+    <vType id="pt_share_taxi" vClass="taxi" />
+    <vType id="pt_aerialway" vClass="cable_car" length="2.5" width="2" personCapacity="4" />
+    <vType id="pt_ferry" vClass="ship" />
+    <route id="pt_bus_34:0" color="243,195,0" edges="-40357986#1 -40357986#0 -525423119#1 -525423119#0 525423123#0 525423123#1 -33128974#3 -33128974#2 -33128974#1 -33128974#0 1046472243#0 1046472243#2 1046472243#3 1046472245#0 1046472245#1 1046472245#3 33128974#0 33128974#1 33128974#2 -33128974#2 -33128974#1 -33128974#0 1046472243#0 1046472243#2 1046472243#3 1165966443 1046472242 -1046472244 -40357844#1">
+        <stop busStop="4215496388" duration="20" until="102.0" />
+        <stop busStop="-4059785907" duration="20" until="186.0" />
+    </route>
+    <route id="pt_bus_34:1" color="243,195,0" edges="40357844#0 1046472244 71760726 1046472245#0 1046472245#1 1046472245#3 33128974#0 33128974#1 33128974#2 -33128974#2 -33128974#1 -33128974#0 1046472243#0 1046472243#2 1046472243#3 1046472245#0 1046472245#1 1046472245#3 33128974#0 33128974#1 33128974#2 33128974#3 582782542 435654120#0 435654120#1 525423119#0 525423119#1 525423119#2 40357986#1">
+        <stop busStop="4215499889" duration="20" until="76.0" />
+        <stop busStop="4052677689" duration="20" until="165.0" />
+    </route>
+    <flow id="pt_bus_34:0" type="pt_bus" route="pt_bus_34:0" begin="27015.0" end="70215.0" period="600" line="34:0">
+        <param key="name" value="Bus 34: Sainte-Anne/Sint-Anna → Porte de Namur/Naamsepoort" />
+        <param key="completeness" value="0.05" />
+    </flow>
+    <flow id="pt_bus_34:1" type="pt_bus" route="pt_bus_34:1" begin="27383.0" end="70583.0" period="600" line="34:1">
+        <param key="name" value="Bus 34: Porte de Namur/Naamsepoort → Sainte-Anne/Sint-Anna" />
+        <param key="completeness" value="0.05" />
+    </flow>
+</routes>

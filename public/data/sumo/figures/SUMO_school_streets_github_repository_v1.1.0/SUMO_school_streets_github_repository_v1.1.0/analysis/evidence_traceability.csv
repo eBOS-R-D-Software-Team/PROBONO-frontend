@@ -1,0 +1,22 @@
+case,report_or_data_statement,model_lever,status
+Baseline,"15-minute pedestrians, two-wheelers, cars, large vehicles",corridor-boundary demand files,input departure bins represented exactly; detector passage times can shift to adjacent bins through route travel and queues; daily totals exact
+Baseline,sensor has no direction or OD/turning fields,balanced per-bin directional split; fixed corridor boundary ODs,explicit structural assumption; scheduled buses retain timetable direction; no network-wide demand claim
+Baseline,large-vehicle total,one passage per timetable-proxy bus plus residual trucks,803/803 exact; 107 buses and 696 residual trucks; bus timetable uses a near-date weekday proxy
+Baseline,pedestrian total without trajectories,two non-crossing frontage-sidewalk exposure paths,count represented; pedestrian conflict effects not estimated
+Baseline,cars and bicycles share the carriageway,common 0.8 m SUMO sublane resolution,represented consistently across all cases; no overtaking calibration observations supplied
+Baseline,37% of motorized vehicles above 36 km/h,point-speed calibration,represented as secondary target from September 2024
+A,"markings, school-zone visibility, lighting, sightlines",none,qualitative; no empirical behavior effect supplied
+A/B/C,westbound and eastbound stops could move toward Émile Idiersstraat,named Bergoje stop relocated once per bus direction; bus approach/recovery retained beyond both stop locations,represented as a shared scenario assumption
+A/all,discourage through traffic / traffic movement study,DR15/DR30 motorized-trip response factor,sensitivity only; local/through trips not identifiable from sensor counts
+B,retain 30 km/h limit; remove six parking spaces and insert a chicane,chicane geometry plus 25 km/h central effective-design-speed proxy,"chicane represented; OSM baseline has no parkingArea objects, so the six-space capacity/removal effect is not modeled"
+B,relocate stops / flexible freed space,design-specific stop files,represented where encoded; kerb-use effects not simulated
+C,20 km/h shared space on the named street section,20 km/h network edges,represented
+C0,raised curbless surface and crossing anywhere,20 km/h speed/geometry proxy,no pedestrian crossing interaction; retains the motor-vehicle operational comparison
+C1,pedestrian priority / crossing anywhere,one real mid-block priority crossing at the supplied foot-link location; nested 25/50/75% crossing shares,"interaction sensitivity only; crossing locations, shares, trajectories and yielding behavior were not observed"
+C1,continuous cross-anywhere movement,not modeled,standard SUMO crossing topology is discrete; one report-aligned logical band does not represent a continuous shared surface
+OW_FULL,mobility-expert full one-way option,westbound lanes reserved to buses/bicycles from Tervuursesteenweg to Émile Idiersstraat; eastbound private trips routed right at Tervuursesteenweg,street access and right-turn instruction represented; existing northbound Oude Molenstraat motor-traffic direction retained because it already matches the slide
+OW_REDUCED,mobility-expert reduced one-way option,westbound lanes reserved to buses/bicycles from Bergagegaarde to Émile Idiersstraat; eastbound private trips continue through the unchanged eastern section and turn right at Tervuursesteenweg,street access and repeated slide right-turn instruction represented
+OW_FULL/OW_REDUCED,private westbound circulation after closure,all trips retained but terminated at the intervention boundary,off-network diversion is not modeled because the clipped OSM-Wizard network has no connected bypass; total route emissions/time are not comparable with current conditions
+OW_FULL/OW_REDUCED,directional traffic demand,balanced per-bin split inherited from the sensor boundary formulation,"structural assumption; the supplied sensor contains no direction field, so the frontage-flow reduction is not a measured forecast"
+Fleet,2025 Belgian passenger cars by fuel,deterministic fuel shares,represented; national stock is a proxy for local traffic
+Fleet,Euro stage / age,HBEFA class,assumption; absent from cited Statbel table

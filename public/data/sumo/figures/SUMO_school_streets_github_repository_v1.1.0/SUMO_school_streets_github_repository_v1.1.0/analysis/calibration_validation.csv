@@ -1,0 +1,6 @@
+target,observed,simulated,error_pct,status
+car count,7597,7597.0,0.0,canonical detector total
+large-vehicle count,803,803.0,0.0,canonical detector total
+two-wheeler count,965,965.0,0.0,canonical detector total; bicycle/motorcycle split assumed
+pedestrian persons,1528,1528.0,0.0,loaded daily total
+motorized >36 km/h,37.0,36.339140534262484,-0.6608594657375164,five-seed point-speed mean; range 35.55-37.21%

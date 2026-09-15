@@ -1,0 +1,21 @@
+scenario,design,motorized_trip_response_pct,pedestrian_crossing_share_pct,report_status,quantitative_interpretation,response_status
+current,current,0,0,observed reference,existing conditions,observed demand
+A_OBS,A,0,0,road-safety report Scenario A,Émile Idiersstraat bus-stop relocation; visibility package qualitative,observed demand
+A_DR15,A,15,0,road-safety report Scenario A,Émile Idiersstraat bus-stop relocation; visibility package qualitative,"motorized demand sensitivity, not forecast"
+A_DR30,A,30,0,road-safety report Scenario A,Émile Idiersstraat bus-stop relocation; visibility package qualitative,"motorized demand sensitivity, not forecast"
+B_OBS,B,0,0,road-safety report Scenario B,30 km/h chicane with 25 km/h central effective-design-speed proxy; no parking-capacity model,observed demand
+B_DR15,B,15,0,road-safety report Scenario B,30 km/h chicane with 25 km/h central effective-design-speed proxy; no parking-capacity model,"motorized demand sensitivity, not forecast"
+B_DR30,B,30,0,road-safety report Scenario B,30 km/h chicane with 25 km/h central effective-design-speed proxy; no parking-capacity model,"motorized demand sensitivity, not forecast"
+C_OBS,C,0,0,road-safety report Scenario C,20 km/h shared-space speed/geometry proxy; no pedestrian crossing interaction,observed demand
+C_DR15,C,15,0,road-safety report Scenario C,20 km/h shared-space speed/geometry proxy; no pedestrian crossing interaction,"motorized demand sensitivity, not forecast"
+C_DR30,C,30,0,road-safety report Scenario C,20 km/h shared-space speed/geometry proxy; no pedestrian crossing interaction,"motorized demand sensitivity, not forecast"
+C1_X0,C,0,0,road-safety report Scenario C,20 km/h plus one real mid-block priority crossing; 0% pedestrian crossing sensitivity,"pedestrian crossing-share sensitivity, not forecast"
+C1_L25,C,0,25,road-safety report Scenario C,20 km/h plus one real mid-block priority crossing; 25% pedestrian crossing sensitivity,"pedestrian crossing-share sensitivity, not forecast"
+C1_M50,C,0,50,road-safety report Scenario C,20 km/h plus one real mid-block priority crossing; 50% pedestrian crossing sensitivity,"pedestrian crossing-share sensitivity, not forecast"
+C1_H75,C,0,75,road-safety report Scenario C,20 km/h plus one real mid-block priority crossing; 75% pedestrian crossing sensitivity,"pedestrian crossing-share sensitivity, not forecast"
+OW_FULL_OBS,OW_FULL,0,0,mobility-expert one-way option,full Émile Idiersstraat-Tervuursesteenweg eastbound-only private-traffic section; buses/bicycles two-way; eastbound general traffic right-turn-only; westbound diversion exits at boundary,observed demand
+OW_FULL_DR15,OW_FULL,15,0,mobility-expert one-way option,full Émile Idiersstraat-Tervuursesteenweg eastbound-only private-traffic section; buses/bicycles two-way; eastbound general traffic right-turn-only; westbound diversion exits at boundary,"motorized demand sensitivity, not forecast"
+OW_FULL_DR30,OW_FULL,30,0,mobility-expert one-way option,full Émile Idiersstraat-Tervuursesteenweg eastbound-only private-traffic section; buses/bicycles two-way; eastbound general traffic right-turn-only; westbound diversion exits at boundary,"motorized demand sensitivity, not forecast"
+OW_REDUCED_OBS,OW_REDUCED,0,0,mobility-expert one-way option,reduced Émile Idiersstraat-Bergagegaarde eastbound-only private-traffic section; buses/bicycles two-way; eastbound general traffic right-turn-only at Tervuursesteenweg; westbound diversion exits at boundary,observed demand
+OW_REDUCED_DR15,OW_REDUCED,15,0,mobility-expert one-way option,reduced Émile Idiersstraat-Bergagegaarde eastbound-only private-traffic section; buses/bicycles two-way; eastbound general traffic right-turn-only at Tervuursesteenweg; westbound diversion exits at boundary,"motorized demand sensitivity, not forecast"
+OW_REDUCED_DR30,OW_REDUCED,30,0,mobility-expert one-way option,reduced Émile Idiersstraat-Bergagegaarde eastbound-only private-traffic section; buses/bicycles two-way; eastbound general traffic right-turn-only at Tervuursesteenweg; westbound diversion exits at boundary,"motorized demand sensitivity, not forecast"

@@ -1,0 +1,38 @@
+Scenario B build summary
+
+Assumptions
+- Scenario B builds on the already filtered/calmed Scenario A demand files and the user-edited Scenario B design net.
+- The school corridor remains at 30 km/h (8.33 m/s) outside the chicane.
+- The edited chicane edge pair 33128974#0, -33128974#0 is now split into three segments per direction in the derived sim net osm.scenarioB.sim.net.xml.gz, with only the middle pair 33128974#0b, -33128974#0b capped at 5.56 m/s.
+- Visibility / psychological calming is represented by the inherited Scenario A tau changes plus an explicit sigma increase on passenger cars, trucks, buses, and motorcycles.
+- Bus stop relocation is inherited from Scenario A by reusing osm_stops.scenarioA.add.xml.
+- The network contains no parkingArea or parkingRoadside definitions, so the north-side parking removal is already encoded.
+- No bike-only facilities were added; bicycle and motorcycle demand keeps using the shared road network.
+
+Scenario B outputs
+- Passenger trips copied/calmed: 6697 (edge replacements applied: 6697)
+- Truck trips copied/calmed: 336 (edge replacements applied: 336)
+- PT flows copied/calmed: 2 (edge replacements applied: 2)
+- Bike/moto trips copied/calmed: 965 (edge replacements applied: 965)
+- Passenger vTypes calmed: veh_passenger_diesel_be2025, veh_passenger_electric_be2025, veh_passenger_gas_be2025, veh_passenger_hybrid_be2025, veh_passenger_other_be2025, veh_passenger_petrol_be2025
+- Truck vTypes calmed: truck_truck
+- PT vTypes calmed: pt_bus
+- Bike/moto vTypes calmed: motorcycle_motorcycle
+- Chicane split nodes: scenarioB_chicane_w=(317.32,278.61), scenarioB_chicane_e=(370.87,277.03)
+- Middle chicane segment lengths: positive=54.29 m, negative=54.32 m
+- Relocated stops reused: 4 stops with 8 access connectors
+- Loop detectors moved to: 33128974#0b_0, -33128974#0b_0
+- Pedestrian corridor crossings retained: :cluster_141816677_5111429131_5111429133_c1, :2213731089_c0
+
+Scenario B files
+- source design net: osm.scenarioB.net.xml.gz
+- derived sim net: osm.scenarioB.sim.net.xml.gz
+- osm.passenger.trips.schoolcal.scenarioB.be2025.xml
+- osm.truck.trips.schoolcal.scenarioB.valid.xml
+- osm_pt.schoolcal.scenarioB.rou.xml
+- osm.pedestrian.rou.scenarioB.xml
+- osm.bike_moto.trips.schoolcal.scenarioB.xml
+- osm_stops.scenarioB.add.xml
+- output.scenarioB.add.xml
+- school_loops.scenarioB.add.xml
+- osm.schoolcal.scenarioB.be2025.sumocfg

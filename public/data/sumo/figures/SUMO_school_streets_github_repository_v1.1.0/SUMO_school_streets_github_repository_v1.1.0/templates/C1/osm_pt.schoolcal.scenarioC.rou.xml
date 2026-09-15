@@ -1,0 +1,660 @@
+<?xml version='1.0' encoding='utf-8'?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <vType id="pt_bus" vClass="bus" emissionClass="HBEFA4/UBus_Std_gt15-18t_Euro-VI_A-C" speedFactor="normc(1.372,0.20,0.75,2.00)" />
+    <vType id="pt_tram" vClass="tram" />
+    <vType id="pt_train" vClass="rail" />
+    <vType id="pt_subway" vClass="subway" />
+    <vType id="pt_light_rail" vClass="rail_urban" />
+    <vType id="pt_monorail" vClass="rail_urban" />
+    <vType id="pt_trolleybus" vClass="bus" />
+    <vType id="pt_minibus" vClass="bus" />
+    <vType id="pt_share_taxi" vClass="taxi" />
+    <vType id="pt_aerialway" vClass="cable_car" length="2.5" width="2" personCapacity="4" />
+    <vType id="pt_ferry" vClass="ship" />
+    <route id="pt_bus_34:0" color="243,195,0" edges="-33128974#3 -33128974#2 -33128974#1 -33128974#0 -33128974#0.c1w 1046472243#0 1046472243#2 1046472243#3 1165966443 1046472242 -1046472244 -40357844#1">
+        </route>
+    <route id="pt_bus_34:1" color="243,195,0" edges="40357844#0 1046472244 71760726 1046472245#0 1046472245#1 1046472245#3 33128974#0 33128974#0.c1e 33128974#1 33128974#2 33128974#3">
+        </route>
+    <vehicle id="pt_bus_34_timetable_000" type="pt_bus" route="pt_bus_34:0" depart="26843" line="34:neg">
+        <param key="gtfsTripId" value="128980526311387005" />
+        <param key="scheduledBergojeDeparture" value="27029" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="27029" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_001" type="pt_bus" route="pt_bus_34:1" depart="27386" line="34:pos">
+        <param key="gtfsTripId" value="128980528311387005" />
+        <param key="scheduledBergojeDeparture" value="27551" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="27551" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_002" type="pt_bus" route="pt_bus_34:0" depart="27503" line="34:neg">
+        <param key="gtfsTripId" value="128980522311387005" />
+        <param key="scheduledBergojeDeparture" value="27689" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="27689" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_003" type="pt_bus" route="pt_bus_34:1" depart="28166" line="34:pos">
+        <param key="gtfsTripId" value="128980518311387005" />
+        <param key="scheduledBergojeDeparture" value="28331" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="28331" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_004" type="pt_bus" route="pt_bus_34:0" depart="28283" line="34:neg">
+        <param key="gtfsTripId" value="128980523311387005" />
+        <param key="scheduledBergojeDeparture" value="28469" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="28469" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_005" type="pt_bus" route="pt_bus_34:1" depart="28886" line="34:pos">
+        <param key="gtfsTripId" value="128980514311387005" />
+        <param key="scheduledBergojeDeparture" value="29051" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="29051" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_006" type="pt_bus" route="pt_bus_34:0" depart="29003" line="34:neg">
+        <param key="gtfsTripId" value="128980516311387005" />
+        <param key="scheduledBergojeDeparture" value="29189" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="29189" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_007" type="pt_bus" route="pt_bus_34:1" depart="29786" line="34:pos">
+        <param key="gtfsTripId" value="128980515311387005" />
+        <param key="scheduledBergojeDeparture" value="29951" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="29951" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_008" type="pt_bus" route="pt_bus_34:0" depart="29783" line="34:neg">
+        <param key="gtfsTripId" value="128980509311387005" />
+        <param key="scheduledBergojeDeparture" value="29969" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="29969" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_009" type="pt_bus" route="pt_bus_34:1" depart="30506" line="34:pos">
+        <param key="gtfsTripId" value="128980507311387005" />
+        <param key="scheduledBergojeDeparture" value="30671" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="30671" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_010" type="pt_bus" route="pt_bus_34:0" depart="30623" line="34:neg">
+        <param key="gtfsTripId" value="128980510311387005" />
+        <param key="scheduledBergojeDeparture" value="30809" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="30809" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_011" type="pt_bus" route="pt_bus_34:1" depart="31286" line="34:pos">
+        <param key="gtfsTripId" value="128980508311387005" />
+        <param key="scheduledBergojeDeparture" value="31451" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="31451" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_012" type="pt_bus" route="pt_bus_34:0" depart="31403" line="34:neg">
+        <param key="gtfsTripId" value="128980503311387005" />
+        <param key="scheduledBergojeDeparture" value="31589" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="31589" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_013" type="pt_bus" route="pt_bus_34:1" depart="32066" line="34:pos">
+        <param key="gtfsTripId" value="128980502311387005" />
+        <param key="scheduledBergojeDeparture" value="32231" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="32231" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_014" type="pt_bus" route="pt_bus_34:0" depart="32243" line="34:neg">
+        <param key="gtfsTripId" value="128980504311387005" />
+        <param key="scheduledBergojeDeparture" value="32429" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="32429" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_015" type="pt_bus" route="pt_bus_34:1" depart="32906" line="34:pos">
+        <param key="gtfsTripId" value="128980499311387005" />
+        <param key="scheduledBergojeDeparture" value="33071" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="33071" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_016" type="pt_bus" route="pt_bus_34:0" depart="32981" line="34:neg">
+        <param key="gtfsTripId" value="128980496311387005" />
+        <param key="scheduledBergojeDeparture" value="33167" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="33167" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_017" type="pt_bus" route="pt_bus_34:1" depart="33626" line="34:pos">
+        <param key="gtfsTripId" value="128980492311387005" />
+        <param key="scheduledBergojeDeparture" value="33791" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="33791" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_018" type="pt_bus" route="pt_bus_34:0" depart="33701" line="34:neg">
+        <param key="gtfsTripId" value="128980491311387005" />
+        <param key="scheduledBergojeDeparture" value="33887" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="33887" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_019" type="pt_bus" route="pt_bus_34:0" depart="34421" line="34:neg">
+        <param key="gtfsTripId" value="128980486311387005" />
+        <param key="scheduledBergojeDeparture" value="34607" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="34607" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_020" type="pt_bus" route="pt_bus_34:1" depart="34512" line="34:pos">
+        <param key="gtfsTripId" value="128980490311387005" />
+        <param key="scheduledBergojeDeparture" value="34677" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="34677" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_021" type="pt_bus" route="pt_bus_34:0" depart="35261" line="34:neg">
+        <param key="gtfsTripId" value="128980478311387005" />
+        <param key="scheduledBergojeDeparture" value="35447" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="35447" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_022" type="pt_bus" route="pt_bus_34:1" depart="35412" line="34:pos">
+        <param key="gtfsTripId" value="128980485311387005" />
+        <param key="scheduledBergojeDeparture" value="35577" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="35577" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_023" type="pt_bus" route="pt_bus_34:0" depart="36281" line="34:neg">
+        <param key="gtfsTripId" value="128980479311387005" />
+        <param key="scheduledBergojeDeparture" value="36467" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="36467" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_024" type="pt_bus" route="pt_bus_34:1" depart="36372" line="34:pos">
+        <param key="gtfsTripId" value="128980480311387005" />
+        <param key="scheduledBergojeDeparture" value="36537" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="36537" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_025" type="pt_bus" route="pt_bus_34:0" depart="37181" line="34:neg">
+        <param key="gtfsTripId" value="128980474311387005" />
+        <param key="scheduledBergojeDeparture" value="37367" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="37367" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_026" type="pt_bus" route="pt_bus_34:1" depart="37332" line="34:pos">
+        <param key="gtfsTripId" value="128980481311387005" />
+        <param key="scheduledBergojeDeparture" value="37497" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="37497" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_027" type="pt_bus" route="pt_bus_34:0" depart="38081" line="34:neg">
+        <param key="gtfsTripId" value="128980465311387005" />
+        <param key="scheduledBergojeDeparture" value="38267" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="38267" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_028" type="pt_bus" route="pt_bus_34:1" depart="38172" line="34:pos">
+        <param key="gtfsTripId" value="128980473311387005" />
+        <param key="scheduledBergojeDeparture" value="38337" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="38337" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_029" type="pt_bus" route="pt_bus_34:0" depart="38981" line="34:neg">
+        <param key="gtfsTripId" value="128980469311387005" />
+        <param key="scheduledBergojeDeparture" value="39167" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="39167" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_030" type="pt_bus" route="pt_bus_34:1" depart="39072" line="34:pos">
+        <param key="gtfsTripId" value="128980467311387005" />
+        <param key="scheduledBergojeDeparture" value="39237" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="39237" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_031" type="pt_bus" route="pt_bus_34:0" depart="39821" line="34:neg">
+        <param key="gtfsTripId" value="128980463311387005" />
+        <param key="scheduledBergojeDeparture" value="40007" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="40007" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_032" type="pt_bus" route="pt_bus_34:1" depart="40032" line="34:pos">
+        <param key="gtfsTripId" value="128980468311387005" />
+        <param key="scheduledBergojeDeparture" value="40197" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="40197" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_033" type="pt_bus" route="pt_bus_34:0" depart="40781" line="34:neg">
+        <param key="gtfsTripId" value="128980457311387005" />
+        <param key="scheduledBergojeDeparture" value="40967" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="40967" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_034" type="pt_bus" route="pt_bus_34:1" depart="40932" line="34:pos">
+        <param key="gtfsTripId" value="128980462311387005" />
+        <param key="scheduledBergojeDeparture" value="41097" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="41097" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_035" type="pt_bus" route="pt_bus_34:0" depart="41741" line="34:neg">
+        <param key="gtfsTripId" value="128980450311387005" />
+        <param key="scheduledBergojeDeparture" value="41927" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="41927" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_036" type="pt_bus" route="pt_bus_34:1" depart="41832" line="34:pos">
+        <param key="gtfsTripId" value="128980456311387005" />
+        <param key="scheduledBergojeDeparture" value="41997" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="41997" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_037" type="pt_bus" route="pt_bus_34:0" depart="42641" line="34:neg">
+        <param key="gtfsTripId" value="128980451311387005" />
+        <param key="scheduledBergojeDeparture" value="42827" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="42827" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_038" type="pt_bus" route="pt_bus_34:1" depart="42732" line="34:pos">
+        <param key="gtfsTripId" value="128980453311387005" />
+        <param key="scheduledBergojeDeparture" value="42897" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="42897" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_039" type="pt_bus" route="pt_bus_34:0" depart="43541" line="34:neg">
+        <param key="gtfsTripId" value="128980448311387005" />
+        <param key="scheduledBergojeDeparture" value="43727" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="43727" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_040" type="pt_bus" route="pt_bus_34:1" depart="43706" line="34:pos">
+        <param key="gtfsTripId" value="128980449311387005" />
+        <param key="scheduledBergojeDeparture" value="43871" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="43871" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_041" type="pt_bus" route="pt_bus_34:0" depart="44501" line="34:neg">
+        <param key="gtfsTripId" value="128980442311387005" />
+        <param key="scheduledBergojeDeparture" value="44687" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="44687" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_042" type="pt_bus" route="pt_bus_34:1" depart="44666" line="34:pos">
+        <param key="gtfsTripId" value="128980447311387005" />
+        <param key="scheduledBergojeDeparture" value="44831" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="44831" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_043" type="pt_bus" route="pt_bus_34:0" depart="45461" line="34:neg">
+        <param key="gtfsTripId" value="128980438311387005" />
+        <param key="scheduledBergojeDeparture" value="45647" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="45647" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_044" type="pt_bus" route="pt_bus_34:1" depart="45626" line="34:pos">
+        <param key="gtfsTripId" value="128980441311387005" />
+        <param key="scheduledBergojeDeparture" value="45791" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="45791" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_045" type="pt_bus" route="pt_bus_34:0" depart="46421" line="34:neg">
+        <param key="gtfsTripId" value="128980431311387005" />
+        <param key="scheduledBergojeDeparture" value="46607" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="46607" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_046" type="pt_bus" route="pt_bus_34:1" depart="46526" line="34:pos">
+        <param key="gtfsTripId" value="128980437311387005" />
+        <param key="scheduledBergojeDeparture" value="46691" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="46691" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_047" type="pt_bus" route="pt_bus_34:0" depart="47321" line="34:neg">
+        <param key="gtfsTripId" value="128980430311387005" />
+        <param key="scheduledBergojeDeparture" value="47507" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="47507" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_048" type="pt_bus" route="pt_bus_34:1" depart="47426" line="34:pos">
+        <param key="gtfsTripId" value="128980434311387005" />
+        <param key="scheduledBergojeDeparture" value="47591" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="47591" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_049" type="pt_bus" route="pt_bus_34:0" depart="48281" line="34:neg">
+        <param key="gtfsTripId" value="128980427311387005" />
+        <param key="scheduledBergojeDeparture" value="48467" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="48467" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_050" type="pt_bus" route="pt_bus_34:1" depart="48386" line="34:pos">
+        <param key="gtfsTripId" value="128980429311387005" />
+        <param key="scheduledBergojeDeparture" value="48551" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="48551" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_051" type="pt_bus" route="pt_bus_34:0" depart="49181" line="34:neg">
+        <param key="gtfsTripId" value="128980422311387005" />
+        <param key="scheduledBergojeDeparture" value="49367" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="49367" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_052" type="pt_bus" route="pt_bus_34:1" depart="49226" line="34:pos">
+        <param key="gtfsTripId" value="128980426311387005" />
+        <param key="scheduledBergojeDeparture" value="49391" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="49391" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_053" type="pt_bus" route="pt_bus_34:0" depart="50021" line="34:neg">
+        <param key="gtfsTripId" value="128980419311387005" />
+        <param key="scheduledBergojeDeparture" value="50207" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="50207" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_054" type="pt_bus" route="pt_bus_34:1" depart="50066" line="34:pos">
+        <param key="gtfsTripId" value="128980421311387005" />
+        <param key="scheduledBergojeDeparture" value="50231" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="50231" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_055" type="pt_bus" route="pt_bus_34:0" depart="50861" line="34:neg">
+        <param key="gtfsTripId" value="128980414311387005" />
+        <param key="scheduledBergojeDeparture" value="51047" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="51047" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_056" type="pt_bus" route="pt_bus_34:1" depart="50906" line="34:pos">
+        <param key="gtfsTripId" value="128980418311387005" />
+        <param key="scheduledBergojeDeparture" value="51071" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="51071" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_057" type="pt_bus" route="pt_bus_34:0" depart="51701" line="34:neg">
+        <param key="gtfsTripId" value="128980410311387005" />
+        <param key="scheduledBergojeDeparture" value="51887" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="51887" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_058" type="pt_bus" route="pt_bus_34:1" depart="51746" line="34:pos">
+        <param key="gtfsTripId" value="128980413311387005" />
+        <param key="scheduledBergojeDeparture" value="51911" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="51911" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_059" type="pt_bus" route="pt_bus_34:1" depart="52526" line="34:pos">
+        <param key="gtfsTripId" value="128980588311387005" />
+        <param key="scheduledBergojeDeparture" value="52691" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="52691" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_060" type="pt_bus" route="pt_bus_34:0" depart="52541" line="34:neg">
+        <param key="gtfsTripId" value="128980408311387005" />
+        <param key="scheduledBergojeDeparture" value="52727" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="52727" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_061" type="pt_bus" route="pt_bus_34:1" depart="53246" line="34:pos">
+        <param key="gtfsTripId" value="128980411311387005" />
+        <param key="scheduledBergojeDeparture" value="53411" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="53411" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_062" type="pt_bus" route="pt_bus_34:0" depart="53381" line="34:neg">
+        <param key="gtfsTripId" value="128980404311387005" />
+        <param key="scheduledBergojeDeparture" value="53567" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="53567" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_063" type="pt_bus" route="pt_bus_34:1" depart="53966" line="34:pos">
+        <param key="gtfsTripId" value="128980407311387005" />
+        <param key="scheduledBergojeDeparture" value="54131" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="54131" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_064" type="pt_bus" route="pt_bus_34:0" depart="54101" line="34:neg">
+        <param key="gtfsTripId" value="128980401311387005" />
+        <param key="scheduledBergojeDeparture" value="54287" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="54287" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_065" type="pt_bus" route="pt_bus_34:1" depart="54686" line="34:pos">
+        <param key="gtfsTripId" value="128980556311387005" />
+        <param key="scheduledBergojeDeparture" value="54851" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="54851" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_066" type="pt_bus" route="pt_bus_34:0" depart="54821" line="34:neg">
+        <param key="gtfsTripId" value="128980399311387005" />
+        <param key="scheduledBergojeDeparture" value="55007" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="55007" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_067" type="pt_bus" route="pt_bus_34:1" depart="55466" line="34:pos">
+        <param key="gtfsTripId" value="128980557311387005" />
+        <param key="scheduledBergojeDeparture" value="55631" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="55631" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_068" type="pt_bus" route="pt_bus_34:0" depart="55661" line="34:neg">
+        <param key="gtfsTripId" value="128980395311387005" />
+        <param key="scheduledBergojeDeparture" value="55847" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="55847" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_069" type="pt_bus" route="pt_bus_34:1" depart="56186" line="34:pos">
+        <param key="gtfsTripId" value="128981278311387005" />
+        <param key="scheduledBergojeDeparture" value="56351" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="56351" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_070" type="pt_bus" route="pt_bus_34:1" depart="56306" line="34:pos">
+        <param key="gtfsTripId" value="128980555311387005" />
+        <param key="scheduledBergojeDeparture" value="56471" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="56471" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_071" type="pt_bus" route="pt_bus_34:0" depart="56423" line="34:neg">
+        <param key="gtfsTripId" value="128980393311387005" />
+        <param key="scheduledBergojeDeparture" value="56609" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="56609" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_072" type="pt_bus" route="pt_bus_34:1" depart="57146" line="34:pos">
+        <param key="gtfsTripId" value="128980551311387005" />
+        <param key="scheduledBergojeDeparture" value="57311" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="57311" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_073" type="pt_bus" route="pt_bus_34:0" depart="57143" line="34:neg">
+        <param key="gtfsTripId" value="128980389311387005" />
+        <param key="scheduledBergojeDeparture" value="57329" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="57329" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_074" type="pt_bus" route="pt_bus_34:0" depart="57863" line="34:neg">
+        <param key="gtfsTripId" value="128980383311387005" />
+        <param key="scheduledBergojeDeparture" value="58049" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="58049" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_075" type="pt_bus" route="pt_bus_34:1" depart="57986" line="34:pos">
+        <param key="gtfsTripId" value="128980554311387005" />
+        <param key="scheduledBergojeDeparture" value="58151" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="58151" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_076" type="pt_bus" route="pt_bus_34:0" depart="58565" line="34:neg">
+        <param key="gtfsTripId" value="128980384311387005" />
+        <param key="scheduledBergojeDeparture" value="58751" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="58751" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_077" type="pt_bus" route="pt_bus_34:1" depart="58766" line="34:pos">
+        <param key="gtfsTripId" value="128980553311387005" />
+        <param key="scheduledBergojeDeparture" value="58931" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="58931" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_078" type="pt_bus" route="pt_bus_34:0" depart="59285" line="34:neg">
+        <param key="gtfsTripId" value="128980377311387005" />
+        <param key="scheduledBergojeDeparture" value="59471" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="59471" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_079" type="pt_bus" route="pt_bus_34:1" depart="59486" line="34:pos">
+        <param key="gtfsTripId" value="128980552311387005" />
+        <param key="scheduledBergojeDeparture" value="59651" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="59651" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_080" type="pt_bus" route="pt_bus_34:0" depart="59986" line="34:neg">
+        <param key="gtfsTripId" value="128980376311387005" />
+        <param key="scheduledBergojeDeparture" value="60172" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="60172" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_081" type="pt_bus" route="pt_bus_34:1" depart="60206" line="34:pos">
+        <param key="gtfsTripId" value="128980550311387005" />
+        <param key="scheduledBergojeDeparture" value="60371" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="60371" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_082" type="pt_bus" route="pt_bus_34:0" depart="60706" line="34:neg">
+        <param key="gtfsTripId" value="128980374311387005" />
+        <param key="scheduledBergojeDeparture" value="60892" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="60892" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_083" type="pt_bus" route="pt_bus_34:1" depart="60926" line="34:pos">
+        <param key="gtfsTripId" value="128980547311387005" />
+        <param key="scheduledBergojeDeparture" value="61091" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="61091" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_084" type="pt_bus" route="pt_bus_34:0" depart="61426" line="34:neg">
+        <param key="gtfsTripId" value="128980372311387005" />
+        <param key="scheduledBergojeDeparture" value="61612" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="61612" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_085" type="pt_bus" route="pt_bus_34:1" depart="61646" line="34:pos">
+        <param key="gtfsTripId" value="128980546311387005" />
+        <param key="scheduledBergojeDeparture" value="61811" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="61811" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_086" type="pt_bus" route="pt_bus_34:0" depart="62146" line="34:neg">
+        <param key="gtfsTripId" value="128980368311387005" />
+        <param key="scheduledBergojeDeparture" value="62332" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="62332" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_087" type="pt_bus" route="pt_bus_34:1" depart="62366" line="34:pos">
+        <param key="gtfsTripId" value="128980549311387005" />
+        <param key="scheduledBergojeDeparture" value="62531" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="62531" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_088" type="pt_bus" route="pt_bus_34:0" depart="62866" line="34:neg">
+        <param key="gtfsTripId" value="128980363311387005" />
+        <param key="scheduledBergojeDeparture" value="63052" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="63052" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_089" type="pt_bus" route="pt_bus_34:1" depart="63086" line="34:pos">
+        <param key="gtfsTripId" value="128980548311387005" />
+        <param key="scheduledBergojeDeparture" value="63251" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="63251" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_090" type="pt_bus" route="pt_bus_34:0" depart="63586" line="34:neg">
+        <param key="gtfsTripId" value="128980360311387005" />
+        <param key="scheduledBergojeDeparture" value="63772" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="63772" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_091" type="pt_bus" route="pt_bus_34:1" depart="63806" line="34:pos">
+        <param key="gtfsTripId" value="128980371311387005" />
+        <param key="scheduledBergojeDeparture" value="63971" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="63971" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_092" type="pt_bus" route="pt_bus_34:0" depart="64366" line="34:neg">
+        <param key="gtfsTripId" value="128980355311387005" />
+        <param key="scheduledBergojeDeparture" value="64552" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="64552" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_093" type="pt_bus" route="pt_bus_34:1" depart="64526" line="34:pos">
+        <param key="gtfsTripId" value="128980364311387005" />
+        <param key="scheduledBergojeDeparture" value="64691" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="64691" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_094" type="pt_bus" route="pt_bus_34:1" depart="65246" line="34:pos">
+        <param key="gtfsTripId" value="128980365311387005" />
+        <param key="scheduledBergojeDeparture" value="65411" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="65411" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_095" type="pt_bus" route="pt_bus_34:0" depart="65266" line="34:neg">
+        <param key="gtfsTripId" value="128980348311387005" />
+        <param key="scheduledBergojeDeparture" value="65452" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="65452" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_096" type="pt_bus" route="pt_bus_34:1" depart="65906" line="34:pos">
+        <param key="gtfsTripId" value="128980357311387005" />
+        <param key="scheduledBergojeDeparture" value="66071" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="66071" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_097" type="pt_bus" route="pt_bus_34:0" depart="66166" line="34:neg">
+        <param key="gtfsTripId" value="128980345311387005" />
+        <param key="scheduledBergojeDeparture" value="66352" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="66352" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_098" type="pt_bus" route="pt_bus_34:1" depart="66626" line="34:pos">
+        <param key="gtfsTripId" value="128980356311387005" />
+        <param key="scheduledBergojeDeparture" value="66791" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="66791" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_099" type="pt_bus" route="pt_bus_34:0" depart="67006" line="34:neg">
+        <param key="gtfsTripId" value="128980569311387005" />
+        <param key="scheduledBergojeDeparture" value="67192" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="67192" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_100" type="pt_bus" route="pt_bus_34:1" depart="67286" line="34:pos">
+        <param key="gtfsTripId" value="128980352311387005" />
+        <param key="scheduledBergojeDeparture" value="67451" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="67451" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_101" type="pt_bus" route="pt_bus_34:0" depart="67846" line="34:neg">
+        <param key="gtfsTripId" value="128980566311387005" />
+        <param key="scheduledBergojeDeparture" value="68032" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="68032" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_102" type="pt_bus" route="pt_bus_34:1" depart="67946" line="34:pos">
+        <param key="gtfsTripId" value="128980349311387005" />
+        <param key="scheduledBergojeDeparture" value="68111" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="68111" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_103" type="pt_bus" route="pt_bus_34:1" depart="68606" line="34:pos">
+        <param key="gtfsTripId" value="128980344311387005" />
+        <param key="scheduledBergojeDeparture" value="68771" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="68771" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_104" type="pt_bus" route="pt_bus_34:0" depart="68843" line="34:neg">
+        <param key="gtfsTripId" value="128980570311387005" />
+        <param key="scheduledBergojeDeparture" value="69029" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="69029" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_105" type="pt_bus" route="pt_bus_34:1" depart="69326" line="34:pos">
+        <param key="gtfsTripId" value="128980342311387005" />
+        <param key="scheduledBergojeDeparture" value="69491" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="4052677689" duration="20" until="69491" />
+    </vehicle>
+    <vehicle id="pt_bus_34_timetable_106" type="pt_bus" route="pt_bus_34:0" depart="69863" line="34:neg">
+        <param key="gtfsTripId" value="128980579311387005" />
+        <param key="scheduledBergojeDeparture" value="70049" />
+        <param key="timetableStatus" value="near-date_weekday_proxy_not_exact_sensor_date" />
+        <stop busStop="-4059785907" duration="20" until="70049" />
+    </vehicle>
+</routes>

@@ -1,0 +1,6 @@
+target,observed,date,use
+pedestrian,1528,2025-10-01,exact 15-minute input demand profile; daily detector total checked
+two_wheeler,965,2025-10-01,exact 15-minute input demand profile; daily detector total checked
+car,7597,2025-10-01,exact 15-minute input demand profile; daily detector total checked
+large,803,2025-10-01,exact 15-minute input demand profile; daily detector total checked
+motorized speed >36 km/h,37.0,September 2024,aggregate secondary speed calibration target

@@ -1,0 +1,340 @@
+<?xml version='1.0' encoding='utf-8'?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <vType id="truck_truck" vClass="truck" emissionClass="HBEFA4/RT_le7.5t_Euro-VI_A-C" tau="1.50" lcAssertive="0.60" jmTimegapMinor="1.80" sigma="0.55" />
+    <trip id="schoolTruck_31_neg_0000" depart="28050.00" from="23160642#1" to="-1046472244" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_31_neg_0001" depart="28350.00" from="-33128976#2" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_31_pos_0000" depart="28350.00" from="40357844#0" to="-16088703#0" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_31_neg_0002" depart="28650.00" from="23160642#1" to="-1046472244" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_32_neg_0000" depart="28950.00" from="-33128976#4" to="1046472243#3" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_32_pos_0001" depart="29025.00" from="1046472244" to="33128976#3" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_32_pos_0002" depart="29175.00" from="71760726" to="33128976#3" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_32_neg_0001" depart="29250.00" from="-33128976#4" to="1046472243#3" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_32_pos_0004" depart="29475.00" from="71760726" to="33128976#3" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_32_neg_0002" depart="29550.00" from="-33128976#4" to="1046472243#3" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_32_pos_0005" depart="29625.00" from="1046472244" to="33128976#3" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_33_neg_0000" depart="29745.00" from="513973969#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_33_neg_0002" depart="29925.00" from="-33128976#4" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_33_neg_0003" depart="30015.00" from="-40357986#1" to="39441373#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_33_neg_0004" depart="30105.00" from="525423119#2" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_33_neg_0005" depart="30195.00" from="513973969#1" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_33_neg_0006" depart="30285.00" from="513973969#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_33_neg_0008" depart="30465.00" from="-33128976#4" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_33_neg_0009" depart="30555.00" from="-40357986#1" to="39441373#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_34_neg_0000" depart="30690.00" from="-33128976#4" to="1046472244" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_34_neg_0001" depart="30870.00" from="-33128976#4" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_34_neg_0003" depart="31230.00" from="-33128976#4" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_34_neg_0004" depart="31410.00" from="-33128976#4" to="1046472244" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_35_neg_0000" depart="31550.00" from="-40357986#0" to="-14798483#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_35_neg_0001" depart="31650.00" from="513973969#0" to="14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_35_neg_0002" depart="31750.00" from="23160642#1" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_35_neg_0003" depart="31850.00" from="513973969#0" to="14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_35_neg_0004" depart="31950.00" from="-40357986#0" to="-14798483#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_35_neg_0005" depart="32050.00" from="513973969#0" to="14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_35_neg_0006" depart="32150.00" from="23160642#1" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_35_neg_0007" depart="32250.00" from="513973969#0" to="14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_35_neg_0008" depart="32350.00" from="-40357986#0" to="-14798483#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_36_neg_0000" depart="32464.29" from="-33128976#4" to="-14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_36_neg_0001" depart="32592.86" from="-33128976#4" to="14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_36_neg_0002" depart="32721.43" from="513973969#0" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_36_neg_0003" depart="32850.00" from="-33128976#4" to="-14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_36_neg_0004" depart="32978.57" from="-33128976#4" to="14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_36_neg_0005" depart="33107.14" from="513973969#0" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_36_neg_0006" depart="33235.71" from="-33128976#4" to="-14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_37_pos_0000" depart="33412.50" from="34633123#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_37_pos_0002" depart="33862.50" from="40357844#0" to="514430613#1" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_38_neg_0000" depart="34350.00" from="-40357986#1" to="39441373#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_38_pos_0001" depart="34537.50" from="40357844#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_38_neg_0001" depart="34650.00" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_38_pos_0002" depart="34762.50" from="40357844#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_38_neg_0002" depart="34950.00" from="-40357986#1" to="39441373#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_38_pos_0003" depart="34987.50" from="40357844#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_39_pos_0000" depart="35156.25" from="16088708#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_39_neg_0000" depart="35212.50" from="513973969#1" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_39_pos_0001" depart="35268.75" from="34633123#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_39_pos_0002" depart="35381.25" from="16088708#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_39_neg_0001" depart="35437.50" from="513973969#1" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_39_pos_0003" depart="35493.75" from="34633123#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_39_pos_0004" depart="35606.25" from="16088708#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_39_neg_0002" depart="35662.50" from="513973969#1" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_39_pos_0005" depart="35718.75" from="34633123#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_39_pos_0006" depart="35831.25" from="16088708#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_39_neg_0003" depart="35887.50" from="513973969#1" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_39_pos_0007" depart="35943.75" from="34633123#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_40_neg_0000" depart="36032.14" from="16088703#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_40_neg_0001" depart="36096.43" from="525423119#1" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_40_neg_0002" depart="36160.71" from="16088703#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_40_neg_0003" depart="36225.00" from="525423119#1" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_40_neg_0004" depart="36289.29" from="16088703#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_40_neg_0005" depart="36353.57" from="525423119#1" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_40_neg_0006" depart="36417.86" from="16088703#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_40_neg_0007" depart="36482.14" from="525423119#1" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_40_neg_0008" depart="36546.43" from="16088703#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_40_neg_0009" depart="36610.71" from="525423119#1" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_40_neg_0010" depart="36675.00" from="16088703#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_40_neg_0011" depart="36739.29" from="525423119#1" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_40_neg_0012" depart="36803.57" from="16088703#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_40_neg_0013" depart="36867.86" from="525423119#1" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_41_pos_0000" depart="36940.91" from="40357844#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_41_pos_0001" depart="37022.73" from="-1046472244" to="23160618" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_41_pos_0002" depart="37104.55" from="1046472244" to="-40357986#0" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_41_pos_0003" depart="37186.36" from="40357844#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_41_pos_0004" depart="37268.18" from="-1046472244" to="23160618" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_41_pos_0006" depart="37431.82" from="40357844#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_41_pos_0008" depart="37595.45" from="1046472244" to="-40357986#0" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_41_pos_0009" depart="37677.27" from="40357844#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_42_pos_0000" depart="37840.91" from="34633123#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_42_neg_0000" depart="37890.00" from="513973969#1" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_42_pos_0001" depart="37922.73" from="16088708#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_42_pos_0002" depart="38004.55" from="34633123#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_42_neg_0001" depart="38070.00" from="513973969#1" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_42_pos_0003" depart="38086.36" from="16088708#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_42_pos_0004" depart="38168.18" from="34633123#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_42_neg_0002" depart="38250.00" from="513973969#1" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_42_pos_0005" depart="38250.00" from="16088708#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_42_pos_0006" depart="38331.82" from="34633123#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_42_pos_0007" depart="38413.64" from="16088708#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_42_neg_0003" depart="38430.00" from="513973969#1" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_42_pos_0008" depart="38495.45" from="34633123#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_42_pos_0009" depart="38577.27" from="16088708#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_42_neg_0004" depart="38610.00" from="513973969#1" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_42_pos_0010" depart="38659.09" from="34633123#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_43_neg_0000" depart="38812.50" from="-40357986#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_43_pos_0001" depart="38850.00" from="-1046472244" to="23160618" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_43_pos_0002" depart="38950.00" from="40357844#0" to="40357986#1" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_43_neg_0001" depart="39037.50" from="-40357986#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_43_pos_0003" depart="39050.00" from="-1046472244" to="23160618" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_43_neg_0002" depart="39262.50" from="-40357986#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_43_pos_0006" depart="39350.00" from="40357844#0" to="40357986#1" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_43_pos_0007" depart="39450.00" from="-1046472244" to="23160618" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_43_pos_0008" depart="39550.00" from="40357844#0" to="40357986#1" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_44_neg_0000" depart="39664.29" from="23160642#0" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_44_pos_0001" depart="39768.75" from="40357844#0" to="525423119#2" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_44_neg_0001" depart="39792.86" from="-33128976#4" to="1165966443" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_44_neg_0002" depart="39921.43" from="23160642#0" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_44_pos_0003" depart="39993.75" from="40357844#0" to="525423119#2" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_44_neg_0004" depart="40178.57" from="23160642#0" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_44_pos_0005" depart="40218.75" from="40357844#0" to="525423119#2" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_44_neg_0005" depart="40307.14" from="-33128976#4" to="1165966443" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_44_pos_0006" depart="40331.25" from="71760726" to="33128976#3" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_44_neg_0006" depart="40435.71" from="23160642#0" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_44_pos_0007" depart="40443.75" from="40357844#0" to="525423119#2" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_45_neg_0000" depart="40534.62" from="23160642#0" to="-14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_45_neg_0001" depart="40603.85" from="23160642#0" to="-14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_45_neg_0002" depart="40673.08" from="23160642#0" to="-14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_45_neg_0003" depart="40742.31" from="23160642#0" to="-14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_45_neg_0004" depart="40811.54" from="23160642#0" to="-14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_45_neg_0005" depart="40880.77" from="23160642#0" to="-14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_45_neg_0006" depart="40950.00" from="23160642#0" to="-14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_45_neg_0007" depart="41019.23" from="23160642#0" to="-14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_45_neg_0008" depart="41088.46" from="23160642#0" to="-14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_45_neg_0009" depart="41157.69" from="23160642#0" to="-14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_45_neg_0010" depart="41226.92" from="23160642#0" to="-14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_45_neg_0011" depart="41296.15" from="23160642#0" to="-14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_45_neg_0012" depart="41365.38" from="23160642#0" to="-14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_46_neg_0000" depart="41430.00" from="16088703#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_46_neg_0001" depart="41490.00" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_46_neg_0002" depart="41550.00" from="40357986#1" to="1046472242" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_46_neg_0003" depart="41610.00" from="16088703#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_46_neg_0004" depart="41670.00" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_46_neg_0006" depart="41790.00" from="16088703#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_46_neg_0007" depart="41850.00" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_46_neg_0008" depart="41910.00" from="40357986#1" to="1046472242" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_46_neg_0009" depart="41970.00" from="16088703#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_46_neg_0010" depart="42030.00" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_46_neg_0011" depart="42090.00" from="40357986#1" to="1046472242" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_46_neg_0012" depart="42150.00" from="16088703#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_46_neg_0013" depart="42210.00" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_47_neg_0000" depart="42750.00" from="-40357986#1" to="-14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_48_neg_0000" depart="43240.91" from="-16088703#0" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_48_pos_0000" depart="43290.00" from="16088708#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_48_neg_0001" depart="43322.73" from="525423119#2" to="14798483#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_48_neg_0002" depart="43404.55" from="-16088703#0" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_48_pos_0001" depart="43470.00" from="16088708#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_48_neg_0003" depart="43486.36" from="525423119#2" to="14798483#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_48_neg_0004" depart="43568.18" from="-16088703#0" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_48_neg_0005" depart="43650.00" from="525423119#2" to="14798483#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_48_pos_0002" depart="43650.00" from="16088708#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_48_neg_0006" depart="43731.82" from="-16088703#0" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_48_neg_0007" depart="43813.64" from="525423119#2" to="14798483#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_48_pos_0003" depart="43830.00" from="16088708#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_48_neg_0008" depart="43895.45" from="-16088703#0" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_48_neg_0009" depart="43977.27" from="525423119#2" to="14798483#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_48_pos_0004" depart="44010.00" from="16088708#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_48_neg_0010" depart="44059.09" from="-16088703#0" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_50_neg_0001" depart="45135.00" from="-40357986#1" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_50_neg_0002" depart="45225.00" from="514430613#1" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_50_neg_0003" depart="45315.00" from="-40357986#1" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_50_neg_0005" depart="45495.00" from="-40357986#1" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_50_neg_0006" depart="45585.00" from="514430613#1" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_50_neg_0007" depart="45675.00" from="-40357986#1" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_50_neg_0009" depart="45855.00" from="-40357986#1" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_51_neg_0000" depart="45975.00" from="525423123#0" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_51_neg_0001" depart="46125.00" from="-33128976#4" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_51_neg_0002" depart="46275.00" from="513973969#0" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_51_neg_0003" depart="46425.00" from="513973969#0" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_51_neg_0004" depart="46575.00" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_51_neg_0005" depart="46725.00" from="525423123#0" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_52_pos_0000" depart="46890.00" from="34633123#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_52_neg_0000" depart="47025.00" from="-33128976#4" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_52_pos_0002" depart="47250.00" from="34633123#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_52_pos_0003" depart="47430.00" from="40357844#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_52_neg_0001" depart="47475.00" from="-33128976#4" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_52_pos_0004" depart="47610.00" from="34633123#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_53_pos_0000" depart="47764.29" from="34633123#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_53_pos_0001" depart="47892.86" from="71760726" to="525423119#2" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_53_pos_0002" depart="48021.43" from="34633123#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_53_pos_0003" depart="48150.00" from="71760726" to="525423119#2" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_53_pos_0004" depart="48278.57" from="34633123#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_53_pos_0005" depart="48407.14" from="71760726" to="525423119#2" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_53_pos_0006" depart="48535.71" from="34633123#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_54_pos_0000" depart="48825.00" from="16088708#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_54_neg_0000" depart="49050.00" from="-40357986#1" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_54_pos_0001" depart="49275.00" from="16088708#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_55_pos_0000" depart="49564.29" from="16088708#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_55_neg_0000" depart="49612.50" from="-33128976#4" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_55_pos_0001" depart="49692.86" from="1165966443" to="33128976#3" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_55_pos_0002" depart="49821.43" from="16088708#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_55_neg_0001" depart="49837.50" from="-33128976#4" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_55_pos_0003" depart="49950.00" from="1165966443" to="33128976#3" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_55_neg_0002" depart="50062.50" from="-33128976#4" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_55_pos_0004" depart="50078.57" from="16088708#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_55_neg_0003" depart="50287.50" from="-33128976#4" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_55_pos_0006" depart="50335.71" from="16088708#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_56_neg_0000" depart="50432.14" from="-33128976#4" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_56_neg_0001" depart="50496.43" from="23160642#0" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_56_neg_0002" depart="50560.71" from="-525423119#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_56_neg_0003" depart="50625.00" from="-16088703#1" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_56_neg_0004" depart="50689.29" from="-33128976#4" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_56_neg_0005" depart="50753.57" from="23160642#0" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_56_neg_0006" depart="50817.86" from="-525423119#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_56_neg_0007" depart="50882.14" from="-16088703#1" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_56_neg_0008" depart="50946.43" from="-33128976#4" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_56_neg_0009" depart="51010.71" from="23160642#0" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_56_neg_0010" depart="51075.00" from="-525423119#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_56_neg_0011" depart="51139.29" from="-16088703#1" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_56_neg_0012" depart="51203.57" from="-33128976#4" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_56_neg_0013" depart="51267.86" from="23160642#0" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_57_neg_0000" depart="51356.25" from="23160642#0" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_57_neg_0001" depart="51468.75" from="40357986#1" to="14798483#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_57_neg_0002" depart="51581.25" from="-40357986#1" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_57_neg_0003" depart="51693.75" from="23160642#0" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_57_neg_0004" depart="51806.25" from="40357986#1" to="14798483#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_57_neg_0005" depart="51918.75" from="-40357986#1" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_57_neg_0006" depart="52031.25" from="23160642#0" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_57_neg_0007" depart="52143.75" from="40357986#1" to="14798483#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_58_neg_0000" depart="52226.47" from="-40357986#1" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_58_neg_0001" depart="52279.41" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_58_neg_0002" depart="52332.35" from="-40357986#1" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_58_neg_0003" depart="52385.29" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_58_neg_0004" depart="52438.24" from="-40357986#1" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_58_neg_0005" depart="52491.18" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_58_neg_0006" depart="52544.12" from="-40357986#1" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_58_neg_0007" depart="52597.06" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_58_neg_0008" depart="52650.00" from="-40357986#1" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_58_neg_0009" depart="52702.94" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_58_neg_0010" depart="52755.88" from="-40357986#1" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_58_neg_0011" depart="52808.82" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_58_neg_0012" depart="52861.76" from="-40357986#1" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_58_neg_0013" depart="52914.71" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_58_neg_0014" depart="52967.65" from="-40357986#1" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_58_neg_0015" depart="53020.59" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_58_neg_0016" depart="53073.53" from="-40357986#1" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_59_neg_0000" depart="53250.00" from="513973969#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_59_neg_0002" depart="53850.00" from="-33128976#4" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_60_neg_0000" depart="54150.00" from="525423119#1" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_60_pos_0000" depart="54225.00" from="1046472242" to="33128976#3" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_60_neg_0001" depart="54450.00" from="23160642#0" to="-14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_60_pos_0001" depart="54675.00" from="40357844#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_60_neg_0002" depart="54750.00" from="23160642#0" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_61_neg_0000" depart="54945.00" from="-33128976#4" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_61_neg_0001" depart="55035.00" from="-525423119#1" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_61_pos_0000" depart="55050.00" from="40357844#0" to="-16088703#0" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_61_neg_0002" depart="55125.00" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_61_neg_0003" depart="55215.00" from="-33128976#4" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_61_neg_0004" depart="55305.00" from="-525423119#1" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_61_pos_0001" depart="55350.00" from="40357844#0" to="-16088703#0" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_61_neg_0005" depart="55395.00" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_61_neg_0007" depart="55575.00" from="-525423119#1" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_61_pos_0002" depart="55650.00" from="40357844#0" to="-16088703#0" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_61_neg_0008" depart="55665.00" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_61_neg_0009" depart="55755.00" from="-33128976#4" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_62_neg_0000" depart="55840.91" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_62_pos_0000" depart="55875.00" from="-1046472244" to="33128976#3" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_62_neg_0001" depart="55922.73" from="-525423119#1" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_62_neg_0002" depart="56004.55" from="-16088703#0" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_62_pos_0001" depart="56025.00" from="40357844#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_62_neg_0003" depart="56086.36" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_62_neg_0004" depart="56168.18" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_62_pos_0002" depart="56175.00" from="-1046472244" to="33128976#3" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_62_neg_0006" depart="56331.82" from="-16088703#0" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_62_neg_0007" depart="56413.64" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_62_neg_0008" depart="56495.45" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_62_neg_0010" depart="56659.09" from="-16088703#0" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_63_neg_0000" depart="56721.43" from="525423119#2" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_63_neg_0001" depart="56764.29" from="-40357986#1" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_63_neg_0002" depart="56807.14" from="525423119#2" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_63_neg_0004" depart="56892.86" from="525423119#2" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_63_neg_0005" depart="56935.71" from="-40357986#1" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_63_neg_0007" depart="57021.43" from="-40357986#1" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_63_neg_0008" depart="57064.29" from="525423119#2" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_63_neg_0011" depart="57192.86" from="-40357986#1" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_63_neg_0012" depart="57235.71" from="525423119#2" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_63_neg_0013" depart="57278.57" from="-40357986#1" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_63_neg_0014" depart="57321.43" from="525423119#2" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_63_neg_0017" depart="57450.00" from="-40357986#1" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_63_neg_0018" depart="57492.86" from="525423119#2" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_63_neg_0019" depart="57535.71" from="-40357986#1" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_64_neg_0000" depart="57626.47" from="513973969#0" to="39441373#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_64_neg_0001" depart="57679.41" from="23160642#0" to="1046472242" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_64_neg_0002" depart="57732.35" from="513973969#0" to="39441373#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_64_neg_0003" depart="57785.29" from="23160642#0" to="1046472242" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_64_neg_0004" depart="57838.24" from="513973969#0" to="39441373#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_64_neg_0005" depart="57891.18" from="23160642#0" to="1046472242" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_64_neg_0006" depart="57944.12" from="513973969#0" to="39441373#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_64_neg_0007" depart="57997.06" from="23160642#0" to="1046472242" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_64_neg_0008" depart="58050.00" from="513973969#0" to="39441373#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_64_neg_0009" depart="58102.94" from="23160642#0" to="1046472242" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_64_neg_0010" depart="58155.88" from="513973969#0" to="39441373#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_64_neg_0011" depart="58208.82" from="23160642#0" to="1046472242" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_64_neg_0012" depart="58261.76" from="513973969#0" to="39441373#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_64_neg_0013" depart="58314.71" from="23160642#0" to="1046472242" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_64_neg_0014" depart="58367.65" from="513973969#0" to="39441373#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_64_neg_0015" depart="58420.59" from="23160642#0" to="1046472242" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_64_neg_0016" depart="58473.53" from="513973969#0" to="39441373#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_65_neg_0000" depart="58612.50" from="23160642#0" to="-1046472244" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_65_pos_0001" depart="58725.00" from="1046472245#0" to="33128976#3" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_65_pos_0002" depart="58875.00" from="16088708#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_65_pos_0003" depart="59025.00" from="-1046472244" to="33128976#3" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_65_neg_0002" depart="59062.50" from="23160642#0" to="-1046472244" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_65_pos_0004" depart="59175.00" from="1046472245#0" to="33128976#3" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_65_pos_0005" depart="59325.00" from="16088708#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_66_neg_0000" depart="59512.50" from="40357986#1" to="39441373#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_66_pos_0000" depart="59625.00" from="40357844#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_66_neg_0001" depart="59737.50" from="-33128976#4" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_66_neg_0002" depart="59962.50" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_66_neg_0003" depart="60187.50" from="40357986#1" to="39441373#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_67_pos_0000" depart="60525.00" from="71760726" to="525423119#2" departLane="best" type="truck_truck" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_67_neg_0000" depart="60750.00" from="-33128976#4" to="14798483#2" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_67_pos_0001" depart="60975.00" from="16088708#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_69_neg_0000" depart="62164.29" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_69_pos_0000" depart="62212.50" from="16088708#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_69_neg_0001" depart="62292.86" from="513973969#1" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_69_neg_0002" depart="62421.43" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_69_pos_0001" depart="62437.50" from="16088708#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_69_neg_0003" depart="62550.00" from="513973969#1" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_69_pos_0002" depart="62662.50" from="16088708#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_69_neg_0004" depart="62678.57" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_69_neg_0005" depart="62807.14" from="513973969#1" to="14798483#2" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_69_pos_0003" depart="62887.50" from="16088708#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_69_neg_0006" depart="62935.71" from="23160642#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_70_neg_0002" depart="63281.25" from="-40357986#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_70_neg_0003" depart="63393.75" from="-40357986#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_70_neg_0005" depart="63618.75" from="-40357986#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_70_neg_0007" depart="63843.75" from="-40357986#0" to="-40357844#1" departLane="best" type="truck_truck" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_71_pos_0000" depart="64125.00" from="16088708#0" to="33128976#3" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_71_neg_0000" depart="64350.00" from="513973969#0" to="-14798483#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_71_pos_0001" depart="64575.00" from="40357844#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_73_neg_0000" depart="66150.00" from="513973969#0" to="-40357844#1" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+    <trip id="schoolTruck_73_pos_0000" depart="66150.00" from="40357844#0" to="23160618" departLane="best" type="truck_truck" departSpeed="max" via="33128974#0a 33128974#0b 33128974#0c" />
+    <trip id="schoolTruck_75_neg_0000" depart="67950.00" from="23160642#0" to="1046472242" departLane="best" type="truck_truck" departSpeed="max" via="-33128974#0c -33128974#0b -33128974#0a" />
+</routes>

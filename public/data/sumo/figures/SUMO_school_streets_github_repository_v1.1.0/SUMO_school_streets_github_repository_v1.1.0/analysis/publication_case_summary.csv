@@ -1,0 +1,11 @@
+public_label,technical_case,evidence_role,valid_seeds,frontage_motorized_passages,frontage_spot_speed_kmh,frontage_above_36_pct,co2_kg,route_kpis_comparable_with_current,interpretation
+Baseline,current,calibrated reference,5,8610,32.77,36.34,878.1,yes,Observed-demand corridor reference
+Scenario A,A_OBS,primary report scenario,5,8610,35.27,48.93,687.1,yes,Bus-stop relocation quantified; visual package qualitative
+Scenario B,B_OBS,primary report scenario,5,8610,29.27,11.59,723.6,yes,Chicane proxy plus relocated stops; no parking-capacity model
+Scenario C0,C_OBS,primary report scenario,5,8610,22.35,0.09,761.0,yes,20 km/h shared-space operational proxy
+Scenario C1 control,C1_X0,supplementary matched control,5,8610,16.06,0.00,964.9,no,Reference only for C1 crossing-share cases
+Scenario C1 low,C1_L25,supplementary sensitivity,5,8610,15.52,0.00,970.3,no,Compare with C1_X0
+Scenario C1 medium,C1_M50,supplementary sensitivity,5,8610,15.00,0.00,976.1,no,Compare with C1_X0
+Scenario C1 high,C1_H75,supplementary sensitivity,5,8610,14.43,0.00,982.5,no,Compare with C1_X0
+Scenario D,OW_FULL_OBS,supplementary corridor experiment,5,4357,32.07,39.97,747.9,no,Use frontage KPIs only; off-network diversion excluded
+Scenario E,OW_REDUCED_OBS,supplementary corridor experiment,5,4357,32.06,40.00,871.1,no,Use frontage KPIs only; off-network diversion excluded

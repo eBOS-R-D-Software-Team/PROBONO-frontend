@@ -1,0 +1,8 @@
+source_id,original_filename,size_bytes,sha256,repository_status
+safety_report,"Road safety inspection  2025 - de l'Autre Côté de l'Ecole (1)(1).pdf",3258475,2d34a4259f4597385aeac7b16ca14b26b07294d058f7df83b6c39121853d59bb,"not redistributed; project-supplied source"
+mobility_presentation,"Scenario's PROBONO Mobility BLL SUMO(3).pptx",6784768,1bc7ff3b8b32b7a3acf506dbea7a626a6fa0ad65ad2d60ae97b9a0b6f491644e,"not redistributed; project-supplied source"
+sensor_raw,rawdata_10_2025.csv,19929,6e39d92619dc268765a945d4163d3ca30ccf27beb9f33518dbc13b42fe2ed23f,"not redistributed; one-day processed profile included"
+line34_proxy,line34_bergoje_schedule_proxy_2025-10-15.csv,26020,4f5ecacc9cf9d0ef440e6f73a45b78663c123a01d447d863c565f2173c195975,"included; derived timetable proxy"
+osm_current_network,osm.net.xml.gz,59524,3cb7fc30fa391309dae5488a1a91067c47169306799983dafb3df008b6d2a7b8,"included in templates/current"
+osm_original_pt,osm_pt.rou.xml,3525,1e6f4af1e5979f0ecd063ad4cb2a1f9af297d615c805caa107ce32cac12dbf9e,"included in templates/current"
+

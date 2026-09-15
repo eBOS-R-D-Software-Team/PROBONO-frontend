@@ -1,10 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { SlWrench, SlSettings, SlGraph, SlMagnifier } from 'react-icons/sl';
+//import { loadValidatedResults, VALIDATED_SCENARIOS, readKpi, FULL_COMPARISON_KPIS } from "../data/sumo/validatedResults";
+import { useEffect, useRef, useState } from "react";
 
 const Home = () => {
   const decisionWorkflowLink = `https://gbn-management.cds-probono.eu/?automatic_keycloak_login=true`;
   const solutionFinderLink = `https://solution-finder.cds-probono.eu`;
+
+//   useEffect(() => {
+//   loadValidatedResults().then(({ replicateById }) => {
+//     const baseline = readKpi(replicateById, "current", FULL_COMPARISON_KPIS[0]);
+//     console.log("baseline spot speed:", baseline); // expect ~32.77
+//   });
+// }, []);
 
   return (
     <div className="home-container">

@@ -21,9 +21,11 @@ import {
   Select,
   Snackbar,
   Stack,
+  Tab,
+  Tabs,
   Typography,
 } from "@mui/material";
-import { SlArrowRight } from "react-icons/sl";
+import { SlArrowRight, SlArrowDown } from "react-icons/sl";
 import { Line } from "react-chartjs-2";
 import {
   CategoryScale,
@@ -44,7 +46,11 @@ import {
   fetchSumoKpis,
   downloadSumoResult,
   resetSumoSimulation,
+  clearBaselineKpis,
+  sameModelRelease,
 } from "../reducers/sumoSimulationSlice";
+
+import ValidatedComparison from "./Validatedcomparison";
 
 ChartJS.register(
   CategoryScale,
@@ -199,9 +205,10 @@ const LABEL_OVERRIDES = {
   total_co_g: "Total CO (g)",
   total_pmx_g: "Total PM (g)",
   total_hc_g: "Total HC (g)",
-  co2_per_vehicle_g: "CO₂ per trip (g)",
-  nox_per_vehicle_mg: "NOₓ per trip (mg)",
-  fuel_per_vehicle_g: "Fuel per trip (g)",
+  co2_per_vkt_g_km: "CO₂ per VKT (g/km)",
+  nox_per_vkt_mg_km: "NOₓ per VKT (mg/km)",
+  fuel_per_vkt_g_km: "Fuel per VKT (g/km)",
+  total_vkt_km: "Total VKT (km)",
   mean_density: "Mean density (veh/km)",
   avg_stop_count: "Avg stops per trip",
   // SUMO's "left" = vehicles that left the edge during the interval, i.e.
@@ -424,6 +431,8 @@ const KpiSection = ({
   scenarioStatus,
   baselineKpis,
   isBaselineRun,
+  baselineStale,
+  versionLabel,
   onDownload,
 }) => {
   if (kpisLoading) {
@@ -550,9 +559,26 @@ const KpiSection = ({
                 sx={{ borderColor: "rgba(44,182,125,0.5)" }}
               />
             )}
+            {versionLabel && (
+              <Chip
+                size="small"
+                label={versionLabel}
+                variant="outlined"
+                sx={{ color: "text.secondary", ml: "auto" }}
+              />
+            )}
           </Stack>
 
-          {!isBaselineRun && !canCompare && (
+          {!isBaselineRun && baselineStale && (
+            <Alert severity="warning" sx={{ mb: 2 }}>
+              The cached baseline comes from a different model release than this
+              run, so the comparison is disabled to avoid mixing model
+              generations. Re-run the baseline scenario to compare against the
+              current release.
+            </Alert>
+          )}
+
+          {!isBaselineRun && !canCompare && !baselineStale && (
             <Alert severity="info" sx={{ mb: 2, py: 0.5 }}>
               Run the baseline scenario once to enable comparison. Results are
               kept for this session.
@@ -564,7 +590,7 @@ const KpiSection = ({
               This scenario ran {formatPct(vehicleDelta.pct)} vehicles compared
               to baseline. Absolute totals (emissions, fuel) scale with the
               number of vehicles, and trip averages cover completed trips only,
-              so use the per-trip indicators for a like-for-like comparison
+              so use the per-VKT indicators for a like-for-like comparison
               rather than reading the totals as a direct effect of the
               intervention.
             </Alert>
@@ -701,6 +727,8 @@ const SumoSimulation = () => {
     statusDetails = null,
     kpis = null,
     baselineKpis = null,
+    runVersion = { repoVersion: null, modelVersion: null },
+    baselineVersion = { repoVersion: null, modelVersion: null },
     runStartedAt = null,
     loading = false,
     statusLoading = false,
@@ -722,6 +750,20 @@ const SumoSimulation = () => {
   const ranScenario =
     SCENARIOS.find((s) => s.id === (statusDetails?.scenario || scenario)) || null;
 
+  const isBaselineRun = ranScenario?.id === "baseline";
+
+  // The cached baseline is only usable for comparison if it came from the same
+  // model release as the current run. Otherwise it is stale and must not be
+  // mixed (per the release 1.1.0 integration rules).
+  const hasBaseline = Boolean(baselineKpis);
+  const baselineMatchesRelease =
+    hasBaseline && sameModelRelease(baselineVersion, runVersion);
+  const baselineStale = hasBaseline && !baselineMatchesRelease && !isBaselineRun;
+
+  const versionLabel = [runVersion.repoVersion, runVersion.modelVersion]
+    .filter(Boolean)
+    .join(" / ");
+
   const isCompleted = COMPLETED_STATUSES.includes(normalizedStatus);
   const isErrorStatus = ERROR_STATUSES.includes(normalizedStatus);
 
@@ -741,6 +783,7 @@ const SumoSimulation = () => {
   });
   const [hideRunDialog, setHideRunDialog] = useState(false);
   const [showAllScenarios, setShowAllScenarios] = useState(false);
+  const [pageTab, setPageTab] = useState(0); // 0 = validated results, 1 = live tool
   const [tick, setTick] = useState(Date.now());
 
   const prevCompletedRef = useRef(false);
@@ -841,7 +884,30 @@ const SumoSimulation = () => {
         <span className="crumb-current">SUMO Mobility Simulation</span>
       </div>
 
-      <Box sx={{ maxWidth: 1040, mx: "auto", mt: 4, mb: 6 }}>
+      <Box sx={{ maxWidth: 1400, mx: "auto", px: { xs: 2, md: 3 }, mt: 4, mb: 6 }}>
+        <Tabs
+          value={pageTab}
+          onChange={(_, v) => setPageTab(v)}
+          sx={{ mb: 3, "& .MuiTabs-indicator": { backgroundColor: PROBONO_GREEN } }}
+          variant="scrollable"
+          scrollButtons="auto"
+        >
+          <Tab label="Validated results" sx={{ fontWeight: 700 }} />
+          <Tab label="Run a live simulation" sx={{ fontWeight: 700 }} />
+        </Tabs>
+
+        {/* ---- Validated results tab (authoritative CSV comparison) ---- */}
+        {pageTab === 0 && (
+          <Card elevation={3} sx={{ borderRadius: 3, overflow: "hidden" }}>
+            <Box sx={{ height: 4, backgroundColor: PROBONO_GREEN }} />
+            <CardContent sx={{ p: { xs: 2.5, md: 4 } }}>
+              <ValidatedComparison />
+            </CardContent>
+          </Card>
+        )}
+
+        {/* ---- Live simulation tab ---- */}
+        {pageTab === 1 && (
         <Card elevation={3} sx={{ borderRadius: 3, overflow: "hidden" }}>
           {/* accent strip keeps the brand green present without changing the palette */}
           <Box sx={{ height: 4, backgroundColor: PROBONO_GREEN }} />
@@ -932,8 +998,18 @@ const SumoSimulation = () => {
               <Box>
                 <Button
                   size="small"
+                  variant="outlined"
                   onClick={() => setShowAllScenarios((v) => !v)}
-                  sx={{ color: PROBONO_GREEN_DARK, px: 0 }}
+                  endIcon={showAllScenarios ? <SlArrowDown /> : <SlArrowRight />}
+                  sx={{
+                    color: PROBONO_GREEN_DARK,
+                    borderColor: "rgba(44,182,125,0.5)",
+                    textTransform: "none",
+                    "&:hover": {
+                      borderColor: PROBONO_GREEN,
+                      backgroundColor: "rgba(44,182,125,0.06)",
+                    },
+                  }}
                 >
                   {showAllScenarios
                     ? "Hide scenario overview"
@@ -1126,8 +1202,10 @@ const SumoSimulation = () => {
                     kpiError={kpiError}
                     limitationNote={ranScenario?.note}
                     scenarioStatus={ranScenario}
-                    baselineKpis={baselineKpis}
-                    isBaselineRun={ranScenario?.id === "baseline"}
+                    baselineKpis={baselineMatchesRelease ? baselineKpis : null}
+                    isBaselineRun={isBaselineRun}
+                    baselineStale={baselineStale}
+                    versionLabel={versionLabel}
                     onDownload={handleDownloadResult}
                   />
                 </>
@@ -1137,6 +1215,7 @@ const SumoSimulation = () => {
             </Stack>
           </CardContent>
         </Card>
+        )}
       </Box>
 
       {/* Running modal: keeps the user informed until the run finishes */}

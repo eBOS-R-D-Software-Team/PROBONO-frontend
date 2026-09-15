@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2026-03-20 12:41:04 by Eclipse SUMO netconvert Version 1.24.0
+<netconvertConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/netconvertConfiguration.xsd">
+
+    <input>
+        <type-files value="${SUMO_HOME}\data\typemap\osmNetconvert.typ.xml,${SUMO_HOME}\data\typemap\osmNetconvertUrbanDe.typ.xml,${SUMO_HOME}\data\typemap\osmNetconvertPedestrians.typ.xml,${SUMO_HOME}\data\typemap\osmNetconvertBicycle.typ.xml,${SUMO_HOME}\data\typemap\osmNetconvertAerialway.typ.xml"/>
+        <osm-files value="osm_bbox.osm.xml.gz"/>
+    </input>
+
+    <output>
+        <output-file value="osm.net.xml.gz"/>
+        <output.street-names value="true"/>
+        <output.original-names value="true"/>
+        <ptstop-output value="osm_stops.add.xml"/>
+        <ptline-output value="osm_ptlines.xml"/>
+        <ptline-clean-up value="true"/>
+    </output>
+
+    <projection>
+        <proj value="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs"/>
+    </projection>
+
+    <processing>
+        <geometry.remove value="true"/>
+        <roundabouts.guess value="true"/>
+    </processing>
+
+    <tls_building>
+        <tls.discard-simple value="true"/>
+        <tls.join value="true"/>
+        <tls.guess-signals value="true"/>
+        <tls.default-type value="actuated"/>
+    </tls_building>
+
+    <ramp_guessing>
+        <ramps.guess value="true"/>
+    </ramp_guessing>
+
+    <junctions>
+        <junctions.join value="true"/>
+        <junctions.corner-detail value="5"/>
+    </junctions>
+
+    <pedestrian>
+        <crossings.guess value="true"/>
+    </pedestrian>
+
+    <railway>
+        <railway.topology.repair value="true"/>
+    </railway>
+
+    <formats>
+        <osm.bike-access value="true"/>
+        <osm.sidewalks value="true"/>
+    </formats>
+
+</netconvertConfiguration>
+-->
+
+<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
+    <busStop id="-4059785907" name="Bergoje" lane="-33128974#0_0" startPos="55.37" endPos="70.37" friendlyPos="true" lines="34">
+        <access lane="1239139978#0_0" pos="0.00" length="27.26" friendlyPos="1"/>
+        <access lane="1239139979_0" pos="0.00" length="6.85" friendlyPos="1"/>
+        <access lane="1239139980#0_0" pos="35.54" length="3.92" friendlyPos="1"/>
+        <access lane="1239139980#1_0" pos="0.00" length="2.19" friendlyPos="1"/>
+        <access lane="969633048#2_0" pos="0.12" length="23.24" friendlyPos="1"/>
+    </busStop>
+    <busStop id="4052677689" name="Bergoje" lane="33128974#0_0" startPos="0.00" endPos="15.00" friendlyPos="true" lines="34">
+        <access lane="1239139980#0_0" pos="19.01" length="31.05" friendlyPos="1"/>
+        <access lane="969633048#0_0" pos="26.43" length="0.22" friendlyPos="1"/>
+        <access lane="969633048#1_0" pos="0.00" length="11.06" friendlyPos="1"/>
+        <access lane="969633048#2_0" pos="0.00" length="27.64" friendlyPos="1"/>
+        <access lane="969633050_0" pos="0.00" length="8.20" friendlyPos="1"/>
+    </busStop>
+    <busStop id="4215496388" lane="1046472243#0_0" startPos="18.56" endPos="33.56" friendlyPos="true" lines="34">
+        <access lane="1239139980#0_0" pos="0.00" length="11.52" friendlyPos="1"/>
+        <access lane="863508194#0_0" pos="6.41" length="8.38" friendlyPos="1"/>
+        <access lane="863508194#1_0" pos="0.41" length="5.61" friendlyPos="1"/>
+        <access lane="863508197#0_0" pos="0.20" length="14.19" friendlyPos="1"/>
+        <access lane="863508197#1_0" pos="0.00" length="14.43" friendlyPos="1"/>
+    </busStop>
+    <busStop id="4215499889" lane="33128974#0_0" startPos="5.75" endPos="20.75" friendlyPos="true" lines="34">
+        <access lane="1239139978#0_0" pos="0.00" length="15.29" friendlyPos="1"/>
+        <access lane="1239139980#0_0" pos="33.79" length="18.05" friendlyPos="1"/>
+        <access lane="1239139980#1_0" pos="2.76" length="12.07" friendlyPos="1"/>
+        <access lane="969633048#1_0" pos="7.70" length="12.68" friendlyPos="1"/>
+        <access lane="969633048#2_0" pos="0.12" length="10.14" friendlyPos="1"/>
+    </busStop>
+</additional>

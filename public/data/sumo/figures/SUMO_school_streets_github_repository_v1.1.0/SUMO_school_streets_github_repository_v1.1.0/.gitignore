@@ -1,0 +1,31 @@
+__pycache__/
+*.py[cod]
+*.log
+.*.tmp*
+.DS_Store
+
+# Generated scenario outputs
+/current/
+/A_*/
+/B_*/
+/C_OBS/
+/C_DR*/
+/C1_*/
+/OW_FULL_*/
+/OW_REDUCED_*/
+*/seed*.xml
+*/seed*.xml.gz
+*/logs/
+*/fcd.*.xml.gz
+*/ssm.*.xml.gz
+*/tripinfos.*.xml
+*/personinfos.*.xml
+*/stopinfos.*.xml
+*/stats.*.xml
+*/edgeData.*.xml
+*/school_e1.*.xml
+*/collisions.*.xml
+
+# Local rendering and packaging
+rendered_guidebook/
+release_build/

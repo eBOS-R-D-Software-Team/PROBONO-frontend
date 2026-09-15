@@ -1,0 +1,318 @@
+status,check,detail
+PASS,current: strict common config,seed=42; ignore=false; lateral=0.8
+PASS,current: referenced inputs,all present
+PASS,A_OBS: strict common config,seed=42; ignore=false; lateral=0.8
+PASS,A_OBS: referenced inputs,all present
+PASS,A_DR15: strict common config,seed=42; ignore=false; lateral=0.8
+PASS,A_DR15: referenced inputs,all present
+PASS,A_DR30: strict common config,seed=42; ignore=false; lateral=0.8
+PASS,A_DR30: referenced inputs,all present
+PASS,B_OBS: strict common config,seed=42; ignore=false; lateral=0.8
+PASS,B_OBS: referenced inputs,all present
+PASS,B_DR15: strict common config,seed=42; ignore=false; lateral=0.8
+PASS,B_DR15: referenced inputs,all present
+PASS,B_DR30: strict common config,seed=42; ignore=false; lateral=0.8
+PASS,B_DR30: referenced inputs,all present
+PASS,C_OBS: strict common config,seed=42; ignore=false; lateral=0.8
+PASS,C_OBS: referenced inputs,all present
+PASS,C_DR15: strict common config,seed=42; ignore=false; lateral=0.8
+PASS,C_DR15: referenced inputs,all present
+PASS,C_DR30: strict common config,seed=42; ignore=false; lateral=0.8
+PASS,C_DR30: referenced inputs,all present
+PASS,C1_X0: strict common config,seed=42; ignore=false; lateral=0.8
+PASS,C1_X0: referenced inputs,all present
+PASS,C1_L25: strict common config,seed=42; ignore=false; lateral=0.8
+PASS,C1_L25: referenced inputs,all present
+PASS,C1_M50: strict common config,seed=42; ignore=false; lateral=0.8
+PASS,C1_M50: referenced inputs,all present
+PASS,C1_H75: strict common config,seed=42; ignore=false; lateral=0.8
+PASS,C1_H75: referenced inputs,all present
+PASS,OW_FULL_OBS: strict common config,seed=42; ignore=false; lateral=0.8
+PASS,OW_FULL_OBS: referenced inputs,all present
+PASS,OW_FULL_DR15: strict common config,seed=42; ignore=false; lateral=0.8
+PASS,OW_FULL_DR15: referenced inputs,all present
+PASS,OW_FULL_DR30: strict common config,seed=42; ignore=false; lateral=0.8
+PASS,OW_FULL_DR30: referenced inputs,all present
+PASS,OW_REDUCED_OBS: strict common config,seed=42; ignore=false; lateral=0.8
+PASS,OW_REDUCED_OBS: referenced inputs,all present
+PASS,OW_REDUCED_DR15: strict common config,seed=42; ignore=false; lateral=0.8
+PASS,OW_REDUCED_DR15: referenced inputs,all present
+PASS,OW_REDUCED_DR30: strict common config,seed=42; ignore=false; lateral=0.8
+PASS,OW_REDUCED_DR30: referenced inputs,all present
+PASS,Legacy D/E implementations excluded,D/E absent; expert concepts use explicit OW_FULL/OW_REDUCED names
+PASS,A: nested passenger response demand,n=7597/6452/5315
+PASS,A: nested truck response demand,n=696/588/495
+PASS,A: nested bike_moto response demand,n=210/178/148
+PASS,A: bike_moto non-motorized demand held fixed,n=755
+PASS,A: pedestrian non-motorized demand held fixed,n=1528
+PASS,B: nested passenger response demand,n=7597/6452/5315
+PASS,B: nested truck response demand,n=696/588/495
+PASS,B: nested bike_moto response demand,n=210/178/148
+PASS,B: bike_moto non-motorized demand held fixed,n=755
+PASS,B: pedestrian non-motorized demand held fixed,n=1528
+PASS,C: nested passenger response demand,n=7597/6452/5315
+PASS,C: nested truck response demand,n=696/588/495
+PASS,C: nested bike_moto response demand,n=210/178/148
+PASS,C: bike_moto non-motorized demand held fixed,n=755
+PASS,C: pedestrian non-motorized demand held fixed,n=1528
+PASS,OW_FULL: nested passenger response demand,n=7597/6452/5315
+PASS,OW_FULL: nested truck response demand,n=696/588/495
+PASS,OW_FULL: nested bike_moto response demand,n=210/178/148
+PASS,OW_FULL: bike_moto non-motorized demand held fixed,n=755
+PASS,OW_FULL: pedestrian non-motorized demand held fixed,n=1528
+PASS,OW_REDUCED: nested passenger response demand,n=7597/6452/5315
+PASS,OW_REDUCED: nested truck response demand,n=696/588/495
+PASS,OW_REDUCED: nested bike_moto response demand,n=210/178/148
+PASS,OW_REDUCED: bike_moto non-motorized demand held fixed,n=755
+PASS,OW_REDUCED: pedestrian non-motorized demand held fixed,n=1528
+PASS,Full-demand passenger IDs matched across designs,n=7597
+PASS,C1 full-demand passenger IDs matched current,n=7597
+PASS,Full-demand truck IDs matched across designs,n=696
+PASS,C1 full-demand truck IDs matched current,n=696
+PASS,Full-demand bike_moto IDs matched across designs,n=210
+PASS,C1 full-demand bike_moto IDs matched current,n=210
+PASS,C1 preserves all observed pedestrian IDs,n=1528
+PASS,C1 nested pedestrian crossing shares,"actual=[0, 382, 764, 1146]; expected=[0, 382, 764, 1146]"
+PASS,current: common calibrated motorized behavior,types=9; bad=[]
+PASS,A_OBS: common calibrated motorized behavior,types=9; bad=[]
+PASS,A_DR15: common calibrated motorized behavior,types=9; bad=[]
+PASS,A_DR30: common calibrated motorized behavior,types=9; bad=[]
+PASS,B_OBS: common calibrated motorized behavior,types=9; bad=[]
+PASS,B_DR15: common calibrated motorized behavior,types=9; bad=[]
+PASS,B_DR30: common calibrated motorized behavior,types=9; bad=[]
+PASS,C_OBS: common calibrated motorized behavior,types=9; bad=[]
+PASS,C_DR15: common calibrated motorized behavior,types=9; bad=[]
+PASS,C_DR30: common calibrated motorized behavior,types=9; bad=[]
+PASS,C1_X0: common calibrated motorized behavior,types=9; bad=[]
+PASS,C1_L25: common calibrated motorized behavior,types=9; bad=[]
+PASS,C1_M50: common calibrated motorized behavior,types=9; bad=[]
+PASS,C1_H75: common calibrated motorized behavior,types=9; bad=[]
+PASS,OW_FULL_OBS: common calibrated motorized behavior,types=9; bad=[]
+PASS,OW_FULL_DR15: common calibrated motorized behavior,types=9; bad=[]
+PASS,OW_FULL_DR30: common calibrated motorized behavior,types=9; bad=[]
+PASS,OW_REDUCED_OBS: common calibrated motorized behavior,types=9; bad=[]
+PASS,OW_REDUCED_DR15: common calibrated motorized behavior,types=9; bad=[]
+PASS,OW_REDUCED_DR30: common calibrated motorized behavior,types=9; bad=[]
+PASS,B_OBS: chicane speed proxy,"{'-33128974#0a': '8.33', '-33128974#0b': '6.94', '-33128974#0c': '8.33', '33128974#0a': '8.33', '33128974#0b': '6.94', '33128974#0c': '8.33'}"
+PASS,B_DR15: chicane speed proxy,"{'-33128974#0a': '8.33', '-33128974#0b': '6.94', '-33128974#0c': '8.33', '33128974#0a': '8.33', '33128974#0b': '6.94', '33128974#0c': '8.33'}"
+PASS,B_DR30: chicane speed proxy,"{'-33128974#0a': '8.33', '-33128974#0b': '6.94', '-33128974#0c': '8.33', '33128974#0a': '8.33', '33128974#0b': '6.94', '33128974#0c': '8.33'}"
+PASS,C1_X0: real mid-block priority crossing,crossingEdges=['33128974#0.c1e -33128974#0']; split=True
+PASS,C1_L25: real mid-block priority crossing,crossingEdges=['33128974#0.c1e -33128974#0']; split=True
+PASS,C1_M50: real mid-block priority crossing,crossingEdges=['33128974#0.c1e -33128974#0']; split=True
+PASS,C1_H75: real mid-block priority crossing,crossingEdges=['33128974#0.c1e -33128974#0']; split=True
+WARN,C1 network rebuild scope,The valid mid-block crossing replaces one unused invalid OSM crossing outside the school frontage during netconvert rebuilding; the sensor-corridor routes do not use the dropped crossing
+PASS,OW_FULL_OBS: counterflow reserved to buses/bicycles,"{'-1046472244': ['bicycle', 'bus bicycle'], '-33128974#0': ['bus bicycle'], '-33128974#1': ['bus bicycle'], '-33128974#2': ['bus bicycle'], '-33128974#3': ['bus bicycle'], '1046472242': ['bicycle', 'bus bicycle'], '1046472243#0': ['bus bicycle'], '1046472243#2': ['bus bicycle'], '1046472243#3': ['bus bicycle'], '1165966443': ['bus bicycle']}"
+PASS,OW_FULL_DR15: counterflow reserved to buses/bicycles,"{'-1046472244': ['bicycle', 'bus bicycle'], '-33128974#0': ['bus bicycle'], '-33128974#1': ['bus bicycle'], '-33128974#2': ['bus bicycle'], '-33128974#3': ['bus bicycle'], '1046472242': ['bicycle', 'bus bicycle'], '1046472243#0': ['bus bicycle'], '1046472243#2': ['bus bicycle'], '1046472243#3': ['bus bicycle'], '1165966443': ['bus bicycle']}"
+PASS,OW_FULL_DR30: counterflow reserved to buses/bicycles,"{'-1046472244': ['bicycle', 'bus bicycle'], '-33128974#0': ['bus bicycle'], '-33128974#1': ['bus bicycle'], '-33128974#2': ['bus bicycle'], '-33128974#3': ['bus bicycle'], '1046472242': ['bicycle', 'bus bicycle'], '1046472243#0': ['bus bicycle'], '1046472243#2': ['bus bicycle'], '1046472243#3': ['bus bicycle'], '1165966443': ['bus bicycle']}"
+PASS,OW_REDUCED_OBS: counterflow reserved to buses/bicycles,"{'-1046472244': ['bicycle', 'bus bicycle'], '-33128974#0': ['bus bicycle'], '-33128974#1': ['bus bicycle'], '-33128974#2': ['bus bicycle'], '1046472242': ['bicycle', 'bus bicycle'], '1046472243#0': ['bus bicycle'], '1046472243#2': ['bus bicycle'], '1046472243#3': ['bus bicycle'], '1165966443': ['bus bicycle']}"
+PASS,OW_REDUCED_DR15: counterflow reserved to buses/bicycles,"{'-1046472244': ['bicycle', 'bus bicycle'], '-33128974#0': ['bus bicycle'], '-33128974#1': ['bus bicycle'], '-33128974#2': ['bus bicycle'], '1046472242': ['bicycle', 'bus bicycle'], '1046472243#0': ['bus bicycle'], '1046472243#2': ['bus bicycle'], '1046472243#3': ['bus bicycle'], '1165966443': ['bus bicycle']}"
+PASS,OW_REDUCED_DR30: counterflow reserved to buses/bicycles,"{'-1046472244': ['bicycle', 'bus bicycle'], '-33128974#0': ['bus bicycle'], '-33128974#1': ['bus bicycle'], '-33128974#2': ['bus bicycle'], '1046472242': ['bicycle', 'bus bicycle'], '1046472243#0': ['bus bicycle'], '1046472243#2': ['bus bicycle'], '1046472243#3': ['bus bicycle'], '1165966443': ['bus bicycle']}"
+PASS,One-way extents distinguish full and reduced concepts,full begins at Tervuursesteenweg; reduced begins at Bergagegaarde
+PASS,Both one-way options enforce the repeated east-end right turn,"full=('1046472245#0', '435654120#0', '33128974#0 582782542'); reduced=('1046472245#0', '435654120#0', '33128974#0 582782542')"
+PASS,Reduced option traverses the unchanged eastern section before diversion,"('-33128976#0', '-33128974#3', '')"
+PASS,current: sensor demand uses corridor boundary ODs,bad=[]
+PASS,current: pedestrian paths match declared scope,"['1239139980#0 1239139979', '969633048#0 969633048#1 1239139978#0']"
+PASS,current: buses cross corridor once,bad=[]
+PASS,current: report-aligned named bus stops,"{'-4059785907': '-33128974#0_0', '4052677689': '33128974#0_0'}"
+PASS,A_OBS: sensor demand uses corridor boundary ODs,bad=[]
+PASS,A_OBS: pedestrian paths match declared scope,"['1239139980#0 1239139979', '969633048#0 969633048#1 1239139978#0']"
+PASS,A_OBS: buses cross corridor once,bad=[]
+PASS,A_OBS: report-aligned named bus stops,"{'-4059785907': '1046472242_1', '4052677689': '71760726_1'}"
+PASS,A_DR15: sensor demand uses corridor boundary ODs,bad=[]
+PASS,A_DR15: pedestrian paths match declared scope,"['1239139980#0 1239139979', '969633048#0 969633048#1 1239139978#0']"
+PASS,A_DR15: buses cross corridor once,bad=[]
+PASS,A_DR15: report-aligned named bus stops,"{'-4059785907': '1046472242_1', '4052677689': '71760726_1'}"
+PASS,A_DR30: sensor demand uses corridor boundary ODs,bad=[]
+PASS,A_DR30: pedestrian paths match declared scope,"['1239139980#0 1239139979', '969633048#0 969633048#1 1239139978#0']"
+PASS,A_DR30: buses cross corridor once,bad=[]
+PASS,A_DR30: report-aligned named bus stops,"{'-4059785907': '1046472242_1', '4052677689': '71760726_1'}"
+PASS,B_OBS: sensor demand uses corridor boundary ODs,bad=[]
+PASS,B_OBS: pedestrian paths match declared scope,"['1239139980#0 1239139979', '969633048#0 969633048#1 1239139978#0']"
+PASS,B_OBS: buses cross corridor once,bad=[]
+PASS,B_OBS: report-aligned named bus stops,"{'-4059785907': '1046472242_1', '4052677689': '71760726_1'}"
+PASS,B_DR15: sensor demand uses corridor boundary ODs,bad=[]
+PASS,B_DR15: pedestrian paths match declared scope,"['1239139980#0 1239139979', '969633048#0 969633048#1 1239139978#0']"
+PASS,B_DR15: buses cross corridor once,bad=[]
+PASS,B_DR15: report-aligned named bus stops,"{'-4059785907': '1046472242_1', '4052677689': '71760726_1'}"
+PASS,B_DR30: sensor demand uses corridor boundary ODs,bad=[]
+PASS,B_DR30: pedestrian paths match declared scope,"['1239139980#0 1239139979', '969633048#0 969633048#1 1239139978#0']"
+PASS,B_DR30: buses cross corridor once,bad=[]
+PASS,B_DR30: report-aligned named bus stops,"{'-4059785907': '1046472242_1', '4052677689': '71760726_1'}"
+PASS,C_OBS: sensor demand uses corridor boundary ODs,bad=[]
+PASS,C_OBS: pedestrian paths match declared scope,"['1239139980#0 1239139979', '969633048#0 969633048#1 1239139978#0']"
+PASS,C_OBS: buses cross corridor once,bad=[]
+PASS,C_OBS: report-aligned named bus stops,"{'-4059785907': '1046472242_1', '4052677689': '71760726_1'}"
+PASS,C_DR15: sensor demand uses corridor boundary ODs,bad=[]
+PASS,C_DR15: pedestrian paths match declared scope,"['1239139980#0 1239139979', '969633048#0 969633048#1 1239139978#0']"
+PASS,C_DR15: buses cross corridor once,bad=[]
+PASS,C_DR15: report-aligned named bus stops,"{'-4059785907': '1046472242_1', '4052677689': '71760726_1'}"
+PASS,C_DR30: sensor demand uses corridor boundary ODs,bad=[]
+PASS,C_DR30: pedestrian paths match declared scope,"['1239139980#0 1239139979', '969633048#0 969633048#1 1239139978#0']"
+PASS,C_DR30: buses cross corridor once,bad=[]
+PASS,C_DR30: report-aligned named bus stops,"{'-4059785907': '1046472242_1', '4052677689': '71760726_1'}"
+PASS,C1_X0: sensor demand uses corridor boundary ODs,bad=[]
+PASS,C1_X0: pedestrian paths match declared scope,"['1239139980#0 1239139979', '969633048#0 969633048#1 1239139978#0']"
+PASS,C1_X0: buses cross corridor once,bad=[]
+PASS,C1_X0: report-aligned named bus stops,"{'-4059785907': '1046472242_1', '4052677689': '71760726_1'}"
+PASS,C1_L25: sensor demand uses corridor boundary ODs,bad=[]
+PASS,C1_L25: pedestrian paths match declared scope,"['1239139979.scMid scenarioC_school_frontage_mid_s_link scenarioC_school_frontage_mid_n_link scenarioC_school_frontage_mid_n_w 969633048#1 969633048#0', '1239139980#0 1239139979', '969633048#0 969633048#1 1239139978#0', '969633048#0 969633048#1 scenarioC_school_frontage_mid_n_w scenarioC_school_frontage_mid_n_link scenarioC_school_frontage_mid_s_link 1239139979.scMid']"
+PASS,C1_L25: buses cross corridor once,bad=[]
+PASS,C1_L25: report-aligned named bus stops,"{'-4059785907': '1046472242_1', '4052677689': '71760726_1'}"
+PASS,C1_M50: sensor demand uses corridor boundary ODs,bad=[]
+PASS,C1_M50: pedestrian paths match declared scope,"['1239139979.scMid scenarioC_school_frontage_mid_s_link scenarioC_school_frontage_mid_n_link scenarioC_school_frontage_mid_n_w 969633048#1 969633048#0', '1239139980#0 1239139979', '969633048#0 969633048#1 1239139978#0', '969633048#0 969633048#1 scenarioC_school_frontage_mid_n_w scenarioC_school_frontage_mid_n_link scenarioC_school_frontage_mid_s_link 1239139979.scMid']"
+PASS,C1_M50: buses cross corridor once,bad=[]
+PASS,C1_M50: report-aligned named bus stops,"{'-4059785907': '1046472242_1', '4052677689': '71760726_1'}"
+PASS,C1_H75: sensor demand uses corridor boundary ODs,bad=[]
+PASS,C1_H75: pedestrian paths match declared scope,"['1239139979.scMid scenarioC_school_frontage_mid_s_link scenarioC_school_frontage_mid_n_link scenarioC_school_frontage_mid_n_w 969633048#1 969633048#0', '1239139980#0 1239139979', '969633048#0 969633048#1 1239139978#0', '969633048#0 969633048#1 scenarioC_school_frontage_mid_n_w scenarioC_school_frontage_mid_n_link scenarioC_school_frontage_mid_s_link 1239139979.scMid']"
+PASS,C1_H75: buses cross corridor once,bad=[]
+PASS,C1_H75: report-aligned named bus stops,"{'-4059785907': '1046472242_1', '4052677689': '71760726_1'}"
+PASS,OW_FULL_OBS: sensor demand uses corridor boundary ODs,bad=[]
+PASS,OW_FULL_OBS: pedestrian paths match declared scope,"['1239139980#0 1239139979', '969633048#0 969633048#1 1239139978#0']"
+PASS,OW_FULL_OBS: buses cross corridor once,bad=[]
+PASS,OW_FULL_OBS: report-aligned named bus stops,"{'-4059785907': '-33128974#0_0', '4052677689': '33128974#0_0'}"
+PASS,OW_FULL_DR15: sensor demand uses corridor boundary ODs,bad=[]
+PASS,OW_FULL_DR15: pedestrian paths match declared scope,"['1239139980#0 1239139979', '969633048#0 969633048#1 1239139978#0']"
+PASS,OW_FULL_DR15: buses cross corridor once,bad=[]
+PASS,OW_FULL_DR15: report-aligned named bus stops,"{'-4059785907': '-33128974#0_0', '4052677689': '33128974#0_0'}"
+PASS,OW_FULL_DR30: sensor demand uses corridor boundary ODs,bad=[]
+PASS,OW_FULL_DR30: pedestrian paths match declared scope,"['1239139980#0 1239139979', '969633048#0 969633048#1 1239139978#0']"
+PASS,OW_FULL_DR30: buses cross corridor once,bad=[]
+PASS,OW_FULL_DR30: report-aligned named bus stops,"{'-4059785907': '-33128974#0_0', '4052677689': '33128974#0_0'}"
+PASS,OW_REDUCED_OBS: sensor demand uses corridor boundary ODs,bad=[]
+PASS,OW_REDUCED_OBS: pedestrian paths match declared scope,"['1239139980#0 1239139979', '969633048#0 969633048#1 1239139978#0']"
+PASS,OW_REDUCED_OBS: buses cross corridor once,bad=[]
+PASS,OW_REDUCED_OBS: report-aligned named bus stops,"{'-4059785907': '-33128974#0_0', '4052677689': '33128974#0_0'}"
+PASS,OW_REDUCED_DR15: sensor demand uses corridor boundary ODs,bad=[]
+PASS,OW_REDUCED_DR15: pedestrian paths match declared scope,"['1239139980#0 1239139979', '969633048#0 969633048#1 1239139978#0']"
+PASS,OW_REDUCED_DR15: buses cross corridor once,bad=[]
+PASS,OW_REDUCED_DR15: report-aligned named bus stops,"{'-4059785907': '-33128974#0_0', '4052677689': '33128974#0_0'}"
+PASS,OW_REDUCED_DR30: sensor demand uses corridor boundary ODs,bad=[]
+PASS,OW_REDUCED_DR30: pedestrian paths match declared scope,"['1239139980#0 1239139979', '969633048#0 969633048#1 1239139978#0']"
+PASS,OW_REDUCED_DR30: buses cross corridor once,bad=[]
+PASS,OW_REDUCED_DR30: report-aligned named bus stops,"{'-4059785907': '-33128974#0_0', '4052677689': '33128974#0_0'}"
+PASS,Large-vehicle subclass allocation,timetable-proxy buses=107; residual trucks=696; total=803
+PASS,Per-bin large-vehicle allocation,mismatched={}
+PASS,Line 34 timetable-proxy provenance,rows=107; statuses={'near-date_weekday_proxy_not_exact_sensor_date'}
+WARN,Line 34 exact-date limitation,OSM supplies route/stop geometry only; departures use Wednesday 2025-10-15 as a near-date proxy because the exact 2025-10-01 archived GTFS ZIP was credential-gated
+PASS,Baseline contains no modeled parking supply,parkingArea files=[]
+WARN,Scenario B parking scope,The report's six-space removal is not a parking-capacity result because the OSM-wizard baseline contains no parkingArea objects
+WARN,One-way diversion boundary,"All prohibited westbound private trips remain loaded but exit at Tervuursesteenweg (full option) or Bergagegaarde (reduced option); the clipped OSM-Wizard network contains no connected external detour, so onward travel time and emissions are not estimated"
+WARN,One-way directional-demand uncertainty,The sensor has no direction field; the resulting frontage reduction follows the declared balanced per-bin direction assumption and is not a measured diversion forecast
+PASS,Current passenger: balanced unobserved directions,max per-bin difference=1
+PASS,Current bike_moto: balanced unobserved directions,max per-bin difference=1
+PASS,Observed 96-bin sensor profile preserved,"rows=96; totals={'pedestrian': 1528, 'two_wheeler': 965, 'car': 7597, 'large': 803}"
+PASS,Canonical detector daily totals,"[{'mode': 'car', 'observed_total': 7597, 'detector_total': 7597, 'mismatched_15min_bins': 39, 'absolute_bin_error_sum': 216, 'maximum_absolute_bin_error': 23, 'interpretation': 'daily total exact; detector times may cross input-bin boundaries because of route travel time and queues'}, {'mode': 'large', 'observed_total': 803, 'detector_total': 803, 'mismatched_15min_bins': 10, 'absolute_bin_error_sum': 10, 'maximum_absolute_bin_error': 1, 'interpretation': 'daily total exact; detector times may cross input-bin boundaries because of route travel time and queues'}, {'mode': 'two_wheeler', 'observed_total': 965, 'detector_total': 965, 'mismatched_15min_bins': 26, 'absolute_bin_error_sum': 38, 'maximum_absolute_bin_error': 4, 'interpretation': 'daily total exact; detector times may cross input-bin boundaries because of route travel time and queues'}]"
+WARN,Detector-time 15-minute redistribution,"mismatched bins={'car': 39, 'large': 10, 'two_wheeler': 26}; input departure bins are exact, but detector passage bins are not claimed as exact"
+PASS,Current passenger fleet matches Statbel shares,"actual={'veh_passenger_diesel_be2025': 2104, 'veh_passenger_hybrid_be2025': 1048, 'veh_passenger_petrol_be2025': 3883, 'veh_passenger_electric_be2025': 489, 'veh_passenger_other_be2025': 42, 'veh_passenger_gas_be2025': 31}; expected={'veh_passenger_petrol_be2025': 3883, 'veh_passenger_diesel_be2025': 2104, 'veh_passenger_hybrid_be2025': 1048, 'veh_passenger_electric_be2025': 489, 'veh_passenger_gas_be2025': 31, 'veh_passenger_other_be2025': 42}"
+WARN,Fleet transfer limitation,"Statbel is national stock by fuel; local traffic, Euro stages and non-passenger classes remain assumptions"
+PASS,current: five replicate seeds,"[42, 43, 44, 45, 46]"
+PASS,current: canonical outputs,[]
+PASS,current: run logs free of route errors,[]
+PASS,current: no teleport-based recovery,"vehicle=[0, 0, 0, 0, 0]; person=[0, 0, 0, 0, 0]"
+PASS,A_OBS: five replicate seeds,"[42, 43, 44, 45, 46]"
+PASS,A_OBS: canonical outputs,[]
+PASS,A_OBS: run logs free of route errors,[]
+PASS,A_OBS: no teleport-based recovery,"vehicle=[0, 0, 0, 0, 0]; person=[0, 0, 0, 0, 0]"
+PASS,A_DR15: five replicate seeds,"[42, 43, 44, 45, 46]"
+PASS,A_DR15: canonical outputs,[]
+PASS,A_DR15: run logs free of route errors,[]
+PASS,A_DR15: no teleport-based recovery,"vehicle=[0, 0, 0, 0, 0]; person=[0, 0, 0, 0, 0]"
+PASS,A_DR30: five replicate seeds,"[42, 43, 44, 45, 46]"
+PASS,A_DR30: canonical outputs,[]
+PASS,A_DR30: run logs free of route errors,[]
+PASS,A_DR30: no teleport-based recovery,"vehicle=[0, 0, 0, 0, 0]; person=[0, 0, 0, 0, 0]"
+PASS,B_OBS: five replicate seeds,"[42, 43, 44, 45, 46]"
+PASS,B_OBS: canonical outputs,[]
+PASS,B_OBS: run logs free of route errors,[]
+PASS,B_OBS: no teleport-based recovery,"vehicle=[0, 0, 0, 0, 0]; person=[0, 0, 0, 0, 0]"
+PASS,B_DR15: five replicate seeds,"[42, 43, 44, 45, 46]"
+PASS,B_DR15: canonical outputs,[]
+PASS,B_DR15: run logs free of route errors,[]
+PASS,B_DR15: no teleport-based recovery,"vehicle=[0, 0, 0, 0, 0]; person=[0, 0, 0, 0, 0]"
+PASS,B_DR30: five replicate seeds,"[42, 43, 44, 45, 46]"
+PASS,B_DR30: canonical outputs,[]
+PASS,B_DR30: run logs free of route errors,[]
+PASS,B_DR30: no teleport-based recovery,"vehicle=[0, 0, 0, 0, 0]; person=[0, 0, 0, 0, 0]"
+PASS,C_OBS: five replicate seeds,"[42, 43, 44, 45, 46]"
+PASS,C_OBS: canonical outputs,[]
+PASS,C_OBS: run logs free of route errors,[]
+PASS,C_OBS: no teleport-based recovery,"vehicle=[0, 0, 0, 0, 0]; person=[0, 0, 0, 0, 0]"
+PASS,C_DR15: five replicate seeds,"[42, 43, 44, 45, 46]"
+PASS,C_DR15: canonical outputs,[]
+PASS,C_DR15: run logs free of route errors,[]
+PASS,C_DR15: no teleport-based recovery,"vehicle=[0, 0, 0, 0, 0]; person=[0, 0, 0, 0, 0]"
+PASS,C_DR30: five replicate seeds,"[42, 43, 44, 45, 46]"
+PASS,C_DR30: canonical outputs,[]
+PASS,C_DR30: run logs free of route errors,[]
+PASS,C_DR30: no teleport-based recovery,"vehicle=[0, 0, 0, 0, 0]; person=[0, 0, 0, 0, 0]"
+PASS,C1_X0: five replicate seeds,"[42, 43, 44, 45, 46]"
+PASS,C1_X0: canonical outputs,[]
+PASS,C1_X0: run logs free of route errors,[]
+PASS,C1_X0: no teleport-based recovery,"vehicle=[0, 0, 0, 0, 0]; person=[0, 0, 0, 0, 0]"
+PASS,C1_L25: five replicate seeds,"[42, 43, 44, 45, 46]"
+PASS,C1_L25: canonical outputs,[]
+PASS,C1_L25: run logs free of route errors,[]
+PASS,C1_L25: no teleport-based recovery,"vehicle=[0, 0, 0, 0, 0]; person=[0, 0, 0, 0, 0]"
+PASS,C1_M50: five replicate seeds,"[42, 43, 44, 45, 46]"
+PASS,C1_M50: canonical outputs,[]
+PASS,C1_M50: run logs free of route errors,[]
+PASS,C1_M50: no teleport-based recovery,"vehicle=[0, 0, 0, 0, 0]; person=[0, 0, 0, 0, 0]"
+PASS,C1_H75: five replicate seeds,"[42, 43, 44, 45, 46]"
+PASS,C1_H75: canonical outputs,[]
+PASS,C1_H75: run logs free of route errors,[]
+PASS,C1_H75: no teleport-based recovery,"vehicle=[0, 0, 0, 0, 0]; person=[0, 0, 0, 0, 0]"
+PASS,OW_FULL_OBS: five replicate seeds,"[42, 43, 44, 45, 46]"
+PASS,OW_FULL_OBS: canonical outputs,[]
+PASS,OW_FULL_OBS: run logs free of route errors,[]
+PASS,OW_FULL_OBS: no teleport-based recovery,"vehicle=[0, 0, 0, 0, 0]; person=[0, 0, 0, 0, 0]"
+PASS,OW_FULL_DR15: five replicate seeds,"[42, 43, 44, 45, 46]"
+PASS,OW_FULL_DR15: canonical outputs,[]
+PASS,OW_FULL_DR15: run logs free of route errors,[]
+PASS,OW_FULL_DR15: no teleport-based recovery,"vehicle=[0, 0, 0, 0, 0]; person=[0, 0, 0, 0, 0]"
+PASS,OW_FULL_DR30: five replicate seeds,"[42, 43, 44, 45, 46]"
+PASS,OW_FULL_DR30: canonical outputs,[]
+PASS,OW_FULL_DR30: run logs free of route errors,[]
+PASS,OW_FULL_DR30: no teleport-based recovery,"vehicle=[0, 0, 0, 0, 0]; person=[0, 0, 0, 0, 0]"
+PASS,OW_REDUCED_OBS: five replicate seeds,"[42, 43, 44, 45, 46]"
+PASS,OW_REDUCED_OBS: canonical outputs,[]
+PASS,OW_REDUCED_OBS: run logs free of route errors,[]
+PASS,OW_REDUCED_OBS: no teleport-based recovery,"vehicle=[0, 0, 0, 0, 0]; person=[0, 0, 0, 0, 0]"
+PASS,OW_REDUCED_DR15: five replicate seeds,"[42, 43, 44, 45, 46]"
+PASS,OW_REDUCED_DR15: canonical outputs,[]
+PASS,OW_REDUCED_DR15: run logs free of route errors,[]
+PASS,OW_REDUCED_DR15: no teleport-based recovery,"vehicle=[0, 0, 0, 0, 0]; person=[0, 0, 0, 0, 0]"
+PASS,OW_REDUCED_DR30: five replicate seeds,"[42, 43, 44, 45, 46]"
+PASS,OW_REDUCED_DR30: canonical outputs,[]
+PASS,OW_REDUCED_DR30: run logs free of route errors,[]
+PASS,OW_REDUCED_DR30: no teleport-based recovery,"vehicle=[0, 0, 0, 0, 0]; person=[0, 0, 0, 0, 0]"
+PASS,current: all runs completion-valid,5/5
+PASS,A_OBS: all runs completion-valid,5/5
+PASS,A_DR15: all runs completion-valid,5/5
+PASS,A_DR30: all runs completion-valid,5/5
+PASS,B_OBS: all runs completion-valid,5/5
+PASS,B_DR15: all runs completion-valid,5/5
+PASS,B_DR30: all runs completion-valid,5/5
+PASS,C_OBS: all runs completion-valid,5/5
+PASS,C_DR15: all runs completion-valid,5/5
+PASS,C_DR30: all runs completion-valid,5/5
+PASS,C1_X0: all runs completion-valid,5/5
+PASS,C1_L25: all runs completion-valid,5/5
+PASS,C1_M50: all runs completion-valid,5/5
+PASS,C1_H75: all runs completion-valid,5/5
+PASS,OW_FULL_OBS: all runs completion-valid,5/5
+PASS,OW_FULL_DR15: all runs completion-valid,5/5
+PASS,OW_FULL_DR30: all runs completion-valid,5/5
+PASS,OW_REDUCED_OBS: all runs completion-valid,5/5
+PASS,OW_REDUCED_DR15: all runs completion-valid,5/5
+PASS,OW_REDUCED_DR30: all runs completion-valid,5/5
+PASS,C1 intermodal diagnostics recorded for every seed,"{'C1_X0': [0, 0, 0, 0, 0], 'C1_L25': [7, 3, 12, 2, 4], 'C1_M50': [7, 6, 7, 13, 7], 'C1_H75': [15, 8, 7, 13, 11]}"
+WARN,C1 intermodal collision diagnostics,"SUMO crossing-overlap events by seed={'C1_X0': [0, 0, 0, 0, 0], 'C1_L25': [7, 3, 12, 2, 4], 'C1_M50': [7, 6, 7, 13, 7], 'C1_H75': [15, 8, 7, 13, 11]}; these are uncalibrated interaction diagnostics, not predicted crashes"
+PASS,One-way cases have no collision diagnostics,"{'OW_FULL_OBS': [0, 0, 0, 0, 0], 'OW_FULL_DR15': [0, 0, 0, 0, 0], 'OW_FULL_DR30': [0, 0, 0, 0, 0], 'OW_REDUCED_OBS': [0, 0, 0, 0, 0], 'OW_REDUCED_DR15': [0, 0, 0, 0, 0], 'OW_REDUCED_DR30': [0, 0, 0, 0, 0]}"
+PASS,Calibration: car count,error=0.000%
+PASS,Calibration: two-wheeler count,error=0.000%
+PASS,Calibration: pedestrian persons,error=0.000%
+PASS,Calibration: large vehicles,error=0.000%
+PASS,Calibration: point-speed exceedance,target=37.0%; error=0.66 pp
+PASS,Passenger Euro-stage boundary coverage,"rows=40; cases={'current': 2, 'A_OBS': 2, 'A_DR15': 2, 'A_DR30': 2, 'B_OBS': 2, 'B_DR15': 2, 'B_DR30': 2, 'C_OBS': 2, 'C_DR15': 2, 'C_DR30': 2, 'C1_X0': 2, 'C1_L25': 2, 'C1_M50': 2, 'C1_H75': 2, 'OW_FULL_OBS': 2, 'OW_FULL_DR15': 2, 'OW_FULL_DR30': 2, 'OW_REDUCED_OBS': 2, 'OW_REDUCED_DR15': 2, 'OW_REDUCED_DR30': 2}"
+WARN,Absolute NOx fleet sensitivity,Euro-5 passenger proxy is roughly five to six times the newer proxy; scenario ordering is more robust than absolute NOx
+WARN,Scenario A numerical scope,"Bus-stop relocation is quantified; visual, lighting and sightline benefits remain qualitative because no behavior response coefficient was supplied"

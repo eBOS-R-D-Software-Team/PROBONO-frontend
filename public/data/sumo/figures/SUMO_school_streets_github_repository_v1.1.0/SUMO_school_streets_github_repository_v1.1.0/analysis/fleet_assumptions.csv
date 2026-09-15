@@ -1,0 +1,10 @@
+vehicle_group,fuel,stock_2025,share_pct,SUMO_class,evidence
+passenger car,petrol,3136259,51.1121515949879,HBEFA4/PC_petrol_Euro-6d,Statbel fuel share; Euro-stage mapping assumed
+passenger car,diesel,1699797,27.701883659705928,HBEFA4/PC_diesel_Euro-6d,Statbel fuel share; Euro-stage mapping assumed
+passenger car,hybrid,846354,13.793176504563045,HBEFA4/PC_petrol_Euro-6d,Statbel fuel share; Euro-stage mapping assumed
+passenger car,electric,395188,6.440446711996707,HBEFA4/PC_BEV,Statbel fuel share; Euro-stage mapping assumed
+passenger car,gas,24869,0.40529436440541233,HBEFA4/PC_CNG_petrol_Euro-6_(CNG),Statbel fuel share; Euro-stage mapping assumed
+passenger car,other,33567,0.547047164341006,HBEFA4/PC_petrol_Euro-6d,Statbel fuel share; Euro-stage mapping assumed
+truck_truck,proxy,,,HBEFA4/RT_le7.5t_Euro-VI_A-C,model assumption; not identified by supplied fleet source
+pt_bus,proxy,,,HBEFA4/UBus_Std_gt15-18t_Euro-VI_A-C,model assumption; not identified by supplied fleet source
+motorcycle_motorcycle,proxy,,,HBEFA4/MC_4S_gt250cc_preEuro,model assumption; not identified by supplied fleet source

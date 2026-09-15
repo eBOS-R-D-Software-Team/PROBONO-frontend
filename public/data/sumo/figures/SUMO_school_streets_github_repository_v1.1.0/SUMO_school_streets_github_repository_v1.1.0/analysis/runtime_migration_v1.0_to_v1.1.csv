@@ -1,0 +1,261 @@
+scenario,metric,unit,old_runtime,new_runtime,old_value,new_value,absolute_delta,relative_delta_pct
+current,valid replicates,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5,5,0,0.0000
+current,motorized frontage passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,8610,8610,0,0.0000
+current,frontage spot speed,km/h,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,32.65834035,32.76730202,0.1089616725,0.3336
+current,above 36 km/h,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,36.75958188,36.33914053,-0.4204413473,-1.1438
+current,CO2,kg,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,918.646546,878.085592,-40.56095406,-4.4153
+current,CO2 intensity,g/VKT,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,334.6204456,319.8459661,-14.77447946,-4.4153
+current,represented VKT,km,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,2745.33896,2745.33896,0,0.0000
+current,mean time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,21.31314789,20.86490443,-0.4482434597,-2.1031
+current,bus time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,16.19046729,6.078560748,-10.11190654,-62.4559
+current,crossing wait,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+current,slow motorized approaches,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,7.396051103,5.849012776,-1.547038328,-20.9171
+current,hard-braking passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,1592.4,1105.4,-487,-30.5828
+current,intermodal overlap diagnostics,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+A_OBS,valid replicates,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5,5,0,0.0000
+A_OBS,motorized frontage passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,8610,8610,0,0.0000
+A_OBS,frontage spot speed,km/h,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,35.24044432,35.26981631,0.02937198606,0.0833
+A_OBS,above 36 km/h,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,48.56910569,48.92682927,0.3577235772,0.7365
+A_OBS,CO2,kg,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,730.1539023,687.1404472,-43.01345507,-5.8910
+A_OBS,CO2 intensity,g/VKT,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,265.961294,250.2934819,-15.66781213,-5.8910
+A_OBS,represented VKT,km,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,2745.33896,2745.33896,0,0.0000
+A_OBS,mean time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,6.38443417,5.635920128,-0.7485140416,-11.7240
+A_OBS,bus time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,19.50983178,9.388523364,-10.12130841,-51.8780
+A_OBS,crossing wait,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+A_OBS,slow motorized approaches,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,1.335656214,0.2903600465,-1.045296167,-78.2609
+A_OBS,hard-braking passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,607.4,386.6,-220.8,-36.3517
+A_OBS,intermodal overlap diagnostics,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+A_DR15,valid replicates,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5,5,0,0.0000
+A_DR15,motorized frontage passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,7325,7325,0,0.0000
+A_DR15,frontage spot speed,km/h,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,35.88765444,35.88144819,-0.00620625256,-0.0173
+A_DR15,above 36 km/h,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,52.1556314,52.09556314,-0.06006825939,-0.1152
+A_DR15,CO2,kg,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,628.7969817,592.1484338,-36.6485479,-5.8284
+A_DR15,CO2 intensity,g/VKT,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,265.0671922,249.6181236,-15.44906857,-5.8284
+A_DR15,represented VKT,km,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,2372.21731,2372.21731,0,0.0000
+A_DR15,mean time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5.897418069,5.142796287,-0.7546217822,-12.7958
+A_DR15,bus time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,19.44039252,9.119700935,-10.32069159,-53.0889
+A_DR15,crossing wait,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+A_DR15,slow motorized approaches,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,1.103071672,0.223890785,-0.8791808874,-79.7030
+A_DR15,hard-braking passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,393.6,239.4,-154.2,-39.1768
+A_DR15,intermodal overlap diagnostics,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+A_DR30,valid replicates,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5,5,0,0.0000
+A_DR30,motorized frontage passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,6065,6065,0,0.0000
+A_DR30,frontage spot speed,km/h,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,36.39878384,36.38703116,-0.01175267931,-0.0323
+A_DR30,above 36 km/h,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,54.97444353,55.16570486,0.1912613355,0.3479
+A_DR30,CO2,kg,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,535.6617514,503.736011,-31.9257404,-5.9601
+A_DR30,CO2 intensity,g/VKT,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,266.9860943,251.0735736,-15.91252076,-5.9601
+A_DR30,represented VKT,km,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,2006.32828,2006.32828,0,0.0000
+A_DR30,mean time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5.5396261,4.74226393,-0.7973621701,-14.3938
+A_DR30,bus time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,19.27659813,8.970485981,-10.30611215,-53.4644
+A_DR30,crossing wait,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+A_DR30,slow motorized approaches,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0.6265457543,0.1154163232,-0.5111294312,-81.5789
+A_DR30,hard-braking passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,240.8,160.4,-80.4,-33.3887
+A_DR30,intermodal overlap diagnostics,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+B_OBS,valid replicates,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5,5,0,0.0000
+B_OBS,motorized frontage passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,8610,8610,0,0.0000
+B_OBS,frontage spot speed,km/h,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,29.2735016,29.26998105,-0.003520557491,-0.0120
+B_OBS,above 36 km/h,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,11.45876887,11.59117305,0.1324041812,1.1555
+B_OBS,CO2,kg,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,765.7554749,723.6352363,-42.12023863,-5.5005
+B_OBS,CO2 intensity,g/VKT,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,277.5468377,262.2804251,-15.26641261,-5.5005
+B_OBS,represented VKT,km,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,2759.01351,2759.01351,0,0.0000
+B_OBS,mean time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,6.736632568,6.002002776,-0.7346297918,-10.9050
+B_OBS,bus time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,19.74084112,9.57611215,-10.16472897,-51.4909
+B_OBS,crossing wait,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+B_OBS,slow motorized approaches,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0.2485481998,0.118466899,-0.1300813008,-52.3364
+B_OBS,hard-braking passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,243.6,198.8,-44.8,-18.3908
+B_OBS,intermodal overlap diagnostics,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+B_DR15,valid replicates,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5,5,0,0.0000
+B_DR15,motorized frontage passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,7325,7325,0,0.0000
+B_DR15,frontage spot speed,km/h,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,29.7448877,29.73628112,-0.008606580205,-0.0289
+B_DR15,above 36 km/h,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,12.81911263,12.85733788,0.03822525597,0.2982
+B_DR15,CO2,kg,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,660.5177649,624.7742771,-35.74348773,-5.4114
+B_DR15,CO2 intensity,g/VKT,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,277.0609951,262.0680202,-14.99297491,-5.4114
+B_DR15,represented VKT,km,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,2384.01571,2384.01571,0,0.0000
+B_DR15,mean time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,6.247530198,5.492760644,-0.7547695545,-12.0811
+B_DR15,bus time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,19.62300935,9.350672897,-10.27233645,-52.3484
+B_DR15,crossing wait,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+B_DR15,slow motorized approaches,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0.1392491468,0.03549488055,-0.1037542662,-74.5098
+B_DR15,hard-braking passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,152.2,124.2,-28,-18.3968
+B_DR15,intermodal overlap diagnostics,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+B_DR30,valid replicates,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5,5,0,0.0000
+B_DR30,motorized frontage passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,6065,6065,0,0.0000
+B_DR30,frontage spot speed,km/h,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,30.18975552,30.15835212,-0.03140339654,-0.1040
+B_DR30,above 36 km/h,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,14.84253916,14.77658697,-0.06595218467,-0.4443
+B_DR30,CO2,kg,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,562.7569726,532.7580318,-29.99894078,-5.3307
+B_DR30,CO2 intensity,g/VKT,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,279.1055706,264.2272627,-14.87830785,-5.3307
+B_DR30,represented VKT,km,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,2016.28714,2016.28714,0,0.0000
+B_DR30,mean time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5.860009677,5.095746921,-0.7642627566,-13.0420
+B_DR30,bus time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,19.41065421,9.123588785,-10.28706542,-52.9970
+B_DR30,crossing wait,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+B_DR30,slow motorized approaches,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0.05276174773,0.01648804617,-0.03627370157,-68.7500
+B_DR30,hard-braking passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,92.6,84.2,-8.4,-9.0713
+B_DR30,intermodal overlap diagnostics,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+C_OBS,valid replicates,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5,5,0,0.0000
+C_OBS,motorized frontage passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,8610,8610,0,0.0000
+C_OBS,frontage spot speed,km/h,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,22.38534021,22.35381742,-0.03152278746,-0.1408
+C_OBS,above 36 km/h,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0.07665505226,0.09291521487,0.0162601626,21.2121
+C_OBS,CO2,kg,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,795.2350374,760.9801568,-34.25488064,-4.3075
+C_OBS,CO2 intensity,g/VKT,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,289.6721211,277.1944466,-12.47767448,-4.3075
+C_OBS,represented VKT,km,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,2745.29366,2745.29366,0,0.0000
+C_OBS,mean time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,8.497298238,7.852361132,-0.6449371062,-7.5899
+C_OBS,bus time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,19.43454206,9.552915888,-9.881626168,-50.8457
+C_OBS,crossing wait,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+C_OBS,slow motorized approaches,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,2.864111498,2.072009292,-0.7921022067,-27.6561
+C_OBS,hard-braking passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,678.6,505,-173.6,-25.5821
+C_OBS,intermodal overlap diagnostics,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+C_DR15,valid replicates,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5,5,0,0.0000
+C_DR15,motorized frontage passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,7325,7325,0,0.0000
+C_DR15,frontage spot speed,km/h,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,22.9338489,22.90787386,-0.02597504437,-0.1133
+C_DR15,above 36 km/h,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0.1201365188,0.1146757679,-0.005460750853,-4.5455
+C_DR15,CO2,kg,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,682.6040681,653.1203065,-29.48376158,-4.3193
+C_DR15,CO2 intensity,g/VKT,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,287.7540898,275.3251089,-12.42898098,-4.3193
+C_DR15,represented VKT,km,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,2372.17851,2372.17851,0,0.0000
+C_DR15,mean time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,7.797691089,7.123048762,-0.6746423267,-8.6518
+C_DR15,bus time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,19.20084112,9.218785047,-9.982056075,-51.9876
+C_DR15,crossing wait,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+C_DR15,slow motorized approaches,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,2.055972696,1.539931741,-0.5160409556,-25.0996
+C_DR15,hard-braking passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,431.8,328.6,-103.2,-23.9000
+C_DR15,intermodal overlap diagnostics,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+C_DR30,valid replicates,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5,5,0,0.0000
+C_DR30,motorized frontage passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,6065,6065,0,0.0000
+C_DR30,frontage spot speed,km/h,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,23.40971555,23.39566932,-0.01404623248,-0.0600
+C_DR30,above 36 km/h,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0.1615828524,0.1648804617,0.003297609233,2.0408
+C_DR30,CO2,kg,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,578.4977989,553.5552801,-24.94251879,-4.3116
+C_DR30,CO2 intensity,g/VKT,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,288.3412459,275.9091209,-12.43212499,-4.3116
+C_DR30,represented VKT,km,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,2006.29569,2006.29569,0,0.0000
+C_DR30,mean time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,7.176878886,6.496479179,-0.6803997067,-9.4804
+C_DR30,bus time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,18.74940187,8.784560748,-9.964841121,-53.1475
+C_DR30,crossing wait,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+C_DR30,slow motorized approaches,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,1.447650453,1.078318219,-0.3693322341,-25.5125
+C_DR30,hard-braking passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,280.6,213.8,-66.8,-23.8061
+C_DR30,intermodal overlap diagnostics,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+C1_X0,valid replicates,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5,5,0,0.0000
+C1_X0,motorized frontage passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,8610,8610,0,0.0000
+C1_X0,frontage spot speed,km/h,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,16.16679052,16.05521226,-0.1115782578,-0.6902
+C1_X0,above 36 km/h,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+C1_X0,CO2,kg,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,994.2507203,964.9351084,-29.31561186,-2.9485
+C1_X0,CO2 intensity,g/VKT,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,349.0043848,338.7139451,-10.2904397,-2.9485
+C1_X0,represented VKT,km,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,2848.82014,2848.82014,0,0.0000
+C1_X0,mean time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,15.60329076,15.17311308,-0.4301776829,-2.7570
+C1_X0,bus time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,26.9806729,16.98448598,-9.996186916,-37.0494
+C1_X0,crossing wait,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+C1_X0,slow motorized approaches,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,11.8466899,12.48083624,0.6341463415,5.3529
+C1_X0,hard-braking passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,2562.6,2596.6,34,1.3268
+C1_X0,intermodal overlap diagnostics,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+C1_L25,valid replicates,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5,5,0,0.0000
+C1_L25,motorized frontage passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,8610,8610,0,0.0000
+C1_L25,frontage spot speed,km/h,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,15.69999805,15.51977645,-0.1802216028,-1.1479
+C1_L25,above 36 km/h,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+C1_L25,CO2,kg,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,998.9227696,970.3161636,-28.60660598,-2.8637
+C1_L25,CO2 intensity,g/VKT,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,350.6443793,340.6028166,-10.04156267,-2.8637
+C1_L25,represented VKT,km,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,2848.82014,2848.82014,0,0.0000
+C1_L25,mean time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,15.8146473,15.38949087,-0.4251564335,-2.6884
+C1_L25,bus time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,27.24734579,17.2546729,-9.992672897,-36.6739
+C1_L25,crossing wait,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0.7036649215,0.6471204188,-0.05654450262,-8.0357
+C1_L25,slow motorized approaches,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,16.33449477,17.50754936,1.173054588,7.1815
+C1_L25,hard-braking passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,2880.2,2933.8,53.6,1.8610
+C1_L25,intermodal overlap diagnostics,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,4,5.6,1.6,40.0000
+C1_M50,valid replicates,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5,5,0,0.0000
+C1_M50,motorized frontage passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,8610,8610,0,0.0000
+C1_M50,frontage spot speed,km/h,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,15.13521784,15.00300376,-0.1322140767,-0.8736
+C1_M50,above 36 km/h,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+C1_M50,CO2,kg,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,1003.79376,976.0694078,-27.7243521,-2.7620
+C1_M50,CO2 intensity,g/VKT,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,352.3542065,342.6223348,-9.7318717,-2.7620
+C1_M50,represented VKT,km,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,2848.82014,2848.82014,0,0.0000
+C1_M50,mean time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,16.07917779,15.67440897,-0.4047688201,-2.5173
+C1_M50,bus time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,27.62072897,17.37246729,-10.24826168,-37.1035
+C1_M50,crossing wait,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0.7060209424,0.662565445,-0.04345549738,-6.1550
+C1_M50,slow motorized approaches,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,20.69686411,22.6271777,1.930313589,9.3266
+C1_M50,hard-braking passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,3165,3264.2,99.2,3.1343
+C1_M50,intermodal overlap diagnostics,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,9.4,8,-1.4,-14.8936
+C1_H75,valid replicates,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5,5,0,0.0000
+C1_H75,motorized frontage passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,8610,8610,0,0.0000
+C1_H75,frontage spot speed,km/h,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,14.67120084,14.43150272,-0.2396981185,-1.6338
+C1_H75,above 36 km/h,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+C1_H75,CO2,kg,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,1009.799433,982.47268,-27.32675262,-2.7062
+C1_H75,CO2 intensity,g/VKT,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,354.4623328,344.8700275,-9.592305333,-2.7062
+C1_H75,represented VKT,km,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,2848.82014,2848.82014,0,0.0000
+C1_H75,mean time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,16.3684094,16.07752269,-0.2908867058,-1.7771
+C1_H75,bus time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,27.98760748,17.9093271,-10.07828037,-36.0098
+C1_H75,crossing wait,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0.6912739965,0.6410122164,-0.0502617801,-7.2709
+C1_H75,slow motorized approaches,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,25.32636469,27.86759582,2.541231127,10.0339
+C1_H75,hard-braking passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,3444.8,3575.2,130.4,3.7854
+C1_H75,intermodal overlap diagnostics,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,14.8,10.8,-4,-27.0270
+OW_FULL_OBS,valid replicates,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5,5,0,0.0000
+OW_FULL_OBS,motorized frontage passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,4357,4357,0,0.0000
+OW_FULL_OBS,frontage spot speed,km/h,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,31.96680028,32.06558421,0.0987839339,0.3090
+OW_FULL_OBS,above 36 km/h,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,39.7154005,39.97245811,0.2570576084,0.6472
+OW_FULL_OBS,CO2,kg,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,793.2952266,747.8611737,-45.43405292,-5.7273
+OW_FULL_OBS,CO2 intensity,g/VKT,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,445.4776828,419.964033,-25.51364982,-5.7273
+OW_FULL_OBS,represented VKT,km,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,1780.77434,1780.77434,0,0.0000
+OW_FULL_OBS,mean time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,24.78783812,22.41355088,-2.37428724,-9.5784
+OW_FULL_OBS,bus time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,16.13953271,5.792373832,-10.34715888,-64.1106
+OW_FULL_OBS,crossing wait,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+OW_FULL_OBS,slow motorized approaches,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,20.58296993,18.35207712,-2.230892816,-10.8385
+OW_FULL_OBS,hard-braking passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,1074.8,987,-87.8,-8.1690
+OW_FULL_OBS,intermodal overlap diagnostics,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+OW_FULL_DR15,valid replicates,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5,5,0,0.0000
+OW_FULL_DR15,motorized frontage passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,3717,3717,0,0.0000
+OW_FULL_DR15,frontage spot speed,km/h,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,33.64589249,33.52459274,-0.1212997579,-0.3605
+OW_FULL_DR15,above 36 km/h,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,44.16464891,43.92251816,-0.2421307506,-0.5482
+OW_FULL_DR15,CO2,kg,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,617.5736959,590.8402944,-26.73340148,-4.3288
+OW_FULL_DR15,CO2 intensity,g/VKT,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,397.3820441,380.180253,-17.20179113,-4.3288
+OW_FULL_DR15,represented VKT,km,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,1554.10569,1554.10569,0,0.0000
+OW_FULL_DR15,mean time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,17.53706262,16.51135025,-1.025712376,-5.8488
+OW_FULL_DR15,bus time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,16.05852336,5.857943925,-10.20057944,-63.5213
+OW_FULL_DR15,crossing wait,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+OW_FULL_DR15,slow motorized approaches,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,12.41861716,12.10115685,-0.3174603175,-2.5563
+OW_FULL_DR15,hard-braking passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,608.8,596,-12.8,-2.1025
+OW_FULL_DR15,intermodal overlap diagnostics,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+OW_FULL_DR30,valid replicates,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5,5,0,0.0000
+OW_FULL_DR30,motorized frontage passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,3084,3084,0,0.0000
+OW_FULL_DR30,frontage spot speed,km/h,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,34.811993,34.64770506,-0.1642879377,-0.4719
+OW_FULL_DR30,above 36 km/h,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,47.73022049,46.99740597,-0.7328145266,-1.5353
+OW_FULL_DR30,CO2,kg,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,505.7798118,485.6962164,-20.08359538,-3.9708
+OW_FULL_DR30,CO2 intensity,g/VKT,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,380.2347328,365.1363039,-15.09842889,-3.9708
+OW_FULL_DR30,represented VKT,km,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,1330.17783,1330.17783,0,0.0000
+OW_FULL_DR30,mean time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,14.5730783,13.89543167,-0.6776466276,-4.6500
+OW_FULL_DR30,bus time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,15.97964486,5.790859813,-10.18878505,-63.7610
+OW_FULL_DR30,crossing wait,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+OW_FULL_DR30,slow motorized approaches,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,9.189364462,9.293125811,0.1037613489,1.1291
+OW_FULL_DR30,hard-braking passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,406.6,396,-10.6,-2.6070
+OW_FULL_DR30,intermodal overlap diagnostics,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+OW_REDUCED_OBS,valid replicates,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5,5,0,0.0000
+OW_REDUCED_OBS,motorized frontage passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,4357,4357,0,0.0000
+OW_REDUCED_OBS,frontage spot speed,km/h,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,32.06555612,32.06159008,-0.003966031673,-0.0124
+OW_REDUCED_OBS,above 36 km/h,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,39.83015837,40,0.1698416342,0.4264
+OW_REDUCED_OBS,CO2,kg,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,912.3095163,871.0690139,-41.24050238,-4.5205
+OW_REDUCED_OBS,CO2 intensity,g/VKT,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,406.1143057,387.7561086,-18.35819718,-4.5205
+OW_REDUCED_OBS,represented VKT,km,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,2246.43531,2246.43531,0,0.0000
+OW_REDUCED_OBS,mean time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,25.47376252,23.7933008,-1.680461719,-6.5968
+OW_REDUCED_OBS,bus time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,16.0593271,5.81528972,-10.24403738,-63.7887
+OW_REDUCED_OBS,crossing wait,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+OW_REDUCED_OBS,slow motorized approaches,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,20.14229975,18.99013082,-1.152168924,-5.7201
+OW_REDUCED_OBS,hard-braking passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,1053.4,1010,-43.4,-4.1200
+OW_REDUCED_OBS,intermodal overlap diagnostics,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+OW_REDUCED_DR15,valid replicates,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5,5,0,0.0000
+OW_REDUCED_DR15,motorized frontage passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,3717,3717,0,0.0000
+OW_REDUCED_DR15,frontage spot speed,km/h,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,33.67020048,33.5369414,-0.1332590799,-0.3958
+OW_REDUCED_DR15,above 36 km/h,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,44.22921711,43.80414313,-0.4250739844,-0.9611
+OW_REDUCED_DR15,CO2,kg,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,723.0994803,693.5828657,-29.51661452,-4.0820
+OW_REDUCED_DR15,CO2 intensity,g/VKT,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,370.9827919,355.8394315,-15.14336044,-4.0820
+OW_REDUCED_DR15,represented VKT,km,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,1949.14561,1949.14561,0,0.0000
+OW_REDUCED_DR15,mean time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,18.80503045,17.76085545,-1.044175,-5.5526
+OW_REDUCED_DR15,bus time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,15.88231776,5.854392523,-10.02792523,-63.1389
+OW_REDUCED_DR15,crossing wait,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+OW_REDUCED_DR15,slow motorized approaches,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,12.19262846,12.35404896,0.1614205004,1.3239
+OW_REDUCED_DR15,hard-braking passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,600.8,600,-0.8,-0.1332
+OW_REDUCED_DR15,intermodal overlap diagnostics,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+OW_REDUCED_DR30,valid replicates,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,5,5,0,0.0000
+OW_REDUCED_DR30,motorized frontage passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,3084,3084,0,0.0000
+OW_REDUCED_DR30,frontage spot speed,km/h,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,34.82913852,34.64480545,-0.1843330739,-0.5292
+OW_REDUCED_DR30,above 36 km/h,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,47.34760052,46.9844358,-0.3631647211,-0.7670
+OW_REDUCED_DR30,CO2,kg,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,591.0991008,568.8843708,-22.21472999,-3.7582
+OW_REDUCED_DR30,CO2 intensity,g/VKT,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,356.8216168,343.4115205,-13.41009631,-3.7582
+OW_REDUCED_DR30,represented VKT,km,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,1656.56752,1656.56752,0,0.0000
+OW_REDUCED_DR30,mean time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,15.58062023,15.00011496,-0.5805052786,-3.7258
+OW_REDUCED_DR30,bus time loss,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,15.93420561,5.738074766,-10.19613084,-63.9889
+OW_REDUCED_DR30,crossing wait,s,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,
+OW_REDUCED_DR30,slow motorized approaches,%,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,9.06614786,9.079118029,0.01297016861,0.1431
+OW_REDUCED_DR30,hard-braking passages,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,407,400,-7,-1.7199
+OW_REDUCED_DR30,intermodal overlap diagnostics,count,SUMO 1.24.0 / release 1.0.0,SUMO 1.27.1 / release 1.1.0,0,0,0,

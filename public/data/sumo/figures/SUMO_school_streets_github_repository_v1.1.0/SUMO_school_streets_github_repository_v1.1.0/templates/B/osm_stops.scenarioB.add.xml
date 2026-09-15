@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
+    <busStop id="4215499889" name="ScenarioAsouth" lane="71760726_1" startPos="25.34" endPos="40.34" friendlyPos="1" lines="34">
+        <access lane="1046470163#0_0" pos="57.52" />
+        <access lane="1046470162#1_0" pos="50.17" />
+    </busStop>
+    <busStop id="4052677689" name="ScenarioAsouth" lane="71760726_1" startPos="25.34" endPos="40.34" friendlyPos="1" lines="34">
+        <access lane="1046470163#0_0" pos="57.52" />
+        <access lane="1046470162#1_0" pos="50.17" />
+    </busStop>
+    <busStop id="4215496388" name="ScenarioAnorth" lane="1046472242_1" startPos="3.75" endPos="18.75" friendlyPos="1" lines="34">
+        <access lane="1046470162#1_0" pos="64.24" />
+        <access lane="1046470163#0_0" pos="68.53" />
+    </busStop>
+    <busStop id="-4059785907" name="ScenarioAnorth" lane="1046472242_1" startPos="3.75" endPos="18.75" friendlyPos="1" lines="34">
+        <access lane="1046470162#1_0" pos="64.24" />
+        <access lane="1046470163#0_0" pos="68.53" />
+    </busStop>
+</additional>

@@ -1,0 +1,8 @@
+scenario,design,response_pct,network_scope,implemented
+EXP_CURRENT,CURRENT,0,common expanded OSM boundaries,matched expanded current condition
+OW_FULL_OBS,OW_FULL,0,common expanded OSM boundaries,eastbound general traffic; bus/bicycle counterflow; northbound Oude Molenstraat; right-hand Wavre exit; connected westbound diversion
+OW_FULL_DR15,OW_FULL,15,common expanded OSM boundaries,eastbound general traffic; bus/bicycle counterflow; northbound Oude Molenstraat; right-hand Wavre exit; connected westbound diversion
+OW_FULL_DR30,OW_FULL,30,common expanded OSM boundaries,eastbound general traffic; bus/bicycle counterflow; northbound Oude Molenstraat; right-hand Wavre exit; connected westbound diversion
+OW_REDUCED_OBS,OW_REDUCED,0,common expanded OSM boundaries,eastbound general traffic; bus/bicycle counterflow; northbound Oude Molenstraat; right-hand Wavre exit; connected westbound diversion
+OW_REDUCED_DR15,OW_REDUCED,15,common expanded OSM boundaries,eastbound general traffic; bus/bicycle counterflow; northbound Oude Molenstraat; right-hand Wavre exit; connected westbound diversion
+OW_REDUCED_DR30,OW_REDUCED,30,common expanded OSM boundaries,eastbound general traffic; bus/bicycle counterflow; northbound Oude Molenstraat; right-hand Wavre exit; connected westbound diversion

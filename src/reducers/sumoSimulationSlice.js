@@ -140,14 +140,18 @@ const parseStatistics = (xmlText) => {
 // Emissions totals from <emissions .../> children inside tripinfo entries.
 // SUMO writes absolute emission values in mg (fuel in mg on SUMO >= 1.14,
 // ml on older versions). Units confirmed as mg against the delivered package.
-// Per-vehicle values are also derived: absolute totals scale with the number
-// of vehicles that ran, so they are not comparable across scenarios on their
-// own when vehicle counts differ.
+// Also derives per-VKT intensities (per vehicle-kilometre travelled). The
+// mobility partner requires per-VKT rather than per-completed-trip, so that a
+// scenario is not made to look cleaner simply because fewer trips completed.
 const parseEmissionsFromTrips = (trips) => {
   const totals = { CO2_abs: 0, NOx_abs: 0, fuel_abs: 0, CO_abs: 0, PMx_abs: 0, HC_abs: 0 };
   let found = false;
+  let routeLengthSum = 0; // metres, for VKT
 
   trips.forEach((t) => {
+    const rl = numAttr(t, "routeLength");
+    if (rl != null) routeLengthSum += rl;
+
     const em = t.getElementsByTagName("emissions")[0];
     if (!em) return;
     Object.keys(totals).forEach((attr) => {
@@ -161,24 +165,32 @@ const parseEmissionsFromTrips = (trips) => {
 
   if (!found) return null;
 
-  const n = trips.length || 1;
+  const vkt_km = routeLengthSum / 1000; // total vehicle-kilometres travelled
+  const perVkt = (absMg, factor) =>
+    vkt_km > 0 ? round1((absMg / vkt_km) * factor) : null;
+
   const kpis = {};
 
   if (totals.CO2_abs > 0) {
     kpis.total_co2_kg = round1(totals.CO2_abs / 1e6);
-    kpis.co2_per_vehicle_g = round1(totals.CO2_abs / n / 1e3);
+    // mg per km / 1000 = g per km
+    const v = perVkt(totals.CO2_abs, 1 / 1e3);
+    if (v != null) kpis.co2_per_vkt_g_km = v;
   }
   if (totals.NOx_abs > 0) {
     kpis.total_nox_g = round1(totals.NOx_abs / 1e3);
-    kpis.nox_per_vehicle_mg = round1(totals.NOx_abs / n);
+    const v = perVkt(totals.NOx_abs, 1); // mg per km
+    if (v != null) kpis.nox_per_vkt_mg_km = v;
   }
   if (totals.fuel_abs > 0) {
     kpis.total_fuel_kg = round1(totals.fuel_abs / 1e6);
-    kpis.fuel_per_vehicle_g = round1(totals.fuel_abs / n / 1e3);
+    const v = perVkt(totals.fuel_abs, 1 / 1e3); // g per km
+    if (v != null) kpis.fuel_per_vkt_g_km = v;
   }
   if (totals.CO_abs > 0) kpis.total_co_g = round1(totals.CO_abs / 1e3);
   if (totals.PMx_abs > 0) kpis.total_pmx_g = round1(totals.PMx_abs / 1e3);
   if (totals.HC_abs > 0) kpis.total_hc_g = round1(totals.HC_abs / 1e3);
+  if (vkt_km > 0) kpis.total_vkt_km = Math.round(vkt_km);
 
   return Object.keys(kpis).length ? kpis : null;
 };
@@ -589,16 +601,35 @@ export const downloadSumoResult = createAsyncThunk(
   }
 );
 
+// Reads the release identifiers from the /execute (or /status) response.
+// The backend returns repo_version + model_version with each execution
+// (release 1.1.0 onward); these must travel with the run so results from
+// different model generations are never mixed or compared.
+const readVersions = (payload) => ({
+  repoVersion: payload?.repo_version || payload?.repository_version || null,
+  modelVersion: payload?.model_version || null,
+});
+
+// Two runs are comparable only if they come from the same model release.
+export const sameModelRelease = (a, b) =>
+  Boolean(a && b && a.repoVersion === b.repoVersion && a.modelVersion === b.modelVersion);
+
 const initialState = {
   scenario: "scenarioA",
   uuid: null,
   status: null,
   statusDetails: null,
   kpis: null,
-  // Cached KPIs from the most recent successful "baseline" run. Kept so other
-  // scenarios can be compared against the reference case without re-running it.
+  // repo_version / model_version of the CURRENT run, from the execute response.
+  runVersion: { repoVersion: null, modelVersion: null },
+  // Cached KPIs from the most recent successful "baseline" run, tagged with the
+  // model release they came from. Kept so other scenarios can be compared
+  // against the reference case without re-running it, but only within the same
+  // release: baseline from an older model must not be compared against a newer
+  // scenario run.
   baselineKpis: null,
   baselineRunAt: null,
+  baselineVersion: { repoVersion: null, modelVersion: null },
   runStartedAt: null,
   loading: false,
   statusLoading: false,
@@ -620,6 +651,7 @@ const sumoSimulationSlice = createSlice({
     clearBaselineKpis: (state) => {
       state.baselineKpis = null;
       state.baselineRunAt = null;
+      state.baselineVersion = { repoVersion: null, modelVersion: null };
     },
 
     // Reset clears the current run but deliberately keeps the cached baseline,
@@ -629,6 +661,7 @@ const sumoSimulationSlice = createSlice({
       scenario: state.scenario,
       baselineKpis: state.baselineKpis,
       baselineRunAt: state.baselineRunAt,
+      baselineVersion: state.baselineVersion,
     }),
   },
   extraReducers: (builder) => {
@@ -642,6 +675,7 @@ const sumoSimulationSlice = createSlice({
         state.status = null;
         state.statusDetails = null;
         state.kpis = null;
+        state.runVersion = { repoVersion: null, modelVersion: null };
         state.runStartedAt = Date.now();
       })
 
@@ -657,6 +691,7 @@ const sumoSimulationSlice = createSlice({
 
         state.status = action.payload?.status || "submitted";
         state.statusDetails = action.payload || null;
+        state.runVersion = readVersions(action.payload);
       })
 
       .addCase(executeSumoSimulation.rejected, (state, action) => {
@@ -710,6 +745,7 @@ const sumoSimulationSlice = createSlice({
         if (ranScenario === "baseline" && action.payload) {
           state.baselineKpis = action.payload;
           state.baselineRunAt = Date.now();
+          state.baselineVersion = { ...state.runVersion };
         }
       })
 

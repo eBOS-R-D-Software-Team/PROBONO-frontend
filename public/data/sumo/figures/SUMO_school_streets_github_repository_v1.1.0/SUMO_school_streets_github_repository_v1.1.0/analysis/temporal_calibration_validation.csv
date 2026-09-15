@@ -1,0 +1,4 @@
+mode,observed_total,detector_total,mismatched_15min_bins,absolute_bin_error_sum,maximum_absolute_bin_error,interpretation
+car,7597,7597,39,216,23,daily total exact; detector times may cross input-bin boundaries because of route travel time and queues
+large,803,803,10,10,1,daily total exact; detector times may cross input-bin boundaries because of route travel time and queues
+two_wheeler,965,965,26,38,4,daily total exact; detector times may cross input-bin boundaries because of route travel time and queues

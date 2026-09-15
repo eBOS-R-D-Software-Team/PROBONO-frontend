@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<additional xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/additional_file.xsd">
+    <inductionLoop id="school_car_dir_pos" lane="33128974#0_0" pos="39" period="900" file="school_e1.C1_X0.xml" friendlyPos="true" vTypes="veh_passenger veh_passenger_petrol_be2025 veh_passenger_diesel_be2025 veh_passenger_hybrid_be2025 veh_passenger_electric_be2025 veh_passenger_gas_be2025 veh_passenger_other_be2025" />
+    <inductionLoop id="school_car_dir_neg" lane="-33128974#0_0" pos="39" period="900" file="school_e1.C1_X0.xml" friendlyPos="true" vTypes="veh_passenger veh_passenger_petrol_be2025 veh_passenger_diesel_be2025 veh_passenger_hybrid_be2025 veh_passenger_electric_be2025 veh_passenger_gas_be2025 veh_passenger_other_be2025" />
+    <inductionLoop id="school_bike_dir_pos" lane="33128974#0_0" pos="39" period="900" file="school_e1.C1_X0.xml" friendlyPos="true" vTypes="bike_bicycle motorcycle_motorcycle" />
+    <inductionLoop id="school_bike_dir_neg" lane="-33128974#0_0" pos="39" period="900" file="school_e1.C1_X0.xml" friendlyPos="true" vTypes="bike_bicycle motorcycle_motorcycle" />
+    <inductionLoop id="school_large_dir_pos" lane="33128974#0_0" pos="39" period="900" file="school_e1.C1_X0.xml" friendlyPos="true" vTypes="truck_truck bus_bus pt_bus" />
+    <inductionLoop id="school_large_dir_neg" lane="-33128974#0_0" pos="39" period="900" file="school_e1.C1_X0.xml" friendlyPos="true" vTypes="truck_truck bus_bus pt_bus" />
+    <inductionLoop id="school_bicycle_dir_pos" lane="33128974#0_0" pos="39" period="900" file="school_e1.C1_X0.xml" friendlyPos="true" vTypes="bike_bicycle" />
+    <inductionLoop id="school_motorcycle_dir_pos" lane="33128974#0_0" pos="39" period="900" file="school_e1.C1_X0.xml" friendlyPos="true" vTypes="motorcycle_motorcycle" />
+    <inductionLoop id="school_bicycle_dir_neg" lane="-33128974#0_0" pos="39" period="900" file="school_e1.C1_X0.xml" friendlyPos="true" vTypes="bike_bicycle" />
+    <inductionLoop id="school_motorcycle_dir_neg" lane="-33128974#0_0" pos="39" period="900" file="school_e1.C1_X0.xml" friendlyPos="true" vTypes="motorcycle_motorcycle" />
+</additional>

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='utf-8'?>
+<sumoConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/sumoConfiguration.xsd">
+    <input>
+        <net-file value="osm.net.xml.gz" />
+        <route-files value="osm_pt.schoolcal.rou.xml,                         osm.bike_moto.trips.schoolcal.xml,                         osm.passenger.trips.schoolcal.be2025.xml,                         osm.pedestrian.rou.schoolcal.xml,                         osm.truck.trips.schoolcal.valid.xml" />
+        <additional-files value="osm.poly.xml.gz,osm_stops.add.xml,output.schoolcal.all.add.xml,school_loops.schoolcal.all.add.xml" />
+    </input>
+    <output>
+        <tripinfo-output value="tripinfos.baseline.xml" />
+        <personinfo-output value="personinfos.baseline.xml" />
+        <stop-output value="stopinfos.baseline.xml" />
+        <statistic-output value="stats.baseline.xml" />
+    </output>
+    <time>
+        <begin value="0" />
+        <end value="86400" />
+    </time>
+    <emissions>
+        <device.emissions.probability value="1.0" />
+    </emissions>
+    <processing>
+        <ignore-route-errors value="false" />
+        <tls.actuated.jam-threshold value="30" />
+    </processing>
+    <routing>
+        <device.rerouting.adaptation-steps value="18" />
+        <device.rerouting.adaptation-interval value="10" />
+    </routing>
+    <report>
+        <verbose value="true" />
+        <duration-log.statistics value="true" />
+        <no-step-log value="true" />
+    </report>
+    <gui_only>
+        <gui-settings-file value="osm.view.xml" />
+    </gui_only>
+    <random_number>
+        <seed value="42" />
+    </random_number>
+</sumoConfiguration>

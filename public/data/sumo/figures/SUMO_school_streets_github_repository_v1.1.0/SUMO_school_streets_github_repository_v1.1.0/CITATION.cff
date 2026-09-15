@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "Please cite the associated article and the archived repository release."
+title: "Evidence-aligned SUMO school-street scenarios for the PROBONO Brussels Living Lab"
+type: software
+authors:
+  - family-names: Lygerakis
+    given-names: Filippos
+version: 1.1.0
+date-released: 2026-08-14
+abstract: >-
+  Calibrated SUMO baseline, intervention scenarios, sensitivity experiments,
+  validation outputs and documentation for a school-corridor mobility study
+  in Auderghem, Brussels.
+keywords:
+  - SUMO
+  - school street
+  - traffic microsimulation
+  - road safety
+  - shared space
+  - PROBONO
