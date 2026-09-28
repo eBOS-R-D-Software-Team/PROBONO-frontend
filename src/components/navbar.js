@@ -63,12 +63,6 @@ const Navbar = ({ onPressSideMenuToggle }) => {
           <div id="navbar-menu">
             <ul className="nav navbar-nav">
               <li>
-                <Link to="/notifications" className="icon-menu">
-                  <i className="icon-bell"></i>
-                  <span className="notification-dot"></span>
-                </Link>
-              </li>
-              <li>
                 <Link to="/" className="icon-menu">
                   <i className="icon-home"></i>
                 </Link>
