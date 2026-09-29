@@ -1,64 +1,220 @@
-/* Navigation */
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
 
 /* Top Nav Bar */
 .navbar-fixed-top {
     position: fixed !important;
     top: 0;
     left: 0;
+
     width: 100%;
     height: 75px;
-    background: #fff; // Assuming $col-white is white
+
+    background: #fff;
+
     z-index: 99;
+
     padding: 0;
-    border-bottom: 1px solid #e0e0e0; // Assuming $grey-300 is light grey
+
+    border-bottom: 1px solid #e0e0e0;
+
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+
+
+    /* =====================================================
+       SIDE MENU BUTTON
+       ===================================================== */
 
     .navbar-btn {
         display: none;
         float: left;
+
         padding: 0;
 
         button {
             font-size: 20px;
+
             padding-left: 0;
-            line-height: .7;
+
+            line-height: 0.7;
+
             border: none;
+
             background: none;
+
             outline: none;
         }
     }
 
+
+    /* =====================================================
+       LOGO
+       ===================================================== */
+
     .navbar-brand {
         padding: 15px 0;
+
         position: relative;
 
         img {
             width: 98px;
+
             vertical-align: top;
+
             margin-top: -11px;
             margin-left: 53px;
         }
     }
 
+
+    /* =====================================================
+       RIGHT NAVBAR AREA
+       ===================================================== */
+
     .navbar-right {
         width: calc(100% - 250px);
 
-        #navbar-search {
-            float: left;
-            margin-right: 20px;
-            margin-top: 6px;
+        position: relative;
 
-            .form-control {
-                padding-left: 20px;
-                height: 40px;
+        height: 75px;
+
+
+        /* =================================================
+           SEARCH
+           ================================================= */
+
+        #navbar-search {
+            position: absolute;
+
+            /*
+             * Center the search inside the available navbar
+             * area instead of floating it to the right.
+             */
+            left: 50%;
+            top: 50%;
+
+            transform: translate(-50%, -50%);
+
+            width: 600px;
+
+            margin: 0;
+            padding: 0;
+
+            display: flex;
+            align-items: center;
+
+            background: #fff;
+
+            border: 1px solid #dfe3e8;
+            border-radius: 7px;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+
+
+            &:focus-within {
+                border-color: #69b990;
+
+                box-shadow:
+                    0 0 0 3px rgba(55, 178, 118, 0.10);
             }
 
-            i {
-                font-size: 12px;
+
+            /* Search input */
+
+            .form-control {
+                width: 100%;
+
+                height: 38px;
+
+                padding: 0 45px 0 15px;
+
+                border: none !important;
+
+                border-radius: 7px;
+
+                background: transparent;
+
+                box-shadow: none !important;
+
+                outline: none;
+
+                font-size: 13px;
+
+                color: #374151;
+
+
+                &::placeholder {
+                    color: #9ca3af;
+                }
+
+
+                &:focus {
+                    outline: none;
+
+                    box-shadow: none;
+                }
+            }
+
+
+            /* Search button */
+
+            .btn {
+                position: absolute;
+
+                right: 2px;
+                top: 50%;
+
+                transform: translateY(-50%);
+
+                width: 38px;
+                height: 34px;
+
+                padding: 0;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                border: none;
+
+                border-radius: 6px;
+
+                background: transparent;
+
+                box-shadow: none;
+
+                cursor: pointer;
+
+
+                &:hover {
+                    background: #f4f7f5;
+                }
+
+
+                &:focus {
+                    outline: none;
+                }
+
+
+                i {
+                    font-size: 14px;
+
+                    color: #667085;
+                }
             }
         }
 
+
+        /* =================================================
+           RIGHT ICONS
+           ================================================= */
+
         .navbar-nav {
             display: inline-block;
+
             > li {
                 display: inline-block;
             }
@@ -66,32 +222,388 @@
     }
 }
 
+
+/* =========================================================
+   NAVBAR RIGHT MENU
+   ========================================================= */
+
+#navbar-menu {
+    float: right;
+
+    height: 75px;
+
+    display: flex;
+    align-items: center;
+}
+
+
+/* =========================================================
+   HOME / LOGOUT ICONS
+   ========================================================= */
+
 .navbar-nav {
     margin: 0;
     margin-right: 15px;
 
+
     .icon-menu {
-        display: inline-block;
-        padding: 15px;
+        width: 42px;
+        height: 42px;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 0;
+
         position: relative;
+
+        border-radius: 6px;
+
+        text-decoration: none;
+
+        cursor: pointer;
+
+        transition: background-color 0.15s ease;
+
 
         i {
             font-size: 18px;
-            color: #616161; // Assuming $grey-700 is dark grey
+
+            color: #616161;
+
+            transition: color 0.15s ease;
         }
 
-        .notification-dot {
-            border-radius: 50%;
-            width: 8px;
-            height: 8px;
-            position: absolute;
-            top: 12px;
-            right: 7px;
-            background-color: #000; // Assuming $col-dark is black
+
+        &:hover {
+            background: #f4f7f5;
+
+            i {
+                color: #31b778;
+            }
+        }
+
+
+        &:focus {
+            outline: none;
         }
     }
 }
 
-#navbar-menu {
-    float: right;
+
+/* =========================================================
+   SEARCH RESULTS DROPDOWN
+   ========================================================= */
+
+.navbar-search-results {
+    position: absolute;
+
+    /*
+     * Relative to #navbar-search.
+     * Appears directly underneath the search field.
+     */
+    top: calc(100% + 8px);
+    left: 0;
+
+    width: 100%;
+    min-width: 400px;
+
+    max-height: 420px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.10),
+        0 3px 8px rgba(0, 0, 0, 0.04);
+
+    z-index: 9999;
+
+
+    /* Scrollbar */
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+
+    &::-webkit-scrollbar-thumb {
+        background: #d1d5db;
+
+        border-radius: 10px;
+    }
+
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: #9ca3af;
+    }
+}
+
+
+/* =========================================================
+   SEARCH RESULT
+   ========================================================= */
+
+.navbar-search-result {
+    width: 100%;
+
+    min-height: 58px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 10px 14px;
+
+    border: none;
+    border-bottom: 1px solid #f0f0f0;
+
+    background: #ffffff;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        padding-left 0.15s ease;
+
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+
+    &:hover {
+        background: #f4faf7;
+
+        padding-left: 17px;
+    }
+
+
+    &:focus {
+        outline: none;
+
+        background: #f4faf7;
+    }
+}
+
+
+/* =========================================================
+   RESULT ICON
+   ========================================================= */
+
+.navbar-search-result-icon {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-right: 12px;
+
+    border-radius: 7px;
+
+    background: #eef8f3;
+
+
+    i {
+        font-size: 13px;
+
+        color: #31b778;
+    }
+}
+
+
+/* =========================================================
+   RESULT TEXT
+   ========================================================= */
+
+.navbar-search-result-content {
+    flex: 1;
+
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.navbar-search-result-title {
+    display: block;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    line-height: 19px;
+
+    color: #30343b;
+}
+
+
+.navbar-search-result-category {
+    display: block;
+
+    margin-top: 2px;
+
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+
+    font-size: 11px;
+
+    font-weight: 400;
+
+    color: #8b929c;
+}
+
+
+/* =========================================================
+   RESULT ARROW
+   ========================================================= */
+
+.navbar-search-result-arrow {
+    flex-shrink: 0;
+
+    margin-left: 10px;
+
+    font-size: 19px;
+
+    font-weight: 300;
+
+    color: #b0b5bb;
+
+    transition:
+        color 0.15s ease,
+        transform 0.15s ease;
+}
+
+
+.navbar-search-result:hover {
+
+    .navbar-search-result-arrow {
+        color: #31b778;
+
+        transform: translateX(2px);
+    }
+}
+
+
+/* =========================================================
+   NO RESULTS
+   ========================================================= */
+
+.navbar-search-no-results {
+    padding: 18px 15px;
+
+    background: #ffffff;
+
+    text-align: center;
+
+    font-size: 12px;
+
+    color: #7a8088;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+    .navbar-fixed-top {
+
+        .navbar-right {
+
+            #navbar-search {
+                width: 320px;
+            }
+        }
+    }
+
+    .navbar-search-results {
+        min-width: 360px;
+    }
+}
+
+
+@media (max-width: 992px) {
+
+    .navbar-fixed-top {
+
+        .navbar-btn {
+            display: block;
+        }
+
+
+        .navbar-brand {
+
+            img {
+                margin-left: 20px;
+            }
+        }
+
+
+        .navbar-right {
+
+            #navbar-search {
+                width: 280px;
+            }
+        }
+    }
+
+
+    .navbar-search-results {
+        min-width: 320px;
+    }
+}
+
+
+@media (max-width: 768px) {
+
+    .navbar-fixed-top {
+
+        .navbar-right {
+
+            #navbar-search {
+                width: 220px;
+            }
+        }
+    }
+
+
+    .navbar-search-results {
+        width: 300px;
+
+        min-width: 300px;
+
+        left: 50%;
+
+        transform: translateX(-50%);
+    }
 }
