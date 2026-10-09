@@ -1,4 +1,14 @@
 node_modules
 build
+coverage
+.git
+.gitignore
 .dockerignore
 Dockerfile
+docker-compose.yml
+k8s-files
+README.md
+*.log
+.DS_Store
+.env.local
+.env.*.local

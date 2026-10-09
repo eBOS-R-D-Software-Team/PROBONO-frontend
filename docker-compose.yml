@@ -1,0 +1,8 @@
+services:
+  probono-frontend:
+    build: .
+    image: probono-frontend:latest
+    container_name: probono-frontend
+    ports:
+      - "8080:80"
+    restart: unless-stopped

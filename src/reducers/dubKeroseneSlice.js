@@ -2,9 +2,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const API_URL   = 'https://data-platform.cds-probono.eu/query?pretty=true';
-const AUTH_TOKEN =
-  'b0klR_Peek7Uzj3Ap4FBDwMsSzr00v14LnLWR9Dp8_mXfT8fbGBiu77DhnDW3-oe8KwCK5nvnociYjfEqKd8-g==';
+const API_URL = `${process.env.REACT_APP_INFLUX_BASE}/query?pretty=true`;
+const AUTH_TOKEN = process.env.REACT_APP_INFLUX_TOKEN;
 
 /** Fetch Dublin Kerosene rows between two ISO timestamps (inclusive). */
 export const fetchDubKeroseneData = createAsyncThunk(

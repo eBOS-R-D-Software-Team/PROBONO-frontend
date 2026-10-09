@@ -1,6 +1,25 @@
 
 # Probono HMI Deployment Guide
 
+## 🐳 Run with Docker
+
+```bash
+cp .env.example .env              # then fill in the token values (ask the team)
+docker compose up --build -d      # http://localhost:8080
+# or
+docker build -t probono-frontend .
+docker run -d -p 8080:80 probono-frontend
+```
+
+- Multi-stage build: `node:20` runs `npm ci` + `npm run build`, `nginx:alpine` serves `build/`.
+- `npm ci` is required — it keeps `@kitware/vtk.js` pinned to 29.7.1 via `package-lock.json`.
+- `REACT_APP_*` values come from `.env` **at build time** and are baked into the bundle; rebuild the image to change them.
+- `.env` is not committed. In GitLab CI, store its contents as a **File**-type CI/CD variable (e.g. `PROBONO_ENV`) and run `cp "$PROBONO_ENV" .env` before `docker build`. The build stops with an error if `.env` is missing.
+- The build needs ~6 GB RAM. On Docker Desktop, raise the memory limit if the build exits with "process exited too early".
+- Health check endpoint: `GET /healthz` → `200 ok`.
+
+---
+
 This guide provides instructions to deploy the React application as a static website on a Linux VM (Ubuntu 24.04) using NGINX.
 
 ---
