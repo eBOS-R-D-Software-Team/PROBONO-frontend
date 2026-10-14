@@ -270,113 +270,229 @@ const parseStopCountOnly = (xmlText) => {
   return { avg_stop_count: Math.round((total / trips.length) * 100) / 100 };
 };
 
-// E1 induction-loop detector -> per-interval time series (flow / speed / occupancy).
-// Aggregates across detector ids that share the same `begin` time.
-const parseE1 = (xmlText) => {
+/* ------------------------------------------------------------------ */
+/* Time-of-day handling                                                */
+/*                                                                     */
+/* Per the mobility partner: simulation second 0 corresponds to 00:00  */
+/* clock time and the run spans 0-86400s (24:00). Simulation seconds    */
+/* are formatted DIRECTLY as HH:MM with no UTC/local-time conversion.   */
+/* Only the daytime window 07:00-20:00 is presented, i.e. intervals     */
+/* with 25200 <= begin < 72000. Series are aggregated to whole clock    */
+/* hours (07:00 ... 19:00) and the view draws them as stepped lines     */
+/* (no smoothing), each step covering the hour it labels.               */
+/* ------------------------------------------------------------------ */
+
+const DAY_START_S = 25200; // 07:00
+const DAY_END_S = 72000; // 20:00 (exclusive)
+const HOUR_S = 3600;
+
+const DAYTIME_WINDOW_LABEL = "Daytime only · 07:00–20:00 (simulation clock)";
+const TIME_AXIS_LABEL = "Time of day";
+
+// Format simulation seconds directly as HH:MM (no timezone conversion).
+const secondsToClock = (sec) => {
+  const s = Math.max(0, Math.floor(sec));
+  const h = Math.floor(s / 3600);
+  const m = Math.floor((s % 3600) / 60);
+  return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
+};
+
+const inDaytime = (beginS) =>
+  beginS != null && beginS >= DAY_START_S && beginS < DAY_END_S;
+
+const hourBinStart = (beginS) => Math.floor(beginS / HOUR_S) * HOUR_S;
+
+// The fixed hourly clock axis for the daytime window: 07:00 ... 19:00.
+const buildDaytimeHours = () => {
+  const starts = [];
+  for (let t = DAY_START_S; t < DAY_END_S; t += HOUR_S) starts.push(t);
+  return starts;
+};
+
+// Motorized school-frontage detectors (both directions). Bicycles and the
+// bike-lane detectors are deliberately excluded so the headline volume series
+// counts motor vehicles only, matching the validated "frontage motorized
+// passages" KPI (verified: full-day sum of nVehContrib = 8610 on baseline).
+const MOTORIZED_DETECTORS = new Set([
+  "school_car_dir_pos",
+  "school_car_dir_neg",
+  "school_large_dir_pos",
+  "school_large_dir_neg",
+  "school_motorcycle_dir_pos",
+  "school_motorcycle_dir_neg",
+]);
+
+// E1 induction-loop detector -> hourly daytime series for the school frontage:
+//   - motorized passages per hour (sum of nVehContrib over the motorized
+//     detectors, both directions) -> headline traffic-volume series,
+//   - frontage mean speed (km/h, nVehContrib-weighted),
+//   - frontage occupancy (%).
+// Returns { hours, passages, speedKmh, occupancy } on the daytime hour grid,
+// or null if the detector carries no usable daytime data.
+const parseE1Hourly = (xmlText) => {
   const doc = parseXml(xmlText);
   if (!doc) return null;
 
   const intervals = Array.from(doc.getElementsByTagName("interval"));
-  if (intervals.length < 2) return null;
+  if (!intervals.length) return null;
 
-  const byTime = new Map();
+  const hours = buildDaytimeHours();
+  const idx = new Map(hours.map((h, i) => [h, i]));
+  const passages = hours.map(() => 0);
+  const speedW = hours.map(() => 0);
+  const speedWN = hours.map(() => 0);
+  const occSum = hours.map(() => 0);
+  const occN = hours.map(() => 0);
+  let sawMotorized = false;
+
   intervals.forEach((iv) => {
     const begin = numAttr(iv, "begin");
-    if (begin == null) return;
+    if (!inDaytime(begin)) return;
+    if (!MOTORIZED_DETECTORS.has(iv.getAttribute("id"))) return;
 
-    if (!byTime.has(begin)) {
-      byTime.set(begin, { flow: 0, speedW: 0, contrib: 0, occ: 0, occN: 0 });
-    }
-    const b = byTime.get(begin);
+    const i = idx.get(hourBinStart(begin));
+    if (i == null) return;
+    sawMotorized = true;
 
-    const flow = numAttr(iv, "flow");
-    if (flow != null) b.flow += flow;
+    const n = numAttr(iv, "nVehContrib") || 0;
+    passages[i] += n;
 
-    const contrib = numAttr(iv, "nVehContrib") || 0;
     const sp = numAttr(iv, "speed");
-    if (sp != null && sp >= 0) {
-      const w = contrib || 1;
-      b.speedW += sp * w;
-      b.contrib += w;
+    if (sp != null && sp >= 0 && n > 0) {
+      speedW[i] += sp * n; // m/s weighted by passages
+      speedWN[i] += n;
     }
 
     const occ = numAttr(iv, "occupancy");
     if (occ != null) {
-      b.occ += occ;
-      b.occN += 1;
+      occSum[i] += occ;
+      occN[i] += 1;
     }
   });
 
-  const times = Array.from(byTime.keys()).sort((a, b) => a - b);
-  if (times.length < 2) return null;
+  if (!sawMotorized) return null;
 
-  const time_s = [];
-  const flow_veh_h = [];
-  const mean_speed_m_s = [];
-  const occupancy_pct = [];
-
-  times.forEach((t) => {
-    const b = byTime.get(t);
-    time_s.push(t);
-    flow_veh_h.push(round1(b.flow));
-    mean_speed_m_s.push(b.contrib > 0 ? round1(b.speedW / b.contrib) : null);
-    occupancy_pct.push(b.occN > 0 ? round1(b.occ / b.occN) : null);
-  });
-
-  return { time_s, flow_veh_h, mean_speed_m_s, occupancy_pct };
+  return {
+    hours,
+    passages: passages.map((v) => Math.round(v)),
+    // m/s -> km/h
+    speedKmh: speedW.map((w, i) => (speedWN[i] > 0 ? round1((w / speedWN[i]) * 3.6) : null)),
+    occupancy: occSum.map((v, i) => (occN[i] > 0 ? round1(v / occN[i]) : null)),
+  };
 };
 
-// edge mean-data -> network-wide per-interval time series.
-const parseEdgeData = (xmlText) => {
+// edge mean-data -> hourly daytime "edge-exit events per hour" (sum of SUMO
+// `left` across edges). This is a network-wide throughput DIAGNOSTIC, kept
+// alongside the detector volume as a secondary series, not the headline.
+const parseEdgeExitHourly = (xmlText) => {
   const doc = parseXml(xmlText);
   if (!doc) return null;
 
   const intervals = Array.from(doc.getElementsByTagName("interval"));
-  if (intervals.length < 2) return null;
+  if (!intervals.length) return null;
 
-  const time_s = [];
-  const mean_speed_m_s = [];
-  const mean_density = [];
-  const vehicles_left = [];
+  const hours = buildDaytimeHours();
+  const idx = new Map(hours.map((h, i) => [h, i]));
+  const left = hours.map(() => 0);
+  let saw = false;
 
   intervals.forEach((iv) => {
     const begin = numAttr(iv, "begin");
-    const edges = Array.from(iv.getElementsByTagName("edge"));
+    if (!inDaytime(begin)) return;
+    const i = idx.get(hourBinStart(begin));
+    if (i == null) return;
 
-    let speedW = 0;
-    let sampled = 0;
-    let densSum = 0;
-    let densN = 0;
     let leftSum = 0;
-
-    edges.forEach((e) => {
-      const s = numAttr(e, "sampledSeconds") || 0;
-      const sp = numAttr(e, "speed");
-      if (sp != null && s > 0) {
-        speedW += sp * s;
-        sampled += s;
+    let found = false;
+    Array.from(iv.getElementsByTagName("edge")).forEach((e) => {
+      const v = numAttr(e, "left");
+      if (v != null) {
+        leftSum += v;
+        found = true;
       }
-      const d = numAttr(e, "density");
-      if (d != null) {
-        densSum += d;
-        densN += 1;
-      }
-      const left = numAttr(e, "left");
-      if (left != null) leftSum += left;
     });
-
-    time_s.push(begin);
-    mean_speed_m_s.push(sampled > 0 ? round1(speedW / sampled) : null);
-    mean_density.push(densN > 0 ? round1(densSum / densN) : null);
-    vehicles_left.push(leftSum);
+    if (found) {
+      left[i] += leftSum;
+      saw = true;
+    }
   });
 
-  return { time_s, mean_speed_m_s, mean_density, vehicles_left };
+  if (!saw) return null;
+  return { hours, edgeExits: left.map((v) => Math.round(v)) };
 };
 
-const hasSeries = (ts) =>
-  ts &&
-  Object.values(ts).some((v) => Array.isArray(v) && v.length >= 2);
+// Assemble the daytime hourly time-series payload consumed by the view.
+// Shape (mode "clock-hourly"):
+//   { mode, window, xTitle, xLabels:[HH:MM], series:[{key,label,data,role,unit,direction}] }
+// `role`: "primary" (frontage measurement) | "diagnostic" (network-wide proxy).
+const buildClockHourlySeries = (e1, edge) => {
+  if (!e1 && !edge) return null;
+  const hours = (e1 || edge).hours;
+  const xLabels = hours.map(secondsToClock);
+  const series = [];
+
+  if (e1) {
+    series.push({
+      key: "motorized_passages_per_h",
+      label: "School-frontage motorized passages per hour",
+      data: e1.passages,
+      role: "primary",
+      unit: "veh/h",
+      direction: "neutral",
+    });
+    if (e1.speedKmh.some((v) => v != null)) {
+      series.push({
+        key: "frontage_mean_speed_kmh",
+        label: "Frontage mean speed",
+        data: e1.speedKmh,
+        role: "primary",
+        unit: "km/h",
+        direction: "lower",
+      });
+    }
+    if (e1.occupancy.some((v) => v != null)) {
+      series.push({
+        key: "frontage_occupancy_pct",
+        label: "Frontage detector occupancy",
+        data: e1.occupancy,
+        role: "primary",
+        unit: "%",
+        direction: "neutral",
+      });
+    }
+  }
+
+  if (edge) {
+    series.push({
+      key: "edge_exit_events_per_h",
+      label: "Edge-exit events per hour (network diagnostic)",
+      data: edge.edgeExits,
+      role: "diagnostic",
+      unit: "events/h",
+      direction: "neutral",
+    });
+  }
+
+  if (!series.length) return null;
+
+  return {
+    mode: "clock-hourly",
+    window: DAYTIME_WINDOW_LABEL,
+    xTitle: TIME_AXIS_LABEL,
+    xLabels,
+    series,
+  };
+};
+
+// True when a time-series payload actually carries drawable data, for either
+// the structured "clock-hourly" shape or the legacy per-field arrays shape.
+const hasSeries = (ts) => {
+  if (!ts) return false;
+  if (ts.mode === "clock-hourly") {
+    return Array.isArray(ts.series) && ts.series.some((s) => Array.isArray(s.data) && s.data.length >= 2);
+  }
+  return Object.values(ts).some((v) => Array.isArray(v) && v.length >= 2);
+};
 
 // Unzip the result package and turn it into { kpis, timeseries, _files }.
 // SUMO output files here are XML but use a non-.xml extension (e.g.
@@ -429,17 +545,20 @@ const parseResultZip = async (blob) => {
     if (sc) Object.assign(result.kpis, sc);
   }
 
-  // --- time series: summary -> edge mean-data -> E1 detector ---
-  if (summaryName) {
+  // --- time series --------------------------------------------------
+  // Primary: the school-frontage detector, aggregated to whole clock hours
+  // over the daytime window (07:00-20:00). The headline is motorized
+  // passages per hour; the network-wide edge-exit count (if the edge mean-
+  // data file is present) is attached as a labelled secondary diagnostic.
+  // Legacy per-step summary output is used only if no detector is available.
+  const e1Hourly = e1Name ? parseE1Hourly(await readFile(e1Name)) : null;
+  const edgeHourly = edgeName ? parseEdgeExitHourly(await readFile(edgeName)) : null;
+  const clockHourly = buildClockHourlySeries(e1Hourly, edgeHourly);
+
+  if (hasSeries(clockHourly)) {
+    result.timeseries = clockHourly;
+  } else if (summaryName) {
     const series = parseSummary(await readFile(summaryName));
-    if (hasSeries(series)) result.timeseries = series;
-  }
-  if (!hasSeries(result.timeseries) && edgeName) {
-    const series = parseEdgeData(await readFile(edgeName));
-    if (hasSeries(series)) result.timeseries = series;
-  }
-  if (!hasSeries(result.timeseries) && e1Name) {
-    const series = parseE1(await readFile(e1Name));
     if (hasSeries(series)) result.timeseries = series;
   }
 

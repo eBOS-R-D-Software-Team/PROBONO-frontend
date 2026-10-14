@@ -1,4 +1,4 @@
-// src/views/SumoSimulation.jsx
+// src/views/SumoSimulation.js
 
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -51,6 +51,7 @@ import {
 } from "../reducers/sumoSimulationSlice";
 
 import ValidatedComparison from "./Validatedcomparison";
+import SUMO_RELEASE from "../data/sumo/release";
 
 ChartJS.register(
   CategoryScale,
@@ -82,19 +83,28 @@ const ERROR_STATUSES = ["failed", "error", "aborted", "crashed"];
 // package `frontend_content_handover.md`, so the platform wording matches the
 // study documentation rather than being paraphrased.
 // `id`     = technical string sent to /execute. Confirmed working against the
-//            backend; "D small" is an internal name only, displayed as
-//            "Scenario D" per Filippos's instruction.
+//            backend. The former "D small" internal name is not shown; the
+//            one-way option is presented as "Scenario D: Full one-way option"
+//            and scenarioC is presented as "C0" per the frontend handover.
 // `label`  = user-facing name shown in the dropdown.
 // `status` = modelling status label, exactly as specified in the handover.
+// Scenario IDs (one-way) that are modelled only at the school frontage. For
+// these the live comparison is restricted to frontage indicators: onward
+// private diversion leaves the modelled boundary, so network totals (trip
+// time, VKT, total emissions) would be misleading beside the full-demand
+// cases. See KpiSection's frontage-only filtering.
+const FRONTAGE_ONLY_SCENARIOS = new Set(["scenarioD", "scenarioE"]);
+
 const SCENARIOS = [
   {
     id: "baseline",
     label: "Baseline",
-    title: "Baseline",
-    summary: "Official calibrated reference case for the school corridor.",
+    title: "Baseline: calibrated current condition",
+    summary:
+      "Sensor-aligned 24-hour reference for the school corridor on 1 October 2025.",
     details: [
-      "Matches the school sensor day for cars, bikes+moto, and pedestrians.",
-      "Used as the comparison reference for all KPI charts.",
+      "Calibrated to the raw school-sensor day for cars, bikes+moto and pedestrians.",
+      "Used as the reference case for the live comparison (single seed-42 run).",
     ],
     status: "Reference baseline",
     statusLevel: "reference",
@@ -102,70 +112,70 @@ const SCENARIOS = [
   {
     id: "scenarioA",
     label: "Scenario A",
-    title: "Scenario A: Enhanced 30 km/h Zone",
+    title: "Scenario A: Enhanced 30 km/h zone",
     summary:
-      "Low-cost enhancement of the existing 30 km/h school zone through clearer operation and stronger visibility.",
+      "Relocates both Line 34 bus stops toward Émile Idiersstraat while keeping the existing 30 km/h network.",
     details: [
-      "Improves the reading of the school zone without a major street rebuild.",
-      "Best presented as an operational and visibility upgrade rather than a geometric redesign.",
+      "Quantitatively represented through the bus-stop relocation on the existing 30 km/h layout.",
+      "Markings, lighting and visibility measures are documented qualitatively and are not literal model objects.",
     ],
-    status: "Official scenario",
+    status: "Official scenario · Partial quantitative representation",
     statusLevel: "official",
   },
   {
     id: "scenarioB",
     label: "Scenario B",
-    title: "Scenario B: 30 km/h Zone With Chicane",
+    title: "Scenario B: 30 km/h zone with chicane",
     summary:
-      "Medium-intensity calming scenario that keeps the 30 km/h zone but introduces a chicane.",
+      "Adds explicit chicane geometry mid-corridor and relocates both bus stops, within the 30 km/h zone.",
     details: [
-      "Adds stronger geometric slowing than Scenario A.",
-      "Keeps the corridor motor-accessible while increasing driver attention.",
+      "The central chicane is modelled with a provisional 25 km/h effective-speed proxy.",
+      "Parking capacity and displaced parking demand are out of scope and are not modelled.",
     ],
-    status: "Official scenario",
+    status: "Official scenario · Operational proxy",
     statusLevel: "official",
   },
   {
     id: "scenarioC",
-    label: "Scenario C",
-    title: "Scenario C: Shared Space",
+    label: "Scenario C0",
+    title: "Scenario C0: 20 km/h shared-space operational proxy",
     summary:
-      "High-impact shared-space concept with low speed and stronger pedestrian priority.",
+      "Represents the low-speed and public-transport components of the shared-space proposal under full observed demand.",
     details: [
-      "Represents the strongest public-space reallocation concept in the study.",
-      "Presented as the best stable SUMO proxy of a shared space, not a literal free-crossing public-realm model.",
+      "A 20 km/h operational proxy for the shared-space concept — the best stable SUMO representation available.",
+      "Continuous cross-anywhere pedestrian movement, surface elevation and parking removal are not literal model objects.",
     ],
-    status: "Official scenario with modeling limits",
+    status: "Official scenario · Proxy",
     statusLevel: "limits",
-    note: "Scenario C is the best stable SUMO proxy of the shared-space concept. It should not be read as a literal model of pedestrians moving freely anywhere along the whole frontage.",
+    note: "Scenario C0 is a 20 km/h operational proxy for the shared space. It should not be read as a literal model of pedestrians moving freely anywhere along the whole frontage.",
   },
   {
     id: "scenarioD",
     label: "Scenario D",
-    title: "Scenario D small: One-Way Option A",
+    title: "Scenario D: Full one-way option",
     summary:
-      "Small-area proxy of one-way option A with bus and bicycle counterflow.",
+      "Private traffic is eastbound-only to Tervuursesteenweg; buses and bicycles keep counterflow, and eastbound cars turn right at the east boundary.",
     details: [
-      "Represents the corridor-level one-way idea from the concept figure.",
-      "Should not be presented as a full network circulation reconstruction.",
+      "A supplementary corridor experiment built from the concept figure, reported at the school frontage.",
+      "Onward private diversion outside the corridor is not modelled, so neighbourhood-wide time, congestion and emissions are not estimated.",
     ],
-    status: "Proxy scenario",
+    status: "Supplementary corridor experiment · Frontage only",
     statusLevel: "proxy",
-    note: "Scenario D small and Scenario E are local one-way proxies. Their lower delay and lower emissions do not mean the whole wider area necessarily performs better. In the small modeled area, some motor traffic is assumed to leave the study area after the one-way restrictions are applied.",
+    note: "D/E results describe the modelled school corridor. Onward private-traffic diversion is outside the model, so these outputs do not establish neighbourhood-wide changes in travel time, congestion or emissions. The live comparison therefore shows frontage indicators only — no total-route travel time, VKT or total emissions.",
   },
   {
     id: "scenarioE",
     label: "Scenario E",
-    title: "Scenario E: Reduced One-Way Option B",
+    title: "Scenario E: Reduced one-way option",
     summary:
-      "Small-area proxy of the reduced one-way option B with bus and bicycle counterflow.",
+      "The private one-way restriction ends at Bergagegaarde; eastbound traffic continues to the Tervuursesteenweg right turn, while buses and bicycles keep counterflow.",
     details: [
-      "Represents the reduced one-way idea on a shorter corridor section.",
-      "Should also be presented as a local proxy, not a full circulation reconstruction.",
+      "A shorter-section variant of the one-way experiment, also reported at the school frontage.",
+      "Westbound diversion after Bergagegaarde is outside the modelled boundary.",
     ],
-    status: "Proxy scenario",
+    status: "Supplementary corridor experiment · Frontage only",
     statusLevel: "proxy",
-    note: "Scenario D small and Scenario E are local one-way proxies. Their lower delay and lower emissions do not mean the whole wider area necessarily performs better. In the small modeled area, some motor traffic is assumed to leave the study area after the one-way restrictions are applied.",
+    note: "D/E results describe the modelled school corridor. Onward private-traffic diversion is outside the model, so these outputs do not establish neighbourhood-wide changes in travel time, congestion or emissions. The live comparison therefore shows frontage indicators only — no total-route travel time, VKT or total emissions.",
   },
 ];
 
@@ -211,6 +221,23 @@ const LABEL_OVERRIDES = {
   total_vkt_km: "Total VKT (km)",
   mean_density: "Mean density (veh/km)",
   avg_stop_count: "Avg stops per trip",
+  // vehicleTripStatistics count = completed motor-vehicle trips (excludes
+  // bicycles; 8,610 on the reviewed baseline), distinct from the 9,365
+  // vehicles loaded/inserted which include bicycles.
+  total_vehicles: "Completed motorized trips",
+  vehicles_inserted: "Vehicles inserted (incl. bicycles)",
+  // Network-wide trip average, distinct from the frontage spot speed reported
+  // in the validated comparison; labelled explicitly to avoid confusion.
+  avg_speed_kmh: "Mean trip speed, network (km/h)",
+  avg_trip_duration_s: "Mean trip duration (s)",
+  avg_route_length_m: "Mean route length (m)",
+  avg_waiting_time_s: "Mean waiting time (s)",
+  avg_time_loss_s: "Mean time loss (s)",
+  avg_depart_delay_s: "Mean depart delay (s)",
+  // SUMO collision/overlap outputs are simulation diagnostics, not predicted
+  // crashes or a measured safety benefit.
+  collisions: "SUMO collision diagnostics",
+  teleports: "Teleports (SUMO diagnostic)",
   // SUMO's "left" = vehicles that left the edge during the interval, i.e.
   // throughput, not vehicles remaining in the network.
   vehicles_left: "Vehicles leaving edges (throughput)",
@@ -348,6 +375,12 @@ const extractScalars = (payload) => {
 };
 
 // Time-series -> line charts. Tolerates null gaps (SUMO "no data" sentinels).
+// Normalizes two payload shapes into one object:
+//   { mode, window, xLabel, xValues, series:[{key,label,values,color,role,unit,direction}] }
+// 1. "clock-hourly" (current parser): frontage detector aggregated to whole
+//    clock hours over the daytime window; x is HH:MM strings, series carry a
+//    role ("primary" | "diagnostic") and unit.
+// 2. legacy per-field numeric arrays (summary fallback): auto-detect the x.
 const extractSeries = (payload) => {
   if (!payload || typeof payload !== "object") return null;
 
@@ -358,6 +391,30 @@ const extractSeries = (payload) => {
 
   if (!ts) return null;
 
+  // --- structured clock-hourly shape -------------------------------------
+  if (ts.mode === "clock-hourly" && Array.isArray(ts.series)) {
+    const series = ts.series
+      .filter((s) => Array.isArray(s.data) && s.data.some((n) => isNumber(n)))
+      .map((s, i) => ({
+        key: s.key,
+        label: s.label,
+        values: s.data,
+        unit: s.unit || "",
+        role: s.role || "primary",
+        direction: s.direction || "neutral",
+        color: CHART_PALETTE[i % CHART_PALETTE.length],
+      }));
+    if (!series.length) return null;
+    return {
+      mode: "clock-hourly",
+      window: ts.window || null,
+      xLabel: ts.xTitle || "Time of day",
+      xValues: ts.xLabels || [],
+      series,
+    };
+  }
+
+  // --- legacy per-field arrays shape -------------------------------------
   const arrayFields = Object.entries(ts).filter(
     ([, v]) =>
       Array.isArray(v) &&
@@ -377,6 +434,8 @@ const extractSeries = (payload) => {
   const [xKey, xValues] = xEntry;
 
   return {
+    mode: "legacy",
+    window: null,
     xLabel: prettyLabel(xKey),
     xValues,
     series: arrayFields
@@ -385,12 +444,17 @@ const extractSeries = (payload) => {
         key: k,
         label: prettyLabel(k),
         values,
+        unit: "",
+        role: "primary",
+        direction: "neutral",
         color: CHART_PALETTE[i % CHART_PALETTE.length],
       })),
   };
 };
 
-const lineOptions = (xLabel, yLabel) => ({
+// `stepped` draws the hourly series as flat steps (no smoothing), as required
+// for the daytime clock-hour view; legacy series keep gentle smoothing.
+const lineOptions = (xLabel, yLabel, { stepped = false } = {}) => ({
   responsive: true,
   maintainAspectRatio: false,
   interaction: { mode: "index", intersect: false },
@@ -401,7 +465,7 @@ const lineOptions = (xLabel, yLabel) => ({
   scales: {
     x: {
       title: { display: true, text: xLabel },
-      ticks: { maxTicksLimit: 12, autoSkip: true },
+      ticks: { maxTicksLimit: stepped ? 13 : 12, autoSkip: true },
       grid: { display: false },
     },
     y: {
@@ -423,6 +487,12 @@ const formatElapsed = (ms) => {
 /* KPI section                                                         */
 /* ------------------------------------------------------------------ */
 
+// For a frontage-only (one-way D/E) live run, network and trip-total scalars
+// omit onward private diversion and would mislead beside full-demand cases.
+// Only SUMO diagnostics (collision / teleport) are kept as scalar cards; the
+// frontage signal is carried by the detector time-series instead.
+const isFrontageSafeScalar = (key) => /collision|teleport/i.test(String(key));
+
 const KpiSection = ({
   kpis,
   kpisLoading,
@@ -433,6 +503,7 @@ const KpiSection = ({
   isBaselineRun,
   baselineStale,
   versionLabel,
+  frontageOnly = false,
   onDownload,
 }) => {
   if (kpisLoading) {
@@ -467,7 +538,13 @@ const KpiSection = ({
 
   if (!kpis) return null;
 
-  const scalars = extractScalars(kpis);
+  const allScalars = extractScalars(kpis);
+  // For one-way D/E runs, drop network/trip-total scalars that omit onward
+  // diversion; keep only frontage-safe diagnostics.
+  const scalars = frontageOnly
+    ? allScalars.filter((s) => isFrontageSafeScalar(s.key))
+    : allScalars;
+  const hiddenFrontageCount = frontageOnly ? allScalars.length - scalars.length : 0;
   const series = extractSeries(kpis);
   const files = Array.isArray(kpis._files) ? kpis._files : [];
 
@@ -479,7 +556,7 @@ const KpiSection = ({
     });
   }
   const canCompare =
-    !isBaselineRun && Object.keys(baselineScalars).length > 0;
+    !isBaselineRun && !frontageOnly && Object.keys(baselineScalars).length > 0;
 
   // Absolute totals (emissions, fuel) scale with how many vehicles actually
   // ran, and SUMO's trip averages cover completed trips only. If the vehicle
@@ -530,6 +607,20 @@ const KpiSection = ({
         <Alert severity="warning">{limitationNote}</Alert>
       )}
 
+      {frontageOnly && (
+        <Alert severity="info">
+          D/E results describe the modelled school corridor. Onward
+          private-traffic diversion is outside the model, so these outputs do not
+          establish neighbourhood-wide changes in travel time, congestion or
+          emissions. Total-route travel time, VKT and emissions are therefore not
+          shown here and are not compared against baseline
+          {hiddenFrontageCount > 0
+            ? ` (${hiddenFrontageCount} network/total indicator${hiddenFrontageCount === 1 ? "" : "s"} withheld).`
+            : "."}{" "}
+          The daytime profile below reports the school frontage.
+        </Alert>
+      )}
+
       {scalars.length > 0 && (
         <Box>
           <Stack
@@ -559,12 +650,26 @@ const KpiSection = ({
                 sx={{ borderColor: "rgba(44,182,125,0.5)" }}
               />
             )}
+            <Chip
+              size="small"
+              label="Single simulation run — seed 42"
+              variant="outlined"
+              sx={{ color: "text.secondary", ml: "auto" }}
+            />
+            {SUMO_RELEASE?.sumoVersion && (
+              <Chip
+                size="small"
+                label={`SUMO ${SUMO_RELEASE.sumoVersion}`}
+                variant="outlined"
+                sx={{ color: "text.secondary" }}
+              />
+            )}
             {versionLabel && (
               <Chip
                 size="small"
                 label={versionLabel}
                 variant="outlined"
-                sx={{ color: "text.secondary", ml: "auto" }}
+                sx={{ color: "text.secondary" }}
               />
             )}
           </Stack>
@@ -578,7 +683,7 @@ const KpiSection = ({
             </Alert>
           )}
 
-          {!isBaselineRun && !canCompare && !baselineStale && (
+          {!isBaselineRun && !canCompare && !baselineStale && !frontageOnly && (
             <Alert severity="info" sx={{ mb: 2, py: 0.5 }}>
               Run the baseline scenario once to enable comparison. Results are
               kept for this session.
@@ -662,51 +767,76 @@ const KpiSection = ({
         </Box>
       )}
 
-      {series && series.series.length > 0 && (
-        <Box>
-          <Typography variant="subtitle1" fontWeight={700} sx={{ mb: 1.5 }}>
-            Time series
-          </Typography>
-          <Box
-            sx={{
-              display: "grid",
-              gridTemplateColumns: "1fr",
-              gap: 2,
-            }}
-          >
-            {series.series.map((s) => (
-              <Card key={s.key} variant="outlined" sx={{ borderRadius: 2 }}>
-                <CardContent>
-                  <Typography variant="subtitle2" sx={{ mb: 1 }}>
-                    {s.label}
-                  </Typography>
-                  <Box sx={{ height: { xs: 280, md: 380 } }}>
-                    <Line
-                      data={{
-                        labels: series.xValues,
-                        datasets: [
-                          {
-                            label: s.label,
-                            data: s.values,
-                            borderColor: s.color,
-                            backgroundColor: `${s.color}22`,
-                            fill: true,
-                            tension: 0.3,
-                            pointRadius: 0,
-                            borderWidth: 2,
-                            spanGaps: true,
-                          },
-                        ],
-                      }}
-                      options={lineOptions(series.xLabel, s.label)}
-                    />
-                  </Box>
-                </CardContent>
-              </Card>
-            ))}
+      {series && series.series.length > 0 && (() => {
+        const isClock = series.mode === "clock-hourly";
+        const primary = series.series.filter((s) => s.role !== "diagnostic");
+        const diagnostic = series.series.filter((s) => s.role === "diagnostic");
+
+        const renderChart = (s) => (
+          <Card key={s.key} variant="outlined" sx={{ borderRadius: 2 }}>
+            <CardContent>
+              <Typography variant="subtitle2" sx={{ mb: 0.25 }}>
+                {s.label}
+                {s.unit ? ` (${s.unit})` : ""}
+              </Typography>
+              {s.role === "diagnostic" && (
+                <Typography variant="caption" color="text.secondary" sx={{ display: "block", mb: 0.5 }}>
+                  Secondary diagnostic. This series counts vehicles repeatedly as
+                  they traverse successive edges, so it is not a count of vehicles
+                  at the school. Shown for context only; the frontage volume above
+                  is the headline measure.
+                </Typography>
+              )}
+              <Box sx={{ height: { xs: 280, md: 360 } }}>
+                <Line
+                  data={{
+                    labels: series.xValues,
+                    datasets: [
+                      {
+                        label: s.label,
+                        data: s.values,
+                        borderColor: s.color,
+                        backgroundColor: `${s.color}22`,
+                        fill: !isClock,
+                        // Daytime clock view: flat hourly steps, no smoothing.
+                        stepped: isClock ? "middle" : false,
+                        tension: isClock ? 0 : 0.3,
+                        pointRadius: isClock ? 2 : 0,
+                        borderWidth: 2,
+                        borderDash: s.role === "diagnostic" ? [6, 4] : undefined,
+                        spanGaps: true,
+                      },
+                    ],
+                  }}
+                  options={lineOptions(series.xLabel, `${s.label}${s.unit ? ` (${s.unit})` : ""}`, {
+                    stepped: isClock,
+                  })}
+                />
+              </Box>
+            </CardContent>
+          </Card>
+        );
+
+        return (
+          <Box>
+            <Typography variant="subtitle1" fontWeight={700} sx={{ mb: 0.5 }}>
+              {isClock ? "Daytime profile" : "Time series"}
+            </Typography>
+            {isClock && (
+              <Alert severity="info" icon={false} sx={{ mb: 1.5, py: 0.5 }}>
+                Results represent the modelled daytime traffic demand. Overnight
+                traffic demand is not represented. Times are the simulation clock
+                (second 0 = 00:00) shown as whole-hour steps over 07:00–20:00; the
+                headline volume is motorized passages at the school frontage.
+              </Alert>
+            )}
+            <Box sx={{ display: "grid", gridTemplateColumns: "1fr", gap: 2 }}>
+              {primary.map(renderChart)}
+              {diagnostic.map(renderChart)}
+            </Box>
           </Box>
-        </Box>
-      )}
+        );
+      })()}
     </Stack>
   );
 };
@@ -751,6 +881,8 @@ const SumoSimulation = () => {
     SCENARIOS.find((s) => s.id === (statusDetails?.scenario || scenario)) || null;
 
   const isBaselineRun = ranScenario?.id === "baseline";
+  // One-way corridor experiments (D/E) are reported at the school frontage only.
+  const frontageOnly = FRONTAGE_ONLY_SCENARIOS.has(ranScenario?.id);
 
   // The cached baseline is only usable for comparison if it came from the same
   // model release as the current run. Otherwise it is stale and must not be
@@ -1206,6 +1338,7 @@ const SumoSimulation = () => {
                     isBaselineRun={isBaselineRun}
                     baselineStale={baselineStale}
                     versionLabel={versionLabel}
+                    frontageOnly={frontageOnly}
                     onDownload={handleDownloadResult}
                   />
                 </>

@@ -1,4 +1,4 @@
-// src/views/ValidatedComparison.jsx
+// src/views/Validatedcomparison.js
 //
 // The authoritative validated-results surface, driven entirely by the bundled
 // release CSVs (five-seed means). Deliberately separate from the live
@@ -57,7 +57,16 @@ import {
   DR_BASES,
   ALL_KPIS,
   SUMO_RELEASE,
+  STUDY_OVERVIEW_FIGURE,
+  STUDY_OVERVIEW_ALT,
 } from "../data/sumo/validatedResults";
+
+// Shared interpretation note for the KPI charts, per the mobility partner:
+// speed / traffic-presence indicators inform school-frontage safety but are not
+// crash predictions, and higher delay can accompany a successful calming
+// measure while lower emissions alone do not indicate a safety benefit.
+const SHARED_SAFETY_NOTE =
+  "Speed and traffic-presence indicators support the assessment of school-frontage safety; they do not predict crashes.";
 
 // Accessible palette (blue / orange / purple family + neutrals). No red/green.
 const PALETTE = ["#2F6FA8", "#E0A458", "#7A5EA6", "#4B8B7F", "#B0668F", "#6B7280"];
@@ -72,8 +81,12 @@ const fmt = (value, decimals = 1) => {
   });
 };
 
-// Direction of change vs a reference, expressed with glyph + word (never colour
-// alone). "lower"/"higher" say which way is *better* for that KPI.
+// Direction of change vs a reference. Per the mobility partner, the WORD is
+// always the factual direction ("higher" / "lower"), never an evaluative
+// "better" / "worse": increased vehicle delay can accompany a successful
+// calming measure, and lower emissions alone do not indicate a safety benefit.
+// The tone (colour) still reflects which way is desirable for that KPI, but is
+// never the only signal (glyph + word always accompany it).
 const describeChange = (pct, direction) => {
   if (pct == null || Math.abs(pct) < 0.05) {
     return { glyph: "\u2192", word: "no change", tone: "neutral" };
@@ -84,7 +97,7 @@ const describeChange = (pct, direction) => {
   else if (direction === "higher") tone = up ? "better" : "worse";
   return {
     glyph: up ? "\u2191" : "\u2193",
-    word: tone === "neutral" ? (up ? "higher" : "lower") : tone,
+    word: up ? "higher" : "lower",
     tone,
   };
 };
@@ -286,11 +299,13 @@ const KpiBarChart = ({ kpi, rows }) => {
           {kpi.label}
           {kpi.unit ? ` (${kpi.unit})` : ""}
         </Typography>
-        <Typography variant="caption" color="text.secondary">
-          {kpi.direction === "lower"
-            ? "Lower is better"
+        <Typography variant="caption" color="text.secondary" sx={{ display: "block" }}>
+          {kpi.subtitle
+            ? kpi.subtitle
+            : kpi.direction === "lower"
+            ? "Lower values support the objective"
             : kpi.direction === "higher"
-            ? "Higher is better"
+            ? "Higher values support the objective"
             : "Context indicator"}
         </Typography>
         <Box sx={{ height: 260, mt: 1 }}>
@@ -382,7 +397,7 @@ const REQUIRED_NOTICES = [
   },
   {
     key: "oneway",
-    text: "D/E results describe the school frontage. Private traffic diverted beyond the closure leaves the modeled boundary, so neighbourhood-wide time, congestion and emissions are not estimated.",
+    text: "D/E results describe the modelled school corridor. Onward private-traffic diversion is outside the model, so these outputs do not establish neighbourhood-wide changes in travel time, congestion or emissions.",
   },
   {
     key: "safety",
@@ -413,7 +428,7 @@ const METHOD_SECTIONS = [
     points: [
       "A/B/C0 built from the road-safety report text.",
       "D and E built from concept figures as local corridor proxies.",
-      "C1 and demand-response cases are validated sensitivities, not executable scenarios.",
+      "C1 and demand-response cases are validated sensitivities, executable in the repository but not available in the live scenario selector.",
     ],
   },
   {
@@ -463,6 +478,7 @@ const ValidatedComparison = () => {
   const [tab, setTab] = useState(0);
   const [drBase, setDrBase] = useState(DR_BASES[0].prefix);
   const [showMethod, setShowMethod] = useState(false);
+  const [showOverview, setShowOverview] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -534,6 +550,43 @@ const ValidatedComparison = () => {
         figures and are independent of the live single-run tool above.
       </Typography>
 
+      {/* Study overview (the multi-scenario intervention map). Kept here as an
+          overview section rather than on the Baseline card. */}
+      {STUDY_OVERVIEW_FIGURE && (
+        <Box sx={{ mb: 2 }}>
+          <Button
+            size="small"
+            variant="outlined"
+            onClick={() => setShowOverview((v) => !v)}
+            endIcon={showOverview ? <SlArrowDown /> : <SlArrowRight />}
+            sx={TOGGLE_BUTTON_SX}
+          >
+            {showOverview ? "Hide study overview" : "Show study overview"}
+          </Button>
+          <Collapse in={showOverview}>
+            <Card variant="outlined" sx={{ borderRadius: 2, mt: 1 }}>
+              <CardContent sx={{ p: 1.5 }}>
+                <Typography variant="subtitle2" fontWeight={700} sx={{ mb: 1 }}>
+                  Study intervention overview
+                </Typography>
+                <Box
+                  component="img"
+                  src={`${FIG_BASE}/${STUDY_OVERVIEW_FIGURE}`}
+                  alt={STUDY_OVERVIEW_ALT}
+                  sx={{ width: "100%", height: "auto", display: "block", borderRadius: 1 }}
+                  loading="lazy"
+                />
+                {STUDY_OVERVIEW_ALT && (
+                  <Typography variant="caption" color="text.secondary" sx={{ display: "block", mt: 1 }}>
+                    {STUDY_OVERVIEW_ALT}
+                  </Typography>
+                )}
+              </CardContent>
+            </Card>
+          </Collapse>
+        </Box>
+      )}
+
       {invalidPrimary.length > 0 && (
         <Alert severity="warning" sx={{ mb: 2 }}>
           The following scenarios did not pass validation and are shown without
@@ -580,6 +633,10 @@ const ValidatedComparison = () => {
             ))}
           </Box>
 
+          <Alert severity="info" icon={false} sx={{ py: 0.5 }}>
+            {SHARED_SAFETY_NOTE}
+          </Alert>
+
           <Divider />
           <Typography variant="subtitle1" fontWeight={700}>
             Change vs baseline
@@ -622,6 +679,9 @@ const ValidatedComparison = () => {
                     <KpiBarChart key={kpi.key} kpi={kpi} rows={rows} />
                   ))}
                 </Box>
+                <Alert severity="info" icon={false} sx={{ py: 0.5 }}>
+                  {SHARED_SAFETY_NOTE}
+                </Alert>
                 <Divider />
                 <Typography variant="subtitle1" fontWeight={700}>
                   Frontage change vs baseline
@@ -637,9 +697,10 @@ const ValidatedComparison = () => {
       {tab === 2 && (
         <Stack spacing={4}>
           <Alert severity="info">
-            These are validated sensitivity analyses from the official CSVs. They
-            are not executable scenarios and are not part of the live simulation
-            selector above.
+            These are validated sensitivity analyses from the official CSVs.
+            They are executable in the repository but are intentionally
+            presented only as validated results here — they are not available in
+            the live scenario selector above.
           </Alert>
 
           {/* C1 pedestrian-interaction sensitivity */}

@@ -85,6 +85,7 @@ const KPI = {
     decimals: 0,
     direction: "neutral",
     scope: "frontage",
+    subtitle: "Traffic presence: fewer motorized passages at the school",
   },
   spotSpeed: {
     key: "frontage_spot_motorized_mean_speed_kmh_mean_valid",
@@ -94,6 +95,7 @@ const KPI = {
     decimals: 1,
     direction: "lower", // lower speed at a school frontage is the safety goal
     scope: "frontage",
+    subtitle: "School-frontage speed control: lower speeds support the calming objective",
   },
   over36: {
     key: "frontage_spot_motorized_over_36_pct_mean_valid",
@@ -103,6 +105,7 @@ const KPI = {
     decimals: 1,
     direction: "lower",
     scope: "frontage",
+    subtitle: "Speed control: lower means fewer high-speed passages",
   },
   busPassages: {
     key: "frontage_fcd_bus_passages_mean_valid",
@@ -112,6 +115,7 @@ const KPI = {
     decimals: 0,
     direction: "neutral",
     scope: "frontage",
+    subtitle: "Public transport: bus service presence at the school frontage",
   },
   busTimeLoss: {
     key: "bus_mean_time_loss_s_mean_valid",
@@ -121,6 +125,7 @@ const KPI = {
     decimals: 1,
     direction: "lower",
     scope: "frontage",
+    subtitle: "Public transport: lower means less bus delay",
   },
   co2PerVkm: {
     key: "CO2_g_per_vkm_mean_valid",
@@ -130,6 +135,7 @@ const KPI = {
     decimals: 1,
     direction: "lower",
     scope: "full",
+    subtitle: "Environment: lower means less tailpipe CO\u2082 per kilometre",
   },
   co2Total: {
     key: "CO2_kg_mean_valid",
@@ -152,11 +158,12 @@ const KPI = {
   timeLoss: {
     key: "mean_time_loss_s_mean_valid",
     sd: "mean_time_loss_s_sd_valid",
-    label: "Mean time loss",
+    label: "Mean vehicle time loss",
     unit: "s",
     decimals: 1,
     direction: "lower",
     scope: "full",
+    subtitle: "Traffic operation: lower means less vehicle delay",
   },
 };
 
@@ -199,9 +206,12 @@ export const VALIDATED_SCENARIOS = [
     group: "primary",
     comparison: "full",
     note: "Sensor-aligned 24-hour school-corridor reference for 1 October 2025.",
-    figure: "scenario_implementation_overview.png",
-    figureAlt:
-      "Schematic of the school corridor between Émile Idiersstraat and Tervuursesteenweg, showing the school frontage and the modeled study boundary used as the baseline reference.",
+    // The multi-scenario intervention overview is NOT the baseline schematic;
+    // it is presented separately as a study overview (see STUDY_OVERVIEW_FIGURE)
+    // rather than on the Baseline card. A dedicated baseline schematic can be
+    // dropped in here (figure/figureAlt) when the mobility partner provides one.
+    figure: null,
+    figureAlt: null,
   },
   {
     csvId: "A_OBS",
@@ -319,5 +329,12 @@ export const readValidity = (table, csvId) => {
     teleports: asNumber(row.teleports_mean_all),
   };
 };
+
+// Study-level intervention overview (all scenarios on one schematic). Shown in
+// its own overview section, NOT as the baseline schematic. Served from
+// public/data/sumo/figures/.
+export const STUDY_OVERVIEW_FIGURE = "scenario_implementation_overview.png";
+export const STUDY_OVERVIEW_ALT =
+  "Study overview: the school corridor between Émile Idiersstraat and Tervuursesteenweg with the modelled study boundary, showing where the A–E interventions apply along the frontage.";
 
 export { SUMO_RELEASE };
