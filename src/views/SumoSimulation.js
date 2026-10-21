@@ -46,7 +46,6 @@ import {
   fetchSumoKpis,
   downloadSumoResult,
   resetSumoSimulation,
-  clearBaselineKpis,
   sameModelRelease,
 } from "../reducers/sumoSimulationSlice";
 
@@ -106,7 +105,7 @@ const SCENARIOS = [
       "Calibrated to the raw school-sensor day for cars, bikes+moto and pedestrians.",
       "Used as the reference case for the live comparison (single seed-42 run).",
     ],
-    status: "Reference baseline",
+    status: "Reference",
     statusLevel: "reference",
   },
   {
@@ -119,7 +118,7 @@ const SCENARIOS = [
       "Quantitatively represented through the bus-stop relocation on the existing 30 km/h layout.",
       "Markings, lighting and visibility measures are documented qualitatively and are not literal model objects.",
     ],
-    status: "Official scenario · Partial quantitative representation",
+    status: "Primary report scenario · Partial quantitative representation",
     statusLevel: "official",
   },
   {
@@ -132,7 +131,7 @@ const SCENARIOS = [
       "The central chicane is modelled with a provisional 25 km/h effective-speed proxy.",
       "Parking capacity and displaced parking demand are out of scope and are not modelled.",
     ],
-    status: "Official scenario · Operational proxy",
+    status: "Primary report scenario · Operational proxy",
     statusLevel: "official",
   },
   {
@@ -145,7 +144,7 @@ const SCENARIOS = [
       "A 20 km/h operational proxy for the shared-space concept — the best stable SUMO representation available.",
       "Continuous cross-anywhere pedestrian movement, surface elevation and parking removal are not literal model objects.",
     ],
-    status: "Official scenario · Proxy",
+    status: "Primary report scenario · Proxy",
     statusLevel: "limits",
     note: "Scenario C0 is a 20 km/h operational proxy for the shared space. It should not be read as a literal model of pedestrians moving freely anywhere along the whole frontage.",
   },
@@ -159,7 +158,7 @@ const SCENARIOS = [
       "A supplementary corridor experiment built from the concept figure, reported at the school frontage.",
       "Onward private diversion outside the corridor is not modelled, so neighbourhood-wide time, congestion and emissions are not estimated.",
     ],
-    status: "Supplementary corridor experiment · Frontage only",
+    status: "Supplementary corridor experiment",
     statusLevel: "proxy",
     note: "D/E results describe the modelled school corridor. Onward private-traffic diversion is outside the model, so these outputs do not establish neighbourhood-wide changes in travel time, congestion or emissions. The live comparison therefore shows frontage indicators only — no total-route travel time, VKT or total emissions.",
   },
@@ -173,7 +172,7 @@ const SCENARIOS = [
       "A shorter-section variant of the one-way experiment, also reported at the school frontage.",
       "Westbound diversion after Bergagegaarde is outside the modelled boundary.",
     ],
-    status: "Supplementary corridor experiment · Frontage only",
+    status: "Supplementary corridor experiment",
     statusLevel: "proxy",
     note: "D/E results describe the modelled school corridor. Onward private-traffic diversion is outside the model, so these outputs do not establish neighbourhood-wide changes in travel time, congestion or emissions. The live comparison therefore shows frontage indicators only — no total-route travel time, VKT or total emissions.",
   },
@@ -232,7 +231,7 @@ const LABEL_OVERRIDES = {
   avg_trip_duration_s: "Mean trip duration (s)",
   avg_route_length_m: "Mean route length (m)",
   avg_waiting_time_s: "Mean waiting time (s)",
-  avg_time_loss_s: "Mean time loss (s)",
+  avg_time_loss_s: "Mean vehicle time loss (s)",
   avg_depart_delay_s: "Mean depart delay (s)",
   // SUMO collision/overlap outputs are simulation diagnostics, not predicted
   // crashes or a measured safety benefit.
@@ -274,33 +273,12 @@ const formatValue = (value) => {
 
 /* --- Baseline comparison -------------------------------------------- */
 
-// For a delta to be labelled an improvement we need to know which direction is
-// "good" for each indicator. Anything not listed is shown as a neutral change.
-const LOWER_IS_BETTER = [
-  "duration",
-  "waiting",
-  "timeloss",
-  "time_loss",
-  "delay",
-  "teleport",
-  "collision",
-  "halting",
-  "stop_count",
-  "density",
-  "co2",
-  "nox",
-  "fuel",
-  "emission",
-];
-
-const HIGHER_IS_BETTER = ["speed", "flow", "inserted", "arrived", "completed"];
-
-const matches = (key, list) => {
-  const k = String(key).toLowerCase();
-  return list.some((token) => k.includes(token));
-};
-
-// Returns { pct, direction } where direction is "good" | "bad" | "neutral".
+// Change vs baseline is reported FACTUALLY ("higher" / "lower"), never as
+// good/bad and never colour-coded red/green. Per the mobility partner, higher
+// vehicle delay can accompany a successful calming measure and lower speed is
+// the calming objective, so an evaluative colour would mislead; the handover
+// accessibility rules also exclude red/green encoding. Same convention as the
+// change tables in the validated view.
 const computeDelta = (key, value, baselineValue) => {
   if (!isNumber(value) || !isNumber(baselineValue) || baselineValue === 0) {
     return null;
@@ -308,19 +286,8 @@ const computeDelta = (key, value, baselineValue) => {
 
   const pct = ((value - baselineValue) / Math.abs(baselineValue)) * 100;
 
-  // Treat sub-0.05% moves as unchanged to avoid noisy colouring.
-  if (Math.abs(pct) < 0.05) {
-    return { pct: 0, direction: "neutral", baselineValue };
-  }
-
-  let direction = "neutral";
-  if (matches(key, LOWER_IS_BETTER)) {
-    direction = pct < 0 ? "good" : "bad";
-  } else if (matches(key, HIGHER_IS_BETTER)) {
-    direction = pct > 0 ? "good" : "bad";
-  }
-
-  return { pct, direction, baselineValue };
+  // Treat sub-0.05% moves as unchanged.
+  return { pct: Math.abs(pct) < 0.05 ? 0 : pct, baselineValue };
 };
 
 const formatPct = (pct) => {
@@ -330,11 +297,15 @@ const formatPct = (pct) => {
   return `${pct > 0 ? "+" : "−"}${shown}%`;
 };
 
-const DELTA_COLOR = {
-  good: "#249C6A",
-  bad: "#C0392B",
-  neutral: "#6B7280",
+// Glyph + magnitude + direction word, e.g. "↑ 2.3% higher".
+const formatChange = (pct) => {
+  if (pct === 0) return "→ no change";
+  const abs = Math.abs(pct);
+  const shown = abs >= 10 ? Math.round(abs) : Math.round(abs * 10) / 10;
+  return `${pct > 0 ? "↑" : "↓"} ${shown.toLocaleString("en-GB")}% ${pct > 0 ? "higher" : "lower"}`;
 };
+
+const DELTA_TEXT_COLOR = "#4B5563"; // neutral grey for all directions
 
 // Status chip styling per confidence level. Proxy scenarios are deliberately
 // amber so their indicative nature is visible at a glance.
@@ -452,6 +423,18 @@ const extractSeries = (payload) => {
   };
 };
 
+// For the daytime clock view, append the closing hour (e.g. "20:00") so the
+// last hourly step (19:00-20:00) is drawn and the axis spans the full
+// 07:00-20:00 window. The closing point repeats the last value but is hidden
+// and excluded from tooltips; it only terminates the final step.
+const withClosingHour = (labels, values) => {
+  const last = labels[labels.length - 1];
+  const m = /^(\d{2}):(\d{2})$/.exec(String(last || ""));
+  if (!m || !values.length) return { labels, values };
+  const next = `${String(Number(m[1]) + 1).padStart(2, "0")}:${m[2]}`;
+  return { labels: [...labels, next], values: [...values, values[values.length - 1]] };
+};
+
 // `stepped` draws the hourly series as flat steps (no smoothing), as required
 // for the daytime clock-hour view; legacy series keep gentle smoothing.
 const lineOptions = (xLabel, yLabel, { stepped = false } = {}) => ({
@@ -460,12 +443,19 @@ const lineOptions = (xLabel, yLabel, { stepped = false } = {}) => ({
   interaction: { mode: "index", intersect: false },
   plugins: {
     legend: { display: false },
-    tooltip: { mode: "index", intersect: false },
+    tooltip: {
+      mode: "index",
+      intersect: false,
+      // Hide the synthetic closing-hour point from tooltips.
+      filter: stepped
+        ? (item) => item.dataIndex < item.dataset.data.length - 1
+        : undefined,
+    },
   },
   scales: {
     x: {
       title: { display: true, text: xLabel },
-      ticks: { maxTicksLimit: stepped ? 13 : 12, autoSkip: true },
+      ticks: { maxTicksLimit: stepped ? 14 : 12, autoSkip: true },
       grid: { display: false },
     },
     y: {
@@ -504,8 +494,15 @@ const KpiSection = ({
   baselineStale,
   versionLabel,
   frontageOnly = false,
+  runtimeSumoVersion = null,
   onDownload,
 }) => {
+  // Actual engine version for this run: read from the output XML headers by
+  // the parser, falling back to an API-reported version if one is provided.
+  // Deliberately NOT the validated-package reference (SUMO_RELEASE).
+  const liveSumoVersion = kpis?.sumoRuntimeVersion || runtimeSumoVersion || null;
+  const referenceSumoVersion = SUMO_RELEASE?.sumoVersion || null;
+
   if (kpisLoading) {
     return (
       <Card variant="outlined" sx={{ borderColor: "rgba(44,182,125,0.25)" }}>
@@ -544,7 +541,6 @@ const KpiSection = ({
   const scalars = frontageOnly
     ? allScalars.filter((s) => isFrontageSafeScalar(s.key))
     : allScalars;
-  const hiddenFrontageCount = frontageOnly ? allScalars.length - scalars.length : 0;
   const series = extractSeries(kpis);
   const files = Array.isArray(kpis._files) ? kpis._files : [];
 
@@ -601,9 +597,26 @@ const KpiSection = ({
     );
   }
 
+  // Runtime vs validated-reference note, worded as agreed with the mobility
+  // partner. The live tool is accepted with this version distinction stated;
+  // the two runtimes are not treated as numerically equivalent.
+  const runtimeNote = !liveSumoVersion
+    ? `The SUMO runtime version could not be read from this run's output. The validated reference results were produced with SUMO ${referenceSumoVersion}, so numerical differences may occur.`
+    : liveSumoVersion === referenceSumoVersion
+    ? `Live simulations use SUMO ${liveSumoVersion}, the same version used for the validated reference results.`
+    : `Live simulations use SUMO ${liveSumoVersion}. The validated reference results were produced with SUMO ${referenceSumoVersion}, so numerical differences may occur.`;
+
   return (
     <Stack spacing={3}>
-      {limitationNote && (
+      {referenceSumoVersion && (
+        <Alert severity="info" icon={false} sx={{ py: 0.5 }}>
+          {runtimeNote}
+        </Alert>
+      )}
+
+      {/* For D/E the frontage-only notice below already carries the agreed
+          one-way wording, so the scenario note is not repeated here. */}
+      {limitationNote && !frontageOnly && (
         <Alert severity="warning">{limitationNote}</Alert>
       )}
 
@@ -613,11 +626,8 @@ const KpiSection = ({
           private-traffic diversion is outside the model, so these outputs do not
           establish neighbourhood-wide changes in travel time, congestion or
           emissions. Total-route travel time, VKT and emissions are therefore not
-          shown here and are not compared against baseline
-          {hiddenFrontageCount > 0
-            ? ` (${hiddenFrontageCount} network/total indicator${hiddenFrontageCount === 1 ? "" : "s"} withheld).`
-            : "."}{" "}
-          The daytime profile below reports the school frontage.
+          shown here and are not compared against baseline. The daytime profile
+          below reports the school frontage.
         </Alert>
       )}
 
@@ -656,14 +666,16 @@ const KpiSection = ({
               variant="outlined"
               sx={{ color: "text.secondary", ml: "auto" }}
             />
-            {SUMO_RELEASE?.sumoVersion && (
-              <Chip
-                size="small"
-                label={`SUMO ${SUMO_RELEASE.sumoVersion}`}
-                variant="outlined"
-                sx={{ color: "text.secondary" }}
-              />
-            )}
+            <Chip
+              size="small"
+              label={
+                liveSumoVersion
+                  ? `Live runtime: SUMO ${liveSumoVersion}`
+                  : "Live runtime: SUMO version unknown"
+              }
+              variant="outlined"
+              sx={{ color: "text.secondary" }}
+            />
             {versionLabel && (
               <Chip
                 size="small"
@@ -674,12 +686,12 @@ const KpiSection = ({
             )}
           </Stack>
 
-          {!isBaselineRun && baselineStale && (
+          {!isBaselineRun && baselineStale && !frontageOnly && (
             <Alert severity="warning" sx={{ mb: 2 }}>
-              The cached baseline comes from a different model release than this
-              run, so the comparison is disabled to avoid mixing model
-              generations. Re-run the baseline scenario to compare against the
-              current release.
+              The cached baseline comes from a different model release or SUMO
+              runtime version than this run, so the comparison is disabled to
+              avoid mixing results. Re-run the baseline scenario to compare
+              against the current run.
             </Alert>
           )}
 
@@ -745,10 +757,10 @@ const KpiSection = ({
                           display: "block",
                           mt: 0.5,
                           fontWeight: 700,
-                          color: DELTA_COLOR[delta.direction],
+                          color: DELTA_TEXT_COLOR,
                         }}
                       >
-                        {formatPct(delta.pct)}
+                        {formatChange(delta.pct)}
                         <Typography
                           component="span"
                           variant="caption"
@@ -772,7 +784,12 @@ const KpiSection = ({
         const primary = series.series.filter((s) => s.role !== "diagnostic");
         const diagnostic = series.series.filter((s) => s.role === "diagnostic");
 
-        const renderChart = (s) => (
+        const renderChart = (s) => {
+          const plot = isClock
+            ? withClosingHour(series.xValues, s.values)
+            : { labels: series.xValues, values: s.values };
+          const lastIdx = plot.values.length - 1;
+          return (
           <Card key={s.key} variant="outlined" sx={{ borderRadius: 2 }}>
             <CardContent>
               <Typography variant="subtitle2" sx={{ mb: 0.25 }}>
@@ -790,18 +807,26 @@ const KpiSection = ({
               <Box sx={{ height: { xs: 280, md: 360 } }}>
                 <Line
                   data={{
-                    labels: series.xValues,
+                    labels: plot.labels,
                     datasets: [
                       {
                         label: s.label,
-                        data: s.values,
+                        data: plot.values,
                         borderColor: s.color,
                         backgroundColor: `${s.color}22`,
                         fill: !isClock,
                         // Daytime clock view: flat hourly steps, no smoothing.
-                        stepped: isClock ? "middle" : false,
+                        // "before" (Chart.js naming) holds each hour's value
+                        // from its own label until the next hour, so the 07:00
+                        // value covers 07:00-08:00.
+                        stepped: isClock ? "before" : false,
                         tension: isClock ? 0 : 0.3,
-                        pointRadius: isClock ? 2 : 0,
+                        pointRadius: isClock
+                          ? (ctx) => (ctx.dataIndex === lastIdx ? 0 : 2)
+                          : 0,
+                        pointHoverRadius: isClock
+                          ? (ctx) => (ctx.dataIndex === lastIdx ? 0 : 4)
+                          : 0,
                         borderWidth: 2,
                         borderDash: s.role === "diagnostic" ? [6, 4] : undefined,
                         spanGaps: true,
@@ -815,7 +840,8 @@ const KpiSection = ({
               </Box>
             </CardContent>
           </Card>
-        );
+          );
+        };
 
         return (
           <Box>
@@ -885,11 +911,21 @@ const SumoSimulation = () => {
   const frontageOnly = FRONTAGE_ONLY_SCENARIOS.has(ranScenario?.id);
 
   // The cached baseline is only usable for comparison if it came from the same
-  // model release as the current run. Otherwise it is stale and must not be
-  // mixed (per the release 1.1.0 integration rules).
+  // model release AND the same SUMO runtime version as the current run.
+  // Otherwise it is stale and must not be mixed (release 1.1.0 integration
+  // rules; the partner does not treat different SUMO runtimes as numerically
+  // equivalent).
   const hasBaseline = Boolean(baselineKpis);
+  const baselineRuntime = baselineKpis?.sumoRuntimeVersion || null;
+  const currentRuntime = kpis?.sumoRuntimeVersion || null;
+  const runtimeMismatch = Boolean(
+    baselineRuntime && currentRuntime && baselineRuntime !== currentRuntime
+  );
   const baselineMatchesRelease =
-    hasBaseline && sameModelRelease(baselineVersion, runVersion);
+    hasBaseline && sameModelRelease(baselineVersion, runVersion) && !runtimeMismatch;
+
+  // User-facing scenario name for a technical id, e.g. "scenarioC" -> "Scenario C0".
+  const scenarioLabel = (id) => SCENARIOS.find((s) => s.id === id)?.label || String(id || "");
   const baselineStale = hasBaseline && !baselineMatchesRelease && !isBaselineRun;
 
   const versionLabel = [runVersion.repoVersion, runVersion.modelVersion]
@@ -1305,7 +1341,7 @@ const SumoSimulation = () => {
                   <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
                     {statusDetails.scenario && (
                       <Chip
-                        label={`Scenario: ${String(statusDetails.scenario)}`}
+                        label={scenarioLabel(statusDetails.scenario)}
                         variant="outlined"
                       />
                     )}
@@ -1339,6 +1375,7 @@ const SumoSimulation = () => {
                     baselineStale={baselineStale}
                     versionLabel={versionLabel}
                     frontageOnly={frontageOnly}
+                    runtimeSumoVersion={runVersion?.sumoVersion || null}
                     onDownload={handleDownloadResult}
                   />
                 </>
@@ -1365,7 +1402,7 @@ const SumoSimulation = () => {
             Simulation in progress…
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-            Scenario <strong>{scenario}</strong>
+            <strong>{scenarioLabel(scenario)}</strong>
             {status ? ` • ${String(status)}` : ""} • {elapsedLabel}
           </Typography>
 

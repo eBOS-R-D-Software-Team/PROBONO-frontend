@@ -6,7 +6,7 @@
 // docs/HANDOVER_FRONTEND.md.
 //
 // It is deliberately separate from the live /execute-/status-/result flow:
-// the live tool runs single seed-42 simulations; nothing here is executable.
+// the live tool runs single seed-42 simulations; nothing here triggers a run.
 //
 // CRA note: the CSVs live in public/, so they are fetched at runtime rather
 // than imported. Call loadValidatedResults() once (e.g. in a useEffect) and
@@ -193,7 +193,8 @@ export const ALL_KPIS = KPI;
 
 // group: "primary" (report scenarios, full comparison),
 //        "oneway"  (D/E, frontage-only),
-//        "sensitivity_c1" / "sensitivity_dr" (CSV-only, not executable).
+//        "sensitivity_c1" / "sensitivity_dr" (CSV-only here; executable in the
+//        repository but not available in the live scenario selector).
 // `figure` / `figureAlt`: scenario schematic from docs/figures/, served from
 // public/data/sumo/figures/. Alt text describes intervention extent and model
 // boundary, per the handover accessibility requirement.

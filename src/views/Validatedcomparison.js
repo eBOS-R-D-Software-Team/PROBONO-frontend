@@ -38,7 +38,6 @@ import {
   BarChart,
   CartesianGrid,
   Cell,
-  Legend,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -519,7 +518,7 @@ const ValidatedComparison = () => {
     return (
       <Alert severity="error" sx={{ mt: 2 }}>
         Could not load the validated results ({loadError}). The live simulation
-        tool above is unaffected.
+        tool in the "Run a live simulation" tab is unaffected.
       </Alert>
     );
   }
@@ -547,7 +546,8 @@ const ValidatedComparison = () => {
       </Stack>
       <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
         {SUMO_RELEASE.officialSeedNote} These are the authoritative study
-        figures and are independent of the live single-run tool above.
+        figures and are independent of the live single-run tool in the "Run a
+        live simulation" tab.
       </Typography>
 
       {/* Study overview (the multi-scenario intervention map). Kept here as an
@@ -700,7 +700,7 @@ const ValidatedComparison = () => {
             These are validated sensitivity analyses from the official CSVs.
             They are executable in the repository but are intentionally
             presented only as validated results here — they are not available in
-            the live scenario selector above.
+            the live scenario selector.
           </Alert>
 
           {/* C1 pedestrian-interaction sensitivity */}
@@ -773,10 +773,22 @@ const ValidatedComparison = () => {
                 csvId: `${drBase}_${lvl.suffix}`,
                 label: lvl.label,
               })).filter((s) => table[s.csvId]);
-              const drKpis = [ALL_KPIS.spotSpeed, ALL_KPIS.over36, ALL_KPIS.co2PerVkm];
+              // D/E are frontage-only everywhere: when a one-way base is selected,
+              // only frontage-scope indicators are shown (no CO2/VKT), matching
+              // the One-way frontage tab and the live D/E restriction.
+              const isOnewayBase = drBase === "OW_FULL" || drBase === "OW_REDUCED";
+              const drKpis = [ALL_KPIS.spotSpeed, ALL_KPIS.over36, ALL_KPIS.co2PerVkm].filter(
+                (k) => !isOnewayBase || k.scope === "frontage"
+              );
               const rows = buildRows(table, drScenarios, drKpis, drScenarios[0]?.csvId);
               return (
                 <>
+                  {isOnewayBase && (
+                    <Alert severity="info" sx={{ mb: 2 }}>
+                      {REQUIRED_NOTICES.find((n) => n.key === "oneway").text} Only
+                      frontage indicators are shown for this base scenario.
+                    </Alert>
+                  )}
                   <Box
                     sx={{
                       display: "grid",

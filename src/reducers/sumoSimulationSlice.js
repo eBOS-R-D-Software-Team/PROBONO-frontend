@@ -484,6 +484,18 @@ const buildClockHourlySeries = (e1, edge) => {
   };
 };
 
+// SUMO writes the engine version into the header comment of every output
+// file, e.g. "<!-- generated on 2026-10-21T10:14:01 by Eclipse SUMO sumo 1.28.0".
+// This is the version that actually ran, as opposed to the validated-package
+// reference in release.js. Only the first part of the file is scanned.
+const SUMO_HEADER_VERSION_RE = /Eclipse SUMO\s+\w+\s+v?(\d+\.\d+\.\d+)/i;
+
+export const parseSumoVersionFromHeader = (text) => {
+  if (!text) return null;
+  const m = String(text).slice(0, 2000).match(SUMO_HEADER_VERSION_RE);
+  return m ? m[1] : null;
+};
+
 // True when a time-series payload actually carries drawable data, for either
 // the structured "clock-hourly" shape or the legacy per-field arrays shape.
 const hasSeries = (ts) => {
@@ -504,7 +516,13 @@ const parseResultZip = async (blob) => {
 
   const basename = (name) => name.split("/").pop();
   const find = (re) => files.find((name) => re.test(basename(name)));
-  const readFile = (name) => zip.files[name].async("string");
+  // Each file is decompressed once and reused (tripinfo, the largest file, is
+  // otherwise read for emissions, stop counts and possibly the version header).
+  const fileCache = new Map();
+  const readFile = (name) => {
+    if (!fileCache.has(name)) fileCache.set(name, zip.files[name].async("string"));
+    return fileCache.get(name);
+  };
 
   const summaryName = find(/summary/i);
   const statsName = find(/stat/i); // stats / statistics
@@ -513,7 +531,23 @@ const parseResultZip = async (blob) => {
   const edgeName = find(/edge.?data|meandata|edgedata/i);
   const emissionName = find(/emission/i);
 
-  const result = { kpis: {}, timeseries: {}, _files: files };
+  // sumoRuntimeVersion: engine version read from the output headers (string),
+  // kept outside `kpis` so it is never rendered as a numeric KPI card.
+  const result = { kpis: {}, timeseries: {}, sumoRuntimeVersion: null, _files: files };
+
+  // --- actual SUMO runtime version, from the first output header found ---
+  // Small files first (stats / detector) so the large tripinfo is only read
+  // if nothing else carries a header.
+  const headerCandidates = [statsName, e1Name, summaryName, edgeName, tripName, ...files]
+    .filter(Boolean)
+    .filter((name, i, arr) => arr.indexOf(name) === i);
+  for (const name of headerCandidates) {
+    const version = parseSumoVersionFromHeader(await readFile(name));
+    if (version) {
+      result.sumoRuntimeVersion = version;
+      break;
+    }
+  }
 
   // --- scalar KPIs: prefer statistics, fall back to aggregated tripinfo ---
   if (statsName) {
@@ -724,9 +758,13 @@ export const downloadSumoResult = createAsyncThunk(
 // The backend returns repo_version + model_version with each execution
 // (release 1.1.0 onward); these must travel with the run so results from
 // different model generations are never mixed or compared.
+// The API does not currently return the SUMO engine version; if the partner
+// adds a `sumo_version` field later it is picked up here. Until then the
+// runtime version comes from the output XML headers (see parseResultZip).
 const readVersions = (payload) => ({
   repoVersion: payload?.repo_version || payload?.repository_version || null,
   modelVersion: payload?.model_version || null,
+  sumoVersion: payload?.sumo_version || null,
 });
 
 // Two runs are comparable only if they come from the same model release.
