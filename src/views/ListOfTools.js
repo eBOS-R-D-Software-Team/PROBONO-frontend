@@ -13,7 +13,8 @@ import {
   ImCompass,
   ImEarth,
   ImDownload,
-  ImBinoculars
+  ImBinoculars,
+  ImTree,
 } from "react-icons/im";
 import { SlArrowRight } from "react-icons/sl";
 
@@ -138,6 +139,12 @@ const ListOfTools = () => {
           }}
         />
       ),
+    },
+
+    {
+      title: 'NovaDM',
+      link: 'https://novadm.cds-probono.eu/',
+      icon: ImTree
     },
 
     {
